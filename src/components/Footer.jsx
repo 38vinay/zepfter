@@ -1,0 +1,78 @@
+import React from "react";
+import { FaFacebookF, FaInstagram, FaLinkedinIn, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+
+const Footer = () => {
+  return (
+    <footer className="footer-section text-light">
+
+      {/* Top Footer */}
+      <div className="container py-5">
+        <div className="row g-4">
+
+          {/* ABOUT */}
+          <div className="col-md-4">
+            <h4 className="fw-bold">ZEPFTER</h4>
+            <p className="mt-3 text-light opacity-75">
+              A leading training institute offering world-class programs in 
+              Medical, Clinical, and IT domains. We build careers through 
+              knowledge, innovation, and practical learning.
+            </p>
+
+            {/* Social Icons */}
+            <div className="d-flex gap-3 mt-3">
+              <a href="#" className="social-icon"><FaFacebookF /></a>
+              <a href="#" className="social-icon"><FaInstagram /></a>
+              <a href="#" className="social-icon"><FaLinkedinIn /></a>
+            </div>
+          </div>
+
+          {/* QUICK LINKS */}
+          <div className="col-md-2">
+            <h5 className="fw-bold mb-3">Quick Links</h5>
+            <ul className="list-unstyled footer-links">
+              <li><a href="/">Home</a></li>
+              <li><a href="/about">About</a></li>
+              <li><a href="/services">Services</a></li>
+              <li><a href="/contact">Contact</a></li>
+            </ul>
+          </div>
+
+          {/* COURSES */}
+          <div className="col-md-3">
+            <h5 className="fw-bold mb-3">Top Courses</h5>
+            <ul className="list-unstyled footer-links">
+              <li><a href="/services">Medical Coding</a></li>
+              <li><a href="/services">Clinical Research</a></li>
+              <li><a href="/services">Data Science</a></li>
+              <li><a href="/services">AI & Machine Learning</a></li>
+              <li><a href="/services">Web Development</a></li>
+            </ul>
+          </div>
+
+          {/* CONTACT INFO */}
+          <div className="col-md-3">
+            <h5 className="fw-bold mb-3">Contact Us</h5>
+
+            <p className="mb-2">
+              <FaPhoneAlt className="me-2 text-primary" /> +91 98765 43210
+            </p>
+            <p className="mb-2">
+              <FaEnvelope className="me-2 text-primary" /> support@zepfter.com
+            </p>
+            <p className="mb-2">
+              <FaMapMarkerAlt className="me-2 text-primary" /> Bangalore, India
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="footer-bottom text-center py-3">
+        <p className="mb-0">© {new Date().getFullYear()} ZEPFTER. All Rights Reserved.</p>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;

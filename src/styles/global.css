@@ -1,0 +1,360 @@
+/* Global Modern Styling */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Glassmorphism Card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Gradient button */
+.btn-gradient {
+  background: linear-gradient(90deg, #0052FF, #00A6FF);
+  color: #fff !important;
+  border-radius: 30px;
+  padding: 10px 25px;
+  transition: 0.3s;
+}
+
+.btn-gradient:hover {
+  opacity: 0.85;
+}
+
+/* Section spacing */
+.section {
+  padding: 80px 0;
+}
+
+/* Navbar shadow */
+.nav-custom {
+  background: #ffffffdd;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+/* Hero Carousel */
+.hero-carousel {
+  position: relative;
+  margin-top: 70px; /* To fix overlap with navbar */
+}
+
+.hero-slide {
+  height: 90vh;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+/* Dark overlay */
+.hero-slide .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(2px);
+}
+
+/* Hero content centered */
+.hero-content {
+  position: relative;
+  top: 40%;
+  transform: translateY(-40%);
+  max-width: 900px;
+}
+
+/* Carousel transition effect */
+.carousel-item {
+  transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+}
+
+.glass-card {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 25px;
+  border: 1px solid rgba(255,255,255,0.25);
+  transition: 0.3s;
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* Footer Design */
+.footer-section {
+  background: linear-gradient(135deg, #0a0f2d, #0c1a45);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Glass highlight */
+.footer-section::before {
+  content: "";
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 300px;
+  height: 300px;
+  background: rgba(255,255,255,0.08);
+  filter: blur(70px);
+  border-radius: 50%;
+}
+
+.footer-section h4,
+.footer-section h5 {
+  color: #ffffff;
+}
+
+.footer-links li {
+  margin-bottom: 8px;
+}
+
+.footer-links a {
+  color: #bbbbbb;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer-links a:hover {
+  color: #ffffff;
+  padding-left: 3px;
+}
+
+/* Social Icons */
+.social-icon {
+  color: #ffffff;
+  background: rgba(255,255,255,0.1);
+  padding: 10px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+  font-size: 1.1rem;
+}
+
+.social-icon:hover {
+  background: #007bff;
+  color: #fff;
+  transform: translateY(-4px);
+}
+
+/* Footer bottom */
+.footer-bottom {
+  background: #04071a;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+
+/* Testimonials Section */
+.testimonial-section {
+  background: #f7f9fc;
+}
+
+.testimonial-card {
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 30px;
+  max-width: 650px;
+  border: 1px solid rgba(255,255,255,0.25);
+  transition: 0.3s ease-in-out;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+}
+
+/* User image */
+.testimonial-img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Testimonial text */
+.testimonial-text {
+  font-style: italic;
+  margin-top: 10px;
+  color: #333;
+  line-height: 1.7;
+}
+
+/* Carousel Controls */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: invert(1);
+}
+
+/* Custom Glass Navbar */
+.nav-custom {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(20px);
+  padding: 12px 0;
+  transition: 0.3s ease;
+}
+
+/* Scroll Shadow */
+.nav-custom.scrolled {
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 3px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Brand text */
+.brand-text {
+  letter-spacing: 1px;
+  font-size: 1.3rem;
+}
+
+/* Nav Links */
+.nav-link {
+  color: #0d1b3d !important;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.nav-link:hover {
+  color: #0052ff !important;
+  transform: translateY(-2px);
+}
+
+/* Dropdown */
+.dropdown-menu {
+  border-radius: 10px;
+  border: none;
+  padding: 10px 0;
+}
+
+.dropdown-item {
+  padding: 10px 20px;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.dropdown-item:hover {
+  background: #0052ff;
+  color: #fff;
+  transform: translateX(3px);
+}
+
+/* Dropdown headers */
+.dropdown-header {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #0d1b3d;
+  opacity: 0.7;
+}
+
+/* Mobile */
+.navbar-toggler {
+  border: none;
+  outline: none;
+}
+
+/* Animated Underline Hover Effect */
+.nav-link {
+  position: relative;
+  padding-bottom: 5px;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background: #0052ff;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+  border-radius: 4px;
+}
+
+.nav-link:hover::after {
+  width: 60%;
+}
+
+/* Active link underline */
+.nav-link.active::after {
+  width: 60%;
+  background: #0052ff;
+}
+
+/* 3D Floating Effect for Navbar Links */
+.nav-link {
+  position: relative;
+  padding-bottom: 5px;
+  transition: all 0.25s ease;
+  transform-style: preserve-3d;
+}
+
+/* On hover: slightly lift the link */
+.nav-link:hover {
+  transform: translateY(-4px);
+}
+
+/* Optional shadow when floating */
+.nav-link:hover {
+  text-shadow: 0px 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Keep active link slightly lifted */
+.nav-link.active {
+  transform: translateY(-2px);
+}
+
+/* Underline animation (if you use it) */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background: #0052ff;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+  border-radius: 4px;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 60%;
+}
+
+.modal-content {
+  border-radius: 15px;
+  background: #ffffffee;
+  backdrop-filter: blur(6px);
+}
+
+.modal-header {
+  border-bottom: none;
+}
+
+.modal-footer {
+  border-top: none;
+}
+
+.service-card {
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
