@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/logo.png";
 
 const Header = () => {
+  const [scrolled, setScrolled] = useState(false);
 
-    
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <nav className="navbar navbar-expand-lg nav-custom fixed-top shadow-sm">
+    <nav className={`navbar navbar-expand-lg nav-custom fixed-top shadow-sm ${scrolled ? 'scrolled' : ''}`}>
       <div className="container">
 
         {/* LOGO */}
@@ -26,6 +35,9 @@ const Header = () => {
           type="button" 
           data-bs-toggle="collapse" 
           data-bs-target="#mainNavbar"
+          aria-controls="mainNavbar"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -50,11 +62,12 @@ const Header = () => {
                 id="servicesDropdown"
                 role="button"
                 data-bs-toggle="dropdown"
+                aria-expanded="false"
               >
                 Services
               </a>
 
-              <ul className="dropdown-menu shadow dropdown-menu-end">
+              <ul className="dropdown-menu shadow" aria-labelledby="servicesDropdown">
 
                 <li><h6 className="dropdown-header">Medical Courses</h6></li>
                 <li><Link className="dropdown-item" to="/services">Medical Coding</Link></li>

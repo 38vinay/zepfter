@@ -187,15 +187,22 @@ html {
   color: var(--primary-blue) !important;
 }
 
-/* Enhanced Dropdown */
+/* FIXED: Enhanced Dropdown - Remove transform that breaks positioning */
 .dropdown-menu {
   border-radius: 15px;
   border: none;
   padding: 15px 0;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-  backdrop-filter: blur(10px);
   background: rgba(255, 255, 255, 0.98);
   margin-top: 10px;
+  /* Remove backdrop-filter as it can cause issues */
+}
+
+/* Ensure dropdown shows on hover for desktop */
+@media (min-width: 992px) {
+  .nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+  }
 }
 
 .dropdown-item {
@@ -204,12 +211,18 @@ html {
   transition: all 0.2s ease;
   border-radius: 10px;
   margin: 3px 10px;
+  color: var(--text-dark);
 }
 
 .dropdown-item:hover {
   background: linear-gradient(135deg, var(--primary-blue), var(--primary-cyan));
   color: #fff !important;
   transform: translateX(5px);
+}
+
+.dropdown-item:focus {
+  background: linear-gradient(135deg, var(--primary-blue), var(--primary-cyan));
+  color: #fff !important;
 }
 
 .dropdown-header {
@@ -219,6 +232,15 @@ html {
   opacity: 0.6;
   padding: 10px 25px;
   letter-spacing: 1px;
+}
+
+/* Dropdown toggle - remove transform on hover */
+.nav-item.dropdown .nav-link.dropdown-toggle {
+  cursor: pointer;
+}
+
+.nav-item.dropdown .nav-link.dropdown-toggle:hover {
+  transform: none; /* Prevent transform that breaks dropdown positioning */
 }
 
 /* Hero Section Enhancements */
