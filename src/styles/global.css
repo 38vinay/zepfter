@@ -175,7 +175,6 @@ html {
 
 .nav-link:hover {
   color: var(--primary-blue) !important;
-  transform: translateY(-3px);
 }
 
 .nav-link:hover::after,
@@ -187,7 +186,34 @@ html {
   color: var(--primary-blue) !important;
 }
 
-/* FIXED: Enhanced Dropdown - Remove transform that breaks positioning */
+/* ========================================
+   FIXED DROPDOWN MENU STYLES
+   ======================================== */
+
+/* Remove transforms that break dropdown positioning */
+.navbar-nav .nav-item {
+  position: static; /* Allow dropdown to position relative to navbar */
+}
+
+/* Desktop: Position dropdown correctly */
+@media (min-width: 992px) {
+  .navbar-nav .nav-item.dropdown {
+    position: relative; /* Keep dropdown positioned relative to nav-item on desktop */
+  }
+  
+  /* Remove any transforms on hover that break positioning */
+  .navbar-nav .nav-item .nav-link:hover {
+    transform: none; /* CRITICAL: Remove transform */
+  }
+  
+  /* Show dropdown on hover for desktop */
+  .navbar-nav .nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+    animation: fadeInDown 0.3s ease;
+  }
+}
+
+/* Dropdown Menu Styling */
 .dropdown-menu {
   border-radius: 15px;
   border: none;
@@ -195,16 +221,23 @@ html {
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
   background: rgba(255, 255, 255, 0.98);
   margin-top: 10px;
-  /* Remove backdrop-filter as it can cause issues */
+  min-width: 250px;
+  /* Remove backdrop-filter to prevent positioning issues */
 }
 
-/* Ensure dropdown shows on hover for desktop */
-@media (min-width: 992px) {
-  .nav-item.dropdown:hover .dropdown-menu {
-    display: block;
+/* Dropdown fade-in animation */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
+/* Dropdown Items */
 .dropdown-item {
   padding: 12px 25px;
   font-weight: 500;
@@ -214,17 +247,19 @@ html {
   color: var(--text-dark);
 }
 
-.dropdown-item:hover {
+.dropdown-item:hover,
+.dropdown-item:focus {
   background: linear-gradient(135deg, var(--primary-blue), var(--primary-cyan));
   color: #fff !important;
   transform: translateX(5px);
 }
 
-.dropdown-item:focus {
+.dropdown-item:active {
   background: linear-gradient(135deg, var(--primary-blue), var(--primary-cyan));
   color: #fff !important;
 }
 
+/* Dropdown Headers */
 .dropdown-header {
   font-size: 0.85rem;
   font-weight: 700;
@@ -232,16 +267,54 @@ html {
   opacity: 0.6;
   padding: 10px 25px;
   letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
-/* Dropdown toggle - remove transform on hover */
-.nav-item.dropdown .nav-link.dropdown-toggle {
-  cursor: pointer;
+/* Dropdown Divider */
+.dropdown-divider {
+  margin: 10px 15px;
+  opacity: 0.1;
 }
 
-.nav-item.dropdown .nav-link.dropdown-toggle:hover {
-  transform: none; /* Prevent transform that breaks dropdown positioning */
+/* Dropdown Toggle Arrow */
+.dropdown-toggle::after {
+  transition: transform 0.3s ease;
+  margin-left: 8px;
 }
+
+.dropdown.show .dropdown-toggle::after,
+.dropdown:hover .dropdown-toggle::after {
+  transform: rotate(180deg);
+}
+
+/* Mobile Dropdown Fixes */
+@media (max-width: 991px) {
+  .dropdown-menu {
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    padding: 10px 0;
+    margin-top: 0;
+  }
+  
+  .dropdown-item {
+    padding: 10px 20px;
+    margin: 2px 0;
+    background: rgba(0, 82, 255, 0.05);
+  }
+  
+  .dropdown-item:hover,
+  .dropdown-item:focus {
+    background: rgba(0, 82, 255, 0.1);
+    transform: translateX(10px);
+  }
+  
+  .dropdown-header {
+    padding: 10px 20px;
+  }
+}
+
+/* ======================================== */
 
 /* Hero Section Enhancements */
 .hero-wrapper {
@@ -578,6 +651,35 @@ html {
   }
 }
 
+/* Mobile Navigation Improvements */
+@media (max-width: 991px) {
+  .navbar-collapse {
+    background: rgba(255, 255, 255, 0.98);
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar-nav {
+    gap: 5px;
+  }
+  
+  .nav-link {
+    padding: 12px 16px !important;
+    margin: 0;
+    border-radius: 10px;
+  }
+  
+  .nav-link:hover {
+    background: rgba(0, 82, 255, 0.05);
+  }
+  
+  .nav-link::after {
+    display: none; /* Hide underline effect on mobile */
+  }
+}
+
 /* Scroll Progress Bar */
 .scroll-progress {
   position: fixed;
@@ -602,4 +704,63 @@ html {
   to {
     opacity: 1;
   }
+}
+
+/* Footer Bottom Bar */
+.footer-bottom {
+  background: rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Form Control Enhancements */
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 0.25rem rgba(0, 82, 255, 0.15);
+}
+
+/* Alert Animations */
+.alert {
+  animation: slideInDown 0.4s ease;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Accessibility Improvements */
+.btn:focus,
+.nav-link:focus,
+.dropdown-item:focus {
+  outline: 2px solid var(--primary-blue);
+  outline-offset: 2px;
+}
+
+/* Skip to main content link for screen readers */
+.skip-to-main {
+  position: absolute;
+  left: -9999px;
+  z-index: 999;
+}
+
+.skip-to-main:focus {
+  left: 50%;
+  transform: translateX(-50%);
+  top: 10px;
+  background: var(--primary-blue);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.about-c{
+  margin-bottom: 200px;
 }

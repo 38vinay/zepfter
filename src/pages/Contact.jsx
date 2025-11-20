@@ -57,7 +57,7 @@ const Contact = () => {
     {
       icon: <FaMapMarkerAlt size={24} />,
       title: "Address",
-      details: ["123 Education Street", "Bangalore, Karnataka 560001"],
+      details: ["CBM Compound, Isukathota", "Maddilapalem, Visakhapatnam-530003"],
       color: "#4facfe"
     },
     {
@@ -81,27 +81,6 @@ const Contact = () => {
     "Python Programming"
   ];
 
-  const locations = [
-    {
-      city: "Bangalore",
-      address: "123 Education Street, Bangalore 560001",
-      phone: "+91 98765 43210",
-      image: "https://images.unsplash.com/photo-1596176530529-78163a4f7af2?w=400&q=80"
-    },
-    {
-      city: "Hyderabad",
-      address: "456 Tech Park, Hyderabad 500032",
-      phone: "+91 98765 43211",
-      image: "https://images.unsplash.com/photo-1587899897387-091ebd01a6b2?w=400&q=80"
-    },
-    {
-      city: "Chennai",
-      address: "789 Knowledge Hub, Chennai 600001",
-      phone: "+91 98765 43212",
-      image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=400&q=80"
-    }
-  ];
-
   return (
     <>
       {/* Hero Section */}
@@ -111,7 +90,7 @@ const Contact = () => {
         padding: '120px 0 80px'
       }}>
         <div className="container position-relative" data-aos="fade-up">
-          <h1 className="fw-bold display-3 mb-4">Get in Touch</h1>
+          <h1 className="fw-bold display-3 mb-5">Get in Touch</h1>
           <p className="fs-4 mb-0" style={{ maxWidth: '700px', margin: '0 auto' }}>
             Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
           </p>
@@ -296,8 +275,9 @@ const Contact = () => {
                 <div>
                   <div className="fw-semibold mb-1">Visit Us</div>
                   <div className="text-muted small">
-                    123 Education Street<br />
-                    Bangalore, Karnataka 560001
+                    CBM Compound, Isukathota<br />
+                    Maddilapalem, Visakhapatnam-530003<br />
+                    Andhra Pradesh, India
                   </div>
                 </div>
               </div>
@@ -341,60 +321,103 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Locations */}
+      {/* Location Section */}
       <section className="section bg-light">
         <div className="container">
           <div className="text-center mb-5" data-aos="fade-up">
-            <h2 className="fw-bold display-5 mb-3">Our Locations</h2>
-            <p className="text-muted fs-5">Find a ZEPFTER center near you</p>
+            <h2 className="fw-bold display-5 mb-3">Our Location</h2>
+            <p className="text-muted fs-5">Visit us at our Visakhapatnam campus</p>
           </div>
 
-          <div className="row g-4">
-            {locations.map((location, idx) => (
-              <div className="col-lg-4 col-md-6" key={idx} data-aos="fade-up" data-aos-delay={idx * 100}>
-                <div className="glass-card overflow-hidden p-0 h-100">
+          <div className="row g-4 align-items-center">
+            <div className="col-lg-6" data-aos="fade-right">
+              <div className="glass-card p-5">
+                <div className="mb-4">
                   <div 
-                    className="position-relative"
-                    style={{ height: '200px', backgroundImage: `url(${location.image})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+                    className="d-inline-flex align-items-center justify-content-center rounded-circle mb-3"
+                    style={{
+                      width: '80px',
+                      height: '80px',
+                      background: 'linear-gradient(135deg, #667eea, #764ba2)'
+                    }}
                   >
-                    <div className="position-absolute top-0 start-0 w-100 h-100 bg-dark bg-opacity-50 d-flex align-items-center justify-content-center">
-                      <h3 className="text-white fw-bold">{location.city}</h3>
-                    </div>
+                    <FaMapMarkerAlt size={40} className="text-white" />
                   </div>
-                  <div className="p-4">
-                    <div className="d-flex align-items-start gap-2 mb-3">
-                      <FaMapMarkerAlt className="text-primary mt-1 flex-shrink-0" />
-                      <div className="text-muted small">{location.address}</div>
-                    </div>
-                    <div className="d-flex align-items-center gap-2 mb-3">
-                      <FaPhoneAlt className="text-primary" />
-                      <a href={`tel:${location.phone}`} className="text-decoration-none text-primary fw-semibold">
-                        {location.phone}
-                      </a>
-                    </div>
-                    <button className="btn btn-outline-primary w-100">Get Directions</button>
-                  </div>
+                  <h3 className="fw-bold mb-3">ZEPFTER Visakhapatnam</h3>
                 </div>
+
+                <div className="mb-4">
+                  <h5 className="fw-semibold mb-2">Address:</h5>
+                  <p className="text-muted mb-0">
+                    CBM Compound, Isukathota<br />
+                    Maddilapalem, Visakhapatnam-530003<br />
+                    Andhra Pradesh, India
+                  </p>
+                </div>
+
+                <div className="mb-4">
+                  <h5 className="fw-semibold mb-2">Contact:</h5>
+                  <p className="mb-2">
+                    <FaPhoneAlt className="text-primary me-2" />
+                    <a href="tel:+919876543210" className="text-decoration-none text-dark">
+                      +91 98765 43210
+                    </a>
+                  </p>
+                  <p className="mb-0">
+                    <FaEnvelope className="text-primary me-2" />
+                    <a href="mailto:support@zepfter.com" className="text-decoration-none text-dark">
+                      support@zepfter.com
+                    </a>
+                  </p>
+                </div>
+
+                <div className="mb-4">
+                  <h5 className="fw-semibold mb-2">Working Hours:</h5>
+                  <p className="text-muted mb-1">Monday - Saturday: 9:00 AM - 7:00 PM</p>
+                  <p className="text-muted mb-0">Sunday: Closed</p>
+                </div>
+
+                <button className="btn btn-primary btn-lg w-100">
+                  Get Directions
+                </button>
               </div>
-            ))}
+            </div>
+
+            <div className="col-lg-6" data-aos="fade-left">
+              <div className="glass-card p-0 overflow-hidden" style={{ borderRadius: '20px', height: '500px' }}>
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3800.0684699482466!2d83.30174231487721!3d17.73045998791891!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a39431389e6b0c7%3A0x8c7d5e5c1b2e5f6d!2sMaddilapalem%2C%20Visakhapatnam%2C%20Andhra%20Pradesh%20530003!5e0!3m2!1sen!2sin!4v1699999999999!5m2!1sen!2sin"
+                  width="100%"
+                  height="500"
+                  style={{ border: 0 }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="ZEPFTER Visakhapatnam Location"
+                ></iframe>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Map Section */}
-      <section className="section">
+      {/* CTA Section */}
+      <section className="section text-center position-relative" style={{
+        background: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+        color: 'white'
+      }}>
         <div className="container" data-aos="fade-up">
-          <div className="glass-card p-0 overflow-hidden" style={{ borderRadius: '20px' }}>
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d248849.8864811964!2d77.49085284088229!3d12.953945614529528!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1670c9b44e6d%3A0xf8dfc3e8517e4fe0!2sBengaluru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1699999999999!5m2!1sen!2sin"
-              width="100%"
-              height="400"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="ZEPFTER Location"
-            ></iframe>
+          <h2 className="fw-bold display-5 mb-4">Ready to Transform Your Career?</h2>
+          <p className="fs-5 mb-5" style={{ maxWidth: '700px', margin: '0 auto' }}>
+            Join thousands of successful professionals who started their journey with ZEPFTER
+          </p>
+          <div className="d-flex gap-3 justify-content-center flex-wrap">
+            <a href="/services" className="btn btn-light btn-lg px-5 py-3 fw-semibold">
+              Explore Courses
+            </a>
+            <button className="btn btn-outline-light btn-lg px-5 py-3 fw-semibold">
+              Download Brochure
+            </button>
           </div>
         </div>
       </section>

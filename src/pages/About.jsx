@@ -92,7 +92,7 @@ const About = () => {
       }}>
         <div className="container position-relative" data-aos="fade-up">
           <h1 className="fw-bold display-3 mb-4">About ZEPFTER</h1>
-          <p className="fs-4 mb-0" style={{ maxWidth: '800px', margin: '0 auto' }}>
+          <p className="fs-4 mb-5 text-black" style={{ maxWidth: '800px', margin: '0 auto' }}>
             Empowering individuals with industry-ready Medical, Clinical, and IT training programs 
             that bridge the gap between education and career success.
           </p>

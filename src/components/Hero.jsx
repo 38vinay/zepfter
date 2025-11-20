@@ -119,10 +119,7 @@ const Hero = () => {
                 <Link to="/services" className="btn-gradient btn-lg btn-pulse">
                   Explore Courses
                 </Link>
-                <button className="btn btn-outline-light btn-lg d-flex align-items-center gap-2">
-                  <FaPlay size={14} />
-                  Watch Demo
-                </button>
+                
               </div>
             </div>
 
