@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { FaBullseye, FaHandshake, FaUsers, FaLightbulb, FaGraduationCap, FaAward, FaChartLine, FaHeart, FaRocket, FaShieldAlt } from "react-icons/fa";
+import React, { useState, useEffect, useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import { FaBullseye, FaHandshake, FaUsers, FaLightbulb, FaGraduationCap, FaAward, FaChartLine, FaHeart, FaRocket, FaShieldAlt, FaEye, FaBullhorn } from "react-icons/fa";
 
 const About = () => {
   const [counters, setCounters] = useState({
@@ -9,15 +10,14 @@ const About = () => {
     satisfaction: 0
   });
 
+  const statsRef = useRef(null);
+  const isStatsInView = useInView(statsRef, { once: true, margin: "-100px" });
+
   // Animated counters
   useEffect(() => {
-    const targets = {
-      students: 5000,
-      courses: 50,
-      instructors: 150,
-      satisfaction: 98
-    };
+    if (!isStatsInView) return;
 
+    const targets = { students: 5000, courses: 50, instructors: 150, satisfaction: 98 };
     const duration = 2000;
     const steps = 60;
     const stepTime = duration / steps;
@@ -38,329 +38,581 @@ const About = () => {
     }, stepTime);
 
     return () => clearInterval(timer);
-  }, []);
-
-  const achievements = [
-    { icon: <FaUsers size={40} />, number: counters.students, label: "Students Trained", suffix: "+" },
-    { icon: <FaGraduationCap size={40} />, number: counters.courses, label: "Courses Offered", suffix: "+" },
-    { icon: <FaAward size={40} />, number: counters.instructors, label: "Expert Instructors", suffix: "+" },
-    { icon: <FaHeart size={40} />, number: counters.satisfaction, label: "Satisfaction Rate", suffix: "%" }
-  ];
-
-  const values = [
-    {
-      icon: <FaShieldAlt size={50} />,
-      title: "Integrity",
-      description: "We uphold the highest standards of honesty, transparency, and ethical practices in all our training programs.",
-      color: "#667eea"
-    },
-    {
-      icon: <FaLightbulb size={50} />,
-      title: "Innovation",
-      description: "We continuously update our curriculum with the latest industry trends and cutting-edge technologies.",
-      color: "#f093fb"
-    },
-    {
-      icon: <FaAward size={50} />,
-      title: "Excellence",
-      description: "We are committed to delivering exceptional quality education that transforms careers and lives.",
-      color: "#4facfe"
-    },
-    {
-      icon: <FaRocket size={50} />,
-      title: "Growth",
-      description: "We foster an environment that encourages continuous learning and professional development.",
-      color: "#43e97b"
-    }
-  ];
-
-  const timeline = [
-    { year: "2015", title: "Founded", description: "ZEPFTER was established with a vision to transform technical education" },
-    { year: "2017", title: "1000+ Students", description: "Reached our first major milestone of training 1000 students" },
-    { year: "2019", title: "Multiple Branches", description: "Expanded to 5 locations across major cities" },
-    { year: "2021", title: "Industry Partnerships", description: "Partnered with 50+ leading healthcare and tech companies" },
-    { year: "2023", title: "5000+ Alumni", description: "Proud to have trained 5000+ successful professionals" }
-  ];
+  }, [isStatsInView]);
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="section text-center position-relative" style={{
-        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-        color: 'white',
-        padding: '120px 0 80px'
-      }}>
-        <div className="container position-relative" data-aos="fade-up">
-          <h1 className="fw-bold display-3 mb-4">About ZEPFTER</h1>
-          <p className="fs-4 mb-5 text-black" style={{ maxWidth: '800px', margin: '0 auto' }}>
-            Empowering individuals with industry-ready Medical, Clinical, and IT training programs 
-            that bridge the gap between education and career success.
-          </p>
+      {/* Hero Section - Dark with Digital Matrix */}
+      <section 
+        className="position-relative overflow-hidden"
+        style={{
+          background: 'linear-gradient(135deg, #0a0a0a 0%, #1E3679 50%, #000000 100%)',
+          minHeight: '60vh',
+          paddingTop: '140px',
+          paddingBottom: '80px',
+          marginTop: '70px'
+        }}
+      >
+        {/* Digital Matrix Background */}
+        <div className="position-absolute w-100 h-100 top-0 start-0" style={{ opacity: 0.15 }}>
+          {[...Array(50)].map((_, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, x: Math.random() * window.innerWidth, y: -100 }}
+              animate={{ 
+                opacity: [0.2, 0.6, 0.2],
+                y: window.innerHeight + 100
+              }}
+              transition={{
+                duration: Math.random() * 3 + 2,
+                repeat: Infinity,
+                delay: Math.random() * 2
+              }}
+              style={{
+                position: 'absolute',
+                color: '#00AA8A',
+                fontSize: '14px',
+                fontFamily: 'monospace',
+                pointerEvents: 'none'
+              }}
+            >
+              {Math.random() > 0.5 ? '1' : '0'}
+            </motion.div>
+          ))}
         </div>
 
-        {/* Decorative elements */}
-        <div className="position-absolute" style={{ bottom: 0, left: 0, right: 0 }}>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-            <path fill="#ffffff" fillOpacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,138.7C960,139,1056,117,1152,112C1248,107,1344,117,1392,122.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-          </svg>
+        <div className="container position-relative text-center" style={{ zIndex: 2 }}>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <p className="text-uppercase mb-3" style={{ color: '#00AA8A', letterSpacing: '3px', fontSize: '0.9rem' }}>
+              Home / Overview
+            </p>
+            
+            <motion.h1 
+              className="fw-bold mb-4"
+              style={{ fontSize: 'clamp(2rem, 5vw, 4rem)' }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <span style={{ color: '#1E3679' }}>ZEPFTER</span>
+              <span style={{ color: '#00AA8A' }}>TECH</span>
+              <span style={{ color: 'white' }}> IS ALL ABOUT </span>
+              <span style={{ color: 'white' }}>EDUCATION</span>
+            </motion.h1>
+
+            <motion.p
+              className="mx-auto"
+              style={{
+                maxWidth: '900px',
+                fontSize: '1.2rem',
+                color: 'rgba(255,255,255,0.9)',
+                lineHeight: '1.8'
+              }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              We assist with reevaluating students' careers, share significant reasoning and team up across partners through the power of quality training solutions.
+            </motion.p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Our Story Section */}
+      <section className="section" style={{ background: '#f5f5f5' }}>
+        <div className="container">
+          <div className="row align-items-center g-5">
+            <motion.div 
+              className="col-lg-5"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <motion.img
+                whileHover={{ scale: 1.05 }}
+                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80"
+                alt="Our Story"
+                className="img-fluid rounded-4 shadow-lg"
+                style={{ width: '100%', objectFit: 'cover' }}
+              />
+            </motion.div>
+
+            <motion.div
+              className="col-lg-7"
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="fw-bold mb-4" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: '#1E3679' }}>
+                Our Story
+              </h2>
+              
+              <p className="mb-4" style={{ fontSize: '1.1rem', color: '#666', lineHeight: '1.8' }}>
+                ZEPFTER is a global education-focused company specializing in Medical, Clinical, and IT training domains (pharmaceutical, biotech, and technology industries). Our commitment is to offer platforms & products for building careers and creating future-ready professionals in the training sector.
+              </p>
+
+              <p className="mb-0" style={{ fontSize: '1.1rem', color: '#666', lineHeight: '1.8' }}>
+                We specialize in transforming career paths through innovation using industry-standard cutting-edge training, improving employability and efficiency. Our programs help students with stable, secure, and scalable skill development from the ground up which align with industry needs.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Vision & Mission - Dark Section */}
+      <section 
+        className="section position-relative overflow-hidden"
+        style={{
+          background: 'linear-gradient(135deg, #000000 0%, #1E3679 100%)',
+          color: 'white'
+        }}
+      >
+        <div className="container">
+          <div className="row g-5 align-items-stretch">
+            {/* Vision Card - Yellow */}
+            <motion.div
+              className="col-lg-4"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <motion.div
+                whileHover={{ y: -10, boxShadow: '0 30px 60px rgba(251, 210, 26, 0.3)' }}
+                className="p-5 h-100 rounded-4"
+                style={{
+                  background: '#FBD21A',
+                  color: '#000'
+                }}
+              >
+                <div className="mb-4">
+                  <FaEye size={50} />
+                </div>
+                <h3 className="fw-bold mb-3">Our Vision</h3>
+                <p className="mb-0" style={{ fontSize: '1rem', lineHeight: '1.7' }}>
+                  We serve our stakeholders through market leadership in providing world-class training and education solutions.
+                </p>
+              </motion.div>
+            </motion.div>
+
+            {/* Who We Are */}
+            <motion.div
+              className="col-lg-4"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <div className="text-center h-100 d-flex flex-column justify-content-center">
+                <h2 className="fw-bold mb-4" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)' }}>
+                  Who<br />We are
+                </h2>
+                <motion.div
+                  animate={{ rotate: [0, 360] }}
+                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                  style={{
+                    width: '80px',
+                    height: '4px',
+                    background: 'linear-gradient(90deg, #1E3679, #00AA8A)',
+                    margin: '0 auto'
+                  }}
+                />
+              </div>
+            </motion.div>
+
+            {/* Mission Card - Blue */}
+            <motion.div
+              className="col-lg-4"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <motion.div
+                whileHover={{ y: -10, boxShadow: '0 30px 60px rgba(30, 54, 121, 0.5)' }}
+                className="p-5 h-100 rounded-4"
+                style={{
+                  background: '#1E3679',
+                  color: 'white'
+                }}
+              >
+                <div className="mb-4">
+                  <FaBullseye size={50} />
+                </div>
+                <h3 className="fw-bold mb-3">Our Mission</h3>
+                <p className="mb-0" style={{ fontSize: '1rem', lineHeight: '1.7' }}>
+                  To attain student success and to provide value and innovation to our students globally through excellent training programs.
+                </p>
+              </motion.div>
+            </motion.div>
+          </div>
+
+          {/* Description */}
+          <motion.div
+            className="row mt-5"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
+            <div className="col-12">
+              <div className="p-5 rounded-4" style={{ background: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(10px)' }}>
+                <p className="mb-4" style={{ fontSize: '1.1rem', lineHeight: '1.8' }}>
+                  We, at ZEPFTER, are a team of Top Talented Professionals, driven to build incredible training programs that help our students navigate their way through the entire career journey – with confidence!
+                </p>
+                
+                <p className="mb-4" style={{ fontSize: '1.1rem', lineHeight: '1.8' }}>
+                  We facilitate students to transform into future-proof professionals using industry-standard cutting-edge knowledge fuelled by ideal levels of employability and efficiency thereby ensuring career growth and success along with enhanced skill development.
+                </p>
+                
+                <p className="mb-0" style={{ fontSize: '1.1rem', lineHeight: '1.8' }}>
+                  We optimize learning and innovation to offer Student Centric programs with domain expertise. Our solutions translate to systems that are stable, secure and scalable to accomplish career goals.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* How We Work */}
+      <section className="section" style={{ background: '#fff' }}>
+        <div className="container">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="fw-bold mb-4" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: '#000' }}>
+              HOW WE WORK
+            </h2>
+            <p className="mb-5" style={{ fontSize: '1.1rem', color: '#666', maxWidth: '900px' }}>
+              We, at ZEPFTER, are a team of 150+ experts, driven to build incredible training programs that help our students navigate their way through the entire career journey – paperless!
+            </p>
+          </motion.div>
+
+          <div className="row g-5">
+            {[
+              {
+                icon: <FaBullseye size={50} style={{ color: '#00AA8A' }} />,
+                title: 'Student Centricity',
+                desc: 'We believe that our students are the reason for our existence. By delighting our students and stakeholders, we will go to infinite ends and deliver the best learning experience.',
+                delay: 0
+              },
+              {
+                icon: <FaLightbulb size={50} style={{ color: '#00AA8A' }} />,
+                title: 'Innovation and Execution',
+                desc: 'We constantly strive to challenge conventional views that drive innovation with new ideas. Be agile and maximize impact by delivering world-class solutions leveraging education and training platforms.',
+                delay: 0.2
+              },
+              {
+                icon: <FaHandshake size={50} style={{ color: '#00AA8A' }} />,
+                title: 'Collaboration',
+                desc: 'Build a highly capable and committed team to deliver the highest value to all stakeholders while practicing the highest standards of business ethics, humility, and governance.',
+                delay: 0.4
+              },
+              {
+                icon: <FaRocket size={50} style={{ color: '#00AA8A' }} />,
+                title: '3-4-5 Approach',
+                desc: '3 days workshop with training team on requirement gathering, 4 weeks curriculum setup and 5 months training & placement support with continuous mentoring.',
+                delay: 0.6
+              }
+            ].map((item, idx) => (
+              <motion.div
+                key={idx}
+                className="col-lg-6"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: item.delay }}
+              >
+                <motion.div
+                  whileHover={{ y: -5 }}
+                  className="d-flex gap-4"
+                >
+                  <motion.div
+                    whileHover={{ rotate: 360, scale: 1.1 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    {item.icon}
+                  </motion.div>
+                  <div>
+                    <h4 className="fw-bold mb-3" style={{ color: '#1E3679' }}>{item.title}</h4>
+                    <p style={{ color: '#666', lineHeight: '1.7' }}>{item.desc}</p>
+                  </div>
+                </motion.div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Our Values - Dark with Images */}
+      <section 
+        className="section"
+        style={{
+          background: '#000',
+          color: 'white'
+        }}
+      >
+        <div className="container">
+          <motion.div
+            className="text-center mb-5"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="fw-bold" style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', letterSpacing: '4px' }}>
+              OUR VALUES
+            </h2>
+          </motion.div>
+
+          <div className="row g-4">
+            {[
+              {
+                image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=80',
+                title: 'Quality with Excellence',
+                color: '#1E3679'
+              },
+              {
+                image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&q=80',
+                title: 'Student Centricity',
+                color: '#00AA8A'
+              },
+              {
+                image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80',
+                title: 'Innovation and Execution',
+                color: '#FBD21A'
+              },
+              {
+                image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&q=80',
+                title: 'Collaboration',
+                color: '#1E3679'
+              }
+            ].map((value, idx) => (
+              <motion.div
+                key={idx}
+                className="col-lg-3 col-md-6"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: idx * 0.1 }}
+              >
+                <motion.div
+                  whileHover={{ y: -10, scale: 1.02 }}
+                  className="position-relative overflow-hidden rounded-4"
+                  style={{ height: '400px', cursor: 'pointer' }}
+                >
+                  {/* Image */}
+                  <motion.img
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.6 }}
+                    src={value.image}
+                    alt={value.title}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover'
+                    }}
+                  />
+                  
+                  {/* Gradient Overlay */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      height: '100%',
+                      background: `linear-gradient(180deg, transparent 0%, ${value.color}E0 100%)`
+                    }}
+                  />
+
+                  {/* Title */}
+                  <div
+                    className="position-absolute bottom-0 start-0 p-4 w-100"
+                    style={{ zIndex: 2 }}
+                  >
+                    <h4 className="fw-bold text-white mb-0">{value.title}</h4>
+                  </div>
+                </motion.div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="section bg-light">
+      <section ref={statsRef} className="section" style={{ background: '#f5f5f5' }}>
         <div className="container">
           <div className="row g-4">
-            {achievements.map((item, idx) => (
-              <div className="col-lg-3 col-md-6" key={idx} data-aos="fade-up" data-aos-delay={idx * 100}>
-                <div className="glass-card text-center p-4 h-100">
-                  <div className="text-primary mb-3">{item.icon}</div>
-                  <div className="display-4 fw-bold text-primary mb-2">
-                    {item.number}{item.suffix}
+            {[
+              { number: counters.students, suffix: '+', label: 'Students Trained', color: '#1E3679' },
+              { number: counters.courses, suffix: '+', label: 'Courses Offered', color: '#00AA8A' },
+              { number: counters.instructors, suffix: '+', label: 'Expert Instructors', color: '#FBD21A' },
+              { number: counters.satisfaction, suffix: '%', label: 'Satisfaction Rate', color: '#1E3679' }
+            ].map((stat, idx) => (
+              <div className="col-lg-3 col-md-6" key={idx}>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={isStatsInView ? { opacity: 1, scale: 1 } : {}}
+                  transition={{ duration: 0.6, delay: idx * 0.1, type: "spring" }}
+                  whileHover={{ scale: 1.05, y: -10 }}
+                  className="text-center p-4 rounded-4"
+                  style={{
+                    background: 'white',
+                    boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
+                    cursor: 'pointer'
+                  }}
+                >
+                  <div className="display-3 fw-bold mb-2" style={{ color: stat.color }}>
+                    {stat.number}{stat.suffix}
                   </div>
-                  <div className="text-muted fw-semibold">{item.label}</div>
-                </div>
+                  <div className="fw-semibold text-uppercase" style={{ color: '#666', letterSpacing: '1px' }}>
+                    {stat.label}
+                  </div>
+                </motion.div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Who We Are */}
-      <section className="section container" data-aos="fade-up">
-        <div className="row align-items-center g-5">
-          <div className="col-lg-6">
-            <div className="position-relative">
-              <img 
-                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80"
-                alt="Who We Are"
-                className="img-fluid rounded-4 shadow-lg"
-              />
-              <div className="position-absolute bottom-0 start-0 p-4">
-                <div className="glass-card p-4">
-                  <div className="d-flex align-items-center gap-3">
-                    <FaChartLine size={40} className="text-primary" />
-                    <div>
-                      <div className="fs-3 fw-bold text-white">95%</div>
-                      <div className="text-white-50">Placement Rate</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-lg-6">
-            <h2 className="fw-bold display-5 mb-4">Who We Are</h2>
-            <p className="text-muted fs-5 mb-4 lh-lg">
-              ZEPFTER is a leading professional training institution offering a comprehensive range 
-              of <strong>Medical, Clinical, and IT courses</strong> designed for real-world success. 
-              We collaborate with industry experts, healthcare professionals, and technology specialists 
-              to ensure that every learner receives world-class training.
-            </p>
-            <p className="text-muted fs-5 mb-4 lh-lg">
-              Our mission goes beyond education — we transform careers through practical, hands-on 
-              learning experiences that prepare you for the challenges of modern industries.
-            </p>
-            
-            <div className="row g-3 mt-4">
-              <div className="col-6">
-                <div className="d-flex align-items-center gap-3">
-                  <div className="rounded-circle bg-primary bg-opacity-10 p-3">
-                    <FaBullseye className="text-primary" size={24} />
-                  </div>
-                  <div>
-                    <div className="fw-bold">Industry-Focused</div>
-                    <div className="small text-muted">Real-world curriculum</div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-6">
-                <div className="d-flex align-items-center gap-3">
-                  <div className="rounded-circle bg-success bg-opacity-10 p-3">
-                    <FaHandshake className="text-success" size={24} />
-                  </div>
-                  <div>
-                    <div className="fw-bold">100% Support</div>
-                    <div className="small text-muted">Placement assistance</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* What We Do */}
-      <section className="section bg-light">
-        <div className="container" data-aos="fade-up">
-          <div className="text-center mb-5">
-            <h2 className="fw-bold display-5 mb-3">What We Do</h2>
-            <p className="text-muted fs-5">We provide comprehensive training solutions across multiple domains</p>
-          </div>
+      {/* Testimonials */}
+      <section className="section" style={{ background: '#fff' }}>
+        <div className="container">
+          <motion.div 
+            className="text-center mb-5"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="fw-bold display-5 mb-3" style={{ color: '#1E3679' }}>What Our Students Say</h2>
+            <p className="text-muted fs-5">Success stories from our alumni</p>
+          </motion.div>
 
           <div className="row g-4">
-            <div className="col-md-4" data-aos="fade-up" data-aos-delay="0">
-              <div className="glass-card text-center p-5 h-100">
-                <div className="mb-4">
-                  <div className="d-inline-flex align-items-center justify-content-center rounded-circle" 
+            {[
+              {
+                name: "Amit Sharma",
+                role: "Medical Coding Graduate",
+                image: "https://i.pravatar.cc/150?img=12",
+                text: "ZEPFTER has changed my career! The trainers are extremely skilled, the course content is industry-focused, and the placement support is amazing.",
+                company: "Max Healthcare",
+                color: "#1E3679"
+              },
+              {
+                name: "Priya Nair",
+                role: "Clinical Research Student",
+                image: "https://i.pravatar.cc/150?img=45",
+                text: "The Clinical Research program helped me understand real-world applications. Amazing training and extremely helpful faculty!",
+                company: "Quintiles IMS",
+                color: "#00AA8A"
+              },
+              {
+                name: "Rahul Verma",
+                role: "IT & Technology Student",
+                image: "https://i.pravatar.cc/150?img=33",
+                text: "I joined the Data Science program and got placed quickly. Highly practical training and hands-on experience!",
+                company: "Tech Mahindra",
+                color: "#FBD21A"
+              }
+            ].map((testimonial, idx) => (
+              <div className="col-lg-4" key={idx}>
+                <motion.div
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: idx * 0.2 }}
+                  whileHover={{ y: -10, boxShadow: `0 20px 40px ${testimonial.color}30` }}
+                  className="p-4 h-100 rounded-4"
+                  style={{
+                    background: 'white',
+                    borderLeft: `4px solid ${testimonial.color}`,
+                    boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
+                    cursor: 'pointer',
+                    position: 'relative',
+                    overflow: 'hidden'
+                  }}
+                >
+                  <div 
                     style={{
-                      width: '100px',
-                      height: '100px',
-                      background: 'linear-gradient(135deg, #667eea, #764ba2)'
-                    }}>
-                    <FaGraduationCap size={50} className="text-white" />
+                      position: 'absolute',
+                      top: '-20px',
+                      right: '-20px',
+                      fontSize: '100px',
+                      color: testimonial.color,
+                      opacity: 0.05,
+                      fontFamily: 'Georgia, serif'
+                    }}
+                  >
+                    "
                   </div>
-                </div>
-                <h4 className="fw-bold mb-3">Professional Training</h4>
-                <p className="text-muted">
-                  Career-oriented training programs in Medical, Clinical, and IT fields with 
-                  industry-recognized certifications.
-                </p>
-              </div>
-            </div>
 
-            <div className="col-md-4" data-aos="fade-up" data-aos-delay="100">
-              <div className="glass-card text-center p-5 h-100">
-                <div className="mb-4">
-                  <div className="d-inline-flex align-items-center justify-content-center rounded-circle" 
-                    style={{
-                      width: '100px',
-                      height: '100px',
-                      background: 'linear-gradient(135deg, #f093fb, #f5576c)'
-                    }}>
-                    <FaLightbulb size={50} className="text-white" />
-                  </div>
-                </div>
-                <h4 className="fw-bold mb-3">Skill Development</h4>
-                <p className="text-muted">
-                  Build real-world skills through hands-on experience, live projects, and 
-                  practical workshops led by industry experts.
-                </p>
-              </div>
-            </div>
-
-            <div className="col-md-4" data-aos="fade-up" data-aos-delay="200">
-              <div className="glass-card text-center p-5 h-100">
-                <div className="mb-4">
-                  <div className="d-inline-flex align-items-center justify-content-center rounded-circle" 
-                    style={{
-                      width: '100px',
-                      height: '100px',
-                      background: 'linear-gradient(135deg, #4facfe, #00f2fe)'
-                    }}>
-                    <FaUsers size={50} className="text-white" />
-                  </div>
-                </div>
-                <h4 className="fw-bold mb-3">Career Guidance</h4>
-                <p className="text-muted">
-                  Comprehensive placement assistance, interview training, resume building, and 
-                  long-term career mentoring.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Our Values */}
-      <section className="section container" data-aos="fade-up">
-        <div className="text-center mb-5">
-          <h2 className="fw-bold display-5 mb-3">Our Core Values</h2>
-          <p className="text-muted fs-5">The principles that guide everything we do</p>
-        </div>
-
-        <div className="row g-4">
-          {values.map((value, idx) => (
-            <div className="col-lg-3 col-md-6" key={idx} data-aos="fade-up" data-aos-delay={idx * 100}>
-              <div className="glass-card text-center p-4 h-100 position-relative overflow-hidden">
-                <div 
-                  className="position-absolute top-0 start-0 w-100 h-100 opacity-10"
-                  style={{ background: value.color }}
-                />
-                <div className="position-relative">
-                  <div className="mb-3" style={{ color: value.color }}>
-                    {value.icon}
-                  </div>
-                  <h4 className="fw-bold mb-3" style={{ color: value.color }}>
-                    {value.title}
-                  </h4>
-                  <p className="text-muted">
-                    {value.description}
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Timeline */}
-      <section className="section bg-light">
-        <div className="container" data-aos="fade-up">
-          <div className="text-center mb-5">
-            <h2 className="fw-bold display-5 mb-3">Our Journey</h2>
-            <p className="text-muted fs-5">Milestones that shaped our success story</p>
-          </div>
-
-          <div className="position-relative">
-            {/* Timeline Line */}
-            <div 
-              className="position-absolute start-50 translate-middle-x bg-primary d-none d-md-block"
-              style={{ width: '4px', height: '100%', top: 0 }}
-            />
-
-            {timeline.map((item, idx) => (
-              <div 
-                className="row mb-5 position-relative" 
-                key={idx}
-                data-aos="fade-up"
-                data-aos-delay={idx * 100}
-              >
-                <div className={`col-md-6 ${idx % 2 === 0 ? 'text-md-end' : 'order-md-2'}`}>
-                  <div className="glass-card p-4">
-                    <div className="badge bg-primary mb-3 px-3 py-2">{item.year}</div>
-                    <h4 className="fw-bold mb-2">{item.title}</h4>
-                    <p className="text-muted mb-0">{item.description}</p>
-                  </div>
-                </div>
-
-                {/* Timeline Dot */}
-                <div className="col-md-6 d-none d-md-block">
-                  <div className="position-absolute start-50 translate-middle" style={{ top: '30px' }}>
-                    <div 
-                      className="rounded-circle bg-primary d-flex align-items-center justify-content-center"
-                      style={{ width: '40px', height: '40px', border: '4px solid white' }}
-                    >
-                      <div className="bg-white rounded-circle" style={{ width: '12px', height: '12px' }} />
+                  <div className="d-flex align-items-center gap-3 mb-4" style={{ position: 'relative', zIndex: 1 }}>
+                    <motion.img
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      src={testimonial.image}
+                      alt={testimonial.name}
+                      style={{
+                        width: '70px',
+                        height: '70px',
+                        borderRadius: '50%',
+                        objectFit: 'cover',
+                        border: `3px solid ${testimonial.color}`
+                      }}
+                    />
+                    <div className="text-start">
+                      <h5 className="fw-bold mb-1" style={{ color: testimonial.color }}>{testimonial.name}</h5>
+                      <p className="text-muted mb-0 small">{testimonial.role}</p>
+                      <p className="small mb-0" style={{ color: testimonial.color, fontWeight: '600' }}>
+                        @ {testimonial.company}
+                      </p>
                     </div>
                   </div>
-                </div>
+
+                  <div className="mb-3" style={{ color: testimonial.color }}>
+                    {[...Array(5)].map((_, i) => (
+                      <motion.span key={i} initial={{ opacity: 0, scale: 0 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: idx * 0.2 + i * 0.1 }}>⭐</motion.span>
+                    ))}
+                  </div>
+
+                  <p className="mb-0" style={{ fontSize: '1rem', lineHeight: '1.7', color: '#666', fontStyle: 'italic', position: 'relative', zIndex: 1 }}>
+                    "{testimonial.text}"
+                  </p>
+                </motion.div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="section text-center position-relative" style={{
-        background: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
-        color: 'white'
-      }}>
-        <div className="container" data-aos="fade-up">
-          <h2 className="fw-bold display-5 mb-4">Ready to Start Your Journey?</h2>
-          <p className="fs-5 mb-5" style={{ maxWidth: '700px', margin: '0 auto' }}>
+      {/* CTA */}
+      <motion.section 
+        className="section text-center"
+        style={{ background: 'linear-gradient(135deg, #1E3679 0%, #00AA8A 100%)', color: 'white' }}
+      >
+        <div className="container">
+          <motion.h2 className="fw-bold display-5 mb-4" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            Ready to Start Your Journey?
+          </motion.h2>
+          <motion.p className="fs-5 mb-5" style={{ maxWidth: '700px', margin: '0 auto' }} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
             Join thousands of successful professionals who transformed their careers with ZEPFTER
-          </p>
-          <div className="d-flex gap-3 justify-content-center flex-wrap">
-            <button className="btn btn-light btn-lg px-5 py-3 fw-semibold">
-              Explore Courses
-            </button>
-            <button className="btn btn-outline-light btn-lg px-5 py-3 fw-semibold">
-              Contact Us
-            </button>
-          </div>
+          </motion.p>
+          <motion.div className="d-flex gap-3 justify-content-center flex-wrap" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.4 }}>
+            <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="btn btn-light btn-lg px-5 py-3 fw-semibold">Explore Courses</motion.button>
+            <motion.button whileHover={{ scale: 1.05, background: 'white', color: '#1E3679' }} whileTap={{ scale: 0.95 }} className="btn btn-outline-light btn-lg px-5 py-3 fw-semibold" style={{ transition: 'all 0.3s ease' }}>Contact Us</motion.button>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
     </>
   );
 };
