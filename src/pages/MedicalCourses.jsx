@@ -1,12 +1,129 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaCheckCircle, FaClock, FaAward, FaBook, FaBriefcase, FaTimes } from "react-icons/fa";
-import { servicesData, serviceCategories } from "../data/servicesData";
+import { FaCheckCircle, FaClock, FaAward, FaBook, FaBriefcase, FaCapsules, FaHeartbeat, FaClipboardCheck, FaMicroscope } from "react-icons/fa";
 
 const MedicalCourses = () => {
   const [selectedService, setSelectedService] = useState(null);
-  const category = serviceCategories.medical;
-  const services = servicesData.medical;
+
+  const category = {
+    title: 'Medical Courses',
+    icon: FaCapsules,
+    color: '#1E3679',
+    gradient: 'linear-gradient(135deg, #1E3679 0%, #2a4a9f 100%)',
+    description: 'Professional medical training programs including coding, billing, and medical writing.'
+  };
+
+  const services = [
+    {
+      id: 'medical-coding',
+      title: 'Medical Coding',
+      icon: <FaCapsules size={40} />,
+      shortDesc: 'Learn industry-level medical coding systems including ICD-10, CPT, and HCPCS.',
+      fullDesc: 'Master comprehensive medical coding including ICD-10, CPT, and HCPCS. This course provides in-depth training on translating medical diagnoses, procedures, and services into universal code numbers used for billing and documentation.',
+      duration: '6 months',
+      level: 'Beginner to Advanced',
+      modules: [
+        'ICD-10-CM/PCS Coding',
+        'CPT Coding',
+        'HCPCS Level II',
+        'Medical Terminology',
+        'Anatomy & Physiology',
+        'Healthcare Reimbursement',
+        'Compliance & Regulations',
+        'Medical Documentation'
+      ],
+      outcomes: [
+        'Certified Professional Coder (CPC) preparation',
+        'Understanding of medical documentation',
+        'Ability to assign accurate diagnostic and procedural codes',
+        'Knowledge of compliance and regulatory requirements',
+        'Proficiency in medical billing software'
+      ],
+      career: ['Medical Coder', 'Coding Specialist', 'Billing Specialist', 'Health Information Technician'],
+      certifications: ['CPC (Certified Professional Coder)', 'CCS (Certified Coding Specialist)']
+    },
+    {
+      id: 'medical-affairs',
+      title: 'Medical Affairs',
+      icon: <FaHeartbeat size={40} />,
+      shortDesc: 'Bridge between medical science and business in pharmaceutical companies.',
+      fullDesc: 'Comprehensive training in medical affairs covering scientific communication, medical information, publication planning, and healthcare professional engagement.',
+      duration: '8 months',
+      level: 'Intermediate to Advanced',
+      modules: [
+        'Medical Information Management',
+        'Scientific Communication',
+        'Publication Planning',
+        'Medical Education',
+        'KOL Engagement',
+        'Clinical Development Support',
+        'Post-Marketing Surveillance',
+        'Medical Strategy'
+      ],
+      outcomes: [
+        'Support clinical development programs',
+        'Manage medical information requests',
+        'Develop publication strategies',
+        'Engage with healthcare professionals effectively'
+      ],
+      career: ['Medical Affairs Associate', 'Medical Science Liaison', 'Medical Information Specialist'],
+      certifications: ['Certified Medical Affairs Specialist']
+    },
+    {
+      id: 'medical-billing',
+      title: 'Medical Billing',
+      icon: <FaClipboardCheck size={40} />,
+      shortDesc: 'Professional billing procedures and healthcare revenue cycle management.',
+      fullDesc: 'Learn complete healthcare billing processes, insurance claims management, revenue cycle operations, and medical billing software.',
+      duration: '5 months',
+      level: 'Beginner to Intermediate',
+      modules: [
+        'Insurance Verification',
+        'Claims Processing & Submission',
+        'Payment Posting',
+        'Denial Management',
+        'Medical Billing Software',
+        'HIPAA Compliance',
+        'Revenue Cycle Management',
+        'Accounts Receivable'
+      ],
+      outcomes: [
+        'Process insurance claims efficiently',
+        'Handle medical billing software proficiently',
+        'Manage accounts receivable effectively',
+        'Ensure regulatory compliance'
+      ],
+      career: ['Medical Biller', 'Billing Coordinator', 'Revenue Cycle Analyst'],
+      certifications: ['CMRS (Certified Medical Reimbursement Specialist)']
+    },
+    {
+      id: 'medical-writing',
+      title: 'Medical Writing',
+      icon: <FaMicroscope size={40} />,
+      shortDesc: 'Scientific & regulatory writing for healthcare and pharmaceutical industries.',
+      fullDesc: 'Develop expertise in medical and scientific writing for research papers, clinical documents, regulatory submissions, and medical publications.',
+      duration: '6 months',
+      level: 'Intermediate to Advanced',
+      modules: [
+        'Clinical Documentation',
+        'Regulatory Writing',
+        'Research Papers & Publications',
+        'Medical Publications',
+        'Protocol Writing',
+        'Scientific Communication',
+        'Grant Writing',
+        'Medical Editing'
+      ],
+      outcomes: [
+        'Write clinical study reports',
+        'Create regulatory documents',
+        'Publish medical literature',
+        'Maintain scientific accuracy'
+      ],
+      career: ['Medical Writer', 'Regulatory Writer', 'Scientific Writer'],
+      certifications: ['AMWA Certification', 'EMWA Certification']
+    }
+  ];
 
   const openModal = (service) => {
     setSelectedService(service);

@@ -1,42 +1,72 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaCapsules, FaFlask, FaLaptopCode, FaPills, FaArrowRight, FaClock, FaAward, FaUsers, FaGraduationCap, FaUserTie, FaBriefcase } from "react-icons/fa";
-import { serviceCategories } from "../data/servicesData";
 
 const Services = () => {
   const navigate = useNavigate();
   const [hoveredCard, setHoveredCard] = useState(null);
 
-  const coreExpertise = [
+  // 6 Main Services
+  const services = [
     {
-      ...serviceCategories.medical,
+      id: 'medical',
       icon: FaCapsules,
-      stats: { courses: 4, students: '1200+', duration: '5-8 months' }
+      title: 'Medical Courses',
+      description: 'Medical Coding, Medical Affairs, Medical Billing, Medical Writing',
+      gradient: 'linear-gradient(135deg, #1E3679 0%, #2a4a9f 100%)',
+      color: '#1E3679',
+      stats: { courses: 4, students: '1200+' },
+      slug: 'medical-courses'
     },
     {
-      ...serviceCategories.clinical,
+      id: 'clinical',
       icon: FaFlask,
-      stats: { courses: 4, students: '900+', duration: '5-8 months' }
+      title: 'Clinical Courses',
+      description: 'Clinical Research, Clinical Data Management, Clinical Trials, BA/BE Studies',
+      gradient: 'linear-gradient(135deg, #00AA8A 0%, #00d4aa 100%)',
+      color: '#00AA8A',
+      stats: { courses: 4, students: '900+' },
+      slug: 'clinical-courses'
     },
     {
-      ...serviceCategories.it,
+      id: 'it',
       icon: FaLaptopCode,
-      stats: { courses: '30+', students: '2000+', duration: '4-12 months' }
+      title: 'IT Services',
+      description: 'Programming, Data Science, Cybersecurity, Cloud Computing, Networking, Database',
+      gradient: 'linear-gradient(135deg, #FBD21A 0%, #ffd700 100%)',
+      color: '#FBD21A',
+      stats: { courses: '30+', students: '2000+' },
+      slug: 'it-services'
     },
     {
-      ...serviceCategories.pharmaceutical,
+      id: 'pharmaceutical',
       icon: FaPills,
-      stats: { courses: '15+', students: '800+', duration: '5-7 months' }
+      title: 'Pharmaceutical Skills',
+      description: 'Quality Assurance, Quality Control, Regulatory Affairs, Manufacturing Operations',
+      gradient: 'linear-gradient(135deg, #1E3679 0%, #00AA8A 100%)',
+      color: '#1E3679',
+      stats: { courses: '15+', students: '800+' },
+      slug: 'pharmaceutical-skills'
     },
     {
-      ...serviceCategories.training,
+      id: 'training',
       icon: FaUserTie,
-      stats: { courses: 3, students: '5000+', duration: 'Ongoing' }
+      title: 'Training & Placement',
+      description: 'Placement Assistance, Interview Preparation, Career Counseling',
+      gradient: 'linear-gradient(135deg, #00AA8A 0%, #1E3679 100%)',
+      color: '#00AA8A',
+      stats: { courses: 3, students: '5000+' },
+      slug: 'training-placement'
     },
     {
-      ...serviceCategories.internship,
+      id: 'internship',
       icon: FaBriefcase,
-      stats: { courses: 4, students: '1500+', duration: '2-6 months' }
+      title: 'Internship Programs',
+      description: 'Medical Coding, Clinical Research, IT & Software, Pharmaceutical QA/QC',
+      gradient: 'linear-gradient(135deg, #FBD21A 0%, #00AA8A 100%)',
+      color: '#FBD21A',
+      stats: { courses: 4, students: '1500+' },
+      slug: 'internship-programs'
     }
   ];
 
@@ -46,7 +76,7 @@ const Services = () => {
 
   return (
     <>
-      {/* Hero Section with Dark Background */}
+      {/* Hero Section */}
       <section 
         className="position-relative overflow-hidden"
         style={{
@@ -80,7 +110,7 @@ const Services = () => {
         </div>
 
         <div className="container position-relative" style={{ zIndex: 2 }}>
-          {/* Core Expertise Header */}
+          {/* Services Header */}
           <div className="text-center mb-5" data-aos="fade-up">
             <h1 className="fw-bold mb-4" style={{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)' }}>
               <span style={{ color: '#FFFFFF' }}>OUR </span>
@@ -89,72 +119,26 @@ const Services = () => {
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text'
-              }}>CORE </span>
-              <span style={{ 
-                background: 'linear-gradient(135deg, #FBD21A 0%, #00AA8A 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text'
-              }}>EXPERTISE</span>
+              }}>SERVICES</span>
             </h1>
             
             <p 
-              className="mx-auto mb-4 lh-lg" 
+              className="mx-auto mb-5 lh-lg" 
               style={{ 
-                maxWidth: '900px', 
-                fontSize: '1.1rem',
-                color: 'rgba(255, 255, 255, 0.85)'
+                maxWidth: '800px', 
+                fontSize: '1.2rem',
+                color: 'rgba(255, 255, 255, 0.9)'
               }}
               data-aos="fade-up"
               data-aos-delay="100"
             >
-              A competent Development and Consulting team is required for digital success. Since more than four
-              years, our Expert Teams have assisted in offering world-class solutions to a wide range of business
-              difficulties. Custom Software's assist enterprises and startups in developing digitized solutions.
+              Choose from our comprehensive range of industry-aligned courses designed to accelerate your career in Medical, Clinical, IT, and Pharmaceutical domains.
             </p>
-
-            <p 
-              className="mx-auto mb-4 fw-semibold" 
-              style={{ 
-                maxWidth: '800px', 
-                fontSize: '1.2rem',
-                color: '#ffffff'
-              }}
-              data-aos="fade-up"
-              data-aos-delay="200"
-            >
-              Unlock opportunities of future towards digital revolution with us.
-            </p>
-
-            <div 
-              className="mx-auto mb-5 p-4 rounded-4"
-              style={{ 
-                maxWidth: '900px',
-                background: 'rgba(255, 255, 255, 0.05)',
-                backdropFilter: 'blur(10px)',
-                border: '1px solid rgba(255, 255, 255, 0.1)'
-              }}
-              data-aos="fade-up"
-              data-aos-delay="300"
-            >
-              <p 
-                className="mb-0 lh-lg" 
-                style={{ 
-                  fontSize: '1.05rem',
-                  color: 'rgba(255, 255, 255, 0.9)'
-                }}
-              >
-                At <span className="fw-bold" style={{ color: '#4facfe' }}>ZEPFTER</span>, we can build Reliable, Robust, and Scalable
-                Solutions for all platforms and devices. Minimize
-                your expenditures and focus on innovation by utilizing our
-                application outsourcing services.
-              </p>
-            </div>
           </div>
 
-          {/* Service Category Cards Grid */}
+          {/* Service Cards Grid */}
           <div className="row g-4 mt-5">
-            {coreExpertise.map((service, idx) => {
+            {services.map((service, idx) => {
               const IconComponent = service.icon;
               return (
                 <div 
@@ -169,7 +153,7 @@ const Services = () => {
                       background: hoveredCard === idx ? service.gradient : 'rgba(255, 255, 255, 0.05)',
                       backdropFilter: 'blur(20px)',
                       border: '1px solid rgba(255, 255, 255, 0.1)',
-                      minHeight: '300px',
+                      minHeight: '350px',
                       cursor: 'pointer',
                       transition: 'all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
                       transform: hoveredCard === idx ? 'translateY(-15px) scale(1.03)' : 'translateY(0) scale(1)',
@@ -225,6 +209,17 @@ const Services = () => {
                       >
                         {service.title}
                       </h3>
+
+                      {/* Description */}
+                      <p 
+                        className="mb-4 small"
+                        style={{
+                          color: hoveredCard === idx ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.7)',
+                          transition: 'all 0.3s ease'
+                        }}
+                      >
+                        {service.description}
+                      </p>
 
                       {/* Stats */}
                       <div className="d-flex justify-content-center gap-3 mb-3 flex-wrap">
@@ -313,7 +308,7 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Why Choose Our Programs */}
+      {/* Why Choose Section */}
       <section className="section bg-light">
         <div className="container">
           <div className="text-center mb-5" data-aos="fade-up">

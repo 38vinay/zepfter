@@ -20,6 +20,8 @@ import MedicalCourses from "./pages/MedicalCourses";
 import ClinicalCourses from "./pages/ClinicalCourses";
 import ITServices from "./pages/ITServices";
 import PharmaceuticalSkills from "./pages/PharmaceuticalSkills";
+import TrainingPlacement from "./pages/TrainingPlacement";
+import InternshipPrograms from "./pages/InternshipPrograms";
 
 const App = () => {
   useEffect(() => {
@@ -38,6 +40,8 @@ const App = () => {
         <Route path="/services/clinical-courses" element={<ClinicalCourses />} />
         <Route path="/services/it-services" element={<ITServices />} />
         <Route path="/services/pharmaceutical-skills" element={<PharmaceuticalSkills />} />
+        <Route path="/services/training-placement" element={<TrainingPlacement />} />
+        <Route path="/services/internship-programs" element={<InternshipPrograms />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
       <Footer />
