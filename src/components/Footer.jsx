@@ -13,17 +13,21 @@ const Footer = () => {
           <div className="col-md-4">
             <h4 className="fw-bold">ZEPFTER</h4>
             <p className="mt-3 text-light opacity-75">
-              A leading training institute offering world-class programs in 
-              Medical, Clinical, and IT domains. We build careers through 
+              A leading training institute offering world-class programs in
+              Medical, Clinical, and IT domains. We build careers through
               knowledge, innovation, and practical learning.
             </p>
 
             {/* Social Icons */}
-            <div className="d-flex gap-3 mt-3">
-              <a href="#" className="social-icon"><FaFacebookF /></a>
-              <a href="#" className="social-icon"><FaInstagram /></a>
-              <a href="#" className="social-icon"><FaLinkedinIn /></a>
-            </div>
+            <button type="button" className="social-icon" onClick={() => console.log('Facebook clicked')}>
+              <FaFacebookF />
+            </button>
+            <button type="button" className="social-icon" onClick={() => console.log('Instagram clicked')}>
+              <FaInstagram />
+            </button>
+            <button type="button" className="social-icon" onClick={() => console.log('LinkedIn clicked')}>
+              <FaLinkedinIn />
+            </button>
           </div>
 
           {/* QUICK LINKS */}
