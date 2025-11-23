@@ -1,18 +1,17 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   FaChevronDown, 
   FaChevronUp,
   FaUserTie, 
   FaBriefcase, 
-  FaClipboardList, 
+  
   FaHandshake,
   FaComments,
   FaFileAlt,
   FaCheckCircle,
   FaAward,
-  FaClock,
   FaGraduationCap,
   FaUsers,
   FaChartLine,

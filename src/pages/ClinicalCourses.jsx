@@ -10,12 +10,12 @@ import {
   FaMicroscope,
   FaCheckCircle,
   FaAward,
-  FaClock,
+  
   FaBriefcase,
   FaGraduationCap,
   FaUsers,
   FaChartLine,
-  FaStar
+
 } from "react-icons/fa";
 
 const ClinicalCoursesPage = () => {

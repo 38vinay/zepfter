@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { FaBullseye, FaHandshake, FaUsers, FaLightbulb, FaGraduationCap, FaAward, FaChartLine, FaHeart, FaRocket, FaShieldAlt, FaEye, FaBullhorn } from "react-icons/fa";
+import { FaBullseye, FaHandshake,  FaLightbulb, FaRocket, FaEye,  } from "react-icons/fa";
 
 const About = () => {
   const [counters, setCounters] = useState({

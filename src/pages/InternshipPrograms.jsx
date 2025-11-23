@@ -11,7 +11,7 @@ import {
   FaPills,
   FaCheckCircle,
   FaAward,
-  FaClock,
+
   FaGraduationCap,
   FaUsers,
   FaChartLine,

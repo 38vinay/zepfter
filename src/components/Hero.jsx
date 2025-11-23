@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaChevronDown, FaHeartbeat, FaFlask, FaLaptopCode, FaPills, FaUserTie, FaBriefcase, FaStar, FaArrowRight } from "react-icons/fa";
+import { FaChevronDown, FaHeartbeat, FaFlask, FaLaptopCode, FaPills, FaUserTie, FaBriefcase, FaArrowRight } from "react-icons/fa";
 
 // Import hero images
 const hero1 = "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1920&q=80";

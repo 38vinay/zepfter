@@ -12,7 +12,7 @@ import {
   FaFileAlt,
   FaCheckCircle,
   FaAward,
-  FaClock,
+  
   FaBriefcase,
   FaGraduationCap,
   FaUsers,
