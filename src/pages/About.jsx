@@ -43,16 +43,17 @@ const About = () => {
   return (
     <>
       {/* Hero Section - Dark with Digital Matrix */}
-      <section 
-        className="position-relative overflow-hidden"
-        style={{
-          background: 'linear-gradient(135deg, #0a0a0a 0%, #1E3679 50%, #000000 100%)',
-          minHeight: '60vh',
-          paddingTop: '140px',
-          paddingBottom: '80px',
-          marginTop: '70px'
-        }}
-      >
+        <section 
+  style={{
+    background: 'linear-gradient(135deg, rgba(10,10,31,0.4) 0%, rgba(30,54,121,0.5) 50%, rgba(10,10,31,0.4) 100%), url("https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=800&q=80")',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat:'no-repeat',
+    backgroundAttachment: 'fixed',
+    padding: '100px 20px 80px',
+    position: 'relative',
+  }}
+>
         {/* Digital Matrix Background */}
         <div className="position-absolute w-100 h-100 top-0 start-0" style={{ opacity: 0.15 }}>
           {[...Array(50)].map((_, i) => (
