@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaClock, FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitter, FaCheckCircle } from "react-icons/fa";
+import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaClock, FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitter, FaCheckCircle, FaWhatsapp, FaCalendarAlt, FaHeadset, FaUserFriends, FaRocket } from "react-icons/fa";
+import { FaGraduationCap, FaLaptopCode } from "react-icons/fa";
+
+
+
+
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -8,7 +13,9 @@ const Contact = () => {
     email: '',
     phone: '',
     course: '',
-    message: ''
+    message: '',
+    preferredTime: '',
+    contactMethod: 'email'
   });
 
   const [formStatus, setFormStatus] = useState(null);
@@ -26,7 +33,6 @@ const Contact = () => {
     e.preventDefault();
     setLoading(true);
 
-    // Simulate form submission
     setTimeout(() => {
       setFormStatus('success');
       setLoading(false);
@@ -35,10 +41,11 @@ const Contact = () => {
         email: '',
         phone: '',
         course: '',
-        message: ''
+        message: '',
+        preferredTime: '',
+        contactMethod: 'email'
       });
 
-      // Reset status after 5 seconds
       setTimeout(() => setFormStatus(null), 5000);
     }, 1500);
   };
@@ -46,31 +53,35 @@ const Contact = () => {
   const contactInfo = [
     {
       icon: <FaPhoneAlt size={24} />,
-      title: "Phone",
+      title: "Call Us",
       details: ["+91 98765 43210", "+91 98765 43211"],
       color: "#1E3679",
-      gradient: "linear-gradient(135deg, #1E3679, #2a4a9f)"
+      gradient: "linear-gradient(135deg, #1E3679, #2a4a9f)",
+      link: "tel:+919876543210"
+    },
+    {
+      icon: <FaWhatsapp size={24} />,
+      title: "WhatsApp",
+      details: ["+91 98765 43210", "Quick Response 24/7"],
+      color: "#00AA8A",
+      gradient: "linear-gradient(135deg, #00AA8A, #00d4aa)",
+      link: "https://wa.me/919876543210"
     },
     {
       icon: <FaEnvelope size={24} />,
-      title: "Email",
+      title: "Email Us",
       details: ["support@zepfter.com", "admissions@zepfter.com"],
-      color: "#00AA8A",
-      gradient: "linear-gradient(135deg, #00AA8A, #00d4aa)"
+      color: "#FBD21A",
+      gradient: "linear-gradient(135deg, #FBD21A, #ffd700)",
+      link: "mailto:support@zepfter.com"
     },
     {
       icon: <FaMapMarkerAlt size={24} />,
-      title: "Address",
-      details: ["CBM Compound, Isukathota", "Maddilapalem, Visakhapatnam-530003"],
-      color: "#FBD21A",
-      gradient: "linear-gradient(135deg, #FBD21A, #ffd700)"
-    },
-    {
-      icon: <FaClock size={24} />,
-      title: "Working Hours",
-      details: ["Mon - Sat: 9:00 AM - 7:00 PM", "Sunday: Closed"],
+      title: "Visit Us",
+      details: ["CBM Compound, Isukathota", "Maddilapalem, Visakhapatnam"],
       color: "#1E3679",
-      gradient: "linear-gradient(135deg, #1E3679, #00AA8A)"
+      gradient: "linear-gradient(135deg, #1E3679, #00AA8A)",
+      link: "#map"
     }
   ];
 
@@ -78,26 +89,71 @@ const Contact = () => {
     "Medical Coding",
     "Medical Billing",
     "Medical Writing",
+    "Medical Affairs",
     "Clinical Research",
     "Clinical Data Management",
     "Clinical Trials",
+    "BA/BE Studies",
     "Data Science",
     "Web Development",
     "AI & Machine Learning",
-    "Python Programming"
+    "Python Programming",
+    "Cloud Computing",
+    "Cybersecurity",
+    "Quality Assurance",
+    "Quality Control",
+    "Regulatory Affairs",
+    "Pharmaceutical Operations"
+  ];
+
+  const quickActions = [
+    {
+      icon: <FaCalendarAlt size={30} />,
+      title: "Schedule a Visit",
+      description: "Book a campus tour",
+      color: "#1E3679",
+      action: "Book Now"
+    },
+    {
+      icon: <FaHeadset size={30} />,
+      title: "Talk to Counselor",
+      description: "Free career guidance",
+      color: "#00AA8A",
+      action: "Call Now"
+    },
+    {
+      icon: <FaUserFriends size={30} />,
+      title: "Attend Demo Class",
+      description: "Experience our teaching",
+      color: "#FBD21A",
+      action: "Register"
+    },
+    {
+      icon: <FaRocket size={30} />,
+      title: "Download Brochure",
+      description: "Complete course details",
+      color: "#1E3679",
+      action: "Download"
+    }
+  ];
+
+  const workingHours = [
+    { day: "Monday - Friday", hours: "9:00 AM - 7:00 PM" },
+    { day: "Saturday", hours: "9:00 AM - 5:00 PM" },
+    { day: "Sunday", hours: "Closed" }
   ];
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="section text-center position-relative" style={{
-        background: 'linear-gradient(135deg, #1E3679 0%, #00AA8A 100%)',
+      {/* Hero Section with Particle Effect */}
+      <section className="position-relative overflow-hidden" style={{
+        background: 'linear-gradient(135deg, #0a0a0a 0%, #1E3679 50%, #00AA8A 100%)',
         color: 'white',
-        padding: '120px 0 80px',
-        overflow: 'hidden'
+        padding: '140px 0 100px',
+        marginTop: '70px'
       }}>
         {/* Animated Particles */}
-        {[...Array(20)].map((_, i) => (
+        {[...Array(30)].map((_, i) => (
           <motion.div
             key={i}
             initial={{
@@ -115,11 +171,11 @@ const Contact = () => {
             }}
             style={{
               position: 'absolute',
-              width: '15px',
-              height: '15px',
+              width: '4px',
+              height: '4px',
               borderRadius: '50%',
               background: 'white',
-              filter: 'blur(5px)'
+              filter: 'blur(1px)'
             }}
           />
         ))}
@@ -129,41 +185,75 @@ const Contact = () => {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
+            className="text-center"
           >
-            <motion.h1 
-              className="fw-bold display-3 mb-5"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mb-4"
             >
-              Get in Touch
-            </motion.h1>
-            <motion.p 
-              className="fs-4 mb-0" 
-              style={{ maxWidth: '700px', margin: '0 auto' }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              <div 
+                className="d-inline-flex align-items-center justify-content-center rounded-circle mx-auto"
+                style={{
+                  width: '100px',
+                  height: '100px',
+                  background: 'rgba(255,255,255,0.1)',
+                  backdropFilter: 'blur(10px)',
+                  border: '2px solid rgba(255,255,255,0.2)'
+                }}
+              >
+                <FaHeadset size={50} />
+              </div>
+            </motion.div>
+
+            <h1 className="fw-bold display-3 mb-4">Get in Touch</h1>
+            <p className="fs-4 mb-4" style={{ maxWidth: '800px', margin: '0 auto' }}>
+              Have questions? We're here to help you start your learning journey. Reach out to us through any channel that works best for you.
+            </p>
+
+            <motion.div 
+              className="d-flex gap-3 justify-content-center flex-wrap"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
             >
-              Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
-            </motion.p>
+              <motion.a
+                href="tel:+919876543210"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="btn btn-light btn-lg px-4 py-3 d-flex align-items-center gap-2"
+                style={{ borderRadius: '50px', fontWeight: '600' }}
+              >
+                <FaPhoneAlt /> Call Now
+              </motion.a>
+              <motion.a
+                href="https://wa.me/919876543210"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="btn btn-outline-light btn-lg px-4 py-3 d-flex align-items-center gap-2"
+                style={{ borderRadius: '50px', fontWeight: '600' }}
+              >
+                <FaWhatsapp /> WhatsApp
+              </motion.a>
+            </motion.div>
           </motion.div>
         </div>
 
-        {/* Wave */}
-        <div className="position-absolute" style={{ bottom: 0, left: 0, right: 0 }}>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-            <path fill="#ffffff" fillOpacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,138.7C960,139,1056,117,1152,112C1248,107,1344,117,1392,122.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-          </svg>
-        </div>
+        {/* Wave Divider */}
+        
       </section>
 
       {/* Contact Info Cards */}
-      <section className="container" style={{ marginTop: '-80px', position: 'relative', zIndex: 10 }}>
+      <section className="container" style={{ marginTop: '-100px', position: 'relative', zIndex: 10 }}>
         <div className="row g-4">
           {contactInfo.map((info, idx) => (
             <div className="col-lg-3 col-md-6" key={idx}>
-              <motion.div 
+              <motion.a
+                href={info.link}
+                target={info.link.startsWith('http') ? '_blank' : '_self'}
+                rel="noopener noreferrer"
+                className="text-decoration-none"
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
@@ -171,74 +261,98 @@ const Contact = () => {
                   y: -10,
                   boxShadow: `0 20px 40px ${info.color}30`
                 }}
-                className="glass-card text-center p-4 h-100" 
-                style={{ 
-                  borderTop: `4px solid ${info.color}`,
-                  cursor: 'pointer',
-                  position: 'relative',
-                  overflow: 'hidden'
-                }}
               >
-                {/* Animated Background */}
-                <motion.div
-                  initial={{ scale: 0 }}
-                  whileHover={{ scale: 2, opacity: 0.1 }}
-                  transition={{ duration: 0.6 }}
-                  style={{
-                    position: 'absolute',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
-                    width: '200px',
-                    height: '200px',
-                    background: info.gradient,
-                    borderRadius: '50%',
-                    filter: 'blur(60px)'
-                  }}
-                />
-
-                <motion.div 
-                  className="d-inline-flex align-items-center justify-content-center rounded-circle mb-3"
-                  style={{
-                    width: '70px',
-                    height: '70px',
-                    background: info.color,
-                    color: 'white',
+                <div
+                  className="glass-card text-center p-4 h-100" 
+                  style={{ 
+                    borderTop: `4px solid ${info.color}`,
+                    cursor: 'pointer',
                     position: 'relative',
-                    zIndex: 1
+                    overflow: 'hidden',
+                    background: 'white'
                   }}
-                  whileHover={{ rotate: 360, scale: 1.1 }}
-                  transition={{ duration: 0.6 }}
                 >
-                  {info.icon}
-                </motion.div>
-                <h5 className="fw-bold mb-3" style={{ position: 'relative', zIndex: 1 }}>
-                  {info.title}
-                </h5>
-                {info.details.map((detail, i) => (
-                  <p className="text-muted mb-1 small" key={i} style={{ position: 'relative', zIndex: 1 }}>
-                    {detail}
-                  </p>
-                ))}
-              </motion.div>
+                  {/* Animated Background Gradient */}
+                  <motion.div
+                    initial={{ scale: 0, opacity: 0 }}
+                    whileHover={{ scale: 2, opacity: 0.1 }}
+                    transition={{ duration: 0.6 }}
+                    style={{
+                      position: 'absolute',
+                      top: '50%',
+                      left: '50%',
+                      transform: 'translate(-50%, -50%)',
+                      width: '200px',
+                      height: '200px',
+                      background: info.gradient,
+                      borderRadius: '50%',
+                      filter: 'blur(60px)'
+                    }}
+                  />
+
+                  <motion.div 
+                    className="d-inline-flex align-items-center justify-content-center rounded-circle mb-3"
+                    style={{
+                      width: '70px',
+                      height: '70px',
+                      background: info.color,
+                      color: 'white',
+                      position: 'relative',
+                      zIndex: 1
+                    }}
+                    whileHover={{ rotate: 360, scale: 1.1 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    {info.icon}
+                  </motion.div>
+                  
+                  <h5 className="fw-bold mb-3" style={{ position: 'relative', zIndex: 1 }}>
+                    {info.title}
+                  </h5>
+                  {info.details.map((detail, i) => (
+                    <p className="text-muted mb-1 small" key={i} style={{ position: 'relative', zIndex: 1 }}>
+                      {detail}
+                    </p>
+                  ))}
+                </div>
+              </motion.a>
             </div>
           ))}
         </div>
       </section>
 
+      {/* Quick Actions Section - NEW */}
+      
+
       {/* Contact Form & Sidebar */}
       <section className="section container">
         <div className="row g-5">
-          {/* Form */}
+          {/* Enhanced Form */}
           <div className="col-lg-7">
             <motion.div 
-              className="glass-card p-5"
+              className="glass-card p-4 p-md-5"
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
+              style={{ boxShadow: '0 10px 40px rgba(0,0,0,0.1)' }}
             >
-              <h2 className="fw-bold mb-4">Send Us a Message</h2>
+              <div className="d-flex align-items-center gap-3 mb-4">
+                <div 
+                  className="d-flex align-items-center justify-content-center rounded-circle"
+                  style={{
+                    width: '50px',
+                    height: '50px',
+                    background: 'linear-gradient(135deg, #1E3679, #00AA8A)'
+                  }}
+                >
+                  <FaEnvelope size={24} className="text-white" />
+                </div>
+                <div>
+                  <h2 className="fw-bold mb-0">Send Us a Message</h2>
+                  <p className="text-muted mb-0">We'll respond within 24 hours</p>
+                </div>
+              </div>
               
               <AnimatePresence>
                 {formStatus === 'success' && (
@@ -246,16 +360,23 @@ const Contact = () => {
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
-                    className="alert alert-success d-flex align-items-center mb-4" 
-                    role="alert"
+                    className="alert d-flex align-items-center mb-4" 
+                    style={{ 
+                      background: 'linear-gradient(135deg, #00AA8A, #00d4aa)',
+                      color: 'white',
+                      border: 'none',
+                      borderRadius: '15px'
+                    }}
                   >
-                    <FaCheckCircle className="me-2" />
-                    <div>Thank you! Your message has been sent successfully. We'll get back to you soon.</div>
+                    <FaCheckCircle className="me-2" size={24} />
+                    <div>
+                      <strong>Success!</strong> Your message has been sent. We'll get back to you soon.
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>
 
-              <div onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit}>
                 <div className="row g-3">
                   <div className="col-md-6">
                     <label className="form-label fw-semibold">Full Name *</label>
@@ -271,7 +392,8 @@ const Contact = () => {
                       required
                       style={{
                         borderColor: focusedField === 'name' ? '#1E3679' : '',
-                        transition: 'all 0.3s ease'
+                        borderWidth: '2px',
+                        borderRadius: '12px'
                       }}
                       whileFocus={{ scale: 1.02 }}
                     />
@@ -291,7 +413,8 @@ const Contact = () => {
                       required
                       style={{
                         borderColor: focusedField === 'email' ? '#00AA8A' : '',
-                        transition: 'all 0.3s ease'
+                        borderWidth: '2px',
+                        borderRadius: '12px'
                       }}
                       whileFocus={{ scale: 1.02 }}
                     />
@@ -311,7 +434,8 @@ const Contact = () => {
                       required
                       style={{
                         borderColor: focusedField === 'phone' ? '#FBD21A' : '',
-                        transition: 'all 0.3s ease'
+                        borderWidth: '2px',
+                        borderRadius: '12px'
                       }}
                       whileFocus={{ scale: 1.02 }}
                     />
@@ -329,7 +453,8 @@ const Contact = () => {
                       required
                       style={{
                         borderColor: focusedField === 'course' ? '#1E3679' : '',
-                        transition: 'all 0.3s ease'
+                        borderWidth: '2px',
+                        borderRadius: '12px'
                       }}
                       whileFocus={{ scale: 1.02 }}
                     >
@@ -340,20 +465,58 @@ const Contact = () => {
                     </motion.select>
                   </div>
 
+                  <div className="col-md-6">
+                    <label className="form-label fw-semibold">Preferred Time to Contact</label>
+                    <motion.select 
+                      name="preferredTime"
+                      className="form-select form-select-lg"
+                      value={formData.preferredTime}
+                      onChange={handleChange}
+                      style={{
+                        borderWidth: '2px',
+                        borderRadius: '12px'
+                      }}
+                    >
+                      <option value="">Any time</option>
+                      <option value="morning">Morning (9 AM - 12 PM)</option>
+                      <option value="afternoon">Afternoon (12 PM - 4 PM)</option>
+                      <option value="evening">Evening (4 PM - 7 PM)</option>
+                    </motion.select>
+                  </div>
+
+                  <div className="col-md-6">
+                    <label className="form-label fw-semibold">Preferred Contact Method</label>
+                    <motion.select 
+                      name="contactMethod"
+                      className="form-select form-select-lg"
+                      value={formData.contactMethod}
+                      onChange={handleChange}
+                      style={{
+                        borderWidth: '2px',
+                        borderRadius: '12px'
+                      }}
+                    >
+                      <option value="email">Email</option>
+                      <option value="phone">Phone Call</option>
+                      <option value="whatsapp">WhatsApp</option>
+                    </motion.select>
+                  </div>
+
                   <div className="col-12">
                     <label className="form-label fw-semibold">Message</label>
                     <motion.textarea 
                       name="message"
                       className="form-control form-control-lg" 
                       rows="5" 
-                      placeholder="Tell us about your requirements..."
+                      placeholder="Tell us about your requirements and questions..."
                       value={formData.message}
                       onChange={handleChange}
                       onFocus={() => setFocusedField('message')}
                       onBlur={() => setFocusedField(null)}
                       style={{
                         borderColor: focusedField === 'message' ? '#00AA8A' : '',
-                        transition: 'all 0.3s ease'
+                        borderWidth: '2px',
+                        borderRadius: '12px'
                       }}
                       whileFocus={{ scale: 1.01 }}
                     ></motion.textarea>
@@ -362,38 +525,40 @@ const Contact = () => {
                   <div className="col-12">
                     <motion.button 
                       type="submit" 
-                      className="btn-gradient btn-lg w-100 fw-semibold"
+                      className="btn btn-lg w-100 fw-semibold d-flex align-items-center justify-content-center gap-2"
                       disabled={loading}
                       whileHover={{ scale: 1.02, boxShadow: '0 10px 30px rgba(30, 54, 121, 0.3)' }}
                       whileTap={{ scale: 0.98 }}
                       style={{
                         background: 'linear-gradient(135deg, #1E3679, #00AA8A)',
                         border: 'none',
-                        borderRadius: '50px'
+                        borderRadius: '12px',
+                        color: 'white',
+                        padding: '16px'
                       }}
                     >
                       {loading ? (
                         <>
-                          <motion.span 
-                            className="spinner-border spinner-border-sm me-2" 
-                            role="status" 
-                            aria-hidden="true"
+                          <motion.div
+                            className="spinner-border spinner-border-sm"
                             animate={{ rotate: 360 }}
                             transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                           />
                           Sending...
                         </>
                       ) : (
-                        'Send Message'
+                        <>
+                          <FaEnvelope /> Send Message
+                        </>
                       )}
                     </motion.button>
                   </div>
                 </div>
-              </div>
+              </form>
             </motion.div>
           </div>
 
-          {/* Sidebar */}
+          {/* Enhanced Sidebar */}
           <div className="col-lg-5">
             <motion.div
               initial={{ opacity: 0, x: 50 }}
@@ -401,55 +566,52 @@ const Contact = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              {/* Quick Contact */}
+              {/* Working Hours */}
               <motion.div 
                 className="glass-card p-4 mb-4"
-                whileHover={{ y: -5, boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }}
+                whileHover={{ y: -5, boxShadow: '0 15px 40px rgba(0,0,0,0.1)' }}
               >
-                <h4 className="fw-bold mb-4">Quick Contact</h4>
+                <div className="d-flex align-items-center gap-3 mb-4">
+                  <motion.div
+                    animate={{ rotate: [0, 360] }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                    className="d-flex align-items-center justify-content-center rounded-circle"
+                    style={{
+                      width: '50px',
+                      height: '50px',
+                      background: 'linear-gradient(135deg, #FBD21A, #ffd700)'
+                    }}
+                  >
+                    <FaClock size={24} className="text-white" />
+                  </motion.div>
+                  <h4 className="fw-bold mb-0">Working Hours</h4>
+                </div>
                 
-                {[
-                  { icon: <FaPhoneAlt />, color: '#1E3679', title: 'Call Us', time: 'Mon-Sat: 9 AM - 7 PM', link: 'tel:+919876543210', text: '+91 98765 43210' },
-                  { icon: <FaEnvelope />, color: '#00AA8A', title: 'Email Us', time: "We'll respond within 24 hours", link: 'mailto:support@zepfter.com', text: 'support@zepfter.com' },
-                  { icon: <FaMapMarkerAlt />, color: '#FBD21A', title: 'Visit Us', time: 'CBM Compound, Isukathota\nMaddilapalem, Visakhapatnam-530003\nAndhra Pradesh, India', link: null, text: null }
-                ].map((item, idx) => (
+                {workingHours.map((schedule, idx) => (
                   <motion.div 
                     key={idx}
-                    className="d-flex align-items-start gap-3 mb-4"
+                    className="d-flex justify-content-between align-items-center py-3"
+                    style={{
+                      borderBottom: idx < workingHours.length - 1 ? '1px solid #eee' : 'none'
+                    }}
                     initial={{ opacity: 0, x: 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: idx * 0.1 }}
-                    whileHover={{ x: 5 }}
                   >
-                    <motion.div 
-                      className="rounded-circle bg-opacity-10 p-3 flex-shrink-0"
-                      style={{ background: `${item.color}20` }}
-                      whileHover={{ rotate: 360, scale: 1.1 }}
-                      transition={{ duration: 0.6 }}
-                    >
-                      <div style={{ color: item.color }}>{item.icon}</div>
-                    </motion.div>
-                    <div>
-                      <div className="fw-semibold mb-1">{item.title}</div>
-                      <div className="text-muted small" style={{ whiteSpace: 'pre-line' }}>{item.time}</div>
-                      {item.link && (
-                        <a href={item.link} className="text-primary text-decoration-none fw-semibold" style={{ color: item.color }}>
-                          {item.text}
-                        </a>
-                      )}
-                    </div>
+                    <span className="fw-semibold">{schedule.day}</span>
+                    <span className="badge bg-primary px-3 py-2">{schedule.hours}</span>
                   </motion.div>
                 ))}
               </motion.div>
 
               {/* Social Media */}
               <motion.div 
-                className="glass-card p-4"
-                whileHover={{ y: -5, boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }}
+                className="glass-card p-4 mb-4"
+                whileHover={{ y: -5, boxShadow: '0 15px 40px rgba(0,0,0,0.1)' }}
               >
-                <h5 className="fw-bold mb-4">Follow Us</h5>
-                <div className="d-flex gap-3">
+                <h5 className="fw-bold mb-4">Connect With Us</h5>
+                <div className="d-flex gap-3 flex-wrap">
                   {[
                     { icon: <FaFacebookF size={20} />, gradient: 'linear-gradient(135deg, #1E3679, #2a4a9f)', link: '#' },
                     { icon: <FaInstagram size={20} />, gradient: 'linear-gradient(135deg, #00AA8A, #00d4aa)', link: '#' },
@@ -461,11 +623,11 @@ const Contact = () => {
                       href={social.link}
                       className="d-flex align-items-center justify-content-center rounded-circle text-white"
                       style={{ 
-                        width: '50px', 
-                        height: '50px', 
+                        width: '55px', 
+                        height: '55px', 
                         background: social.gradient
                       }}
-                      whileHover={{ scale: 1.2, rotate: 360 }}
+                      whileHover={{ scale: 1.15, rotate: 360 }}
                       whileTap={{ scale: 0.9 }}
                       transition={{ duration: 0.6 }}
                     >
@@ -474,13 +636,48 @@ const Contact = () => {
                   ))}
                 </div>
               </motion.div>
+
+              {/* Help & Support */}
+              <motion.div 
+                className="glass-card p-4"
+                whileHover={{ y: -5, boxShadow: '0 15px 40px rgba(0,0,0,0.1)' }}
+                style={{
+                  background: 'linear-gradient(135deg, rgba(30,54,121,0.05), rgba(0,170,138,0.05))'
+                }}
+              >
+                <div className="d-flex align-items-center gap-3 mb-3">
+                  <FaHeadset size={30} className="text-primary" />
+                  <h5 className="fw-bold mb-0">Need Immediate Help?</h5>
+                </div>
+                <p className="text-muted mb-3">
+                  Our admissions team is available to answer your questions and guide you through the enrollment process.
+                </p>
+                <div className="d-flex gap-2 flex-wrap">
+                  <motion.a
+                    href="tel:+919876543210"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="btn btn-primary flex-grow-1"
+                  >
+                    <FaPhoneAlt className="me-2" /> Call Now
+                  </motion.a>
+                  <motion.a
+                    href="https://wa.me/919876543210"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="btn btn-success flex-grow-1"
+                  >
+                    <FaWhatsapp className="me-2" /> WhatsApp
+                  </motion.a>
+                </div>
+              </motion.div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Location Section */}
-      <section className="section bg-light">
+      {/* Enhanced Location Section */}
+      <section className="section" style={{ background: 'linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%)' }}>
         <div className="container">
           <motion.div 
             className="text-center mb-5"
@@ -489,23 +686,24 @@ const Contact = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="fw-bold display-5 mb-3">Our Location</h2>
-            <p className="text-muted fs-5">Visit us at our Visakhapatnam campus</p>
+            <h2 className="fw-bold display-5 mb-3">Visit Our Campus</h2>
+            <p className="text-muted fs-5">Experience our world-class training facilities</p>
           </motion.div>
 
-          <div className="row g-4 align-items-center">
+          <div className="row g-4 align-items-stretch">
             <div className="col-lg-6">
               <motion.div 
-                className="glass-card p-5"
+                className="glass-card p-4 p-md-5 h-100"
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
                 whileHover={{ y: -5 }}
+                style={{ boxShadow: '0 10px 40px rgba(0,0,0,0.1)' }}
               >
                 <div className="mb-4">
                   <motion.div 
-                    className="d-inline-flex align-items-center justify-content-center rounded-circle mb-3"
+                    className="d-inline-flex align-items-center justify-content-center rounded-circle mb-4"
                     style={{
                       width: '80px',
                       height: '80px',
@@ -520,8 +718,20 @@ const Contact = () => {
                 </div>
 
                 <div className="mb-4">
-                  <h5 className="fw-semibold mb-2">Address:</h5>
-                  <p className="text-muted mb-0">
+                  <h5 className="fw-semibold mb-3 d-flex align-items-center gap-2">
+                    <div 
+                      className="d-flex align-items-center justify-content-center rounded-circle"
+                      style={{
+                        width: '30px',
+                        height: '30px',
+                        background: 'linear-gradient(135deg, #1E3679, #00AA8A)'
+                      }}
+                    >
+                      <FaMapMarkerAlt size={14} className="text-white" />
+                    </div>
+                    Address
+                  </h5>
+                  <p className="text-muted mb-0 ps-5">
                     CBM Compound, Isukathota<br />
                     Maddilapalem, Visakhapatnam-530003<br />
                     Andhra Pradesh, India
@@ -529,42 +739,86 @@ const Contact = () => {
                 </div>
 
                 <div className="mb-4">
-                  <h5 className="fw-semibold mb-2">Contact:</h5>
-                  <p className="mb-2">
-                    <FaPhoneAlt className="text-primary me-2" />
-                    <a href="tel:+919876543210" className="text-decoration-none text-dark">
-                      +91 98765 43210
-                    </a>
-                  </p>
-                  <p className="mb-0">
-                    <FaEnvelope className="text-primary me-2" />
-                    <a href="mailto:support@zepfter.com" className="text-decoration-none text-dark">
-                      support@zepfter.com
-                    </a>
-                  </p>
+                  <h5 className="fw-semibold mb-3 d-flex align-items-center gap-2">
+                    <div 
+                      className="d-flex align-items-center justify-content-center rounded-circle"
+                      style={{
+                        width: '30px',
+                        height: '30px',
+                        background: 'linear-gradient(135deg, #00AA8A, #00d4aa)'
+                      }}
+                    >
+                      <FaPhoneAlt size={14} className="text-white" />
+                    </div>
+                    Contact
+                  </h5>
+                  <div className="ps-5">
+                    <p className="mb-2">
+                      <a href="tel:+919876543210" className="text-decoration-none text-dark d-flex align-items-center gap-2">
+                        <FaPhoneAlt className="text-primary" size={14} />
+                        <strong>+91 98765 43210</strong>
+                      </a>
+                    </p>
+                    <p className="mb-2">
+                      <a href="tel:+919876543211" className="text-decoration-none text-dark d-flex align-items-center gap-2">
+                        <FaPhoneAlt className="text-primary" size={14} />
+                        +91 98765 43211
+                      </a>
+                    </p>
+                    <p className="mb-0">
+                      <a href="mailto:support@zepfter.com" className="text-decoration-none text-dark d-flex align-items-center gap-2">
+                        <FaEnvelope className="text-primary" size={14} />
+                        support@zepfter.com
+                      </a>
+                    </p>
+                  </div>
                 </div>
 
                 <div className="mb-4">
-                  <h5 className="fw-semibold mb-2">Working Hours:</h5>
-                  <p className="text-muted mb-1">Monday - Saturday: 9:00 AM - 7:00 PM</p>
-                  <p className="text-muted mb-0">Sunday: Closed</p>
+                  <h5 className="fw-semibold mb-3 d-flex align-items-center gap-2">
+                    <div 
+                      className="d-flex align-items-center justify-content-center rounded-circle"
+                      style={{
+                        width: '30px',
+                        height: '30px',
+                        background: 'linear-gradient(135deg, #FBD21A, #ffd700)'
+                      }}
+                    >
+                      <FaClock size={14} className="text-white" />
+                    </div>
+                    Working Hours
+                  </h5>
+                  <div className="ps-5 text-muted">
+                    <p className="mb-1">Monday - Saturday: 9:00 AM - 7:00 PM</p>
+                    <p className="mb-0">Sunday: Closed</p>
+                  </div>
                 </div>
 
                 <motion.button 
-                  className="btn btn-primary btn-lg w-100"
-                  whileHover={{ scale: 1.05, boxShadow: '0 10px 30px rgba(30, 54, 121, 0.3)' }}
-                  whileTap={{ scale: 0.95 }}
-                  style={{ background: '#1E3679', border: 'none' }}
+                  className="btn btn-lg w-100 fw-semibold d-flex align-items-center justify-content-center gap-2"
+                  whileHover={{ scale: 1.02, boxShadow: '0 10px 30px rgba(30, 54, 121, 0.3)' }}
+                  whileTap={{ scale: 0.98 }}
+                  style={{ 
+                    background: 'linear-gradient(135deg, #1E3679, #00AA8A)', 
+                    border: 'none',
+                    color: 'white',
+                    borderRadius: '12px',
+                    padding: '16px'
+                  }}
                 >
-                  Get Directions
+                  <FaMapMarkerAlt /> Get Directions
                 </motion.button>
               </motion.div>
             </div>
 
             <div className="col-lg-6">
               <motion.div 
-                className="glass-card p-0 overflow-hidden" 
-                style={{ borderRadius: '20px', height: '500px' }}
+                className="glass-card p-0 overflow-hidden h-100" 
+                style={{ 
+                  borderRadius: '20px',
+                  minHeight: '500px',
+                  boxShadow: '0 10px 40px rgba(0,0,0,0.1)'
+                }}
                 initial={{ opacity: 0, x: 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -587,8 +841,242 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      
+      {/* Campus Features Section - NEW */}
+      <section className="section" style={{ background: 'white' }}>
+        <div className="container">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-5"
+          >
+            <h2 className="fw-bold display-5 mb-3">Why Visit Our Campus?</h2>
+            <p className="text-muted fs-5">Discover our state-of-the-art facilities</p>
+          </motion.div>
+
+          <div className="row g-4">
+            {[
+              {
+                icon: <FaGraduationCap size={40} />,
+                title: "Modern Classrooms",
+                description: "AC classrooms with smart boards and comfortable seating",
+                color: "#1E3679"
+              },
+              {
+                icon: <FaLaptopCode size={40} />,
+                title: "Computer Labs",
+                description: "Latest hardware and software for hands-on practice",
+                color: "#00AA8A"
+              },
+              {
+                icon: <FaUserFriends size={40} />,
+                title: "Library & Resources",
+                description: "Extensive collection of books and digital resources",
+                color: "#FBD21A"
+              },
+              {
+                icon: <FaHeadset size={40} />,
+                title: "Career Counseling",
+                description: "Dedicated placement cell with expert counselors",
+                color: "#1E3679"
+              }
+            ].map((feature, idx) => (
+              <div className="col-lg-3 col-md-6" key={idx}>
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                  whileHover={{ 
+                    y: -10,
+                    boxShadow: '0 20px 40px rgba(0,0,0,0.1)'
+                  }}
+                  className="glass-card text-center p-4 h-100"
+                >
+                  <motion.div
+                    className="d-inline-flex align-items-center justify-content-center rounded-circle mb-3"
+                    style={{
+                      width: '80px',
+                      height: '80px',
+                      background: `${feature.color}15`
+                    }}
+                    whileHover={{ rotate: 360 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <div style={{ color: feature.color }}>
+                      {feature.icon}
+                    </div>
+                  </motion.div>
+                  <h5 className="fw-bold mb-3">{feature.title}</h5>
+                  <p className="text-muted mb-0">{feature.description}</p>
+                </motion.div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section - NEW */}
+      <section className="section" style={{ background: 'linear-gradient(135deg, #f8f9fa 0%, #e8f4ff 100%)' }}>
+        <div className="container">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-5"
+          >
+            <h2 className="fw-bold display-5 mb-3">Frequently Asked Questions</h2>
+            <p className="text-muted fs-5">Quick answers to common questions</p>
+          </motion.div>
+
+          <div className="row justify-content-center">
+            <div className="col-lg-8">
+              {[
+                {
+                  question: "What are your admission requirements?",
+                  answer: "Admission requirements vary by course. Generally, we accept students who have completed their graduation in any stream. For specific course requirements, please contact our admissions team."
+                },
+                {
+                  question: "Do you offer online classes?",
+                  answer: "Yes! We offer both online and offline training modes. Online students get access to live classes, recorded sessions, and all learning materials through our LMS platform."
+                },
+                {
+                  question: "How long does it take to complete a course?",
+                  answer: "Course duration varies from 3 to 12 months depending on the program. We offer flexible schedules including weekend batches for working professionals."
+                },
+                {
+                  question: "Do you provide placement assistance?",
+                  answer: "Absolutely! We offer 100% placement assistance with dedicated placement coordinators, resume building, mock interviews, and direct company referrals to 500+ partner companies."
+                }
+              ].map((faq, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="glass-card p-4 mb-3"
+                  whileHover={{ boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }}
+                >
+                  <div className="d-flex gap-3">
+                    <div 
+                      className="d-flex align-items-center justify-content-center rounded-circle flex-shrink-0"
+                      style={{
+                        width: '40px',
+                        height: '40px',
+                        background: 'linear-gradient(135deg, #1E3679, #00AA8A)',
+                        color: 'white',
+                        fontWeight: 'bold'
+                      }}
+                    >
+                      ?
+                    </div>
+                    <div>
+                      <h5 className="fw-bold mb-2">{faq.question}</h5>
+                      <p className="text-muted mb-0">{faq.answer}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section - Enhanced */}
+      <motion.section 
+        className="section text-center position-relative overflow-hidden"
+        style={{
+          background: 'linear-gradient(135deg, #1E3679 0%, #00AA8A 100%)',
+          color: 'white',
+          padding: '100px 0'
+        }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
+        {/* Animated Background Shapes */}
+        {[...Array(5)].map((_, i) => (
+          <motion.div
+            key={i}
+            animate={{
+              scale: [1, 1.5, 1],
+              rotate: [0, 180, 360],
+              opacity: [0.1, 0.2, 0.1]
+            }}
+            transition={{
+              duration: Math.random() * 10 + 10,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            style={{
+              position: 'absolute',
+              width: `${Math.random() * 300 + 100}px`,
+              height: `${Math.random() * 300 + 100}px`,
+              borderRadius: '50%',
+              background: 'rgba(255,255,255,0.1)',
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              filter: 'blur(60px)'
+            }}
+          />
+        ))}
+
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <motion.div
+              className="d-inline-flex align-items-center justify-content-center rounded-circle mb-4"
+              style={{
+                width: '100px',
+                height: '100px',
+                background: 'rgba(255,255,255,0.15)',
+                backdropFilter: 'blur(10px)'
+              }}
+              animate={{ scale: [1, 1.1, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              <FaRocket size={50} />
+            </motion.div>
+
+            <h2 className="fw-bold display-4 mb-4">
+              Ready to Start Your Journey?
+            </h2>
+            <p className="fs-5 mb-5" style={{ maxWidth: '800px', margin: '0 auto 40px' }}>
+              Take the first step towards your dream career. Our team is ready to guide you through the enrollment process and answer all your questions.
+            </p>
+            
+            <div className="d-flex gap-3 justify-content-center flex-wrap">
+              <motion.a
+                href="tel:+919876543210"
+                whileHover={{ scale: 1.05, boxShadow: '0 15px 40px rgba(255,255,255,0.3)' }}
+                whileTap={{ scale: 0.95 }}
+                className="btn btn-light btn-lg px-5 py-3 fw-semibold d-flex align-items-center gap-2"
+                style={{ borderRadius: '50px' }}
+              >
+                <FaPhoneAlt /> Call Now
+              </motion.a>
+              
+              <motion.a
+                href="https://wa.me/919876543210"
+                whileHover={{ scale: 1.05, background: 'white', color: '#00AA8A' }}
+                whileTap={{ scale: 0.95 }}
+                className="btn btn-outline-light btn-lg px-5 py-3 fw-semibold d-flex align-items-center gap-2"
+                style={{ borderRadius: '50px', border: '2px solid white' }}
+              >
+                <FaWhatsapp /> WhatsApp Us
+              </motion.a>
+              
+              
+            </div>
+          </motion.div>
+        </div>
+      </motion.section>
     </>
   );
 };
