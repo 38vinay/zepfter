@@ -16,6 +16,21 @@ const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [hoveredCard, setHoveredCard] = useState(null);
   const [stats, setStats] = useState({ students: 0, courses: 0, placements: 0, professionals: 0 });
+  const [isMobile, setIsMobile] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
+
+  // Detect device size
+  useEffect(() => {
+    const checkDevice = () => {
+      const width = window.innerWidth;
+      setIsMobile(width <= 768);
+      setIsTablet(width > 768 && width <= 1024);
+    };
+    
+    checkDevice();
+    window.addEventListener('resize', checkDevice);
+    return () => window.removeEventListener('resize', checkDevice);
+  }, []);
 
   const slides = [
     {
@@ -80,17 +95,25 @@ const Home = () => {
   };
 
   const scrollToContent = () => {
+    const vh = window.innerHeight;
     window.scrollTo({
-      top: window.innerHeight,
+      top: vh,
       behavior: 'smooth'
     });
+  };
+
+  // Responsive icon sizes
+  const getIconSize = () => {
+    if (isMobile) return 40;
+    if (isTablet) return 50;
+    return 60;
   };
 
   // Services with card-based design - Brand Colors Only
   const services = [
     {
       id: 'medical',
-      icon: <FaHeartbeat size={60} />,
+      icon: <FaHeartbeat size={getIconSize()} />,
       title: "Medical Courses",
       desc: "Master medical coding, billing, medical affairs, and medical writing with comprehensive training programs.",
       color: "#1E3679",
@@ -98,7 +121,7 @@ const Home = () => {
     },
     {
       id: 'clinical',
-      icon: <FaFlask size={60} />,
+      icon: <FaFlask size={getIconSize()} />,
       title: "Clinical Courses",
       desc: "Advanced training in clinical research, data management, clinical trials, and BA/BE studies.",
       color: "#00AA8A",
@@ -106,7 +129,7 @@ const Home = () => {
     },
     {
       id: 'it',
-      icon: <FaLaptopCode size={60} />,
+      icon: <FaLaptopCode size={getIconSize()} />,
       title: "IT Services",
       desc: "Comprehensive IT training in programming, data science, cybersecurity, and cloud computing.",
       color: "#1E3679",
@@ -114,7 +137,7 @@ const Home = () => {
     },
     {
       id: 'pharma',
-      icon: <FaPills size={60} />,
+      icon: <FaPills size={getIconSize()} />,
       title: "Pharmaceutical Skills",
       desc: "Quality assurance, regulatory affairs, and pharmaceutical operations training.",
       color: "#00AA8A",
@@ -122,7 +145,7 @@ const Home = () => {
     },
     {
       id: 'training',
-      icon: <FaUserTie size={60} />,
+      icon: <FaUserTie size={getIconSize()} />,
       title: "Training & Placement",
       desc: "100% placement assistance with interview preparation and career counseling.",
       color: "#1E3679",
@@ -130,7 +153,7 @@ const Home = () => {
     },
     {
       id: 'internship',
-      icon: <FaBriefcase size={60} />,
+      icon: <FaBriefcase size={getIconSize()} />,
       title: "Internship Programs",
       desc: "Real-world experience through internships in medical, clinical, IT, and pharmaceutical domains.",
       color: "#00AA8A",
@@ -169,9 +192,15 @@ const Home = () => {
 
   return (
     <>
-      {/* Hero Section */}
+      {/* Hero Section - Fully Responsive */}
       <section className="hero-wrapper">
-        <div className="position-relative" style={{ height: '100vh' }}>
+        <div 
+          className="position-relative" 
+          style={{ 
+            height: isMobile ? 'auto' : '100vh',
+            minHeight: isMobile ? '600px' : '100vh'
+          }}
+        >
           
           {/* Slides */}
           <AnimatePresence mode="wait">
@@ -188,6 +217,7 @@ const Home = () => {
                     backgroundImage: `url(${slide.image})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
+                    backgroundAttachment: isMobile ? 'scroll' : 'fixed',
                     zIndex: 1
                   }}
                 >
@@ -203,8 +233,8 @@ const Home = () => {
                     }}
                   />
 
-                  {/* Animated Particles */}
-                  {[...Array(20)].map((_, i) => (
+                  {/* Animated Particles - Only on Desktop */}
+                  {!isMobile && !isTablet && [...Array(20)].map((_, i) => (
                     <motion.div
                       key={i}
                       initial={{ 
@@ -235,7 +265,13 @@ const Home = () => {
                   ))}
 
                   {/* Content */}
-                  <div className="position-relative h-100 d-flex align-items-center justify-content-center text-center" style={{ zIndex: 2 }}>
+                  <div 
+                    className="position-relative h-100 d-flex align-items-center justify-content-center text-center" 
+                    style={{ 
+                      zIndex: 2,
+                      padding: isMobile ? '100px 15px 60px' : isTablet ? '120px 30px 80px' : '0 20px'
+                    }}
+                  >
                     <div className="container" style={{ maxWidth: '900px' }}>
                       <motion.div
                         initial={{ opacity: 0, y: 50 }}
@@ -249,8 +285,8 @@ const Home = () => {
                           className="text-uppercase mb-3 fw-semibold"
                           style={{ 
                             color: '#00AA8A',
-                            letterSpacing: '3px',
-                            fontSize: '0.9rem'
+                            letterSpacing: isMobile ? '1px' : isTablet ? '2px' : '3px',
+                            fontSize: isMobile ? '0.7rem' : isTablet ? '0.8rem' : '0.9rem'
                           }}
                         >
                           {slide.subtitle}
@@ -260,12 +296,13 @@ const Home = () => {
                           initial={{ opacity: 0, scale: 0.8 }}
                           animate={{ opacity: 1, scale: 1 }}
                           transition={{ duration: 0.8, delay: 0.6 }}
-                          className="fw-bold mb-4"
+                          className="fw-bold mb-3 mb-md-4"
                           style={{
                             color: 'white',
-                            fontSize: 'clamp(2.5rem, 6vw, 5rem)',
-                            letterSpacing: '2px',
-                            lineHeight: '1.2'
+                            fontSize: isMobile ? '1.75rem' : isTablet ? '2.5rem' : 'clamp(2.5rem, 6vw, 5rem)',
+                            letterSpacing: isMobile ? '1px' : '2px',
+                            lineHeight: '1.2',
+                            wordBreak: 'break-word'
                           }}
                         >
                           {slide.title.toUpperCase()}
@@ -275,11 +312,12 @@ const Home = () => {
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ duration: 0.6, delay: 0.8 }}
-                          className="fs-5 mb-5 mx-auto"
+                          className="mb-4 mb-md-5 mx-auto px-3 px-md-0"
                           style={{ 
                             color: 'rgba(255,255,255,0.9)',
                             maxWidth: '700px',
-                            lineHeight: '1.8'
+                            lineHeight: '1.6',
+                            fontSize: isMobile ? '0.9rem' : isTablet ? '1rem' : '1.25rem'
                           }}
                         >
                           {slide.description}
@@ -289,18 +327,21 @@ const Home = () => {
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.6, delay: 1 }}
-                          className="d-flex gap-3 justify-content-center flex-wrap"
+                          className="d-flex gap-2 gap-md-3 justify-content-center flex-wrap px-3"
                         >
                           <motion.a
                             href="/services"
-                            whileHover={{ scale: 1.05, boxShadow: '0 10px 30px rgba(0,170,138,0.4)' }}
+                            whileHover={!isMobile ? { scale: 1.05, boxShadow: '0 10px 30px rgba(0,170,138,0.4)' } : {}}
                             whileTap={{ scale: 0.95 }}
-                            className="btn btn-lg px-5 py-3 fw-semibold"
+                            className="btn fw-semibold"
                             style={{
                               background: '#00AA8A',
                               color: '#fff',
                               border: 'none',
-                              borderRadius: '0'
+                              borderRadius: '0',
+                              padding: isMobile ? '10px 20px' : isTablet ? '12px 30px' : '14px 40px',
+                              fontSize: isMobile ? '0.85rem' : isTablet ? '0.95rem' : '1rem',
+                              whiteSpace: 'nowrap'
                             }}
                           >
                             EXPLORE COURSES
@@ -308,14 +349,20 @@ const Home = () => {
 
                           <motion.a
                             href="/contact"
-                            whileHover={{ 
+                            whileHover={!isMobile ? { 
                               scale: 1.05,
                               background: '#fff',
                               color: '#1E3679'
-                            }}
+                            } : {}}
                             whileTap={{ scale: 0.95 }}
-                            className="btn btn-outline-light btn-lg px-5 py-3 fw-semibold"
-                            style={{ borderRadius: '0', transition: 'all 0.3s ease' }}
+                            className="btn btn-outline-light fw-semibold"
+                            style={{ 
+                              borderRadius: '0', 
+                              transition: 'all 0.3s ease',
+                              padding: isMobile ? '10px 20px' : isTablet ? '12px 30px' : '14px 40px',
+                              fontSize: isMobile ? '0.85rem' : isTablet ? '0.95rem' : '1rem',
+                              whiteSpace: 'nowrap'
+                            }}
                           >
                             CONTACT US
                           </motion.a>
@@ -328,67 +375,100 @@ const Home = () => {
             ))}
           </AnimatePresence>
 
-          {/* Navigation Arrows */}
-          <motion.button 
-            whileHover={{ scale: 1.2, x: -5 }}
-            whileTap={{ scale: 0.9 }}
-            className="position-absolute top-50 start-0 translate-middle-y ms-4 bg-transparent border-0"
-            style={{ zIndex: 10 }}
-            onClick={prevSlide}
-          >
-            <span style={{ color: 'white', fontSize: '2rem', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>←</span>
-          </motion.button>
+          {/* Navigation Arrows - Desktop Only */}
+          {!isMobile && !isTablet && (
+            <>
+              <motion.button 
+                whileHover={{ scale: 1.2, x: -5 }}
+                whileTap={{ scale: 0.9 }}
+                className="position-absolute top-50 start-0 translate-middle-y ms-4 bg-transparent border-0"
+                style={{ zIndex: 10 }}
+                onClick={prevSlide}
+                aria-label="Previous slide"
+              >
+                <span style={{ color: 'white', fontSize: '2rem', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>←</span>
+              </motion.button>
 
-          <motion.button 
-            whileHover={{ scale: 1.2, x: 5 }}
-            whileTap={{ scale: 0.9 }}
-            className="position-absolute top-50 end-0 translate-middle-y me-4 bg-transparent border-0"
-            style={{ zIndex: 10 }}
-            onClick={nextSlide}
-          >
-            <span style={{ color: 'white', fontSize: '2rem', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>→</span>
-          </motion.button>
+              <motion.button 
+                whileHover={{ scale: 1.2, x: 5 }}
+                whileTap={{ scale: 0.9 }}
+                className="position-absolute top-50 end-0 translate-middle-y me-4 bg-transparent border-0"
+                style={{ zIndex: 10 }}
+                onClick={nextSlide}
+                aria-label="Next slide"
+              >
+                <span style={{ color: 'white', fontSize: '2rem', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>→</span>
+              </motion.button>
+            </>
+          )}
 
-          {/* Scroll Down Indicator */}
-          <motion.div 
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="position-absolute bottom-0 start-50 translate-middle-x mb-4"
-            style={{ zIndex: 10, cursor: 'pointer' }}
-            onClick={scrollToContent}
-          >
-            <div className="text-white text-center">
-              <FaChevronDown size={24} />
+          {/* Slide Indicators - Mobile & Tablet */}
+          {(isMobile || isTablet) && (
+            <div 
+              className="position-absolute bottom-0 start-50 translate-middle-x mb-3 d-flex gap-2"
+              style={{ zIndex: 10 }}
+            >
+              {slides.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentSlide(idx)}
+                  style={{
+                    width: currentSlide === idx ? '24px' : '8px',
+                    height: '8px',
+                    borderRadius: '4px',
+                    border: 'none',
+                    background: currentSlide === idx ? '#00AA8A' : 'rgba(255,255,255,0.5)',
+                    transition: 'all 0.3s ease',
+                    cursor: 'pointer'
+                  }}
+                  aria-label={`Go to slide ${idx + 1}`}
+                />
+              ))}
             </div>
-          </motion.div>
+          )}
+
+          {/* Scroll Down Indicator - Desktop Only */}
+          {!isMobile && !isTablet && (
+            <motion.div 
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+              className="position-absolute bottom-0 start-50 translate-middle-x mb-4"
+              style={{ zIndex: 10, cursor: 'pointer' }}
+              onClick={scrollToContent}
+            >
+              <div className="text-white text-center">
+                <FaChevronDown size={24} />
+              </div>
+            </motion.div>
+          )}
         </div>
       </section>
 
-      {/* Delivering Solutions Section */}
-      <section className="section" style={{ background: '#f8f9fa' }}>
-        <div className="container">
+      {/* Delivering Solutions Section - Responsive */}
+      <section className="section" style={{ background: '#f8f9fa', padding: isMobile ? '50px 0' : isTablet ? '70px 0' : '100px 0' }}>
+        <div className="container px-3 px-md-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-5"
+            className="text-center mb-4 mb-md-5"
           >
             <h2 
-              className="fw-bold mb-4"
+              className="fw-bold mb-3 mb-md-4"
               style={{ 
-                fontSize: 'clamp(2rem, 4vw, 3.5rem)',
-                letterSpacing: '2px',
+                fontSize: isMobile ? '1.75rem' : isTablet ? '2.5rem' : 'clamp(2rem, 4vw, 3.5rem)',
+                letterSpacing: isMobile ? '1px' : '2px',
                 color: '#1E3679'
               }}
             >
               DELIVERING SOLUTIONS
             </h2>
             <p 
-              className="mx-auto"
+              className="mx-auto px-3"
               style={{ 
                 maxWidth: '900px',
-                fontSize: '1.1rem',
+                fontSize: isMobile ? '0.95rem' : isTablet ? '1rem' : '1.1rem',
                 color: '#666',
                 lineHeight: '1.8'
               }}
@@ -406,59 +486,61 @@ const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
-                className="col-lg-4 col-md-6"
+                className="col-12 col-md-6 col-lg-4"
               >
                 <motion.a
                   href={service.link}
-                  className="text-decoration-none"
-                  onMouseEnter={() => setHoveredCard(idx)}
+                  className="text-decoration-none d-block"
+                  onMouseEnter={() => !isMobile && setHoveredCard(idx)}
                   onMouseLeave={() => setHoveredCard(null)}
-                  whileHover={{ scale: 1.02, zIndex: 10 }}
+                  whileHover={!isMobile ? { scale: 1.02, zIndex: 10 } : {}}
                 >
                   <motion.div 
-                    className="p-5 h-100 position-relative overflow-hidden"
+                    className="p-4 p-md-5 h-100 position-relative overflow-hidden"
                     style={{
                       background: hoveredCard === idx ? service.color : '#fff',
-                      borderRight: '1px solid rgba(0,0,0,0.1)',
+                      borderRight: !isMobile ? '1px solid rgba(0,0,0,0.1)' : 'none',
                       borderBottom: '1px solid rgba(0,0,0,0.1)',
                       transition: 'all 0.4s ease',
-                      minHeight: '350px',
+                      minHeight: isMobile ? '280px' : isTablet ? '320px' : '350px',
                       display: 'flex',
                       flexDirection: 'column',
                       justifyContent: 'space-between'
                     }}
                   >
-                    {/* Animated Background */}
-                    <motion.div
-                      initial={{ scale: 0, opacity: 0 }}
-                      animate={hoveredCard === idx ? { 
-                        scale: 2, 
-                        opacity: 0.1,
-                        rotate: 180 
-                      } : { scale: 0, opacity: 0 }}
-                      transition={{ duration: 0.6 }}
-                      style={{
-                        position: 'absolute',
-                        top: '50%',
-                        left: '50%',
-                        transform: 'translate(-50%, -50%)',
-                        width: '300px',
-                        height: '300px',
-                        background: service.color,
-                        borderRadius: '50%',
-                        filter: 'blur(60px)',
-                        pointerEvents: 'none'
-                      }}
-                    />
+                    {/* Animated Background - Desktop Only */}
+                    {!isMobile && (
+                      <motion.div
+                        initial={{ scale: 0, opacity: 0 }}
+                        animate={hoveredCard === idx ? { 
+                          scale: 2, 
+                          opacity: 0.1,
+                          rotate: 180 
+                        } : { scale: 0, opacity: 0 }}
+                        transition={{ duration: 0.6 }}
+                        style={{
+                          position: 'absolute',
+                          top: '50%',
+                          left: '50%',
+                          transform: 'translate(-50%, -50%)',
+                          width: '300px',
+                          height: '300px',
+                          background: service.color,
+                          borderRadius: '50%',
+                          filter: 'blur(60px)',
+                          pointerEvents: 'none'
+                        }}
+                      />
+                    )}
 
                     <div style={{ position: 'relative', zIndex: 1 }}>
                       <motion.div 
-                        animate={hoveredCard === idx ? {
+                        animate={hoveredCard === idx && !isMobile ? {
                           scale: [1, 1.2, 1],
                           rotate: [0, 5, -5, 0]
                         } : {}}
                         transition={{ duration: 0.6 }}
-                        className="mb-4"
+                        className="mb-3 mb-md-4"
                         style={{
                           color: hoveredCard === idx ? 'white' : service.color,
                           transition: 'all 0.4s ease'
@@ -468,10 +550,10 @@ const Home = () => {
                       </motion.div>
 
                       <h4 
-                        className="fw-bold mb-3"
+                        className="fw-bold mb-2 mb-md-3"
                         style={{
                           color: hoveredCard === idx ? 'white' : '#000',
-                          fontSize: '1.3rem',
+                          fontSize: isMobile ? '1.1rem' : isTablet ? '1.2rem' : '1.3rem',
                           letterSpacing: '1px'
                         }}
                       >
@@ -481,8 +563,9 @@ const Home = () => {
                       <p 
                         style={{
                           color: hoveredCard === idx ? 'rgba(255,255,255,0.9)' : '#666',
-                          fontSize: '0.95rem',
-                          lineHeight: '1.7'
+                          fontSize: isMobile ? '0.85rem' : '0.95rem',
+                          lineHeight: '1.7',
+                          marginBottom: isMobile ? '1rem' : '0'
                         }}
                       >
                         {service.desc}
@@ -490,12 +573,12 @@ const Home = () => {
                     </div>
                     
                     <motion.div 
-                      animate={hoveredCard === idx ? { x: [0, 5, 0] } : {}}
+                      animate={hoveredCard === idx && !isMobile ? { x: [0, 5, 0] } : {}}
                       transition={{ duration: 0.6, repeat: Infinity }}
                       className="d-flex align-items-center gap-2 mt-3"
                       style={{
                         color: hoveredCard === idx ? 'white' : service.color,
-                        fontSize: '0.9rem',
+                        fontSize: isMobile ? '0.85rem' : '0.9rem',
                         fontWeight: '600',
                         position: 'relative',
                         zIndex: 1
@@ -512,16 +595,23 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Industry Section */}
-      <section className="section" style={{ background: '#000', color: 'white' }}>
-        <div className="container">
+      {/* Industry Section - Responsive */}
+      <section 
+        className="section" 
+        style={{ 
+          background: '#000', 
+          color: 'white',
+          padding: isMobile ? '50px 0' : isTablet ? '70px 0' : '100px 0'
+        }}
+      >
+        <div className="container px-3 px-md-4">
           <div className="row align-items-center">
             <motion.div 
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="col-lg-5 mb-5 mb-lg-0"
+              className="col-lg-5 mb-4 mb-lg-0"
             >
               <div className="row g-3">
                 {industries.map((industry, idx) => (
@@ -531,27 +621,28 @@ const Home = () => {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: idx * 0.1 }}
-                    whileHover={{ scale: 1.05, rotate: 2 }}
+                    whileHover={!isMobile ? { scale: 1.05, rotate: 2 } : {}}
                     className="col-6"
                   >
                     <div 
-                      className="p-4 text-center d-flex flex-column align-items-center justify-content-center"
+                      className="p-3 p-md-4 text-center d-flex flex-column align-items-center justify-content-center"
                       style={{
                         background: industry.color,
-                        minHeight: '180px'
+                        minHeight: isMobile ? '140px' : isTablet ? '160px' : '180px'
                       }}
                     >
                       <motion.div 
-                        animate={{ rotate: [0, 10, -10, 0] }}
+                        animate={!isMobile ? { rotate: [0, 10, -10, 0] } : {}}
                         transition={{ duration: 2, repeat: Infinity }}
-                        className="fs-1 mb-3"
+                        className="mb-2 mb-md-3"
+                        style={{ fontSize: isMobile ? '2rem' : isTablet ? '2.5rem' : '3rem' }}
                       >
                         {industry.icon}
                       </motion.div>
                       <h6 
                         className="fw-bold mb-0 text-white"
                         style={{ 
-                          fontSize: '0.85rem',
+                          fontSize: isMobile ? '0.7rem' : isTablet ? '0.75rem' : '0.85rem',
                           letterSpacing: '1px'
                         }}
                       >
@@ -571,10 +662,10 @@ const Home = () => {
               className="col-lg-7"
             >
               <h2 
-                className="fw-bold mb-4"
+                className="fw-bold mb-3 mb-md-4"
                 style={{ 
-                  fontSize: 'clamp(2rem, 4vw, 3.5rem)',
-                  letterSpacing: '2px',
+                  fontSize: isMobile ? '1.75rem' : isTablet ? '2.5rem' : 'clamp(2rem, 4vw, 3.5rem)',
+                  letterSpacing: isMobile ? '1px' : '2px',
                   color: '#00AA8A'
                 }}
               >
@@ -582,7 +673,7 @@ const Home = () => {
               </h2>
               <p 
                 style={{ 
-                  fontSize: '1.1rem',
+                  fontSize: isMobile ? '0.95rem' : isTablet ? '1rem' : '1.1rem',
                   lineHeight: '1.8',
                   color: 'rgba(255,255,255,0.8)'
                 }}
@@ -596,10 +687,18 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="section" style={{ background: '#000', color: 'white', paddingTop: 0 }}>
-        <div className="container">
-          <div className="row text-center">
+      {/* Stats Section - Responsive */}
+      <section 
+        className="section" 
+        style={{ 
+          background: '#000', 
+          color: 'white', 
+          paddingTop: 0,
+          paddingBottom: isMobile ? '50px' : isTablet ? '70px' : '100px'
+        }}
+      >
+        <div className="container px-3 px-md-4">
+          <div className="row text-center g-3 g-md-4">
             {[
               { label: 'Students', value: stats.students, suffix: '+' },
               { label: 'Courses', value: stats.courses, suffix: '+' },
@@ -617,15 +716,15 @@ const Home = () => {
                   type: "spring",
                   bounce: 0.5
                 }}
-                whileHover={{ scale: 1.1 }}
-                className="col-6 col-md-3 mb-4"
+                whileHover={!isMobile ? { scale: 1.1 } : {}}
+                className="col-6 col-md-3"
               >
                 <p 
                   className="text-uppercase mb-2 fw-semibold"
                   style={{ 
                     color: '#00AA8A',
-                    fontSize: '0.85rem',
-                    letterSpacing: '2px'
+                    fontSize: isMobile ? '0.7rem' : isTablet ? '0.75rem' : '0.85rem',
+                    letterSpacing: isMobile ? '1px' : '2px'
                   }}
                 >
                   {stat.label}
@@ -633,8 +732,8 @@ const Home = () => {
                 <motion.h2 
                   className="fw-bold mb-0"
                   style={{ 
-                    fontSize: 'clamp(2.5rem, 5vw, 4rem)',
-                    letterSpacing: '2px'
+                    fontSize: isMobile ? '2rem' : isTablet ? '2.5rem' : 'clamp(2.5rem, 5vw, 4rem)',
+                    letterSpacing: isMobile ? '1px' : '2px'
                   }}
                 >
                   {stat.value}{stat.suffix}
@@ -645,50 +744,60 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="section" style={{ background: '#f8f9fa' }}>
-        <div className="container">
+      {/* Testimonials - Responsive */}
+      <section 
+        className="section" 
+        style={{ 
+          background: '#f8f9fa',
+          padding: isMobile ? '50px 0' : isTablet ? '70px 0' : '100px 0'
+        }}
+      >
+        <div className="container px-3 px-md-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-5"
+            className="text-center mb-4 mb-md-5"
           >
             <h2 
-              className="fw-bold mb-4"
+              className="fw-bold mb-3 mb-md-4"
               style={{ 
-                fontSize: 'clamp(2rem, 4vw, 3.5rem)',
-                letterSpacing: '2px',
+                fontSize: isMobile ? '1.75rem' : isTablet ? '2.5rem' : 'clamp(2rem, 4vw, 3.5rem)',
+                letterSpacing: isMobile ? '1px' : '2px',
                 color: '#1E3679'
               }}
             >
               WHAT OUR STUDENTS SAY
             </h2>
-            <p className="text-muted fs-5">Success stories from our alumni</p>
+            <p 
+              className="text-muted"
+              style={{ fontSize: isMobile ? '0.95rem' : isTablet ? '1rem' : '1.25rem' }}
+            >
+              Success stories from our alumni
+            </p>
           </motion.div>
 
-          <div className="row g-4">
+          <div className="row g-3 g-md-4">
             {testimonials.map((testimonial, idx) => (
-              <div className="col-lg-4" key={idx}>
+              <div className="col-12 col-md-6 col-lg-4" key={idx}>
                 <motion.div
                   initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: idx * 0.2 }}
-                  whileHover={{ 
+                  whileHover={!isMobile ? { 
                     y: -10,
                     boxShadow: `0 20px 40px ${
                       idx === 0 ? '#1E3679' : idx === 1 ? '#00AA8A' : '#FBD21A'
                     }30`
-                  }}
+                  } : {}}
                   style={{ 
-                    maxWidth: '800px',
                     background: 'white',
                     borderLeft: `4px solid ${idx === 0 ? '#1E3679' : idx === 1 ? '#00AA8A' : '#FBD21A'}`,
                     boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
                     borderRadius: '15px',
-                    padding: '30px',
+                    padding: isMobile ? '20px' : isTablet ? '25px' : '30px',
                     cursor: 'pointer',
                     position: 'relative',
                     overflow: 'hidden'
@@ -700,7 +809,7 @@ const Home = () => {
                       position: 'absolute',
                       top: '-20px',
                       right: '-20px',
-                      fontSize: '100px',
+                      fontSize: isMobile ? '60px' : isTablet ? '80px' : '100px',
                       color: idx === 0 ? '#1E3679' : idx === 1 ? '#00AA8A' : '#FBD21A',
                       opacity: 0.05,
                       fontFamily: 'Georgia, serif',
@@ -711,15 +820,18 @@ const Home = () => {
                   </div>
 
                   {/* Profile Section */}
-                  <div className="d-flex align-items-center gap-3 mb-4" style={{ position: 'relative', zIndex: 1 }}>
+                  <div 
+                    className="d-flex align-items-center gap-3 mb-3 mb-md-4" 
+                    style={{ position: 'relative', zIndex: 1 }}
+                  >
                     <motion.img
-                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      whileHover={!isMobile ? { scale: 1.1, rotate: 5 } : {}}
                       transition={{ duration: 0.3 }}
                       src={testimonial.image}
                       alt={testimonial.name}
                       style={{
-                        width: '70px',
-                        height: '70px',
+                        width: isMobile ? '60px' : isTablet ? '65px' : '70px',
+                        height: isMobile ? '60px' : isTablet ? '65px' : '70px',
                         borderRadius: '50%',
                         objectFit: 'cover',
                         border: `3px solid ${idx === 0 ? '#1E3679' : idx === 1 ? '#00AA8A' : '#FBD21A'}`,
@@ -727,18 +839,44 @@ const Home = () => {
                       }}
                     />
                     <div className="text-start">
-                      <h5 className="fw-bold mb-1" style={{ color: idx === 0 ? '#1E3679' : idx === 1 ? '#00AA8A' : '#FBD21A' }}>
+                      <h5 
+                        className="fw-bold mb-1" 
+                        style={{ 
+                          color: idx === 0 ? '#1E3679' : idx === 1 ? '#00AA8A' : '#FBD21A',
+                          fontSize: isMobile ? '1rem' : isTablet ? '1.1rem' : '1.25rem'
+                        }}
+                      >
                         {testimonial.name}
                       </h5>
-                      <p className="text-muted mb-0 small">{testimonial.role}</p>
-                      <p className="small mb-0" style={{ color: idx === 0 ? '#1E3679' : idx === 1 ? '#00AA8A' : '#FBD21A', fontWeight: '600' }}>
+                      <p 
+                        className="text-muted mb-0" 
+                        style={{ fontSize: isMobile ? '0.8rem' : '0.85rem' }}
+                      >
+                        {testimonial.role}
+                      </p>
+                      <p 
+                        className="mb-0" 
+                        style={{ 
+                          color: idx === 0 ? '#1E3679' : idx === 1 ? '#00AA8A' : '#FBD21A', 
+                          fontWeight: '600',
+                          fontSize: isMobile ? '0.75rem' : '0.85rem'
+                        }}
+                      >
                         @ {idx === 0 ? 'Max Healthcare' : idx === 1 ? 'Quintiles IMS' : 'Tech Mahindra'}
                       </p>
                     </div>
                   </div>
 
                   {/* Star Rating */}
-                  <div className="mb-3" style={{ color: idx === 0 ? '#1E3679' : idx === 1 ? '#00AA8A' : '#FBD21A', position: 'relative', zIndex: 1 }}>
+                  <div 
+                    className="mb-3" 
+                    style={{ 
+                      color: idx === 0 ? '#1E3679' : idx === 1 ? '#00AA8A' : '#FBD21A', 
+                      position: 'relative', 
+                      zIndex: 1,
+                      fontSize: isMobile ? '0.9rem' : '1rem'
+                    }}
+                  >
                     {[...Array(5)].map((_, i) => (
                       <motion.span
                         key={i}
@@ -756,7 +894,7 @@ const Home = () => {
                   <p 
                     className="mb-0"
                     style={{
-                      fontSize: '1rem',
+                      fontSize: isMobile ? '0.85rem' : isTablet ? '0.95rem' : '1rem',
                       lineHeight: '1.7',
                       color: '#666',
                       fontStyle: 'italic',
@@ -773,7 +911,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* CTA Section - Responsive */}
       <motion.section 
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -784,11 +922,12 @@ const Home = () => {
           background: 'linear-gradient(135deg, #1E3679 0%, #00AA8A 100%)',
           color: 'white',
           position: 'relative',
-          overflow: 'hidden'
+          overflow: 'hidden',
+          padding: isMobile ? '50px 0' : isTablet ? '70px 0' : '100px 0'
         }}
       >
-        {/* Animated Background Shapes */}
-        {[...Array(5)].map((_, i) => (
+        {/* Animated Background Shapes - Desktop Only */}
+        {!isMobile && !isTablet && [...Array(5)].map((_, i) => (
           <motion.div
             key={i}
             animate={{
@@ -814,16 +953,16 @@ const Home = () => {
           />
         ))}
 
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+        <div className="container px-3 px-md-4" style={{ position: 'relative', zIndex: 1 }}>
           <motion.h2 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="fw-bold mb-4"
+            className="fw-bold mb-3 mb-md-4"
             style={{ 
-              fontSize: 'clamp(2rem, 4vw, 3rem)',
-              letterSpacing: '2px'
+              fontSize: isMobile ? '1.5rem' : isTablet ? '2rem' : 'clamp(2rem, 4vw, 3rem)',
+              letterSpacing: isMobile ? '1px' : '2px'
             }}
           >
             READY TO START YOUR CAREER?
@@ -834,7 +973,8 @@ const Home = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="fs-5 mb-5"
+            className="mb-4 mb-md-5"
+            style={{ fontSize: isMobile ? '0.95rem' : isTablet ? '1rem' : '1.25rem' }}
           >
             Contact us today to enroll in our training programs.
           </motion.p>
@@ -845,17 +985,19 @@ const Home = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            whileHover={{ 
+            whileHover={!isMobile ? { 
               scale: 1.05,
               boxShadow: '0 10px 40px rgba(255,255,255,0.3)'
-            }}
+            } : {}}
             whileTap={{ scale: 0.95 }}
-            className="btn btn-lg px-5 py-3 fw-semibold"
+            className="btn fw-semibold"
             style={{
               background: '#00AA8A',
               color: '#fff',
               border: 'none',
-              borderRadius: '0'
+              borderRadius: '0',
+              padding: isMobile ? '12px 30px' : isTablet ? '14px 40px' : '16px 50px',
+              fontSize: isMobile ? '0.95rem' : isTablet ? '1rem' : '1.1rem'
             }}
           >
             CONTACT US
