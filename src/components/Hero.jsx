@@ -31,6 +31,7 @@ const Home = () => {
     window.addEventListener('resize', checkDevice);
     return () => window.removeEventListener('resize', checkDevice);
   }, []);
+  
 
   const slides = [
     {
@@ -712,94 +713,295 @@ const Home = () => {
       </section>
 
       {/* Industry Section - Responsive */}
+     {/* Industry Section - Responsive */}
       <section 
         className="section" 
         style={{ 
-          background: '#000', 
+          background: 'linear-gradient(135deg, #000 0%, #1E3679 100%)',
           color: 'white',
-          padding: isMobile ? '50px 0' : isTablet ? '70px 0' : '100px 0'
+          padding: isMobile ? '60px 0' : isTablet ? '80px 0' : '120px 0',
+          position: 'relative',
+          overflow: 'hidden'
         }}
       >
-        <div className="container px-3 px-md-4">
-          <div className="row align-items-center">
-            <motion.div 
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
+        {/* Animated Background Grid - Desktop Only */}
+        {!isMobile && !isTablet && (
+          <div 
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundImage: `
+                linear-gradient(rgba(0,170,138,0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,170,138,0.1) 1px, transparent 1px)
+              `,
+              backgroundSize: '50px 50px',
+              opacity: 0.3
+            }}
+          />
+        )}
+
+        <div className="container px-3 px-md-4" style={{ position: 'relative', zIndex: 1 }}>
+          {/* Section Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-5"
+          >
+            <motion.div
+              initial={{ width: 0 }}
+              whileInView={{ width: isMobile ? '60px' : '80px' }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="col-lg-5 mb-4 mb-lg-0"
+              transition={{ duration: 0.8, delay: 0.2 }}
+              style={{
+                height: '4px',
+                background: '#00AA8A',
+                margin: '0 auto 20px'
+              }}
+            />
+            <h2 
+              className="fw-bold mb-3"
+              style={{ 
+                fontSize: isMobile ? '1.75rem' : isTablet ? '2.5rem' : 'clamp(2.5rem, 5vw, 4rem)',
+                letterSpacing: isMobile ? '2px' : '3px',
+                color: '#fff'
+              }}
             >
-              <div className="row g-3">
-                {industries.map((industry, idx) => (
-                  <motion.div 
-                    key={idx}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: idx * 0.1 }}
-                    whileHover={!isMobile ? { scale: 1.05, rotate: 2 } : {}}
-                    className="col-6"
-                  >
-                    <div 
-                      className="p-3 p-md-4 text-center d-flex flex-column align-items-center justify-content-center"
+              INDUSTRIES WE SERVE
+            </h2>
+            <p 
+              className="mx-auto"
+              style={{ 
+                fontSize: isMobile ? '0.95rem' : isTablet ? '1rem' : '1.2rem',
+                lineHeight: '1.8',
+                color: 'rgba(255,255,255,0.8)',
+                maxWidth: '800px'
+              }}
+            >
+              Empowering professionals across diverse sectors with industry-specific training 
+              and cutting-edge skills for tomorrow's challenges
+            </p>
+          </motion.div>
+
+          {/* Industry Cards Grid */}
+          <div className="row g-4">
+            {industries.map((industry, idx) => (
+              <motion.div 
+                key={idx}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: idx * 0.15 }}
+                className="col-6 col-lg-3"
+              >
+                <motion.div
+                  whileHover={!isMobile ? { 
+                    y: -15,
+                    scale: 1.05
+                  } : {}}
+                  className="h-100"
+                  style={{
+                    background: `linear-gradient(135deg, ${industry.color} 0%, ${industry.color}dd 100%)`,
+                    borderRadius: '0',
+                    overflow: 'hidden',
+                    position: 'relative',
+                    cursor: 'pointer',
+                    boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
+                    transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!isMobile) {
+                      e.currentTarget.style.boxShadow = `0 20px 50px ${industry.color}80`;
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!isMobile) {
+                      e.currentTarget.style.boxShadow = '0 10px 30px rgba(0,0,0,0.3)';
+                    }
+                  }}
+                >
+                  {/* Gradient Overlay */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    whileHover={!isMobile ? { opacity: 1 } : {}}
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      background: 'linear-gradient(135deg, rgba(0,170,138,0.2) 0%, transparent 100%)',
+                      transition: 'opacity 0.4s ease'
+                    }}
+                  />
+
+                  {/* Animated Corner Accent */}
+                  {!isMobile && (
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      whileHover={{ scale: 1, rotate: 45 }}
+                      transition={{ duration: 0.4 }}
                       style={{
-                        background: industry.color,
-                        minHeight: isMobile ? '140px' : isTablet ? '160px' : '180px'
+                        position: 'absolute',
+                        top: -20,
+                        right: -20,
+                        width: '80px',
+                        height: '80px',
+                        background: 'rgba(255,255,255,0.1)',
+                        borderRadius: '50%'
+                      }}
+                    />
+                  )}
+
+                  <div 
+                    className="p-4 d-flex flex-column align-items-center justify-content-center text-center"
+                    style={{
+                      minHeight: isMobile ? '160px' : isTablet ? '200px' : '240px',
+                      position: 'relative',
+                      zIndex: 1
+                    }}
+                  >
+                    {/* Icon with Floating Animation */}
+                    <motion.div 
+                      animate={!isMobile ? { 
+                        y: [0, -10, 0],
+                        rotate: [0, 5, -5, 0]
+                      } : {}}
+                      transition={{ 
+                        duration: 3, 
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                      className="mb-3"
+                      style={{ 
+                        fontSize: isMobile ? '2.5rem' : isTablet ? '3rem' : '4rem',
+                        filter: 'drop-shadow(0 5px 15px rgba(0,0,0,0.3))'
                       }}
                     >
-                      <motion.div 
-                        animate={!isMobile ? { rotate: [0, 10, -10, 0] } : {}}
-                        transition={{ duration: 2, repeat: Infinity }}
-                        className="mb-2 mb-md-3"
-                        style={{ fontSize: isMobile ? '2rem' : isTablet ? '2.5rem' : '3rem' }}
-                      >
-                        {industry.icon}
-                      </motion.div>
-                      <h6 
-                        className="fw-bold mb-0 text-white"
+                      {industry.icon}
+                    </motion.div>
+
+                    {/* Title with Underline Effect */}
+                    <div style={{ position: 'relative' }}>
+                      <h5 
+                        className="fw-bold mb-2 text-white"
                         style={{ 
-                          fontSize: isMobile ? '0.7rem' : isTablet ? '0.75rem' : '0.85rem',
-                          letterSpacing: '1px'
+                          fontSize: isMobile ? '0.75rem' : isTablet ? '0.85rem' : '1rem',
+                          letterSpacing: '2px',
+                          lineHeight: '1.4'
                         }}
                       >
                         {industry.title}
-                      </h6>
+                      </h5>
+                      
+                      {/* Animated Underline - Desktop Only */}
+                      {!isMobile && (
+                        <motion.div
+                          initial={{ width: 0 }}
+                          whileHover={{ width: '100%' }}
+                          transition={{ duration: 0.3 }}
+                          style={{
+                            height: '2px',
+                            background: '#fff',
+                            margin: '8px auto 0',
+                            opacity: 0.8
+                          }}
+                        />
+                      )}
                     </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-            
-            <motion.div 
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="col-lg-7"
-            >
-              <h2 
-                className="fw-bold mb-3 mb-md-4"
-                style={{ 
-                  fontSize: isMobile ? '1.75rem' : isTablet ? '2.5rem' : 'clamp(2rem, 4vw, 3.5rem)',
-                  letterSpacing: isMobile ? '1px' : '2px',
-                  color: '#00AA8A'
-                }}
-              >
-                INDUSTRY
-              </h2>
-              <p 
-                style={{ 
-                  fontSize: isMobile ? '0.95rem' : isTablet ? '1rem' : '1.1rem',
-                  lineHeight: '1.8',
-                  color: 'rgba(255,255,255,0.8)'
-                }}
-              >
-                The data stored can be structured, semi-structured, or unstructured, which means it 
-                can be stored in a more flexible format for future use. When data is stored, it is 
-                associated with identifiers and metadata tags for faster retrieval.
-              </p>
-            </motion.div>
+
+                    {/* Hover Arrow Indicator - Desktop Only */}
+                    {!isMobile && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        whileHover={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.3 }}
+                        style={{
+                          marginTop: '15px',
+                          color: '#fff',
+                          fontSize: '1.2rem'
+                        }}
+                      >
+                        ↓
+                      </motion.div>
+                    )}
+                  </div>
+
+                  {/* Bottom Accent Line */}
+                  <motion.div
+                    initial={{ scaleX: 0 }}
+                    whileHover={!isMobile ? { scaleX: 1 } : {}}
+                    style={{
+                      position: 'absolute',
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      height: '4px',
+                      background: '#00AA8A',
+                      transformOrigin: 'left',
+                      transition: 'transform 0.4s ease'
+                    }}
+                  />
+                </motion.div>
+              </motion.div>
+            ))}
           </div>
+
+          {/* Bottom CTA Text */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="text-center mt-5 pt-4"
+            style={{
+              borderTop: '1px solid rgba(255,255,255,0.2)',
+            }}
+          >
+            <p 
+              className="mb-3"
+              style={{ 
+                fontSize: isMobile ? '0.95rem' : isTablet ? '1rem' : '1.1rem',
+                color: 'rgba(255,255,255,0.8)',
+                fontStyle: 'italic'
+              }}
+            >
+              Specialized training programs designed to meet the unique demands of each industry
+            </p>
+            <motion.a
+              href="/industries"
+              whileHover={!isMobile ? { scale: 1.05 } : {}}
+              whileTap={{ scale: 0.95 }}
+              className="btn fw-semibold"
+              style={{
+                background: 'transparent',
+                color: '#00AA8A',
+                border: '2px solid #00AA8A',
+                padding: isMobile ? '10px 25px' : '12px 35px',
+                fontSize: isMobile ? '0.85rem' : '0.95rem',
+                letterSpacing: '1px',
+                transition: 'all 0.3s ease'
+              }}
+              onMouseEnter={(e) => {
+                if (!isMobile) {
+                  e.target.style.background = '#00AA8A';
+                  e.target.style.color = '#fff';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (!isMobile) {
+                  e.target.style.background = 'transparent';
+                  e.target.style.color = '#00AA8A';
+                }
+              }}
+            >
+              EXPLORE ALL INDUSTRIES →
+            </motion.a>
+          </motion.div>
         </div>
       </section>
 
@@ -987,7 +1189,7 @@ const Home = () => {
                   <div 
                     className="mb-3" 
                     style={{ 
-                      color: idx === 0 ? '#1E3679' : idx === 1 ? '#00AA8A' : '#FBD21A', 
+                      color: idx === 0 ? '#1E3679' : idx === 1 ? '#00AA8A' : '#1E3679', 
                       position: 'relative', 
                       zIndex: 1,
                       fontSize: isMobile ? '0.9rem' : '1rem'

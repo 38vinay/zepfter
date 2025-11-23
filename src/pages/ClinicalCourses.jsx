@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  FaChevronDown, 
+import {
+  FaChevronDown,
   FaChevronUp,
-  FaFlask, 
-  FaVial, 
-  FaClipboardCheck, 
+  FaFlask,
+  FaVial,
+  FaClipboardCheck,
   FaMicroscope,
   FaCheckCircle,
   FaAward,
@@ -245,12 +245,17 @@ const ClinicalCoursesPage = () => {
 
   return (
     <div style={{ background: '#0a0a1f', minHeight: '100vh', paddingTop: '70px' }}>
-      
+
       {/* HERO SECTION */}
-      <section 
+      <section
         style={{
-          background: 'linear-gradient(135deg, #0a0a1f 0%, #00AA8A 50%, #0a0a1f 100%)',
-          padding: '100px 20px 80px'
+          background: 'linear-gradient(135deg, rgba(10,10,31,0.3) 0%, rgba(30,54,121,0.35) 50%, rgba(10,10,31,0.3) 100%), url("https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=800&q=80")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'fixed',
+          padding: '100px 20px 80px',
+          position: 'relative',
         }}
       >
         <div className="container text-center">
@@ -265,7 +270,7 @@ const ClinicalCoursesPage = () => {
             <h1 className="fw-bold text-white" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)' }}>
               CLINICAL COURSES
             </h1>
-            <p className="text-white mx-auto" style={{ maxWidth: '800px', opacity: 0.9, lineHeight: '1.8', marginTop: '10px'}}>
+            <p className="text-white mx-auto" style={{ maxWidth: '800px', opacity: 0.9, lineHeight: '1.8', marginTop: '10px' }}>
               ZEPFTER's Clinical Courses prepare you for high-impact careers in clinical research, data management, clinical trials, and bioequivalence studies. Our comprehensive programs combine GCP-certified training with hands-on experience in real trial protocols, EDC systems, and regulatory compliance. With expert trainers from leading CROs and 93% placement success, we prepare you for exciting opportunities in pharmaceutical research and drug development.
             </p>
           </motion.div>
@@ -321,7 +326,7 @@ const ClinicalCoursesPage = () => {
               <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.1)' }}>
 
                 {/* Service Header */}
-                <div 
+                <div
                   onClick={() => toggleService(service.id)}
                   style={{
                     display: 'grid',
@@ -333,7 +338,7 @@ const ClinicalCoursesPage = () => {
                   }}
                 >
                   {/* Images */}
-                  <div style={{ 
+                  <div style={{
                     order: idx % 2 === 0 ? 2 : 1,
                     display: 'grid',
                     gridTemplateColumns: '1fr 1fr',
@@ -354,15 +359,11 @@ const ClinicalCoursesPage = () => {
                     <h2 className="fw-bold mb-3">{service.title}</h2>
 
                     <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginBottom: '15px' }}>
-                      <span style={{ padding: '8px 16px', background: 'rgba(251,210,26,0.2)', borderRadius: '20px', border: '1px solid rgba(251,210,26,0.3)' }}>
-                        <FaClock size={14} /> {service.duration}
-                      </span>
+                      
                       <span style={{ padding: '8px 16px', background: 'rgba(0,170,138,0.2)', borderRadius: '20px', border: '1px solid rgba(0,170,138,0.3)' }}>
                         <FaAward size={14} /> {service.level}
                       </span>
-                      <span style={{ padding: '8px 16px', background: 'rgba(255,255,255,0.1)', borderRadius: '20px' }}>
-                        💰 {service.salary}
-                      </span>
+                      
                     </div>
 
                     <p style={{ opacity: 0.85, lineHeight: 1.7 }}>{service.description}</p>
@@ -386,10 +387,10 @@ const ClinicalCoursesPage = () => {
                       <div style={{ padding: '40px', color: 'white' }}>
 
                         <h3 className="fw-bold mb-4" style={{ color: '#FBD21A' }}>What You Will Learn</h3>
-                        
+
                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(250px,1fr))', gap: '15px', marginBottom: '30px' }}>
                           {service.details.map((detail, idx) => (
-                            <motion.div 
+                            <motion.div
                               key={idx}
                               whileHover={{ x: 5 }}
                               style={{ background: 'rgba(255,255,255,0.05)', padding: '15px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)' }}

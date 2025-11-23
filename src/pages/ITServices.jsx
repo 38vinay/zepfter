@@ -366,10 +366,15 @@ const ITServicesPage = () => {
     <div style={{ background: '#0a0a1f', minHeight: '100vh', paddingTop: '70px' }}>
       
       {/* HERO SECTION */}
-      <section 
+      <section
         style={{
-          background: 'linear-gradient(135deg, #0a0a1f 0%, #1E3679 50%, #0a0a1f 100%)',
-          padding: '100px 20px 80px'
+          background: 'linear-gradient(135deg, rgba(10,10,31,0.4) 0%, rgba(30,54,121,0.5) 50%, rgba(10,10,31,0.4) 100%), url("https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'fixed',
+          padding: '100px 20px 80px',
+          position: 'relative',
         }}
       >
         <div className="container text-center">
@@ -404,8 +409,8 @@ const ITServicesPage = () => {
                   transition={{ duration: 0.6, delay: idx * 0.1 }}
                   whileHover={{ scale: 1.05, y: -10 }}
                   style={{
-                    background: 'rgba(251,210,26,0.2)',
-                    border: '2px solid rgba(30,54,121,0.3)',
+                    background: 'rgba(30,54,121,0.2)',
+                    border: '2px solid rgba(0,170,138,0.3)',
                     borderRadius: '20px',
                     padding: '40px 20px',
                     textAlign: 'center',
@@ -413,7 +418,7 @@ const ITServicesPage = () => {
                     cursor: 'pointer'
                   }}
                 >
-                  <div style={{ color: '#1E3679', marginBottom: '20px' }}>
+                  <div style={{  color: '#00AA8A', marginBottom: '20px' }}>
                     {stat.icon}
                   </div>
                   <div className="display-4 fw-bold" style={{ color: '#FBD21A' }}>{stat.number}</div>
@@ -437,7 +442,7 @@ const ITServicesPage = () => {
           {services.map((service, idx) => (
             <motion.div key={service.id} initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} className="mb-4">
 
-              <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.1)' }}>
+              <div style={{background: 'rgba(255,255,255,0.03)', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.1)' }}>
 
                 {/* Service Header */}
                 <div 
@@ -468,13 +473,13 @@ const ITServicesPage = () => {
 
                   {/* Text Content */}
                   <div style={{ order: idx % 2 === 0 ? 1 : 2, color: 'white' }}>
-                    <div style={{ marginBottom: '10px', color: '#FBD21A' }}>{service.icon}</div>
+                    <div style={{ marginBottom: '10px', color: '#00AA8A' }}>{service.icon}</div>
 
                     <h2 className="fw-bold mb-3">{service.title}</h2>
 
                     <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginBottom: '15px' }}>
                      
-                      <span style={{ padding: '8px 16px', background: 'rgba(30,54,121,0.2)', borderRadius: '20px', border: '1px solid rgba(30,54,121,0.3)' }}>
+                      <span style={{ padding: '8px 16px', background: 'rgba(251,210,26,0.2)', borderRadius: '20px', border: '1px solid rgba(251,210,26,0.3)' }}>
                         <FaAward size={14} /> {service.level}
                       </span>
                      
@@ -482,7 +487,7 @@ const ITServicesPage = () => {
 
                     <p style={{ opacity: 0.85, lineHeight: 1.7 }}>{service.description}</p>
 
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#FBD21A', fontWeight: 600 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#00AA8A', fontWeight: 600 }}>
                       View Curriculum {expandedService === service.id ? <FaChevronUp /> : <FaChevronDown />}
                     </div>
                   </div>
@@ -500,7 +505,7 @@ const ITServicesPage = () => {
                     >
                       <div style={{ padding: '40px', color: 'white' }}>
 
-                        <h3 className="fw-bold mb-4" style={{ color: '#FBD21A' }}>What You Will Learn</h3>
+                        <h3 className="fw-bold mb-4" style={{ color: '#00AA8A' }}>What You Will Learn</h3>
                         
                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(250px,1fr))', gap: '15px', marginBottom: '30px' }}>
                           {service.details.map((detail, idx) => (
@@ -509,65 +514,33 @@ const ITServicesPage = () => {
                               whileHover={{ x: 5 }}
                               style={{ background: 'rgba(255,255,255,0.05)', padding: '15px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)' }}
                             >
-                              <FaCheckCircle size={16} style={{ color: '#FBD21A', marginRight: '8px' }} />
+                              <FaCheckCircle size={16} style={{color: '#00AA8A', marginRight: '8px' }} />
                               {detail}
                             </motion.div>
                           ))}
                         </div>
 
                         {/* Certifications */}
-                        <h4 className="fw-bold mb-3" style={{ color: '#1E3679' }}>Certifications Prepared</h4>
+                        <h4 className="fw-bold mb-3" style={{  color: '#FBD21A' }}>Certifications Prepared</h4>
                         <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginBottom: '30px' }}>
                           {service.certifications.map((cert, idx) => (
-                            <span key={idx} style={{ padding: '10px 20px', background: 'rgba(30,54,121,0.2)', borderRadius: '25px', border: '1px solid rgba(30,54,121,0.5)' }}>
+                            <span key={idx} style={{ padding: '10px 20px',  background: 'rgba(251,210,26,0.2)', borderRadius: '25px', border: '1px solid rgba(251,210,26,0.5)' }}>
                               <FaAward style={{ marginRight: '8px' }} /> {cert}
                             </span>
                           ))}
                         </div>
 
                         {/* Career Paths */}
-                        <h4 className="fw-bold mb-3" style={{ color: '#FBD21A' }}>Career Opportunities</h4>
+                        <h4 className="fw-bold mb-3" style={{color: '#00AA8A' }}>Career Opportunities</h4>
                         <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginBottom: '30px' }}>
                           {service.careerPaths.map((career, idx) => (
-                            <span key={idx} style={{ padding: '10px 20px', background: 'rgba(251,210,26,0.2)', borderRadius: '20px', border: '1px solid rgba(251,210,26,0.3)' }}>
+                            <span key={idx} style={{ padding: '10px 20px',  background: 'rgba(0,170,138,0.2)', borderRadius: '20px', border: '1px solid rgba(0,170,138,0.3)' }}>
                               {career}
                             </span>
                           ))}
                         </div>
 
-                        <div style={{ marginTop: '40px', display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }}>
-                          <Link
-                            to="/contact"
-                            style={{
-                              padding: '15px 40px',
-                              background: 'linear-gradient(135deg, #FBD21A, #1E3679)',
-                              color: 'white',
-                              textDecoration: 'none',
-                              borderRadius: '50px',
-                              fontWeight: '600',
-                              fontSize: '1rem',
-                              transition: 'all 0.3s ease',
-                              display: 'inline-block'
-                            }}
-                          >
-                            Enroll Now
-                          </Link>
-                          <button
-                            style={{
-                              padding: '15px 40px',
-                              background: 'transparent',
-                              color: 'white',
-                              border: '2px solid white',
-                              borderRadius: '50px',
-                              fontWeight: '600',
-                              fontSize: '1rem',
-                              cursor: 'pointer',
-                              transition: 'all 0.3s ease'
-                            }}
-                          >
-                            Download Syllabus
-                          </button>
-                        </div>
+                       
 
                       </div>
                     </motion.div>
@@ -581,7 +554,7 @@ const ITServicesPage = () => {
       </section>
 
       {/* WHY CHOOSE SECTION */}
-      <section style={{ padding: '80px 20px', background: 'rgba(251,210,26,0.1)' }}>
+      <section style={{ padding: '80px 20px', background: 'rgba(30,54,121,0.1)' }}>
         <div className="container">
 
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="text-center mb-5">
@@ -607,7 +580,7 @@ const ITServicesPage = () => {
                     </div>
                     <div className="col-md-7">
                       <div style={{ padding: '30px', color: 'white' }}>
-                        <div style={{ color: '#FBD21A' }}>{item.icon}</div>
+                        <div style={{ color: '#00AA8A' }}>{item.icon}</div>
                         <h4 className="fw-bold mt-2">{item.title}</h4>
                         <p style={{ opacity: 0.8 }}>{item.description}</p>
                       </div>

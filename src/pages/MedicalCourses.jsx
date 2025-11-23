@@ -247,12 +247,18 @@ const MedicalCoursesPage = () => {
     <div style={{ background: '#0a0a1f', minHeight: '100vh', paddingTop: '70px' }}>
       
       {/* HERO SECTION */}
+      {/* HERO SECTION */}
       <section 
-        style={{
-          background: 'linear-gradient(135deg, #0a0a1f 0%, #1E3679 50%, #0a0a1f 100%)',
-          padding: '100px 20px 80px'
-        }}
-      >
+  style={{
+    background: 'linear-gradient(135deg, rgba(10,10,31,0.4) 0%, rgba(30,54,121,0.5) 50%, rgba(10,10,31,0.4) 100%), url("https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80")',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat:'no-repeat',
+    backgroundAttachment: 'fixed',
+    padding: '100px 20px 80px',
+    position: 'relative',
+  }}
+>
         <div className="container text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -354,15 +360,11 @@ const MedicalCoursesPage = () => {
                     <h2 className="fw-bold mb-3">{service.title}</h2>
 
                     <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginBottom: '15px' }}>
-                      <span style={{ padding: '8px 16px', background: 'rgba(0,170,138,0.2)', borderRadius: '20px', border: '1px solid rgba(0,170,138,0.3)' }}>
-                        <FaClock size={14} /> {service.duration}
-                      </span>
+                      
                       <span style={{ padding: '8px 16px', background: 'rgba(251,210,26,0.2)', borderRadius: '20px', border: '1px solid rgba(251,210,26,0.3)' }}>
                         <FaAward size={14} /> {service.level}
                       </span>
-                      <span style={{ padding: '8px 16px', background: 'rgba(255,255,255,0.1)', borderRadius: '20px' }}>
-                        💰 {service.salary}
-                      </span>
+                     
                     </div>
 
                     <p style={{ opacity: 0.85, lineHeight: 1.7 }}>{service.description}</p>

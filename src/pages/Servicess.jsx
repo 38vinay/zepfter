@@ -74,8 +74,8 @@ const Services = () => {
       title: 'IT Services',
       description: 'Programming, Data Science, Cybersecurity, Cloud Computing, Networking, Database',
       image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80',
-      gradient: 'linear-gradient(135deg, #1E3679 0%, #00AA8A 100%)',
-      color: '#FBD21A',
+      gradient: 'linear-gradient(135deg, #0a0a0a 0%, #1E3679 50%, #000000 100%)',
+      color: '#1E3679',
       stats: { courses: '30+', students: '2000+' },
       slug: 'it-services'
     },
@@ -86,7 +86,7 @@ const Services = () => {
       description: 'Quality Assurance, Quality Control, Regulatory Affairs, Manufacturing Operations',
       image: 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=800&q=80',
       gradient: 'linear-gradient(135deg, #1E3679 0%, #00AA8A 100%)',
-      color: '#1E3679',
+      color: '#00AA8A',
       stats: { courses: '15+', students: '800+' },
       slug: 'pharmaceutical-skills'
     },
@@ -96,8 +96,8 @@ const Services = () => {
       title: 'Training & Placement',
       description: 'Placement Assistance, Interview Preparation, Career Counseling',
       image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&q=80',
-      gradient: 'linear-gradient(135deg, #00AA8A 0%, #1E3679 100%)',
-      color: '#00AA8A',
+      gradient: 'linear-gradient(135deg, #0a0a0a 0%, #1E3679 50%, #000000 100%)',
+      color: '#1E3679',
       stats: { courses: 3, students: '5000+' },
       slug: 'training-placement'
     },
@@ -107,8 +107,8 @@ const Services = () => {
       title: 'Internship Programs',
       description: 'Medical Coding, Clinical Research, IT & Software, Pharmaceutical QA/QC',
       image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80',
-      gradient: 'linear-gradient(135deg, #FBD21A 0%, #00AA8A 100%)',
-      color: '#FBD21A',
+      gradient: 'linear-gradient(135deg, #1E3679 0%, #00AA8A 100%)',
+      color: '#00AA8A',
       stats: { courses: 4, students: '1500+' },
       slug: 'internship-programs'
     }
@@ -137,7 +137,7 @@ const Services = () => {
       image: "https://i.pravatar.cc/150?img=33",
       text: "I joined the Data Science program and got placed quickly. Highly practical training and hands-on experience!",
       company: "Tech Mahindra",
-      color: "#FBD21A"
+      color: "#1E3679"
     }
   ];
 
@@ -148,11 +148,14 @@ const Services = () => {
   return (
     <>
       {/* Hero Section - Professional & Clean */}
-      <motion.section 
+    <motion.section 
         ref={heroRef}
         className="position-relative overflow-hidden"
         style={{
-          background: 'linear-gradient(135deg, #0a0a0a 0%, #1E3679 50%, #000000 100%)',
+          background: 'linear-gradient(135deg, rgba(10,10,10,0.75) 0%, rgba(30,54,121,0.7) 50%, rgba(0,0,0,0.75) 100%), url("https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1600&q=80")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed',
           minHeight: '70vh',
           paddingTop: '140px',
           paddingBottom: '80px',
