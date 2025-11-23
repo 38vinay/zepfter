@@ -15,7 +15,7 @@ import {
   FaGraduationCap,
   FaUsers,
   FaChartLine,
-  FaStar
+  
 } from "react-icons/fa";
 
 const MedicalCoursesPage = () => {

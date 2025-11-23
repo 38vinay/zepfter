@@ -355,7 +355,7 @@ const About = () => {
       <section 
         className="section"
         style={{
-          background: '#000',
+          background: 'linear-gradient(135deg, #0a0a0a 0%, #1E3679 50%, #000000 100%)',
           color: 'white'
         }}
       >
@@ -640,24 +640,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* CTA */}
-      <motion.section 
-        className="section text-center"
-        style={{ background: 'linear-gradient(135deg, #1E3679 0%, #00AA8A 100%)', color: 'white' }}
-      >
-        <div className="container">
-          <motion.h2 className="fw-bold display-5 mb-4" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            Ready to Start Your Journey?
-          </motion.h2>
-          <motion.p className="fs-5 mb-5" style={{ maxWidth: '700px', margin: '0 auto' }} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
-            Join thousands of successful professionals who transformed their careers with ZEPFTER
-          </motion.p>
-          <motion.div className="d-flex gap-3 justify-content-center flex-wrap" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.4 }}>
-            <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="btn btn-light btn-lg px-5 py-3 fw-semibold">Explore Courses</motion.button>
-            <motion.button whileHover={{ scale: 1.05, background: 'white', color: '#1E3679' }} whileTap={{ scale: 0.95 }} className="btn btn-outline-light btn-lg px-5 py-3 fw-semibold" style={{ transition: 'all 0.3s ease' }}>Contact Us</motion.button>
-          </motion.div>
-        </div>
-      </motion.section>
+    
     </>
   );
 };

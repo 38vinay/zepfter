@@ -52,7 +52,7 @@ const Services = () => {
       title: 'Medical Courses',
       description: 'Medical Coding, Medical Affairs, Medical Billing, Medical Writing',
       image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80',
-      gradient: 'linear-gradient(135deg, #1E3679 0%, #2a4a9f 100%)',
+      gradient: 'linear-gradient(135deg, #0a0a0a 0%, #1E3679 50%, #000000 100%)',
       color: '#1E3679',
       stats: { courses: 4, students: '1200+' },
       slug: 'medical-courses'
@@ -63,7 +63,7 @@ const Services = () => {
       title: 'Clinical Courses',
       description: 'Clinical Research, Clinical Data Management, Clinical Trials, BA/BE Studies',
       image: 'https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=800&q=80',
-      gradient: 'linear-gradient(135deg, #00AA8A 0%, #00d4aa 100%)',
+      gradient: 'linear-gradient(135deg, #1E3679 0%, #00AA8A 100%)',
       color: '#00AA8A',
       stats: { courses: 4, students: '900+' },
       slug: 'clinical-courses'
@@ -74,7 +74,7 @@ const Services = () => {
       title: 'IT Services',
       description: 'Programming, Data Science, Cybersecurity, Cloud Computing, Networking, Database',
       image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80',
-      gradient: 'linear-gradient(135deg, #FBD21A 0%, #ffd700 100%)',
+      gradient: 'linear-gradient(135deg, #1E3679 0%, #00AA8A 100%)',
       color: '#FBD21A',
       stats: { courses: '30+', students: '2000+' },
       slug: 'it-services'
@@ -407,7 +407,7 @@ const Services = () => {
       </section>
 
       {/* Stats Section - Professional Numbers */}
-      <section ref={statsRef} className="section" style={{ background: '#000', color: 'white', padding: '100px 0' }}>
+      <section ref={statsRef} className="section" style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #1E3679 50%, #000000 100%)',marginTop:'10px', color: 'white', padding: '100px 0' }}>
         <div className="container">
           <motion.div
             className="text-center mb-5"
@@ -621,55 +621,7 @@ const Services = () => {
         </div>
       </section>
 
-      {/* CTA Section - Professional */}
-      <motion.section 
-        className="section text-center"
-        style={{
-          background: 'linear-gradient(135deg, #1E3679 0%, #00AA8A 100%)',
-          color: 'white',
-          padding: '80px 0'
-        }}
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
-        <div className="container">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="fw-bold display-4 mb-4">
-              Ready to Transform Your Career?
-            </h2>
-            <p className="fs-5 mb-5" style={{ maxWidth: '700px', margin: '0 auto 40px' }}>
-              Join thousands of successful professionals who transformed their careers with ZEPFTER
-            </p>
-            <div className="d-flex gap-3 justify-content-center flex-wrap">
-              <motion.button 
-                className="btn btn-light btn-lg px-5 py-3 fw-semibold"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ duration: 0.2 }}
-                style={{ borderRadius: '50px' }}
-              >
-                Explore Courses
-              </motion.button>
-              <motion.button 
-                className="btn btn-outline-light btn-lg px-5 py-3 fw-semibold"
-                whileHover={{ scale: 1.05, background: 'white', color: '#1E3679' }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ duration: 0.2 }}
-                style={{ borderRadius: '50px', border: '2px solid white' }}
-              >
-                Contact Us
-              </motion.button>
-            </div>
-          </motion.div>
-        </div>
-      </motion.section>
+      
     </>
   );
 };
