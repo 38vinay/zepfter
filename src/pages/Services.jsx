@@ -1,15 +1,22 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { motion, useInView } from "framer-motion";
-import { FaCapsules, FaFlask, FaLaptopCode, FaPills, FaArrowRight, FaClock, FaAward, FaUsers, FaGraduationCap, FaUserTie, FaBriefcase, FaStar, FaCheckCircle, FaTrophy, FaRocket } from "react-icons/fa";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { FaCapsules, FaFlask, FaLaptopCode, FaPills, FaArrowRight, FaUsers, FaGraduationCap, FaUserTie, FaBriefcase, FaCheckCircle, FaTrophy, FaRocket } from "react-icons/fa";
 
 const Services = () => {
-  const navigate = useNavigate();
   const [hoveredCard, setHoveredCard] = useState(null);
   const [counters, setCounters] = useState({ students: 0, placement: 0, trainers: 0, companies: 0 });
   
   const statsRef = useRef(null);
+  const heroRef = useRef(null);
   const isStatsInView = useInView(statsRef, { once: true, margin: "-100px" });
+  
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
+  });
+  
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const heroY = useTransform(scrollYProgress, [0, 0.5], [0, -50]);
 
   // Animated counters
   useEffect(() => {
@@ -38,7 +45,6 @@ const Services = () => {
     return () => clearInterval(timer);
   }, [isStatsInView]);
 
-  // 6 Main Services with Images
   const services = [
     {
       id: 'medical',
@@ -136,288 +142,220 @@ const Services = () => {
   ];
 
   const handleCategoryClick = (slug) => {
-    navigate(`/services/${slug}`);
+    window.location.href = `/services/${slug}`;
   };
 
   return (
     <>
- 
- 
-    
-      {/* Hero Section - Dark with Digital Matrix */}
-      <section 
+      {/* Hero Section - Professional & Clean */}
+      <motion.section 
+        ref={heroRef}
         className="position-relative overflow-hidden"
         style={{
           background: 'linear-gradient(135deg, #0a0a0a 0%, #1E3679 50%, #000000 100%)',
           minHeight: '70vh',
           paddingTop: '140px',
           paddingBottom: '80px',
-          marginTop: '70px'
+          marginTop: '70px',
+          opacity: heroOpacity,
+          y: heroY
         }}
       >
-        {/* Digital Matrix Background */}
-        <div className="position-absolute w-100 h-100 top-0 start-0" style={{ opacity: 0.15 }}>
-          {[...Array(50)].map((_, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, x: Math.random() * window.innerWidth, y: -100 }}
-              animate={{ 
-                opacity: [0.2, 0.6, 0.2],
-                y: window.innerHeight + 100
-              }}
-              transition={{
-                duration: Math.random() * 3 + 2,
-                repeat: Infinity,
-                delay: Math.random() * 2
-              }}
-              style={{
-                position: 'absolute',
-                color: '#00AA8A',
-                fontSize: '14px',
-                fontFamily: 'monospace',
-                pointerEvents: 'none'
-              }}
-            >
-              {Math.random() > 0.5 ? '1' : '0'}
-            </motion.div>
-          ))}
-        </div>
+        {/* Subtle Grid Pattern */}
+        <div 
+          className="position-absolute w-100 h-100"
+          style={{
+            backgroundImage: 'linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)',
+            backgroundSize: '50px 50px',
+            opacity: 0.3
+          }}
+        />
+
+        {/* Subtle Gradient Orbs */}
+        <motion.div
+          className="position-absolute"
+          style={{
+            width: '500px',
+            height: '500px',
+            borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(0,170,138,0.15) 0%, transparent 70%)',
+            top: '-250px',
+            right: '-100px',
+            filter: 'blur(60px)'
+          }}
+          animate={{
+            scale: [1, 1.1, 1],
+            opacity: [0.3, 0.5, 0.3]
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
 
         <div className="container position-relative" style={{ zIndex: 2 }}>
           <motion.div 
             className="text-center"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <p className="text-uppercase mb-3" style={{ color: '#00AA8A', letterSpacing: '3px', fontSize: '0.9rem' }}>
-              Home / Services
-            </p>
-            
-            <motion.h1 
-              className="fw-bold display-3 mb-4"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+            <motion.h2 
+              className="fw-bold mb-4" 
+              style={{ 
+                fontSize: 'clamp(2rem, 4vw, 3.5rem)', 
+                letterSpacing: '2px',
+                color: 'white'
+              }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <span style={{ color: 'white' }}>OUR </span>
-              <span style={{ color: '#00AA8A' }}>SERVICES</span>
-            </motion.h1>
+              OUR <span style={{ color: '#1E3679' }}>CORE</span> <span style={{ color: '#FBD21A' }}>EXPERTISE</span>
+            </motion.h2>
 
-            <motion.p
-              className="mx-auto mb-0"
-              style={{
-                maxWidth: '900px',
-                fontSize: '1.2rem',
-                color: 'rgba(255,255,255,0.9)',
-                lineHeight: '1.8'
+            <motion.p 
+              className="mx-auto mb-4" 
+              style={{ 
+                maxWidth: '900px', 
+                fontSize: '1.1rem', 
+                lineHeight: '1.8', 
+                color: 'rgba(255,255,255,0.85)' 
               }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
             >
-              Choose from our comprehensive range of industry-aligned courses designed to accelerate your career in Medical, Clinical, IT, and Pharmaceutical domains.
+              A competent Development and Consulting team is required for digital success. Since more than four years, our Expert Teams have assisted in offering world-class solutions to a wide range of business difficulties.
+            </motion.p>
+            
+            <motion.p 
+              className="mb-4" 
+              style={{ 
+                fontSize: '1.15rem', 
+                color: '#00AA8A', 
+                fontWeight: '600' 
+              }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+            >
+              Unlock opportunities of future towards digital revolution with us.
+            </motion.p>
+            
+            <motion.p 
+              className="mx-auto" 
+              style={{ 
+                maxWidth: '900px', 
+                fontSize: '1.1rem', 
+                lineHeight: '1.8', 
+                color: 'rgba(255,255,255,0.85)' 
+              }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+            >
+              At ZEPFTER, we can build Reliable, Robust, and Scalable Solutions for all platforms and devices.
             </motion.p>
           </motion.div>
         </div>
+      </motion.section>
 
-        <section className="section" style={{ background: '#000', color: 'white', paddingTop: '80px', paddingBottom: '80px' }}>
-        <div className="container">
-          {/* Heading */}
-          <motion.div
-            className="text-center mb-5"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="fw-bold mb-4" style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', letterSpacing: '2px' }}>
-              OUR <span style={{ color: '#1E3679' }}>CORE</span> <span style={{ color: '#FBD21A' }}>EXPERTISE</span>
-            </h2>
-            <p className="mx-auto mb-4" style={{ maxWidth: '900px', fontSize: '1.1rem', lineHeight: '1.8', color: 'rgba(255,255,255,0.8)' }}>
-              A competent Development and Consulting team is required for digital success. Since more than four years, our Expert Teams have assisted in offering world-class solutions to a wide range of business difficulties. Custom Software's assist enterprises and startups in developing digitized solutions.
-            </p>
-            <p className="mb-4" style={{ fontSize: '1.2rem', color: '#00AA8A', fontWeight: '600' }}>
-              Unlock opportunities of future towards digital revolution with us.
-            </p>
-            <p className="mx-auto" style={{ maxWidth: '900px', fontSize: '1.1rem', lineHeight: '1.8', color: 'rgba(255,255,255,0.8)' }}>
-              At ZEPFTER, we can build Reliable, Robust, and Scalable Solutions for all platforms and devices. Minimize your expenditures and focus on innovation by utilizing our application outsourcing services.
-            </p>
-          </motion.div>
-
-          {/* Expertise Cards */}
-          <div className="row g-4 mt-5">
-            {[
-              {
-                icon: '💻',
-                title: 'Development',
-                gradient: 'linear-gradient(135deg, #C724B1 0%, #9B1D8A 100%)',
-                color: '#C724B1'
-              },
-              {
-                icon: '👥',
-                title: 'Consulting',
-                gradient: 'linear-gradient(135deg, #5B4B8A 0%, #3D2F5E 100%)',
-                color: '#5B4B8A'
-              },
-              {
-                icon: '📊',
-                title: 'Analytics',
-                gradient: 'linear-gradient(135deg, #1565C0 0%, #0D47A1 100%)',
-                color: '#1565C0'
-              },
-              {
-                icon: '🤖',
-                title: 'Automation',
-                gradient: 'linear-gradient(135deg, #0288D1 0%, #01579B 100%)',
-                color: '#0288D1'
-              },
-              {
-                icon: '🔄',
-                title: 'Migration',
-                gradient: 'linear-gradient(135deg, #0097A7 0%, #006064 100%)',
-                color: '#0097A7'
-              },
-              {
-                icon: '🛡️',
-                title: 'Support',
-                gradient: 'linear-gradient(135deg, #00897B 0%, #004D40 100%)',
-                color: '#00897B'
-              }
-            ].map((item, idx) => (
-              <div className="col-lg-2 col-md-4 col-sm-6" key={idx}>
-                <motion.div
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: idx * 0.1 }}
-                  whileHover={{ y: -10, scale: 1.05 }}
-                  className="text-center p-4 rounded-4 h-100"
-                  style={{
-                    background: item.gradient,
-                    minHeight: '180px',
-                    cursor: 'pointer',
-                    boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    alignItems: 'center'
-                  }}
-                >
-                  <motion.div
-                    className="mb-3"
-                    style={{ fontSize: '3rem' }}
-                    animate={{ scale: [1, 1.1, 1] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                  >
-                    {item.icon}
-                  </motion.div>
-                  <h5 className="fw-bold mb-0" style={{ color: 'white' }}>
-                    {item.title}
-                  </h5>
-                </motion.div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-
-        {/* Wave */}
-        <div className="position-absolute" style={{ bottom: 0, left: 0, right: 0 }}>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-            <path fill="#ffffff" fillOpacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,138.7C960,139,1056,117,1152,112C1248,107,1344,117,1392,122.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-          </svg>
-        </div>
-      </section>
-
-      {/* Service Cards Grid with Images */}
+      {/* Service Cards - Professional with Subtle Animations */}
       <section className="container" style={{ marginTop: '-80px', position: 'relative', zIndex: 10 }}>
         <div className="row g-4">
           {services.map((service, idx) => {
             const IconComponent = service.icon;
             return (
-              <div 
+              <motion.div 
                 className="col-lg-4 col-md-6" 
                 key={idx}
-                data-aos="fade-up" 
-                data-aos-delay={idx * 100}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ 
+                  duration: 0.5, 
+                  delay: idx * 0.1,
+                  ease: [0.22, 1, 0.36, 1]
+                }}
               >
                 <motion.div 
                   className="position-relative h-100 overflow-hidden rounded-4"
                   style={{
                     cursor: 'pointer',
-                    transition: 'all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-                    minHeight: '500px'
+                    minHeight: '500px',
+                    boxShadow: '0 10px 40px rgba(0,0,0,0.15)'
                   }}
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: idx * 0.1 }}
-                  whileHover={{ y: -15, scale: 1.03 }}
+                  whileHover={{ 
+                    y: -8,
+                    boxShadow: '0 20px 60px rgba(0,0,0,0.25)',
+                    transition: { duration: 0.3, ease: "easeOut" }
+                  }}
                   onMouseEnter={() => setHoveredCard(idx)}
                   onMouseLeave={() => setHoveredCard(null)}
                   onClick={() => handleCategoryClick(service.slug)}
                 >
                   {/* Background Image */}
-                  <motion.img
-                    src={service.image}
-                    alt={service.title}
+                  <motion.div
                     className="position-absolute w-100 h-100"
                     style={{
-                      objectFit: 'cover',
-                      filter: hoveredCard === idx ? 'brightness(0.4) saturate(1.2)' : 'brightness(0.6)',
-                      transition: 'all 0.5s ease'
+                      backgroundImage: `url(${service.image})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                      filter: 'brightness(0.6)'
                     }}
+                    animate={hoveredCard === idx ? {
+                      scale: 1.05,
+                      filter: 'brightness(0.5)'
+                    } : {
+                      scale: 1,
+                      filter: 'brightness(0.6)'
+                    }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
                   />
 
                   {/* Gradient Overlay */}
-                  <div 
-                    className="position-absolute w-100 h-100 top-0 start-0"
+                  <motion.div 
+                    className="position-absolute w-100 h-100"
                     style={{
-                      background: hoveredCard === idx 
-                        ? service.gradient 
-                        : 'linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.9) 100%)',
-                      transition: 'all 0.5s ease',
-                      opacity: hoveredCard === idx ? 0.95 : 0.85
+                      background: `linear-gradient(180deg, transparent 0%, ${service.color}E0 100%)`
                     }}
+                    animate={hoveredCard === idx ? {
+                      background: service.gradient
+                    } : {}}
+                    transition={{ duration: 0.4 }}
                   />
 
                   {/* Content */}
                   <div className="position-absolute w-100 h-100 p-4 d-flex flex-column justify-content-between" style={{ zIndex: 2 }}>
-                    {/* Top - Icon */}
+                    {/* Icon */}
                     <motion.div 
                       className="d-flex justify-content-center"
-                      animate={hoveredCard === idx ? { scale: [1, 1.2, 1], rotate: [0, 360] } : {}}
-                      transition={{ duration: 0.8 }}
+                      animate={hoveredCard === idx ? { y: -5 } : { y: 0 }}
+                      transition={{ duration: 0.3 }}
                     >
                       <div
                         className="d-flex align-items-center justify-content-center rounded-circle"
                         style={{
                           width: '80px',
                           height: '80px',
-                          background: hoveredCard === idx ? 'rgba(255,255,255,0.2)' : service.gradient,
+                          background: 'rgba(255,255,255,0.15)',
                           backdropFilter: 'blur(10px)',
-                          transition: 'all 0.5s ease'
+                          border: '2px solid rgba(255,255,255,0.2)'
                         }}
                       >
                         <IconComponent 
-                          size={40} 
+                          size={36} 
                           style={{ color: 'white' }} 
                         />
                       </div>
                     </motion.div>
 
-                    {/* Middle - Info */}
+                    {/* Info */}
                     <div className="text-center text-white">
                       <h3 className="fw-bold mb-3">{service.title}</h3>
-                      <p 
-                        className="mb-4 small"
-                        style={{
-                          opacity: hoveredCard === idx ? 1 : 0.8,
-                          transition: 'all 0.3s ease'
-                        }}
-                      >
+                      <p className="mb-4 small" style={{ opacity: 0.9 }}>
                         {service.description}
                       </p>
 
@@ -446,40 +384,37 @@ const Services = () => {
                       </div>
                     </div>
 
-                    {/* Bottom - CTA */}
+                    {/* CTA */}
                     <motion.div 
-                      className="text-center"
-                      animate={hoveredCard === idx ? { y: [0, -5, 0] } : {}}
-                      transition={{ duration: 1, repeat: Infinity }}
+                      className="btn btn-light fw-semibold w-100 d-flex align-items-center justify-content-center gap-2"
+                      animate={hoveredCard === idx ? { y: -3 } : { y: 0 }}
+                      transition={{ duration: 0.3 }}
                     >
-                      <div 
-                        className="btn btn-light fw-semibold w-100"
-                        style={{
-                          opacity: hoveredCard === idx ? 1 : 0.9,
-                          transform: hoveredCard === idx ? 'translateY(0)' : 'translateY(10px)',
-                          transition: 'all 0.3s ease'
-                        }}
+                      Explore Courses 
+                      <motion.div
+                        animate={hoveredCard === idx ? { x: 3 } : { x: 0 }}
+                        transition={{ duration: 0.3 }}
                       >
-                        Explore Courses <FaArrowRight className="ms-2" />
-                      </div>
+                        <FaArrowRight size={14} />
+                      </motion.div>
                     </motion.div>
                   </div>
                 </motion.div>
-              </div>
+              </motion.div>
             );
           })}
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section ref={statsRef} className="section" style={{ background: '#000', color: 'white' }}>
+      {/* Stats Section - Professional Numbers */}
+      <section ref={statsRef} className="section" style={{ background: '#000', color: 'white', padding: '100px 0' }}>
         <div className="container">
           <motion.div
             className="text-center mb-5"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6 }}
           >
             <h2 className="fw-bold" style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', letterSpacing: '2px' }}>
               WHY CHOOSE ZEPFTER?
@@ -488,57 +423,37 @@ const Services = () => {
 
           <div className="row g-4">
             {[
-              { icon: <FaGraduationCap size={50} />, number: counters.students, suffix: '+', label: 'Students Trained', color: '#1E3679', image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&q=80' },
-              { icon: <FaTrophy size={50} />, number: counters.placement, suffix: '%', label: 'Placement Rate', color: '#00AA8A', image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80' },
-              { icon: <FaUsers size={50} />, number: counters.trainers, suffix: '+', label: 'Expert Trainers', color: '#FBD21A', image: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&q=80' },
-              { icon: <FaRocket size={50} />, number: counters.companies, suffix: '+', label: 'Hiring Partners', color: '#1E3679', image: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=600&q=80' }
+              { icon: <FaGraduationCap size={40} />, number: counters.students, suffix: '+', label: 'Students Trained', color: '#1E3679' },
+              { icon: <FaTrophy size={40} />, number: counters.placement, suffix: '%', label: 'Placement Rate', color: '#00AA8A' },
+              { icon: <FaUsers size={40} />, number: counters.trainers, suffix: '+', label: 'Expert Trainers', color: '#FBD21A' },
+              { icon: <FaRocket size={40} />, number: counters.companies, suffix: '+', label: 'Hiring Partners', color: '#1E3679' }
             ].map((stat, idx) => (
               <div className="col-lg-3 col-md-6" key={idx}>
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={isStatsInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ duration: 0.6, delay: idx * 0.1, type: "spring" }}
-                  whileHover={{ scale: 1.05, y: -10 }}
-                  className="position-relative overflow-hidden rounded-4"
-                  style={{
-                    height: '350px',
-                    cursor: 'pointer'
+                  className="text-center p-4"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={isStatsInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ 
+                    duration: 0.5, 
+                    delay: idx * 0.1,
+                    ease: "easeOut"
                   }}
                 >
-                  {/* Background Image */}
-                  <img
-                    src={stat.image}
-                    alt={stat.label}
-                    className="position-absolute w-100 h-100"
-                    style={{
-                      objectFit: 'cover',
-                      filter: 'brightness(0.4)'
-                    }}
-                  />
-
-                  {/* Gradient Overlay */}
-                  <div
-                    className="position-absolute w-100 h-100"
-                    style={{
-                      background: `linear-gradient(180deg, ${stat.color}80 0%, ${stat.color}E0 100%)`
-                    }}
-                  />
-
-                  {/* Content */}
-                  <div className="position-absolute w-100 h-100 p-4 d-flex flex-column justify-content-center align-items-center text-center text-white" style={{ zIndex: 2 }}>
-                    <motion.div
-                      animate={{ rotate: [0, 360] }}
-                      transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                      className="mb-3"
-                    >
-                      {stat.icon}
-                    </motion.div>
-                    <div className="display-3 fw-bold mb-2">
-                      {stat.number}{stat.suffix}
-                    </div>
-                    <div className="fw-semibold text-uppercase" style={{ letterSpacing: '1px' }}>
-                      {stat.label}
-                    </div>
+                  <motion.div
+                    className="mb-3"
+                    style={{ color: stat.color }}
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {stat.icon}
+                  </motion.div>
+                  
+                  <div className="display-4 fw-bold mb-2" style={{ color: stat.color }}>
+                    {stat.number}{stat.suffix}
+                  </div>
+                  
+                  <div className="text-uppercase" style={{ letterSpacing: '1px', fontSize: '0.9rem', opacity: 0.8 }}>
+                    {stat.label}
                   </div>
                 </motion.div>
               </div>
@@ -547,35 +462,37 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Features with Images */}
-      <section className="section" style={{ background: '#f5f5f5' }}>
+      {/* Features - Clean Two-Column Layout */}
+      <section className="section" style={{ background: '#f5f5f5', padding: '100px 0' }}>
         <div className="container">
           <div className="row g-5 align-items-center mb-5">
             <motion.div
               className="col-lg-6"
-              initial={{ opacity: 0, x: -50 }}
+              initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
             >
-              <motion.img
-                whileHover={{ scale: 1.05 }}
-                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80"
-                alt="Industry Expert Trainers"
-                className="img-fluid rounded-4 shadow-lg"
-              />
+              <div style={{ overflow: 'hidden', borderRadius: '20px' }}>
+                <motion.img
+                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80"
+                  alt="Industry Expert Trainers"
+                  className="img-fluid"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.4 }}
+                />
+              </div>
             </motion.div>
+            
             <motion.div
               className="col-lg-6"
-              initial={{ opacity: 0, x: 50 }}
+              initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
             >
-              <div className="mb-3">
-                <FaCheckCircle size={40} style={{ color: '#1E3679' }} />
-              </div>
-              <h2 className="fw-bold mb-4" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: '#1E3679' }}>
+              <FaCheckCircle size={36} style={{ color: '#1E3679', marginBottom: '20px' }} />
+              <h2 className="fw-bold mb-4" style={{ fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', color: '#1E3679' }}>
                 Industry Expert Trainers
               </h2>
               <p className="mb-4" style={{ fontSize: '1.1rem', color: '#666', lineHeight: '1.8' }}>
@@ -587,29 +504,31 @@ const Services = () => {
           <div className="row g-5 align-items-center">
             <motion.div
               className="col-lg-6 order-lg-2"
-              initial={{ opacity: 0, x: 50 }}
+              initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
             >
-              <motion.img
-                whileHover={{ scale: 1.05 }}
-                src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&q=80"
-                alt="Placement Support"
-                className="img-fluid rounded-4 shadow-lg"
-              />
+              <div style={{ overflow: 'hidden', borderRadius: '20px' }}>
+                <motion.img
+                  src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&q=80"
+                  alt="Placement Support"
+                  className="img-fluid"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.4 }}
+                />
+              </div>
             </motion.div>
+            
             <motion.div
               className="col-lg-6 order-lg-1"
-              initial={{ opacity: 0, x: -50 }}
+              initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
             >
-              <div className="mb-3">
-                <FaBriefcase size={40} style={{ color: '#00AA8A' }} />
-              </div>
-              <h2 className="fw-bold mb-4" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: '#00AA8A' }}>
+              <FaBriefcase size={36} style={{ color: '#00AA8A', marginBottom: '20px' }} />
+              <h2 className="fw-bold mb-4" style={{ fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', color: '#00AA8A' }}>
                 100% Placement Assistance
               </h2>
               <p className="mb-4" style={{ fontSize: '1.1rem', color: '#666', lineHeight: '1.8' }}>
@@ -620,68 +539,65 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="section" style={{ background: '#fff' }}>
+      {/* Testimonials - Clean Cards */}
+      <section className="section" style={{ background: '#fff', padding: '100px 0' }}>
         <div className="container">
           <motion.div 
             className="text-center mb-5"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6 }}
           >
-            <h2 className="fw-bold display-5 mb-3" style={{ color: '#1E3679' }}>What Our Students Say</h2>
+            <h2 className="fw-bold display-5 mb-3" style={{ color: '#1E3679' }}>
+              What Our Students Say
+            </h2>
             <p className="text-muted fs-5">Success stories from our alumni</p>
           </motion.div>
 
           <div className="row g-4">
             {testimonials.map((testimonial, idx) => (
-              <div className="col-lg-4" key={idx}>
+              <motion.div 
+                className="col-lg-4" 
+                key={idx}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ 
+                  duration: 0.5, 
+                  delay: idx * 0.1,
+                  ease: "easeOut"
+                }}
+              >
                 <motion.div
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: idx * 0.2 }}
-                  whileHover={{ y: -10, boxShadow: `0 20px 40px ${testimonial.color}30` }}
                   className="p-4 h-100 rounded-4"
                   style={{
                     background: 'white',
                     borderLeft: `4px solid ${testimonial.color}`,
-                    boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
-                    cursor: 'pointer',
-                    position: 'relative',
-                    overflow: 'hidden'
+                    boxShadow: '0 5px 20px rgba(0,0,0,0.08)'
+                  }}
+                  whileHover={{ 
+                    y: -5,
+                    boxShadow: '0 10px 30px rgba(0,0,0,0.12)',
+                    transition: { duration: 0.3 }
                   }}
                 >
-                  <div 
-                    style={{
-                      position: 'absolute',
-                      top: '-20px',
-                      right: '-20px',
-                      fontSize: '100px',
-                      color: testimonial.color,
-                      opacity: 0.05,
-                      fontFamily: 'Georgia, serif'
-                    }}
-                  >
-                    "
-                  </div>
-
-                  <div className="d-flex align-items-center gap-3 mb-4" style={{ position: 'relative', zIndex: 1 }}>
-                    <motion.img
-                      whileHover={{ scale: 1.1, rotate: 5 }}
+                  <div className="d-flex align-items-center gap-3 mb-4">
+                    <img
                       src={testimonial.image}
                       alt={testimonial.name}
                       style={{
-                        width: '70px',
-                        height: '70px',
+                        width: '60px',
+                        height: '60px',
                         borderRadius: '50%',
                         objectFit: 'cover',
                         border: `3px solid ${testimonial.color}`
                       }}
                     />
-                    <div className="text-start">
-                      <h5 className="fw-bold mb-1" style={{ color: testimonial.color }}>{testimonial.name}</h5>
+                    <div>
+                      <h5 className="fw-bold mb-1" style={{ color: testimonial.color }}>
+                        {testimonial.name}
+                      </h5>
                       <p className="text-muted mb-0 small">{testimonial.role}</p>
                       <p className="small mb-0" style={{ color: testimonial.color, fontWeight: '600' }}>
                         @ {testimonial.company}
@@ -691,23 +607,71 @@ const Services = () => {
 
                   <div className="mb-3" style={{ color: testimonial.color }}>
                     {[...Array(5)].map((_, i) => (
-                      <motion.span key={i} initial={{ opacity: 0, scale: 0 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: idx * 0.2 + i * 0.1 }}>⭐</motion.span>
+                      <span key={i}>⭐</span>
                     ))}
                   </div>
 
-                  <p className="mb-0" style={{ fontSize: '1rem', lineHeight: '1.7', color: '#666', fontStyle: 'italic', position: 'relative', zIndex: 1 }}>
+                  <p className="mb-0" style={{ fontSize: '0.95rem', lineHeight: '1.7', color: '#666', fontStyle: 'italic' }}>
                     "{testimonial.text}"
                   </p>
                 </motion.div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      
-</>
-);
+      {/* CTA Section - Professional */}
+      <motion.section 
+        className="section text-center"
+        style={{
+          background: 'linear-gradient(135deg, #1E3679 0%, #00AA8A 100%)',
+          color: 'white',
+          padding: '80px 0'
+        }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
+        <div className="container">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="fw-bold display-4 mb-4">
+              Ready to Transform Your Career?
+            </h2>
+            <p className="fs-5 mb-5" style={{ maxWidth: '700px', margin: '0 auto 40px' }}>
+              Join thousands of successful professionals who transformed their careers with ZEPFTER
+            </p>
+            <div className="d-flex gap-3 justify-content-center flex-wrap">
+              <motion.button 
+                className="btn btn-light btn-lg px-5 py-3 fw-semibold"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+                style={{ borderRadius: '50px' }}
+              >
+                Explore Courses
+              </motion.button>
+              <motion.button 
+                className="btn btn-outline-light btn-lg px-5 py-3 fw-semibold"
+                whileHover={{ scale: 1.05, background: 'white', color: '#1E3679' }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+                style={{ borderRadius: '50px', border: '2px solid white' }}
+              >
+                Contact Us
+              </motion.button>
+            </div>
+          </motion.div>
+        </div>
+      </motion.section>
+    </>
+  );
 };
+
 export default Services;

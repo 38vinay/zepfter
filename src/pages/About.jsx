@@ -87,9 +87,7 @@ const About = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <p className="text-uppercase mb-3" style={{ color: '#00AA8A', letterSpacing: '3px', fontSize: '0.9rem' }}>
-              Home / Overview
-            </p>
+            
             
             <motion.h1 
               className="fw-bold mb-4"
@@ -99,7 +97,6 @@ const About = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <span style={{ color: '#1E3679' }}>ZEPFTER</span>
-              <span style={{ color: '#00AA8A' }}>TECH</span>
               <span style={{ color: 'white' }}> IS ALL ABOUT </span>
               <span style={{ color: 'white' }}>EDUCATION</span>
             </motion.h1>
