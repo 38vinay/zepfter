@@ -1,28 +1,43 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaCheckCircle, FaClock, FaAward, FaBook, FaBriefcase, FaCapsules, FaHeartbeat, FaClipboardCheck, FaMicroscope } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
+import { 
+  FaChevronDown, 
+  FaChevronUp,
+  FaCapsules, 
+  FaHeartbeat, 
+  FaClipboardCheck, 
+  FaMicroscope,
+  FaCheckCircle,
+  FaAward,
+  FaClock,
+  FaBriefcase,
+  FaGraduationCap,
+  FaUsers,
+  FaChartLine,
+  FaStar
+} from "react-icons/fa";
 
-const MedicalCourses = () => {
-  const [selectedService, setSelectedService] = useState(null);
+const MedicalCoursesPage = () => {
+  const [expandedService, setExpandedService] = useState(null);
+  const [expandedFAQ, setExpandedFAQ] = useState(null);
 
-  const category = {
-    title: 'Medical Courses',
-    icon: FaCapsules,
-    color: '#1E3679',
-    gradient: 'linear-gradient(135deg, #1E3679 0%, #2a4a9f 100%)',
-    description: 'Professional medical training programs including coding, billing, and medical writing.'
-  };
-
+  /** ------------------------
+   *   ENHANCED COURSE CONTENT
+   * ------------------------ */
   const services = [
     {
       id: 'medical-coding',
       title: 'Medical Coding',
-      icon: <FaCapsules size={40} />,
-      shortDesc: 'Learn industry-level medical coding systems including ICD-10, CPT, and HCPCS.',
-      fullDesc: 'Master comprehensive medical coding including ICD-10, CPT, and HCPCS. This course provides in-depth training on translating medical diagnoses, procedures, and services into universal code numbers used for billing and documentation.',
+      icon: <FaCapsules size={30} />,
       duration: '6 months',
       level: 'Beginner to Advanced',
-      modules: [
+      salary: '₹3.5 - ₹8 LPA',
+      description:
+        'Become a skilled healthcare coding professional by mastering ICD-10, CPT, and HCPCS systems. Gain real experience with medical charts, EHR platforms, compliance workflows, and global coding standards essential for hospital and insurance-based careers.',
+      image1: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&q=80',
+      image2: 'https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=600&q=80',
+      details: [
         'ICD-10-CM/PCS Coding',
         'CPT Coding',
         'HCPCS Level II',
@@ -30,27 +45,28 @@ const MedicalCourses = () => {
         'Anatomy & Physiology',
         'Healthcare Reimbursement',
         'Compliance & Regulations',
-        'Medical Documentation'
+        'Medical Documentation',
+        'EHR Systems Training',
+        'CPC Exam Preparation',
+        'Medical Billing Integration',
+        'Coding Quality Audits'
       ],
-      outcomes: [
-        'Certified Professional Coder (CPC) preparation',
-        'Understanding of medical documentation',
-        'Ability to assign accurate diagnostic and procedural codes',
-        'Knowledge of compliance and regulatory requirements',
-        'Proficiency in medical billing software'
-      ],
-      career: ['Medical Coder', 'Coding Specialist', 'Billing Specialist', 'Health Information Technician'],
-      certifications: ['CPC (Certified Professional Coder)', 'CCS (Certified Coding Specialist)']
+      certifications: ['CPC (Certified Professional Coder)', 'CCS (Certified Coding Specialist)', 'CCA (Certified Coding Associate)'],
+      careerPaths: ['Medical Coder', 'Coding Specialist', 'Billing Specialist', 'Health Information Technician', 'Revenue Cycle Analyst', 'Coding Auditor']
     },
+
     {
       id: 'medical-affairs',
       title: 'Medical Affairs',
-      icon: <FaHeartbeat size={40} />,
-      shortDesc: 'Bridge between medical science and business in pharmaceutical companies.',
-      fullDesc: 'Comprehensive training in medical affairs covering scientific communication, medical information, publication planning, and healthcare professional engagement.',
+      icon: <FaHeartbeat size={30} />,
       duration: '8 months',
       level: 'Intermediate to Advanced',
-      modules: [
+      salary: '₹6 - ₹15 LPA',
+      description:
+        'Unlock prestigious careers in pharmaceutical science and healthcare communication. Learn to interpret clinical data, support medical teams, interact with healthcare professionals, and drive evidence-based decision-making within pharma organizations.',
+      image1: 'https://images.unsplash.com/photo-1579154204601-01588f351e67?w=600&q=80',
+      image2: 'https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=600&q=80',
+      details: [
         'Medical Information Management',
         'Scientific Communication',
         'Publication Planning',
@@ -58,26 +74,28 @@ const MedicalCourses = () => {
         'KOL Engagement',
         'Clinical Development Support',
         'Post-Marketing Surveillance',
-        'Medical Strategy'
+        'Medical Strategy',
+        'Evidence-Based Medicine',
+        'Healthcare Professional Engagement',
+        'Medical Writing for Publications',
+        'Advisory Board Management'
       ],
-      outcomes: [
-        'Support clinical development programs',
-        'Manage medical information requests',
-        'Develop publication strategies',
-        'Engage with healthcare professionals effectively'
-      ],
-      career: ['Medical Affairs Associate', 'Medical Science Liaison', 'Medical Information Specialist'],
-      certifications: ['Certified Medical Affairs Specialist']
+      certifications: ['Certified Medical Affairs Specialist', 'Board Certification in Medical Affairs'],
+      careerPaths: ['Medical Affairs Associate', 'Medical Science Liaison', 'Medical Information Specialist', 'Medical Advisor', 'Field Medical Manager']
     },
+
     {
       id: 'medical-billing',
       title: 'Medical Billing',
-      icon: <FaClipboardCheck size={40} />,
-      shortDesc: 'Professional billing procedures and healthcare revenue cycle management.',
-      fullDesc: 'Learn complete healthcare billing processes, insurance claims management, revenue cycle operations, and medical billing software.',
+      icon: <FaClipboardCheck size={30} />,
       duration: '5 months',
       level: 'Beginner to Intermediate',
-      modules: [
+      salary: '₹3 - ₹7 LPA',
+      description:
+        'Gain complete expertise in the healthcare revenue cycle, including claims processing, reimbursement workflows, insurance verification, and denial management. Work with real billing software and live patient record simulations.',
+      image1: 'https://images.unsplash.com/photo-1551076805-e1869033e561?w=600&q=80',
+      image2: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80',
+      details: [
         'Insurance Verification',
         'Claims Processing & Submission',
         'Payment Posting',
@@ -85,26 +103,28 @@ const MedicalCourses = () => {
         'Medical Billing Software',
         'HIPAA Compliance',
         'Revenue Cycle Management',
-        'Accounts Receivable'
+        'Accounts Receivable',
+        'Patient Billing',
+        'EOB Processing',
+        'Clearinghouse Operations',
+        'Billing Compliance & Audits'
       ],
-      outcomes: [
-        'Process insurance claims efficiently',
-        'Handle medical billing software proficiently',
-        'Manage accounts receivable effectively',
-        'Ensure regulatory compliance'
-      ],
-      career: ['Medical Biller', 'Billing Coordinator', 'Revenue Cycle Analyst'],
-      certifications: ['CMRS (Certified Medical Reimbursement Specialist)']
+      certifications: ['CMRS (Certified Medical Reimbursement Specialist)', 'CPMA (Certified Professional Medical Auditor)', 'CPB (Certified Professional Biller)'],
+      careerPaths: ['Medical Biller', 'Billing Coordinator', 'Revenue Cycle Analyst', 'Claims Specialist', 'Patient Account Representative']
     },
+
     {
       id: 'medical-writing',
       title: 'Medical Writing',
-      icon: <FaMicroscope size={40} />,
-      shortDesc: 'Scientific & regulatory writing for healthcare and pharmaceutical industries.',
-      fullDesc: 'Develop expertise in medical and scientific writing for research papers, clinical documents, regulatory submissions, and medical publications.',
+      icon: <FaMicroscope size={30} />,
       duration: '6 months',
       level: 'Intermediate to Advanced',
-      modules: [
+      salary: '₹4 - ₹12 LPA',
+      description:
+        'Master clinical, scientific, and regulatory writing for healthcare and pharmaceutical industries. Learn to create accurate research papers, regulatory documents, clinical study reports, and scientific publications following global standards.',
+      image1: 'https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=600&q=80',
+      image2: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&q=80',
+      details: [
         'Clinical Documentation',
         'Regulatory Writing',
         'Research Papers & Publications',
@@ -112,340 +132,416 @@ const MedicalCourses = () => {
         'Protocol Writing',
         'Scientific Communication',
         'Grant Writing',
-        'Medical Editing'
+        'Medical Editing',
+        'Clinical Study Reports',
+        'Investigator Brochures',
+        'Informed Consent Forms',
+        'AMWA & EMWA Standards'
       ],
-      outcomes: [
-        'Write clinical study reports',
-        'Create regulatory documents',
-        'Publish medical literature',
-        'Maintain scientific accuracy'
-      ],
-      career: ['Medical Writer', 'Regulatory Writer', 'Scientific Writer'],
-      certifications: ['AMWA Certification', 'EMWA Certification']
+      certifications: ['AMWA Certification', 'EMWA Certification', 'RAC (Regulatory Affairs Certification)'],
+      careerPaths: ['Medical Writer', 'Regulatory Writer', 'Scientific Writer', 'Clinical Research Writer', 'Medical Communications Specialist']
     }
   ];
 
-  const openModal = (service) => {
-    setSelectedService(service);
+  const stats = [
+    { number: '1200+', label: 'Students Trained', icon: <FaUsers size={30} /> },
+    { number: '95%', label: 'Placement Rate', icon: <FaChartLine size={30} /> },
+    { number: '500+', label: 'Hiring Partners', icon: <FaBriefcase size={30} /> },
+    { number: '8 LPA', label: 'Highest Package', icon: <FaAward size={30} /> }
+  ];
+
+  const whyChoose = [
+    {
+      icon: <FaGraduationCap size={50} />,
+      title: 'Industry Expert Trainers',
+      description:
+        'Learn from certified medical professionals with 10–15 years of experience in hospitals, pharma companies, and international healthcare organizations.',
+      image: 'https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=600&q=80'
+    },
+    {
+      icon: <FaAward size={50} />,
+      title: 'Certification Preparation',
+      description:
+        'Get complete preparation for CPC, CCS, CPB, AMWA, and other certifications with mock exams, study guides, and instructor-led mentoring.',
+      image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&q=80'
+    },
+    {
+      icon: <FaClipboardCheck size={50} />,
+      title: 'Hands-on Training',
+      description:
+        'Train with real patient charts, EHR coding software, billing platforms, clinical reports, and real-life documentation tasks.',
+      image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&q=80'
+    },
+    {
+      icon: <FaBriefcase size={50} />,
+      title: '100% Placement Support',
+      description:
+        'Receive resume building, mock interviews, aptitude training, and interview opportunities with over 500 partnered healthcare employers.',
+      image: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=600&q=80'
+    }
+  ];
+
+  /** ------------------------
+   *        ENHANCED FAQ
+   * ------------------------ */
+  const faqs = [
+    {
+      id: 1,
+      question: 'What are the eligibility criteria for medical coding courses?',
+      answer:
+        'Anyone who has completed graduation in any stream can enroll. A science background helps but is not required since we teach medical terminology and anatomy from scratch.'
+    },
+    {
+      id: 2,
+      question: 'How long does it take to become a certified medical coder?',
+      answer:
+        'Our 6-month program includes complete CPC exam preparation. Once trained, you can appear for the CPC exam. Most students get placed within 2–3 months after certification.'
+    },
+    {
+      id: 3,
+      question: 'What is the difference between medical coding and billing?',
+      answer:
+        'Medical coding involves assigning standardized codes to diagnoses and procedures. Medical billing focuses on claim submission, reimbursement, and payment cycles. Both are vital parts of healthcare administration.'
+    },
+    {
+      id: 4,
+      question: 'Do these courses offer work-from-home opportunities?',
+      answer:
+        'Yes! Medical coding and medical writing especially offer great remote work opportunities. Many companies hire experienced coders and writers for work-from-home roles.'
+    },
+    {
+      id: 5,
+      question: 'What certifications do you help students prepare for?',
+      answer:
+        'We prepare for CPC, CCS, CCA, CPB, CMRS, AMWA, EMWA, and other top international healthcare certifications.'
+    },
+    {
+      id: 6,
+      question: 'Do you provide placement assistance?',
+      answer:
+        'Yes, we offer 100% placement support, interview training, resume building, communication training, and exclusive hiring drives.'
+    },
+    {
+      id: 7,
+      question: 'What salaries can I expect after completing the course?',
+      answer:
+        'Freshers typically earn ₹3.5–5 LPA in coding and billing, while medical writing and medical affairs may start from ₹6–8 LPA depending on role and company.'
+    },
+    {
+      id: 8,
+      question: 'Is online training available?',
+      answer:
+        'Yes, we offer both online and offline training with live classes, practice sessions, and access to recorded lectures.'
+    }
+  ];
+
+  const toggleService = (serviceId) => {
+    setExpandedService(expandedService === serviceId ? null : serviceId);
   };
 
-  const closeModal = () => {
-    setSelectedService(null);
+  const toggleFAQ = (faqId) => {
+    setExpandedFAQ(expandedFAQ === faqId ? null : faqId);
   };
 
   return (
-    <>
-      {/* Hero Section */}
+    <div style={{ background: '#0a0a1f', minHeight: '100vh', paddingTop: '70px' }}>
+      
+      {/* HERO SECTION */}
       <section 
-        className="section text-center position-relative" 
         style={{
-          background: category.gradient,
-          color: 'white',
-          padding: '120px 0 80px',
-          marginTop: '70px'
+          background: 'linear-gradient(135deg, #0a0a1f 0%, #1E3679 50%, #0a0a1f 100%)',
+          padding: '100px 20px 80px'
         }}
       >
-        <div className="container position-relative" data-aos="fade-up">
-          <div className="d-inline-flex align-items-center justify-content-center rounded-circle mb-4"
-            style={{
-              width: '100px',
-              height: '100px',
-              background: 'rgba(255, 255, 255, 0.2)',
-              backdropFilter: 'blur(10px)'
-            }}
+        <div className="container text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
           >
-            <category.icon size={50} />
-          </div>
-          <h1 className="fw-bold display-3 mb-4">{category.title}</h1>
-          <p className="fs-4 mb-0" style={{ maxWidth: '800px', margin: '0 auto' }}>
-            {category.description}
-          </p>
-        </div>
-
-        {/* Decorative wave */}
-        <div className="position-absolute" style={{ bottom: 0, left: 0, right: 0 }}>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-            <path fill="#ffffff" fillOpacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,138.7C960,139,1056,117,1152,112C1248,107,1344,117,1392,122.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-          </svg>
-        </div>
-      </section>
-
-      {/* Courses Grid */}
-      <section className="section container" style={{ marginTop: '-60px', position: 'relative', zIndex: 10 }}>
-        <div className="row g-4">
-          {services.map((service, idx) => (
-            <div className="col-lg-6" key={idx} data-aos="fade-up" data-aos-delay={idx * 100}>
-              <div 
-                className="glass-card p-4 h-100 d-flex flex-column"
-                style={{ borderTop: `4px solid ${category.color}` }}
-              >
-                {/* Icon & Title */}
-                <div className="d-flex align-items-center gap-3 mb-3">
-                  <div 
-                    className="d-flex align-items-center justify-content-center rounded-circle flex-shrink-0"
-                    style={{
-                      width: '60px',
-                      height: '60px',
-                      background: category.gradient
-                    }}
-                  >
-                    {React.cloneElement(service.icon, { style: { color: 'white' }, size: 30 })}
-                  </div>
-                  <div className="flex-grow-1">
-                    <h4 className="fw-bold mb-1">{service.title}</h4>
-                    <div className="d-flex gap-3 text-muted small">
-                      <span><FaClock className="me-1" />{service.duration}</span>
-                      <span><FaAward className="me-1" />{service.level}</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Description */}
-                <p className="text-muted mb-4">{service.shortDesc}</p>
-
-                {/* Key Modules */}
-                <div className="mb-4 flex-grow-1">
-                  <h6 className="fw-semibold mb-3">Key Modules:</h6>
-                  <div className="row g-2">
-                    {service.modules.slice(0, 6).map((module, i) => (
-                      <div className="col-12" key={i}>
-                        <div className="d-flex align-items-start gap-2">
-                          <FaCheckCircle className="text-success mt-1 flex-shrink-0" size={14} />
-                          <span className="small text-muted">{module}</span>
-                        </div>
-                      </div>
-                    ))}
-                    {service.modules.length > 6 && (
-                      <div className="col-12">
-                        <span className="small text-primary fw-semibold">
-                          +{service.modules.length - 6} more modules
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                {/* Career Paths */}
-                {service.career && (
-                  <div className="mb-3">
-                    <h6 className="fw-semibold mb-2">Career Opportunities:</h6>
-                    <div className="d-flex flex-wrap gap-2">
-                      {service.career.slice(0, 3).map((career, i) => (
-                        <span 
-                          key={i}
-                          className="badge bg-light text-dark"
-                          style={{ padding: '6px 12px', fontSize: '0.75rem' }}
-                        >
-                          {career}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {/* Action Button */}
-                <button 
-                  className="btn w-100 py-3 fw-semibold"
-                  style={{
-                    background: category.gradient,
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '12px'
-                  }}
-                  onClick={() => openModal(service)}
-                >
-                  View Full Details →
-                </button>
-              </div>
+            <div style={{ marginBottom: '20px' }}>
+              <FaCapsules size={60} style={{ color: '#00AA8A' }} />
             </div>
-          ))}
+            <h1 className="fw-bold text-white" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)' }}>
+              MEDICAL COURSES
+            </h1>
+            <p className="text-white mx-auto" style={{ maxWidth: '800px', opacity: 0.9, lineHeight: '1.8', marginTop: '10px'}}>
+              ZEPFTER’s Medical Courses prepare you for high-demand healthcare careers such as Medical Coding, Billing, Medical Writing, and Medical Affairs. Our programs blend essential theory with hands-on training using real patient charts, EHR tools, and certification guidance. With expert trainers and 100% placement support, we equip you with the skills and confidence to succeed in top hospitals, pharma companies, and healthcare BPOs.
+            </p>
+          </motion.div>
         </div>
       </section>
 
-      {/* Why Choose Section */}
-      <section className="section bg-light">
+      {/* STATS SECTION */}
+      <section style={{ padding: '80px 20px', background: 'rgba(0,0,0,0.3)' }}>
         <div className="container">
-          <div className="text-center mb-5" data-aos="fade-up">
-            <h2 className="fw-bold display-5 mb-3">Why Choose Our Medical Courses?</h2>
-          </div>
-
           <div className="row g-4">
-            {[
-              { icon: '👨‍⚕️', title: 'Industry Expert Trainers', desc: 'Learn from certified medical coding professionals with 10+ years of experience' },
-              { icon: '📚', title: 'Comprehensive Curriculum', desc: 'Updated content aligned with latest ICD-10, CPT, and HCPCS guidelines' },
-              { icon: '💼', title: '100% Placement Support', desc: 'Dedicated career services team to help you land your dream job' },
-              { icon: '🎓', title: 'Certification Preparation', desc: 'Prepare for CPC, CCS, and other industry-recognized certifications' }
-            ].map((item, idx) => (
-              <div className="col-md-6 col-lg-3" key={idx} data-aos="fade-up" data-aos-delay={idx * 100}>
-                <div className="glass-card text-center p-4 h-100">
-                  <div className="fs-1 mb-3">{item.icon}</div>
-                  <h5 className="fw-bold mb-2">{item.title}</h5>
-                  <p className="text-muted small mb-0">{item.desc}</p>
-                </div>
+            {stats.map((stat, idx) => (
+              <div className="col-lg-3 col-md-6" key={idx}>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: idx * 0.1 }}
+                  whileHover={{ scale: 1.05, y: -10 }}
+                  style={{
+                    background: 'rgba(30,54,121,0.2)',
+                    border: '2px solid rgba(0,170,138,0.3)',
+                    borderRadius: '20px',
+                    padding: '40px 20px',
+                    textAlign: 'center',
+                    color: 'white',
+                    cursor: 'pointer'
+                  }}
+                >
+                  <div style={{ color: '#00AA8A', marginBottom: '20px' }}>
+                    {stat.icon}
+                  </div>
+                  <div className="display-4 fw-bold" style={{ color: '#FBD21A' }}>{stat.number}</div>
+                  <div style={{ opacity: 0.9 }}>{stat.label}</div>
+                </motion.div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section 
-        className="section text-center" 
-        style={{ background: category.gradient, color: 'white' }}
-      >
-        <div className="container" data-aos="fade-up">
-          <h2 className="fw-bold display-5 mb-4">Ready to Start Your Medical Career?</h2>
-          <p className="fs-5 mb-5" style={{ maxWidth: '700px', margin: '0 auto' }}>
-            Join our next batch and get trained by industry experts
-          </p>
-          <div className="d-flex gap-3 justify-content-center flex-wrap">
-            <Link to="/contact" className="btn btn-light btn-lg px-5 py-3 fw-semibold">
-              Enroll Now
-            </Link>
-            <button className="btn btn-outline-light btn-lg px-5 py-3 fw-semibold">
-              Download Syllabus
-            </button>
-          </div>
+      {/* COURSE ACCORDION */}
+      <section style={{ padding: '80px 20px' }}>
+        <div className="container" style={{ maxWidth: '1400px' }}>
+
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="text-center mb-5">
+            <h2 className="fw-bold text-white mb-3" style={{ fontSize: 'clamp(2rem,4vw,3rem)' }}>Our Course Offerings</h2>
+            <p className="text-white mx-auto" style={{ maxWidth: '700px', opacity: 0.8 }}>Choose from our advanced healthcare programs</p>
+          </motion.div>
+
+          {services.map((service, idx) => (
+            <motion.div key={service.id} initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} className="mb-4">
+
+              <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.1)' }}>
+
+                {/* Service Header */}
+                <div 
+                  onClick={() => toggleService(service.id)}
+                  style={{
+                    display: 'grid',
+                    gridTemplateColumns: idx % 2 === 0 ? '1fr 1.2fr' : '1.2fr 1fr',
+                    gap: '30px',
+                    padding: '40px',
+                    alignItems: 'center',
+                    cursor: 'pointer'
+                  }}
+                >
+                  {/* Images */}
+                  <div style={{ 
+                    order: idx % 2 === 0 ? 2 : 1,
+                    display: 'grid',
+                    gridTemplateColumns: '1fr 1fr',
+                    gap: '15px'
+                  }}>
+                    <motion.div whileHover={{ scale: 1.05 }} style={{ borderRadius: '15px', height: '200px', overflow: 'hidden' }}>
+                      <img src={service.image1} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    </motion.div>
+                    <motion.div whileHover={{ scale: 1.05 }} style={{ borderRadius: '15px', height: '200px', overflow: 'hidden' }}>
+                      <img src={service.image2} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    </motion.div>
+                  </div>
+
+                  {/* Text Content */}
+                  <div style={{ order: idx % 2 === 0 ? 1 : 2, color: 'white' }}>
+                    <div style={{ marginBottom: '10px', color: '#00AA8A' }}>{service.icon}</div>
+
+                    <h2 className="fw-bold mb-3">{service.title}</h2>
+
+                    <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginBottom: '15px' }}>
+                      <span style={{ padding: '8px 16px', background: 'rgba(0,170,138,0.2)', borderRadius: '20px', border: '1px solid rgba(0,170,138,0.3)' }}>
+                        <FaClock size={14} /> {service.duration}
+                      </span>
+                      <span style={{ padding: '8px 16px', background: 'rgba(251,210,26,0.2)', borderRadius: '20px', border: '1px solid rgba(251,210,26,0.3)' }}>
+                        <FaAward size={14} /> {service.level}
+                      </span>
+                      <span style={{ padding: '8px 16px', background: 'rgba(255,255,255,0.1)', borderRadius: '20px' }}>
+                        💰 {service.salary}
+                      </span>
+                    </div>
+
+                    <p style={{ opacity: 0.85, lineHeight: 1.7 }}>{service.description}</p>
+
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#00AA8A', fontWeight: 600 }}>
+                      View Curriculum {expandedService === service.id ? <FaChevronUp /> : <FaChevronDown />}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Expanded Content */}
+                <AnimatePresence>
+                  {expandedService === service.id && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      style={{ background: 'rgba(0,0,0,0.3)' }}
+                    >
+                      <div style={{ padding: '40px', color: 'white' }}>
+
+                        <h3 className="fw-bold mb-4" style={{ color: '#00AA8A' }}>What You Will Learn</h3>
+                        
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(250px,1fr))', gap: '15px', marginBottom: '30px' }}>
+                          {service.details.map((detail, idx) => (
+                            <motion.div 
+                              key={idx}
+                              whileHover={{ x: 5 }}
+                              style={{ background: 'rgba(255,255,255,0.05)', padding: '15px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)' }}
+                            >
+                              <FaCheckCircle size={16} style={{ color: '#00AA8A', marginRight: '8px' }} />
+                              {detail}
+                            </motion.div>
+                          ))}
+                        </div>
+
+                        {/* Certifications */}
+                        <h4 className="fw-bold mb-3" style={{ color: '#FBD21A' }}>Certifications Prepared</h4>
+                        <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginBottom: '30px' }}>
+                          {service.certifications.map((cert, idx) => (
+                            <span key={idx} style={{ padding: '10px 20px', background: 'rgba(251,210,26,0.2)', borderRadius: '25px', border: '1px solid rgba(251,210,26,0.5)' }}>
+                              <FaAward style={{ marginRight: '8px' }} /> {cert}
+                            </span>
+                          ))}
+                        </div>
+
+                        {/* Career Paths */}
+                        <h4 className="fw-bold mb-3" style={{ color: '#00AA8A' }}>Career Opportunities</h4>
+                        <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginBottom: '30px' }}>
+                          {service.careerPaths.map((career, idx) => (
+                            <span key={idx} style={{ padding: '10px 20px', background: 'rgba(0,170,138,0.2)', borderRadius: '20px', border: '1px solid rgba(0,170,138,0.3)' }}>
+                              {career}
+                            </span>
+                          ))}
+                        </div>
+
+                        
+
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+              </div>
+            </motion.div>
+          ))}
         </div>
       </section>
 
-      {/* Modal */}
-      {selectedService && (
-        <div 
-          className="modal fade show d-block" 
-          style={{ background: 'rgba(0,0,0,0.7)' }}
-          onClick={closeModal}
-        >
-          <div 
-            className="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="modal-content border-0 shadow-lg" style={{ borderRadius: '25px' }}>
-              {/* Modal Header */}
-              <div 
-                className="modal-header border-0 p-4"
-                style={{ background: category.gradient }}
-              >
-                <div className="text-white">
-                  <h3 className="modal-title fw-bold">{selectedService.title}</h3>
-                  <div className="d-flex gap-3 mt-2">
-                    <span><FaClock className="me-1" />{selectedService.duration}</span>
-                    <span><FaAward className="me-1" />{selectedService.level}</span>
-                  </div>
-                </div>
-                <button 
-                  type="button" 
-                  className="btn-close btn-close-white" 
-                  onClick={closeModal}
-                />
-              </div>
 
-              {/* Modal Body */}
-              <div className="modal-body p-4">
-                {/* Overview */}
-                <div className="mb-4">
-                  <h5 className="fw-bold mb-3 d-flex align-items-center">
-                    <FaBook className="text-primary me-2" />
-                    Course Overview
-                  </h5>
-                  <p className="text-muted lh-lg">{selectedService.fullDesc}</p>
-                </div>
+      {/* WHY CHOOSE SECTION */}
+      <section style={{ padding: '80px 20px', background: 'rgba(30,54,121,0.1)' }}>
+        <div className="container">
 
-                {/* Modules */}
-                <div className="mb-4">
-                  <h5 className="fw-bold mb-3">What You'll Learn</h5>
-                  <div className="row g-3">
-                    {selectedService.modules.map((module, idx) => (
-                      <div className="col-md-6" key={idx}>
-                        <div className="d-flex align-items-start gap-2">
-                          <FaCheckCircle className="text-success mt-1 flex-shrink-0" />
-                          <span className="text-muted">{module}</span>
-                        </div>
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="text-center mb-5">
+            <h2 className="fw-bold text-white">Why Choose ZEPFTER Medical Courses?</h2>
+            <p className="text-white" style={{ maxWidth: '700px', margin: 'auto', opacity: 0.8 }}>
+              Transform your healthcare career with industry-leading training and global opportunities.
+            </p>
+          </motion.div>
+
+          <div className="row g-4">
+            {whyChoose.map((item, idx) => (
+              <div className="col-lg-6" key={idx}>
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  whileHover={{ y: -10 }}
+                  transition={{ duration: 0.4 }}
+                  style={{ background: 'rgba(255,255,255,0.04)', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.1)', overflow: 'hidden' }}
+                >
+                  <div className="row g-0">
+                    <div className="col-md-5">
+                      <img src={item.image} alt="" style={{ width: '100%', height: '250px', objectFit: 'cover' }} />
+                    </div>
+                    <div className="col-md-7">
+                      <div style={{ padding: '30px', color: 'white' }}>
+                        <div style={{ color: '#00AA8A' }}>{item.icon}</div>
+                        <h4 className="fw-bold mt-2">{item.title}</h4>
+                        <p style={{ opacity: 0.8 }}>{item.description}</p>
                       </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Outcomes */}
-                <div className="mb-4">
-                  <h5 className="fw-bold mb-3">Learning Outcomes</h5>
-                  {selectedService.outcomes.map((outcome, idx) => (
-                    <div 
-                      key={idx} 
-                      className="d-flex align-items-start gap-2 mb-2 p-2 rounded" 
-                      style={{background: '#f8f9fa'}}
-                    >
-                      <span className="badge bg-primary">✓</span>
-                      <span className="text-muted">{outcome}</span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Career & Certifications */}
-                <div className="row g-4">
-                  <div className="col-md-6">
-                    <h5 className="fw-bold mb-3 d-flex align-items-center">
-                      <FaBriefcase className="text-primary me-2" />
-                      Career Paths
-                    </h5>
-                    <div className="d-flex flex-wrap gap-2">
-                      {selectedService.career.map((career, idx) => (
-                        <span 
-                          key={idx}
-                          className="badge"
-                          style={{
-                            background: category.gradient,
-                            color: 'white',
-                            padding: '8px 14px',
-                            fontSize: '0.85rem'
-                          }}
-                        >
-                          {career}
-                        </span>
-                      ))}
                     </div>
                   </div>
-
-                  <div className="col-md-6">
-                    <h5 className="fw-bold mb-3 d-flex align-items-center">
-                      <FaAward className="text-success me-2" />
-                      Certifications
-                    </h5>
-                    <div className="d-flex flex-wrap gap-2">
-                      {selectedService.certifications.map((cert, idx) => (
-                        <span 
-                          key={idx}
-                          className="badge bg-success"
-                          style={{ padding: '8px 14px', fontSize: '0.85rem' }}
-                        >
-                          {cert}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
+                </motion.div>
               </div>
+            ))}
+          </div>
 
-              {/* Modal Footer */}
-              <div className="modal-footer border-0 p-4">
-                <Link 
-                  to="/contact" 
-                  className="btn btn-lg fw-semibold w-100"
+        </div>
+      </section>
+
+
+      {/* --------------------------
+             FAQ SECTION
+       --------------------------- */}
+      <section style={{ padding: '80px 20px', background: 'rgba(255,255,255,0.03)' }}>
+        <div className="container">
+
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="text-center mb-5">
+            <h2 className="fw-bold text-white">Frequently Asked Questions</h2>
+            <p className="text-white" style={{ maxWidth: '700px', margin: 'auto', opacity: 0.8 }}>
+              Everything you need to know before starting your journey.
+            </p>
+          </motion.div>
+
+          <div className="accordion" style={{ maxWidth: '900px', margin: 'auto' }}>
+            {faqs.map((faq) => (
+              <motion.div
+                key={faq.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                style={{
+                  background: 'rgba(0,0,0,0.3)',
+                  borderRadius: '15px',
+                  border: '1px solid rgba(255,255,255,0.1)',
+                  marginBottom: '15px'
+                }}
+              >
+                <div
+                  onClick={() => toggleFAQ(faq.id)}
                   style={{
-                    background: category.gradient,
-                    color: 'white',
-                    border: 'none'
+                    padding: '20px',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    cursor: 'pointer',
+                    color: 'white'
                   }}
                 >
-                  Enroll in This Course
-                </Link>
-              </div>
-            </div>
+                  <span style={{ fontSize: '1.1rem', fontWeight: '600' }}>{faq.question}</span>
+                  {expandedFAQ === faq.id ? <FaChevronUp /> : <FaChevronDown />}
+                </div>
+
+                <AnimatePresence>
+                  {expandedFAQ === faq.id && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      style={{ padding: '0 20px 20px', color: '#fff', opacity: '0.9' }}
+                    >
+                      {faq.answer}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            ))}
           </div>
+
         </div>
-      )}
-    </>
+      </section>
+
+
+      
+      
+    </div>
   );
 };
 
-export default MedicalCourses;
+export default MedicalCoursesPage;
