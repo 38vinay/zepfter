@@ -10,9 +10,9 @@ import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 
 // Pages
-import Home from "./pages/Home";
+import Home from "./pages/Homes";
 import About from "./pages/About";
-import Services from "./pages/Services";
+import Services from "./pages/Servicess";
 import Contact from "./pages/Contact";
 
 // Service Category Pages
