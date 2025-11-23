@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaClock, FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitter, FaCheckCircle, FaWhatsapp, FaCalendarAlt, FaHeadset, FaUserFriends, FaRocket } from "react-icons/fa";
+import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaClock, FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitter, FaCheckCircle, FaWhatsapp, FaHeadset, FaUserFriends, FaRocket } from "react-icons/fa";
 import { FaGraduationCap, FaLaptopCode } from "react-icons/fa";
 
 
@@ -106,36 +106,7 @@ const Contact = () => {
     "Pharmaceutical Operations"
   ];
 
-  const quickActions = [
-    {
-      icon: <FaCalendarAlt size={30} />,
-      title: "Schedule a Visit",
-      description: "Book a campus tour",
-      color: "#1E3679",
-      action: "Book Now"
-    },
-    {
-      icon: <FaHeadset size={30} />,
-      title: "Talk to Counselor",
-      description: "Free career guidance",
-      color: "#00AA8A",
-      action: "Call Now"
-    },
-    {
-      icon: <FaUserFriends size={30} />,
-      title: "Attend Demo Class",
-      description: "Experience our teaching",
-      color: "#FBD21A",
-      action: "Register"
-    },
-    {
-      icon: <FaRocket size={30} />,
-      title: "Download Brochure",
-      description: "Complete course details",
-      color: "#1E3679",
-      action: "Download"
-    }
-  ];
+ 
 
   const workingHours = [
     { day: "Monday - Friday", hours: "9:00 AM - 7:00 PM" },
@@ -321,7 +292,7 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Quick Actions Section - NEW */}
+      
       
 
       {/* Contact Form & Sidebar */}
