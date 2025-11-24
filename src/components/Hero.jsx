@@ -165,8 +165,8 @@ const Home = () => {
   const industries = [
     { icon: '💊', title: 'PHARMA', color: '#1E3679' },
     { icon: '💻', title: 'INFORMATION TECHNOLOGY', color: '#1E3679' },
-    { icon: '🛒', title: 'Medical ', color: '#00AA8A' },
-    { icon: '🌾', title: 'Clinical', color: '#1E3679' }
+    { icon: '🛒', title: 'CONSUMER PRODUCTS', color: '#00AA8A' },
+    { icon: '🌾', title: 'AGRICULTURE', color: '#1E3679' }
   ];
 
   const testimonials = [
@@ -323,49 +323,164 @@ const Home = () => {
                           {slide.description}
                         </motion.p>
 
+                        {/* STUNNING ANIMATED BUTTONS */}
                         <motion.div 
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.6, delay: 1 }}
                           className="d-flex gap-2 gap-md-3 justify-content-center flex-wrap px-3"
                         >
-                          <motion.a
-                            href="/services"
-                            whileHover={!isMobile ? { scale: 1.05, boxShadow: '0 10px 30px rgba(0,170,138,0.4)' } : {}}
-                            whileTap={{ scale: 0.95 }}
-                            className="btn fw-semibold"
-                            style={{
-                              background: '#00AA8A',
-                              color: '#fff',
-                              border: 'none',
-                              borderRadius: '0',
-                              padding: isMobile ? '10px 20px' : isTablet ? '12px 30px' : '14px 40px',
-                              fontSize: isMobile ? '0.85rem' : isTablet ? '0.95rem' : '1rem',
-                              whiteSpace: 'nowrap'
-                            }}
+                          {/* Primary Button with Arrow Slide Effect */}
+                          <motion.div
+                            initial={{ opacity: 0, x: -50 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.6, delay: 1.2, type: "spring" }}
+                            style={{ position: 'relative', overflow: 'hidden' }}
                           >
-                            EXPLORE COURSES
-                          </motion.a>
+                            <motion.a
+                              href="/services"
+                              whileHover={{ scale: 1.05 }}
+                              whileTap={{ scale: 0.95 }}
+                              className="btn fw-semibold d-flex align-items-center gap-2"
+                              style={{
+                                background: '#00AA8A',
+                                color: '#fff',
+                                border: 'none',
+                                borderRadius: '0',
+                                padding: isMobile ? '10px 20px' : isTablet ? '12px 30px' : '14px 40px',
+                                fontSize: isMobile ? '0.85rem' : isTablet ? '0.95rem' : '1rem',
+                                whiteSpace: 'nowrap',
+                                position: 'relative',
+                                overflow: 'hidden'
+                              }}
+                              onMouseEnter={(e) => {
+                                const arrow = e.currentTarget.querySelector('.arrow-icon');
+                                const bg = e.currentTarget.querySelector('.btn-bg-overlay');
+                                if (arrow) {
+                                  arrow.style.transform = 'translateX(8px)';
+                                }
+                                if (bg) {
+                                  bg.style.transform = 'translateX(0)';
+                                }
+                              }}
+                              onMouseLeave={(e) => {
+                                const arrow = e.currentTarget.querySelector('.arrow-icon');
+                                const bg = e.currentTarget.querySelector('.btn-bg-overlay');
+                                if (arrow) {
+                                  arrow.style.transform = 'translateX(0)';
+                                }
+                                if (bg) {
+                                  bg.style.transform = 'translateX(-100%)';
+                                }
+                              }}
+                            >
+                              {/* Sliding Background Overlay */}
+                              <div 
+                                className="btn-bg-overlay"
+                                style={{
+                                  position: 'absolute',
+                                  top: 0,
+                                  left: 0,
+                                  width: '100%',
+                                  height: '100%',
+                                  background: '#1E3679',
+                                  transform: 'translateX(-100%)',
+                                  transition: 'transform 0.4s ease',
+                                  zIndex: 0
+                                }}
+                              />
+                              
+                              <span style={{ position: 'relative', zIndex: 1 }}>EXPLORE COURSES</span>
+                              <motion.span 
+                                className="arrow-icon"
+                                style={{ 
+                                  position: 'relative', 
+                                  zIndex: 1,
+                                  transition: 'transform 0.3s ease',
+                                  display: 'inline-block'
+                                }}
+                              >
+                                →
+                              </motion.span>
+                            </motion.a>
+                          </motion.div>
 
-                          <motion.a
-                            href="/contact"
-                            whileHover={!isMobile ? { 
-                              scale: 1.05,
-                              background: '#fff',
-                              color: '#1E3679'
-                            } : {}}
-                            whileTap={{ scale: 0.95 }}
-                            className="btn btn-outline-light fw-semibold"
-                            style={{ 
-                              borderRadius: '0', 
-                              transition: 'all 0.3s ease',
-                              padding: isMobile ? '10px 20px' : isTablet ? '12px 30px' : '14px 40px',
-                              fontSize: isMobile ? '0.85rem' : isTablet ? '0.95rem' : '1rem',
-                              whiteSpace: 'nowrap'
-                            }}
+                          {/* Secondary Button with Border Slide Effect */}
+                          <motion.div
+                            initial={{ opacity: 0, x: 50 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.6, delay: 1.4, type: "spring" }}
+                            style={{ position: 'relative', overflow: 'hidden' }}
                           >
-                            CONTACT US
-                          </motion.a>
+                            <motion.a
+                              href="/contact"
+                              whileHover={{ scale: 1.05 }}
+                              whileTap={{ scale: 0.95 }}
+                              className="btn fw-semibold d-flex align-items-center gap-2"
+                              style={{ 
+                                background: 'transparent',
+                                color: '#fff',
+                                border: '2px solid #fff',
+                                borderRadius: '0', 
+                                padding: isMobile ? '10px 20px' : isTablet ? '12px 30px' : '14px 40px',
+                                fontSize: isMobile ? '0.85rem' : isTablet ? '0.95rem' : '1rem',
+                                whiteSpace: 'nowrap',
+                                position: 'relative',
+                                overflow: 'hidden'
+                              }}
+                              onMouseEnter={(e) => {
+                                const arrow = e.currentTarget.querySelector('.arrow-icon-2');
+                                const bg = e.currentTarget.querySelector('.btn-bg-overlay-2');
+                                if (arrow) {
+                                  arrow.style.transform = 'translateX(8px)';
+                                }
+                                if (bg) {
+                                  bg.style.transform = 'translateX(0)';
+                                }
+                                e.currentTarget.style.color = '#1E3679';
+                              }}
+                              onMouseLeave={(e) => {
+                                const arrow = e.currentTarget.querySelector('.arrow-icon-2');
+                                const bg = e.currentTarget.querySelector('.btn-bg-overlay-2');
+                                if (arrow) {
+                                  arrow.style.transform = 'translateX(0)';
+                                }
+                                if (bg) {
+                                  bg.style.transform = 'translateX(-100%)';
+                                }
+                                e.currentTarget.style.color = '#fff';
+                              }}
+                            >
+                              {/* Sliding White Background */}
+                              <div 
+                                className="btn-bg-overlay-2"
+                                style={{
+                                  position: 'absolute',
+                                  top: 0,
+                                  left: 0,
+                                  width: '100%',
+                                  height: '100%',
+                                  background: '#fff',
+                                  transform: 'translateX(-100%)',
+                                  transition: 'transform 0.4s ease',
+                                  zIndex: 0
+                                }}
+                              />
+                              
+                              <span style={{ position: 'relative', zIndex: 1, transition: 'color 0.4s ease' }}>CONTACT US</span>
+                              <motion.span 
+                                className="arrow-icon-2"
+                                style={{ 
+                                  position: 'relative', 
+                                  zIndex: 1,
+                                  transition: 'transform 0.3s ease',
+                                  display: 'inline-block'
+                                }}
+                              >
+                                →
+                              </motion.span>
+                            </motion.a>
+                          </motion.div>
                         </motion.div>
                       </motion.div>
                     </div>
@@ -443,6 +558,7 @@ const Home = () => {
           )}
         </div>
       </section>
+
 
       {/* Delivering Solutions Section - Responsive */}
       <section className="section" style={{ background: '#f8f9fa', padding: isMobile ? '50px 0' : isTablet ? '70px 0' : '100px 0' }}>
