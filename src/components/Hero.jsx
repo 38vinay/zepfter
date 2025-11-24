@@ -165,8 +165,8 @@ const Home = () => {
   const industries = [
     { icon: '💊', title: 'PHARMA', color: '#1E3679' },
     { icon: '💻', title: 'INFORMATION TECHNOLOGY', color: '#1E3679' },
-    { icon: '🛒', title: 'CONSUMER PRODUCTS', color: '#00AA8A' },
-    { icon: '🌾', title: 'AGRICULTURE', color: '#1E3679' }
+    { icon: '🛒', title: 'Medical ', color: '#00AA8A' },
+    { icon: '🌾', title: 'Clinical', color: '#1E3679' }
   ];
 
   const testimonials = [

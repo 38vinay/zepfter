@@ -351,6 +351,7 @@ const About = () => {
       </section>
 
       {/* Our Values - Dark with Images */}
+     {/* Our Values - Dark with Images */}
       <section 
         className="section"
         style={{
@@ -376,21 +377,25 @@ const About = () => {
               {
                 image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=80',
                 title: 'Quality with Excellence',
+                description: 'We are committed to delivering world-class training with the highest standards of quality. Excellence is not just a goal, it\'s our promise to every student.',
                 color: '#1E3679'
               },
               {
                 image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&q=80',
                 title: 'Student Centricity',
+                description: 'Students are at the heart of everything we do. We design our programs, support systems, and teaching methods keeping your success and growth as our top priority.',
                 color: '#00AA8A'
               },
               {
                 image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80',
                 title: 'Innovation and Execution',
+                description: 'We embrace cutting-edge teaching methodologies and technology to deliver innovative learning experiences. We don\'t just plan - we execute with precision and agility.',
                 color: '#FBD21A'
               },
               {
                 image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&q=80',
                 title: 'Collaboration',
+                description: 'Together we achieve more. We foster a collaborative environment where students, trainers, and industry partners work together to create meaningful learning outcomes.',
                 color: '#1E3679'
               }
             ].map((value, idx) => (
@@ -406,6 +411,18 @@ const About = () => {
                   whileHover={{ y: -10, scale: 1.02 }}
                   className="position-relative overflow-hidden rounded-4"
                   style={{ height: '400px', cursor: 'pointer' }}
+                  onMouseEnter={(e) => {
+                    const overlay = e.currentTarget.querySelector('.value-overlay');
+                    const description = e.currentTarget.querySelector('.value-description');
+                    if (overlay) overlay.style.opacity = '0.95';
+                    if (description) description.style.opacity = '1';
+                  }}
+                  onMouseLeave={(e) => {
+                    const overlay = e.currentTarget.querySelector('.value-overlay');
+                    const description = e.currentTarget.querySelector('.value-description');
+                    if (overlay) overlay.style.opacity = '0';
+                    if (description) description.style.opacity = '0';
+                  }}
                 >
                   {/* Image */}
                   <motion.img
@@ -432,12 +449,44 @@ const About = () => {
                     }}
                   />
 
+                  {/* Hover Overlay with Description */}
+                  <div
+                    className="value-overlay"
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      background: `linear-gradient(135deg, ${value.color}F5 0%, ${value.color}E5 100%)`,
+                      opacity: 0,
+                      transition: 'opacity 0.4s ease',
+                      zIndex: 3
+                    }}
+                  />
+
                   {/* Title */}
                   <div
                     className="position-absolute bottom-0 start-0 p-4 w-100"
-                    style={{ zIndex: 2 }}
+                    style={{ zIndex: 4 }}
                   >
                     <h4 className="fw-bold text-white mb-0">{value.title}</h4>
+                  </div>
+
+                  {/* Description (shown on hover) */}
+                  <div
+                    className="value-description position-absolute top-50 start-50 translate-middle p-4 text-center"
+                    style={{
+                      opacity: 0,
+                      transition: 'opacity 0.4s ease',
+                      zIndex: 5,
+                      width: '90%'
+                    }}
+                  >
+                    <h4 className="fw-bold text-white mb-3">{value.title}</h4>
+                    <p className="text-white mb-0" style={{ fontSize: '0.95rem', lineHeight: '1.6' }}>
+                      {value.description}
+                    </p>
                   </div>
                 </motion.div>
               </motion.div>
@@ -445,7 +494,6 @@ const About = () => {
           </div>
         </div>
       </section>
-
       {/* Stats Section */}
       <section ref={statsRef} className="section" style={{ background: '#f5f5f5' }}>
         <div className="container">
