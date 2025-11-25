@@ -991,6 +991,16 @@ html {
   outline-offset: 2px;
 }
 
+/* Remove focus outline for primary navigation links (visual preference).
+   Keep focus outlines for buttons and dropdowns for accessibility. If you
+   want keyboard users to still see focus, consider using :focus-visible
+   or adding a custom focus style instead. */
+.nav-link:focus,
+.nav-link:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
 /* Badge Colors */
 .badge.bg-primary {
   background-color: var(--primary-color) !important;
