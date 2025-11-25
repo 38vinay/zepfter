@@ -139,7 +139,7 @@ const Home = () => {
   className="position-relative d-flex align-items-center justify-content-center text-center"
   style={{
     marginTop: isMobile ? "60px" : "100px",
-    height: isMobile ? "auto" : "100vh",
+    height: isMobile ? "auto" : "107vh",
     padding: isMobile ? "80px 20px" : "0",
     backgroundImage:
       "url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1920&q=80')",
@@ -333,6 +333,7 @@ const Home = () => {
         <div
           className="position-relative"
           style={{
+            marginTop:"-68px",
             height: isMobile ? "auto" : "100vh",
             minHeight: isMobile ? "600px" : "100vh",
           }}
@@ -708,11 +709,11 @@ const Home = () => {
       style={{ maxWidth: "1000px", margin: "0 auto" }}
     >
       {[
-        { title: "Medical", icon: <FaHeartbeat size={50} />, color: "#1E3679" },
-        { title: "Clinical", icon: <FaFlask size={50} />, color: "#00AA8A" },
-        { title: "Pharma", icon: <FaPills size={50} />, color: "#1E3679" },
-        { title: "IT", icon: <FaLaptopCode size={50} />, color: "#00AA8A" },
-        { title: "Training & Placement", icon: <FaUserTie size={50} />, color: "#FBD21A" },
+        { title: "Medical", icon: <FaHeartbeat size={50} />, color: "linear-gradient(135deg, #2b4ba3ff 10%, #00AA8A 100%)" },
+        { title: "Clinical", icon: <FaFlask size={50} />, color: "linear-gradient(135deg, #2548abff 100%, #00AA8A 30%)" },
+        { title: "Pharma", icon: <FaPills size={50} />, color: "linear-gradient(135deg, #2b4ba3ff 10%, #00AA8A 100%)" },
+        { title: "IT", icon: <FaLaptopCode size={50} />, color: "linear-gradient(135deg, #2548abff 100%, #00AA8A 30%)" },
+        { title: "Training & Placement", icon: <FaUserTie size={50} />, color: "linear-gradient(135deg, #2b4ba3ff 10%, #00AA8A 100%)" },
       ].map((industry, idx) => (
         <motion.div
           key={idx}

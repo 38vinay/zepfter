@@ -189,7 +189,7 @@ const Services = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              OUR <span style={{ color: '#1E3679' }}>CORE</span> <span style={{ color: '#FBD21A' }}>EXPERTISE</span>
+              OUR <span style={{ color: '#00AA8A' }}>CORE</span> <span style={{ color: '#FBD21A' }}>EXPERTISE</span>
             </motion.h2>
 
             <motion.p 
