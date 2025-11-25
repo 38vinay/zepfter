@@ -326,10 +326,10 @@ const Home = () => {
               whileHover="hover"
               animate="rest"
               style={{
-                background:
-                  "linear-gradient(135deg, #0a0a0a 0%, #1E3679 50%, #000000 100%)",
-                borderRadius: 0,
-                border: "2px solid #fff",
+                background: "linear-gradient(135deg, #00AA8A, #1E3679)",
+                
+                borderRadius: "50px",
+                border: "none",
                 padding: isMobile ? "12px 24px" : "14px 40px",
                 color: "#fff",
                 zIndex: 1,
@@ -348,7 +348,8 @@ const Home = () => {
                   left: 0,
                   width: "100%",
                   height: "100%",
-                  background: "linear-gradient(135deg, #00AA8A, #1E3679)",
+                   background:
+                  "linear-gradient(135deg, #0a0a0a 0%, #1E3679 50%, #000000 100%)",
                   zIndex: -1,
                 }}
               />
@@ -391,10 +392,9 @@ const Home = () => {
               whileHover="hover"
               animate="rest"
               style={{
-                background:
-                  "linear-gradient(135deg, #0a0a0a 0%, #1E3679 50%, #000000 100%)",
-                borderRadius: 0,
-                border: "2px solid #fff",
+                background: "linear-gradient(135deg, #00AA8A, #1E3679)",
+                borderRadius: "50px",
+                border: "none ",
                 padding: isMobile ? "12px 24px" : "14px 40px",
                 color: "#fff",
                 zIndex: 1,
@@ -413,7 +413,9 @@ const Home = () => {
                   left: 0,
                   width: "100%",
                   height: "100%",
-                  background: "linear-gradient(135deg, #00AA8A, #1E3679)",
+                  background:
+                  "linear-gradient(135deg, #0a0a0a 0%, #1E3679 50%, #000000 100%)",
+                  
                   zIndex: -1,
                 }}
               />
@@ -577,139 +579,7 @@ const Home = () => {
                         </p>
 
                         {/* CTA Buttons */}
-                        <div className="d-flex gap-3 justify-content-center flex-wrap">
-                          <motion.a
-                            href="/services"
-                            className="btn fw-semibold position-relative overflow-hidden"
-                            initial="rest"
-                            whileHover="hover"
-                            animate="rest"
-                            style={{
-                              background:
-                                "linear-gradient(135deg, #0a0a0a 0%, #1E3679 50%, #000000 100%)",
-                              borderRadius: 0,
-                              border: "2px solid #fff",
-                              padding: isMobile ? "12px 24px" : "14px 40px",
-                              color: "#fff",
-                              zIndex: 1,
-                            }}
-                          >
-                            {/* Sliding Gradient Fill Layer */}
-                            <motion.div
-                              variants={{
-                                rest: { x: "-100%" },
-                                hover: { x: 0 },
-                              }}
-                              transition={{ duration: 0.5, ease: "easeInOut" }}
-                              style={{
-                                position: "absolute",
-                                top: 0,
-                                left: 0,
-                                width: "100%",
-                                height: "100%",
-                                background:
-                                  "linear-gradient(135deg, #00AA8A, #1E3679)",
-                                zIndex: -1,
-                              }}
-                            />
-
-                            {/* Button Text */}
-                            <motion.span
-                              variants={{
-                                rest: { color: "#fff" },
-                                hover: { color: "#fff" },
-                              }}
-                              transition={{ duration: 0.3 }}
-                              className="fw-semibold"
-                              style={{ position: "relative", zIndex: 2 }}
-                            >
-                              Explore services 
-                            </motion.span>
-
-                            {/* Arrow Reveal */}
-                            <motion.span
-                              variants={{
-                                rest: { x: 0, opacity: 0.7 },
-                                hover: { x: 8, opacity: 1 },
-                              }}
-                              transition={{ duration: 0.3 }}
-                              style={{
-                                position: "relative",
-                                marginLeft: "8px",
-                                zIndex: 2,
-                                display: "inline-block",
-                              }}
-                            >
-                              →
-                            </motion.span>
-                          </motion.a>
-
-                          <motion.a
-                            href="/services"
-                            className="btn fw-semibold position-relative overflow-hidden"
-                            initial="rest"
-                            whileHover="hover"
-                            animate="rest"
-                            style={{
-                              background:
-                                "linear-gradient(135deg, #0a0a0a 0%, #1E3679 50%, #000000 100%)",
-                              borderRadius: 0,
-                              border: "2px solid #fff",
-                              padding: isMobile ? "12px 24px" : "14px 40px",
-                              color: "#fff",
-                              zIndex: 1,
-                            }}
-                          >
-                            {/* Sliding Gradient Fill Layer */}
-                            <motion.div
-                              variants={{
-                                rest: { x: "-100%" },
-                                hover: { x: 0 },
-                              }}
-                              transition={{ duration: 0.5, ease: "easeInOut" }}
-                              style={{
-                                position: "absolute",
-                                top: 0,
-                                left: 0,
-                                width: "100%",
-                                height: "100%",
-                                background:
-                                  "linear-gradient(135deg, #00AA8A, #1E3679)",
-                                zIndex: -1,
-                              }}
-                            />
-
-                            {/* Button Text */}
-                            <motion.span
-                              variants={{
-                                rest: { color: "#fff" },
-                                hover: { color: "#fff" },
-                              }}
-                              transition={{ duration: 0.3 }}
-                              className="fw-semibold"
-                              style={{ position: "relative", zIndex: 2 }}
-                            >
-                            Contact us
-                            </motion.span>
-
-                            {/* Arrow Reveal */}
-                            <motion.span
-                              variants={{
-                                rest: { x: 0, opacity: 0.7 },
-                                hover: { x: 8, opacity: 1 },
-                              }}
-                              transition={{ duration: 0.3 }}
-                              style={{
-                                position: "relative",
-                                marginLeft: "8px",
-                                zIndex: 2,
-                                display: "inline-block",
-                              }}
-                            >
-                              →
-                            </motion.span>
-                          </motion.a>
-                        </div>
+                        
                       </div>
                     </div>
                   </motion.div>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { FaBullseye, FaHandshake,  FaLightbulb, FaRocket, FaEye,  } from "react-icons/fa";
+import { FaBullseye, FaHandshake, FaLightbulb, FaRocket, FaEye, } from "react-icons/fa";
 import PageCarousel from "../components/PageCarousel";
 
 const About = () => {
@@ -22,12 +22,12 @@ const About = () => {
     const duration = 2000;
     const steps = 60;
     const stepTime = duration / steps;
-    
+
     let step = 0;
     const timer = setInterval(() => {
       step++;
       const progress = step / steps;
-      
+
       setCounters({
         students: Math.floor(targets.students * progress),
         courses: Math.floor(targets.courses * progress),
@@ -44,24 +44,25 @@ const About = () => {
   return (
     <>
       {/* Hero Section - Dark with Digital Matrix */}
-        <section 
-  style={{
-    background: 'linear-gradient(135deg, rgba(10,10,31,0.4) 0%, rgba(30,54,121,0.5) 50%, rgba(10,10,31,0.4) 100%), url("https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=800&q=80")',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat:'no-repeat',
-    backgroundAttachment: 'fixed',
-    padding: '100px 20px 80px',
-    position: 'relative',
-  }}
->
+      <section
+        style={{
+          background: 'linear-gradient(135deg, rgba(10,10,31,0.4) 0%, rgba(30,54,121,0.5) 50%, rgba(10,10,31,0.4) 100%), url("https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=800&q=80")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'fixed',
+          padding: '100px 20px 80px',
+          position: 'relative',
+          marginTop: '80px',
+        }}
+      >
         {/* Digital Matrix Background */}
         <div className="position-absolute w-100 h-100 top-0 start-0" style={{ opacity: 0.15 }}>
           {[...Array(50)].map((_, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, x: Math.random() * window.innerWidth, y: -100 }}
-              animate={{ 
+              animate={{
                 opacity: [0.2, 0.6, 0.2],
                 y: window.innerHeight + 100
               }}
@@ -89,9 +90,9 @@ const About = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            
-            
-            <motion.h1 
+
+
+            <motion.h1
               className="fw-bold mb-4"
               style={{ fontSize: 'clamp(2rem, 5vw, 4rem)' }}
               initial={{ opacity: 0, scale: 0.9 }}
@@ -125,7 +126,7 @@ const About = () => {
       <section className="section" style={{ background: '#f5f5f5' }}>
         <div className="container">
           <div className="row align-items-center g-5">
-            <motion.div 
+            <motion.div
               className="col-lg-5"
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -151,7 +152,7 @@ const About = () => {
               <h2 className="fw-bold mb-4" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: '#1E3679' }}>
                 Our Story
               </h2>
-              
+
               <p className="mb-4" style={{ fontSize: '1.1rem', color: '#666', lineHeight: '1.8' }}>
                 ZEPFTER is a global education-focused company specializing in Medical, Clinical, and IT training domains (pharmaceutical, biotech, and technology industries). Our commitment is to offer platforms & products for building careers and creating future-ready professionals in the training sector.
               </p>
@@ -165,7 +166,7 @@ const About = () => {
       </section>
 
       {/* Vision & Mission - Dark Section */}
-      <section 
+      <section
         className="section position-relative overflow-hidden"
         style={{
           background: 'linear-gradient(135deg, #000000 0%, #1E3679 100%)',
@@ -265,11 +266,11 @@ const About = () => {
                 <p className="mb-4" style={{ fontSize: '1.1rem', lineHeight: '1.8' }}>
                   We, at ZEPFTER, are a team of Top Talented Professionals, driven to build incredible training programs that help our students navigate their way through the entire career journey – with confidence!
                 </p>
-                
+
                 <p className="mb-4" style={{ fontSize: '1.1rem', lineHeight: '1.8' }}>
                   We facilitate students to transform into future-proof professionals using industry-standard cutting-edge knowledge fuelled by ideal levels of employability and efficiency thereby ensuring career growth and success along with enhanced skill development.
                 </p>
-                
+
                 <p className="mb-0" style={{ fontSize: '1.1rem', lineHeight: '1.8' }}>
                   We optimize learning and innovation to offer Student Centric programs with domain expertise. Our solutions translate to systems that are stable, secure and scalable to accomplish career goals.
                 </p>
@@ -353,8 +354,8 @@ const About = () => {
       </section>
 
       {/* Our Values - Dark with Images */}
-     {/* Our Values - Dark with Images */}
-      <section 
+      {/* Our Values - Dark with Images */}
+      <section
         className="section"
         style={{
           background: 'linear-gradient(135deg, #0a0a0a 0%, #1E3679 50%, #000000 100%)',
@@ -438,7 +439,7 @@ const About = () => {
                       objectFit: 'cover'
                     }}
                   />
-                  
+
                   {/* Gradient Overlay */}
                   <div
                     style={{
@@ -533,7 +534,7 @@ const About = () => {
       </section>
 
       {/* Testimonials Carousel */}
-      <PageCarousel 
+      <PageCarousel
         slides={[
           {
             type: 'testimonial',
@@ -600,7 +601,7 @@ const About = () => {
         autoPlayDelay={5000}
       />
 
-    
+
     </>
   );
 };
