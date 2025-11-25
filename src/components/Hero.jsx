@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaChevronDown, FaHeartbeat, FaFlask, FaLaptopCode, FaPills, FaUserTie, FaBriefcase, FaArrowRight } from "react-icons/fa";
+import PageCarousel from "./PageCarousel";
 
 // Import hero images
 const hero1 = "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1920&q=80";
 const hero2 = "https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=1920&q=80";
 const hero3 = "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1920&q=80";
-
-// Import testimonial images
-const user1 = "https://i.pravatar.cc/150?img=12";
-const user2 = "https://i.pravatar.cc/150?img=45";
-const user3 = "https://i.pravatar.cc/150?img=33";
 
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -159,29 +155,6 @@ const Home = () => {
       desc: "Real-world experience through internships in medical, clinical, IT, and pharmaceutical domains.",
       color: "#00AA8A",
       link: "/services/internship-programs"
-    }
-  ];
-
- 
-
-  const testimonials = [
-    {
-      image: user1,
-      name: "Amit Sharma",
-      role: "Medical Coding Graduate",
-      text: "ZEPFTER has changed my career! The trainers are extremely skilled, the course content is industry-focused, and the placement support is amazing."
-    },
-    {
-      image: user2,
-      name: "Priya Nair",
-      role: "Clinical Research Student",
-      text: "The Clinical Research program helped me understand real-world applications. Amazing training and extremely helpful faculty!"
-    },
-    {
-      image: user3,
-      name: "Rahul Verma",
-      role: "IT & Technology Student",
-      text: "I joined the Data Science program and got placed quickly. Highly practical training and hands-on experience!"
     }
   ];
 
@@ -884,172 +857,73 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Testimonials - Responsive */}
-      <section 
-        className="section" 
-        style={{ 
-          background: '#f8f9fa',
-          padding: isMobile ? '50px 0' : isTablet ? '70px 0' : '100px 0'
-        }}
-      >
-        <div className="container px-3 px-md-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-4 mb-md-5"
-          >
-            <h2 
-              className="fw-bold mb-3 mb-md-4"
-              style={{ 
-                fontSize: isMobile ? '1.75rem' : isTablet ? '2.5rem' : 'clamp(2rem, 4vw, 3.5rem)',
-                letterSpacing: isMobile ? '1px' : '2px',
-                color: '#1E3679'
-              }}
-            >
-              WHAT OUR STUDENTS SAY
-            </h2>
-            <p 
-              className="text-muted"
-              style={{ fontSize: isMobile ? '0.95rem' : isTablet ? '1rem' : '1.25rem' }}
-            >
-              Success stories from our alumni
-            </p>
-          </motion.div>
-
-          <div className="row g-3 g-md-4">
-            {testimonials.map((testimonial, idx) => (
-              <div className="col-12 col-md-6 col-lg-4" key={idx}>
-                <motion.div
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: idx * 0.2 }}
-                  whileHover={!isMobile ? { 
-                    y: -10,
-                    boxShadow: `0 20px 40px ${
-                      idx === 0 ? '#1E3679' : idx === 1 ? '#00AA8A' : '#FBD21A'
-                    }30`
-                  } : {}}
-                  style={{ 
-                    background: 'white',
-                    borderLeft: `4px solid ${idx === 0 ? '#1E3679' : idx === 1 ? '#00AA8A' : '#FBD21A'}`,
-                    boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
-                    borderRadius: '15px',
-                    padding: isMobile ? '20px' : isTablet ? '25px' : '30px',
-                    cursor: 'pointer',
-                    position: 'relative',
-                    overflow: 'hidden'
-                  }}
-                >
-                  {/* Quote Icon Background */}
-                  <div 
-                    style={{
-                      position: 'absolute',
-                      top: '-20px',
-                      right: '-20px',
-                      fontSize: isMobile ? '60px' : isTablet ? '80px' : '100px',
-                      color: idx === 0 ? '#1E3679' : idx === 1 ? '#00AA8A' : '#FBD21A',
-                      opacity: 0.05,
-                      fontFamily: 'Georgia, serif',
-                      fontWeight: 'bold'
-                    }}
-                  >
-                    "
-                  </div>
-
-                  {/* Profile Section */}
-                  <div 
-                    className="d-flex align-items-center gap-3 mb-3 mb-md-4" 
-                    style={{ position: 'relative', zIndex: 1 }}
-                  >
-                    <motion.img
-                      whileHover={!isMobile ? { scale: 1.1, rotate: 5 } : {}}
-                      transition={{ duration: 0.3 }}
-                      src={testimonial.image}
-                      alt={testimonial.name}
-                      style={{
-                        width: isMobile ? '60px' : isTablet ? '65px' : '70px',
-                        height: isMobile ? '60px' : isTablet ? '65px' : '70px',
-                        borderRadius: '50%',
-                        objectFit: 'cover',
-                        border: `3px solid ${idx === 0 ? '#1E3679' : idx === 1 ? '#00AA8A' : '#FBD21A'}`,
-                        boxShadow: `0 5px 15px ${idx === 0 ? '#1E3679' : idx === 1 ? '#00AA8A' : '#FBD21A'}40`
-                      }}
-                    />
-                    <div className="text-start">
-                      <h5 
-                        className="fw-bold mb-1" 
-                        style={{ 
-                          color: idx === 0 ? '#1E3679' : idx === 1 ? '#00AA8A' : '#FBD21A',
-                          fontSize: isMobile ? '1rem' : isTablet ? '1.1rem' : '1.25rem'
-                        }}
-                      >
-                        {testimonial.name}
-                      </h5>
-                      <p 
-                        className="text-muted mb-0" 
-                        style={{ fontSize: isMobile ? '0.8rem' : '0.85rem' }}
-                      >
-                        {testimonial.role}
-                      </p>
-                      <p 
-                        className="mb-0" 
-                        style={{ 
-                          color: idx === 0 ? '#1E3679' : idx === 1 ? '#00AA8A' : '#FBD21A', 
-                          fontWeight: '600',
-                          fontSize: isMobile ? '0.75rem' : '0.85rem'
-                        }}
-                      >
-                        @ {idx === 0 ? 'Max Healthcare' : idx === 1 ? 'Quintiles IMS' : 'Tech Mahindra'}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Star Rating */}
-                  <div 
-                    className="mb-3" 
-                    style={{ 
-                      color: idx === 0 ? '#1E3679' : idx === 1 ? '#00AA8A' : '#1E3679', 
-                      position: 'relative', 
-                      zIndex: 1,
-                      fontSize: isMobile ? '0.9rem' : '1rem'
-                    }}
-                  >
-                    {[...Array(5)].map((_, i) => (
-                      <motion.span
-                        key={i}
-                        initial={{ opacity: 0, scale: 0 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: idx * 0.2 + i * 0.1 }}
-                      >
-                        ⭐
-                      </motion.span>
-                    ))}
-                  </div>
-
-                  {/* Testimonial Text */}
-                  <p 
-                    className="mb-0"
-                    style={{
-                      fontSize: isMobile ? '0.85rem' : isTablet ? '0.95rem' : '1rem',
-                      lineHeight: '1.7',
-                      color: '#666',
-                      fontStyle: 'italic',
-                      position: 'relative',
-                      zIndex: 1
-                    }}
-                  >
-                    "{testimonial.text}"
-                  </p>
-                </motion.div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Testimonials Carousel - Before CTA */}
+      <PageCarousel 
+        slides={[
+          {
+            type: 'testimonial',
+            title: 'What Our Students Say',
+            subtitle: 'Success stories from our alumni',
+            name: 'Amit Sharma',
+            role: 'Medical Coding Graduate',
+            image: 'https://i.pravatar.cc/150?img=12',
+            text: 'ZEPFTER has changed my career! The trainers are extremely skilled, the course content is industry-focused, and the placement support is amazing.',
+            color: '#1E3679'
+          },
+          {
+            type: 'testimonial',
+            title: 'What Our Students Say',
+            subtitle: 'Success stories from our alumni',
+            name: 'Priya Nair',
+            role: 'Clinical Research Student',
+            image: 'https://i.pravatar.cc/150?img=45',
+            text: 'The Clinical Research program helped me understand real-world applications. Amazing training and extremely helpful faculty!',
+            color: '#1E3679'
+          },
+          {
+            type: 'testimonial',
+            title: 'What Our Students Say',
+            subtitle: 'Success stories from our alumni',
+            name: 'Rahul Verma',
+            role: 'IT & Technology Student',
+            image: 'https://i.pravatar.cc/150?img=33',
+            text: 'I joined the Data Science program and got placed quickly. Highly practical training and hands-on experience!',
+            color: '#1E3679'
+          },
+          {
+            type: 'testimonial',
+            title: 'What Our Students Say',
+            subtitle: 'Success stories from our alumni',
+            name: 'Sneha Gupta',
+            role: 'Pharmaceutical QA Graduate',
+            image: 'https://i.pravatar.cc/150?img=22',
+            text: 'The pharmaceutical quality assurance course gave me the skills to land a job at a top pharmaceutical company. Excellent mentorship!',
+            color: '#1E3679'
+          },
+          {
+            type: 'testimonial',
+            title: 'What Our Students Say',
+            subtitle: 'Success stories from our alumni',
+            name: 'Arjun Singh',
+            role: 'IT Professional',
+            image: 'https://i.pravatar.cc/150?img=28',
+            text: 'The comprehensive IT services training helped me transition into cloud computing. The instructors were incredibly supportive throughout.',
+            color: '#1E3679'
+          },
+          {
+            type: 'testimonial',
+            title: 'What Our Students Say',
+            subtitle: 'Success stories from our alumni',
+            name: 'Divya Patel',
+            role: 'Medical Affairs Associate',
+            image: 'https://i.pravatar.cc/150?img=50',
+            text: 'Outstanding medical affairs training! The real-world case studies and industry connections made all the difference in my job search.',
+            color: '#1E3679'
+          }
+        ]}
+        autoPlay={true}
+        autoPlayDelay={5000}
+      />
 
       {/* CTA Section - Responsive */}
       <motion.section 
