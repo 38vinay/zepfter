@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaChevronDown, FaHeartbeat, FaFlask, FaLaptopCode, FaPills, FaUserTie, FaBriefcase, FaArrowRight } from "react-icons/fa";
+import {  FaHeartbeat, FaFlask, FaLaptopCode, FaPills, FaUserTie, FaBriefcase, FaArrowRight } from "react-icons/fa";
 import PageCarousel from "./PageCarousel";
 
 // Hero images
@@ -56,7 +56,7 @@ const Home = () => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 6000);
     return () => clearInterval(timer);
-  }, []);
+  }, [slides.length]);
 
   // Counters
   useEffect(() => {

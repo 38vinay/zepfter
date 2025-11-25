@@ -1,28 +1,38 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaChevronLeft, FaChevronRight, FaCircle } from "react-icons/fa";
+import { FaChevronLeft, FaChevronRight,  } from "react-icons/fa";
 
 const PageCarousel = ({ slides, autoPlay = true, autoPlayDelay = 5000 }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlay, setIsAutoPlay] = useState(autoPlay);
 
+  // If the carousel is used for testimonials, group them into pairs
+  const isTestimonialMode = slides[0]?.type === 'testimonial';
+  const groupedSlides = isTestimonialMode
+    ? slides.reduce((acc, cur, idx) => {
+        if (idx % 2 === 0) acc.push([cur]);
+        else acc[acc.length - 1].push(cur);
+        return acc;
+      }, [])
+    : slides.map(s => [s]);
+
   useEffect(() => {
     if (!isAutoPlay) return;
 
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
+      setCurrentSlide((prev) => (prev + 1) % groupedSlides.length);
     }, autoPlayDelay);
 
     return () => clearInterval(timer);
-  }, [isAutoPlay, slides.length, autoPlayDelay]);
+  }, [isAutoPlay, groupedSlides.length, autoPlayDelay]);
 
   const handlePrevious = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+    setCurrentSlide((prev) => (prev - 1 + groupedSlides.length) % groupedSlides.length);
     setIsAutoPlay(false);
   };
 
   const handleNext = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
+    setCurrentSlide((prev) => (prev + 1) % groupedSlides.length);
     setIsAutoPlay(false);
   };
 
@@ -41,7 +51,7 @@ const PageCarousel = ({ slides, autoPlay = true, autoPlayDelay = 5000 }) => {
     }
   };
 
-  const slide = slides[currentSlide];
+  const slide = groupedSlides[currentSlide];
   const firstSlideColor = slides[0]?.color || '#1E3679';
 
   return (
@@ -62,9 +72,9 @@ const PageCarousel = ({ slides, autoPlay = true, autoPlayDelay = 5000 }) => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="fw-bold display-5 mb-3" style={{ color: '#1E3679' }}>
-            {slide.title}
+            {slide[0]?.title}
           </h2>
-          <p className="text-muted fs-5">{slide.subtitle}</p>
+          <p className="text-muted fs-5">{slide[0]?.subtitle}</p>
         </motion.div>
 
         {/* Main Carousel Container */}
@@ -97,95 +107,78 @@ const PageCarousel = ({ slides, autoPlay = true, autoPlayDelay = 5000 }) => {
                   height: '100%'
                 }}
               >
-                {slide.type === 'testimonial' ? (
-                  // Testimonial Card
-                  <div 
-                    className="mx-auto text-center"
+                {isTestimonialMode ? (
+                  // Two testimonial cards per slide (or one if odd)
+                  <div
+                    className="mx-auto"
                     style={{
-                      maxWidth: '700px',
+                      maxWidth: '1200px',
                       paddingBottom: '40px'
                     }}
                   >
-                    {/* Card */}
-                    <motion.div
-                      className="glass-card"
+                    <div
                       style={{
-                        background: 'rgba(255, 255, 255, 0.9)',
-                        backdropFilter: 'blur(15px)',
-                        borderRadius: '25px',
-                        padding: '40px',
-                        border: '1px solid rgba(30, 54, 121, 0.1)',
-                        position: 'relative',
-                        overflow: 'hidden'
-                      }}
-                      whileHover={{ 
-                        y: -10,
-                        boxShadow: '0 30px 60px rgba(30, 54, 121, 0.15)',
-                        transition: { duration: 0.3 }
+                        display: 'flex',
+                        gap: '30px',
+                        justifyContent: 'center',
+                        alignItems: 'stretch',
+                        flexWrap: 'wrap'
                       }}
                     >
-                      {/* Profile Image */}
-                      <motion.img 
-                        src={slide.image} 
-                        alt={slide.name}
-                        className="testimonial-img"
-                        style={{
-                          width: '100px',
-                          height: '100px',
-                          objectFit: 'cover',
-                          borderRadius: '50%',
-                          border: `4px solid ${slide.color || '#FBD21A'}`,
-                          boxShadow: '0 8px 20px rgba(30, 54, 121, 0.15)',
-                          marginBottom: '20px'
-                        }}
-                        whileHover={{
-                          scale: 1.1,
-                          rotate: 5
-                        }}
-                      />
+                      {slide.map((item, idx) => (
+                        <motion.div
+                          key={idx}
+                          className="glass-card text-center"
+                          style={{
+                            background: 'rgba(255, 255, 255, 0.9)',
+                            backdropFilter: 'blur(15px)',
+                            borderRadius: '25px',
+                            padding: '40px',
+                            border: '1px solid rgba(30, 54, 121, 0.1)',
+                            position: 'relative',
+                            overflow: 'hidden',
+                            flex: '0 0 48%',
+                            minWidth: '280px'
+                          }}
+                          whileHover={{
+                            y: -10,
+                            boxShadow: '0 30px 60px rgba(30, 54, 121, 0.15)',
+                            transition: { duration: 0.3 }
+                          }}
+                        >
+                          <motion.img
+                            src={item.image}
+                            alt={item.name}
+                            className="testimonial-img"
+                            style={{
+                              width: '100px',
+                              height: '100px',
+                              objectFit: 'cover',
+                              borderRadius: '50%',
+                              border: `4px solid ${item.color || '#FBD21A'}`,
+                              boxShadow: '0 8px 20px rgba(30, 54, 121, 0.15)',
+                              marginBottom: '20px'
+                            }}
+                            whileHover={{ scale: 1.1, rotate: 5 }}
+                          />
 
-                      {/* Name and Title */}
-                      <h5 
-                        className="fw-bold mt-3"
-                        style={{ color: slide.color || '#1E3679' }}
-                      >
-                        {slide.name}
-                      </h5>
-                      <p className="text-muted mb-2" style={{ fontSize: '0.9rem' }}>
-                        {slide.role}
-                      </p>
+                          <h5 className="fw-bold mt-3" style={{ color: item.color || '#1E3679' }}>
+                            {item.name}
+                          </h5>
+                          <p className="text-muted mb-2" style={{ fontSize: '0.9rem' }}>{item.role}</p>
 
-                      {/* Stars */}
-                      <div 
-                        className="text-warning mb-3"
-                        style={{ fontSize: '1.2rem' }}
-                      >
-                        {[...Array(5)].map((_, i) => (
-                          <motion.span 
-                            key={i}
-                            initial={{ scale: 0 }}
-                            animate={{ scale: 1 }}
-                            transition={{ delay: i * 0.1 }}
-                          >
-                            ⭐
-                          </motion.span>
-                        ))}
-                      </div>
+                          <div className="text-warning mb-3" style={{ fontSize: '1.2rem' }}>
+                            {[...Array(5)].map((_, i) => (
+                              <motion.span key={i} initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: i * 0.1 }}>⭐</motion.span>
+                            ))}
+                          </div>
 
-                      {/* Testimonial Text */}
-                      <p 
-                        className="testimonial-text"
-                        style={{
-                          fontStyle: 'italic',
-                          marginTop: '20px',
-                          color: '#333',
-                          lineHeight: '1.8',
-                          fontSize: '1rem'
-                        }}
-                      >
-                        "{slide.text}"
-                      </p>
-                    </motion.div>
+                          <p className="testimonial-text" style={{ fontStyle: 'italic', marginTop: '20px', color: '#333', lineHeight: '1.8', fontSize: '1rem' }}>
+                            "{item.text}"
+                          </p>
+                        </motion.div>
+                      ))}
+                    </div>
                   </div>
                 ) : (
                   // Page/Content Card
@@ -351,7 +344,7 @@ const PageCarousel = ({ slides, autoPlay = true, autoPlayDelay = 5000 }) => {
           className="d-flex justify-content-center gap-2 mt-5"
           style={{ position: 'relative', zIndex: 5 }}
         >
-          {slides.map((_, idx) => (
+          {groupedSlides.map((_, idx) => (
             <motion.button
               key={idx}
               onClick={() => handleDotClick(idx)}
@@ -387,7 +380,7 @@ const PageCarousel = ({ slides, autoPlay = true, autoPlayDelay = 5000 }) => {
             letterSpacing: '1px'
           }}
         >
-          {currentSlide + 1} / {slides.length}
+          {currentSlide + 1} / {groupedSlides.length}
         </div>
       </div>
     </section>
