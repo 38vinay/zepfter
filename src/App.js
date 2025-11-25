@@ -22,6 +22,8 @@ import ITServices from "./pages/ITServices";
 import PharmaceuticalSkills from "./pages/PharmaceuticalSkills";
 import TrainingPlacement from "./pages/TrainingPlacement";
 import InternshipPrograms from "./pages/InternshipPrograms";
+import Terms from "./pages/Terms";
+import Privacy from "./pages/Privacy";
 
 const App = () => {
   useEffect(() => {
@@ -43,6 +45,8 @@ const App = () => {
         <Route path="/services/training-placement" element={<TrainingPlacement />} />
         <Route path="/services/internship-programs" element={<InternshipPrograms />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/privacy" element={<Privacy />} />
       </Routes>
       <Footer />
     </Router>

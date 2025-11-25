@@ -956,6 +956,17 @@ html {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* Footer Legal links styling */
+.footer-section .footer-links a {
+  color: rgba(255,255,255,0.9);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-section .footer-links a:hover {
+  color: var(--secondary-color);
+}
+
 /* Alert Animations */
 .alert {
   animation: slideInDown 0.4s ease;

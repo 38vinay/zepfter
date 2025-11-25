@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="row g-4">
 
           {/* ABOUT */}
-          <div className="col-md-4">
+          <div className="col-md-3">
             <h4 className="fw-bold">ZEPFTER</h4>
             <p className="mt-3 text-light opacity-75">
               A leading training institute offering world-class programs in
@@ -42,7 +42,7 @@ const Footer = () => {
           </div>
 
           {/* COURSES */}
-          <div className="col-md-3">
+          <div className="col-md-2">
             <h5 className="fw-bold mb-3">Top Courses</h5>
             <ul className="list-unstyled footer-links">
               <li><a href="/services">Medical Coding</a></li>
@@ -50,6 +50,15 @@ const Footer = () => {
               <li><a href="/services">Data Science</a></li>
               <li><a href="/services">AI & Machine Learning</a></li>
               <li><a href="/services">Web Development</a></li>
+            </ul>
+          </div>
+
+          {/* LEGAL */}
+          <div className="col-md-2">
+            <h5 className="fw-bold mb-3">Legal</h5>
+            <ul className="list-unstyled footer-links">
+              <li><a href="/terms">Terms &amp; Conditions</a></li>
+              <li><a href="/privacy">Privacy Policy</a></li>
             </ul>
           </div>
 
