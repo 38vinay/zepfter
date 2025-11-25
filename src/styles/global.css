@@ -1492,6 +1492,19 @@ html {
   .carousel-indicators {
     bottom: -40px;
   }
+  /* Ensure page carousel testimonial cards are full-width and readable on phones */
+  .page-carousel-section .glass-card,
+  .page-carousel-section .testimonial-card {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    padding: 20px !important;
+    margin: 0 auto 16px auto !important;
+  }
+
+  .page-carousel-section .testimonial-img {
+    width: 80px !important;
+    height: 80px !important;
+  }
 }
 
 /* Modal Responsive */

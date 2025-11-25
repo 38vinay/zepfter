@@ -5,16 +5,29 @@ import { FaChevronLeft, FaChevronRight,  } from "react-icons/fa";
 const PageCarousel = ({ slides, autoPlay = true, autoPlayDelay = 5000 }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlay, setIsAutoPlay] = useState(autoPlay);
+  const [isMobile, setIsMobile] = useState(false);
 
-  // If the carousel is used for testimonials, group them into pairs
+  // Detect mobile to change layout (show single testimonial per slide on small screens)
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
+  // If the carousel is used for testimonials, group them into pairs on desktop,
+  // but show single per slide on mobile for better readability.
   const isTestimonialMode = slides[0]?.type === 'testimonial';
-  const groupedSlides = isTestimonialMode
-    ? slides.reduce((acc, cur, idx) => {
-        if (idx % 2 === 0) acc.push([cur]);
-        else acc[acc.length - 1].push(cur);
-        return acc;
-      }, [])
-    : slides.map(s => [s]);
+  const groupedSlides = (() => {
+    if (!isTestimonialMode) return slides.map((s) => [s]);
+    if (isMobile) return slides.map((s) => [s]);
+    // desktop: group into pairs
+    return slides.reduce((acc, cur, idx) => {
+      if (idx % 2 === 0) acc.push([cur]);
+      else acc[acc.length - 1].push(cur);
+      return acc;
+    }, []);
+  })();
 
   useEffect(() => {
     if (!isAutoPlay) return;
@@ -25,6 +38,12 @@ const PageCarousel = ({ slides, autoPlay = true, autoPlayDelay = 5000 }) => {
 
     return () => clearInterval(timer);
   }, [isAutoPlay, groupedSlides.length, autoPlayDelay]);
+
+  // If groupedSlides length changes (e.g., responsive change), ensure currentSlide is valid
+  // Use functional update so we don't reference `currentSlide` in the dependency array
+  useEffect(() => {
+    setCurrentSlide((prev) => (prev >= groupedSlides.length ? 0 : prev));
+  }, [groupedSlides.length]);
 
   const handlePrevious = () => {
     setCurrentSlide((prev) => (prev - 1 + groupedSlides.length) % groupedSlides.length);
@@ -133,12 +152,12 @@ const PageCarousel = ({ slides, autoPlay = true, autoPlayDelay = 5000 }) => {
                             background: 'rgba(255, 255, 255, 0.9)',
                             backdropFilter: 'blur(15px)',
                             borderRadius: '25px',
-                            padding: '40px',
+                            padding: isMobile ? '24px' : '40px',
                             border: '1px solid rgba(30, 54, 121, 0.1)',
                             position: 'relative',
                             overflow: 'hidden',
-                            flex: '0 0 48%',
-                            minWidth: '280px'
+                            flex: isMobile ? '0 0 100%' : '0 0 48%',
+                            minWidth: isMobile ? '100%' : '280px'
                           }}
                           whileHover={{
                             y: -10,
@@ -151,29 +170,29 @@ const PageCarousel = ({ slides, autoPlay = true, autoPlayDelay = 5000 }) => {
                             alt={item.name}
                             className="testimonial-img"
                             style={{
-                              width: '100px',
-                              height: '100px',
+                              width: isMobile ? '80px' : '100px',
+                              height: isMobile ? '80px' : '100px',
                               objectFit: 'cover',
                               borderRadius: '50%',
                               border: `4px solid ${item.color || '#FBD21A'}`,
                               boxShadow: '0 8px 20px rgba(30, 54, 121, 0.15)',
-                              marginBottom: '20px'
+                              marginBottom: isMobile ? '12px' : '20px'
                             }}
                             whileHover={{ scale: 1.1, rotate: 5 }}
                           />
 
-                          <h5 className="fw-bold mt-3" style={{ color: item.color || '#1E3679' }}>
+                          <h5 className="fw-bold mt-3" style={{ color: item.color || '#1E3679', fontSize: isMobile ? '1rem' : undefined }}>
                             {item.name}
                           </h5>
-                          <p className="text-muted mb-2" style={{ fontSize: '0.9rem' }}>{item.role}</p>
+                          <p className="text-muted mb-2" style={{ fontSize: isMobile ? '0.85rem' : '0.9rem' }}>{item.role}</p>
 
-                          <div className="text-warning mb-3" style={{ fontSize: '1.2rem' }}>
+                          <div className="text-warning mb-3" style={{ fontSize: isMobile ? '1rem' : '1.2rem' }}>
                             {[...Array(5)].map((_, i) => (
                               <motion.span key={i} initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: i * 0.1 }}>⭐</motion.span>
                             ))}
                           </div>
 
-                          <p className="testimonial-text" style={{ fontStyle: 'italic', marginTop: '20px', color: '#333', lineHeight: '1.8', fontSize: '1rem' }}>
+                          <p className="testimonial-text" style={{ fontStyle: 'italic', marginTop: '12px', color: '#333', lineHeight: '1.6', fontSize: isMobile ? '0.95rem' : '1rem' }}>
                             "{item.text}"
                           </p>
                         </motion.div>
@@ -328,12 +347,7 @@ const PageCarousel = ({ slides, autoPlay = true, autoPlayDelay = 5000 }) => {
           <style>{`
             @media (max-width: 768px) {
               .carousel-control-btn {
-                width: 40px !important;
-                height: 40px !important;
-                left: 10px !important;
-              }
-              .carousel-control-next {
-                right: 10px !important;
+                display: none !important;
               }
             }
           `}</style>
