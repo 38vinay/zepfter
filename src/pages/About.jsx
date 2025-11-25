@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { FaBullseye, FaHandshake,  FaLightbulb, FaRocket, FaEye,  } from "react-icons/fa";
+import PageCarousel from "../components/PageCarousel";
 
 const About = () => {
   const [counters, setCounters] = useState({
@@ -531,115 +532,73 @@ const About = () => {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="section" style={{ background: '#fff' }}>
-        <div className="container">
-          <motion.div 
-            className="text-center mb-5"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="fw-bold display-5 mb-3" style={{ color: '#1E3679' }}>What Our Students Say</h2>
-            <p className="text-muted fs-5">Success stories from our alumni</p>
-          </motion.div>
-
-          <div className="row g-4">
-            {[
-              {
-                name: "Amit Sharma",
-                role: "Medical Coding Graduate",
-                image: "https://i.pravatar.cc/150?img=12",
-                text: "ZEPFTER has changed my career! The trainers are extremely skilled, the course content is industry-focused, and the placement support is amazing.",
-                company: "Max Healthcare",
-                color: "#1E3679"
-              },
-              {
-                name: "Priya Nair",
-                role: "Clinical Research Student",
-                image: "https://i.pravatar.cc/150?img=45",
-                text: "The Clinical Research program helped me understand real-world applications. Amazing training and extremely helpful faculty!",
-                company: "Quintiles IMS",
-                color: "#00AA8A"
-              },
-              {
-                name: "Rahul Verma",
-                role: "IT & Technology Student",
-                image: "https://i.pravatar.cc/150?img=33",
-                text: "I joined the Data Science program and got placed quickly. Highly practical training and hands-on experience!",
-                company: "Tech Mahindra",
-                color: "#FBD21A"
-              }
-            ].map((testimonial, idx) => (
-              <div className="col-lg-4" key={idx}>
-                <motion.div
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: idx * 0.2 }}
-                  whileHover={{ y: -10, boxShadow: `0 20px 40px ${testimonial.color}30` }}
-                  className="p-4 h-100 rounded-4"
-                  style={{
-                    background: 'white',
-                    borderLeft: `4px solid ${testimonial.color}`,
-                    boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
-                    cursor: 'pointer',
-                    position: 'relative',
-                    overflow: 'hidden'
-                  }}
-                >
-                  <div 
-                    style={{
-                      position: 'absolute',
-                      top: '-20px',
-                      right: '-20px',
-                      fontSize: '100px',
-                      color: testimonial.color,
-                      opacity: 0.05,
-                      fontFamily: 'Georgia, serif'
-                    }}
-                  >
-                    "
-                  </div>
-
-                  <div className="d-flex align-items-center gap-3 mb-4" style={{ position: 'relative', zIndex: 1 }}>
-                    <motion.img
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      src={testimonial.image}
-                      alt={testimonial.name}
-                      style={{
-                        width: '70px',
-                        height: '70px',
-                        borderRadius: '50%',
-                        objectFit: 'cover',
-                        border: `3px solid ${testimonial.color}`
-                      }}
-                    />
-                    <div className="text-start">
-                      <h5 className="fw-bold mb-1" style={{ color: testimonial.color }}>{testimonial.name}</h5>
-                      <p className="text-muted mb-0 small">{testimonial.role}</p>
-                      <p className="small mb-0" style={{ color: testimonial.color, fontWeight: '600' }}>
-                        @ {testimonial.company}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="mb-3" style={{ color: testimonial.color }}>
-                    {[...Array(5)].map((_, i) => (
-                      <motion.span key={i} initial={{ opacity: 0, scale: 0 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: idx * 0.2 + i * 0.1 }}>⭐</motion.span>
-                    ))}
-                  </div>
-
-                  <p className="mb-0" style={{ fontSize: '1rem', lineHeight: '1.7', color: '#666', fontStyle: 'italic', position: 'relative', zIndex: 1 }}>
-                    "{testimonial.text}"
-                  </p>
-                </motion.div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Testimonials Carousel */}
+      <PageCarousel 
+        slides={[
+          {
+            type: 'testimonial',
+            title: 'What Our Students Say',
+            subtitle: 'Success stories from our alumni',
+            name: 'Amit Sharma',
+            role: 'Medical Coding Graduate',
+            image: 'https://i.pravatar.cc/150?img=12',
+            text: 'ZEPFTER has changed my career! The trainers are extremely skilled, the course content is industry-focused, and the placement support is amazing.',
+            color: '#1E3679'
+          },
+          {
+            type: 'testimonial',
+            title: 'What Our Students Say',
+            subtitle: 'Success stories from our alumni',
+            name: 'Priya Nair',
+            role: 'Clinical Research Student',
+            image: 'https://i.pravatar.cc/150?img=45',
+            text: 'The Clinical Research program helped me understand real-world applications. Amazing training and extremely helpful faculty!',
+            color: '#1E3679'
+          },
+          {
+            type: 'testimonial',
+            title: 'What Our Students Say',
+            subtitle: 'Success stories from our alumni',
+            name: 'Rahul Verma',
+            role: 'IT & Technology Student',
+            image: 'https://i.pravatar.cc/150?img=33',
+            text: 'I joined the Data Science program and got placed quickly. Highly practical training and hands-on experience!',
+            color: '#1E3679'
+          },
+          {
+            type: 'testimonial',
+            title: 'What Our Students Say',
+            subtitle: 'Success stories from our alumni',
+            name: 'Sneha Gupta',
+            role: 'Pharmaceutical QA Graduate',
+            image: 'https://i.pravatar.cc/150?img=22',
+            text: 'The pharmaceutical quality assurance course gave me the skills to land a job at a top pharmaceutical company. Excellent mentorship!',
+            color: '#1E3679'
+          },
+          {
+            type: 'testimonial',
+            title: 'What Our Students Say',
+            subtitle: 'Success stories from our alumni',
+            name: 'Arjun Singh',
+            role: 'IT Professional',
+            image: 'https://i.pravatar.cc/150?img=28',
+            text: 'The comprehensive IT services training helped me transition into cloud computing. The instructors were incredibly supportive throughout.',
+            color: '#1E3679'
+          },
+          {
+            type: 'testimonial',
+            title: 'What Our Students Say',
+            subtitle: 'Success stories from our alumni',
+            name: 'Divya Patel',
+            role: 'Medical Affairs Associate',
+            image: 'https://i.pravatar.cc/150?img=50',
+            text: 'Outstanding medical affairs training! The real-world case studies and industry connections made all the difference in my job search.',
+            color: '#1E3679'
+          }
+        ]}
+        autoPlay={true}
+        autoPlayDelay={5000}
+      />
 
     
     </>
