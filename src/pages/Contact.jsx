@@ -813,7 +813,7 @@ const Contact = () => {
       </section>
 
       {/* Campus Features Section - NEW */}
-      <section className="section" style={{ background: 'white' }}>
+      <section className="section" style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #1E3679 50%, #00AA8A 100%)' }}>
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

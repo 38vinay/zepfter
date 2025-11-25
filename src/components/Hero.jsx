@@ -54,7 +54,7 @@ const Home = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 6000);
+    }, 5000);
     return () => clearInterval(timer);
   }, [slides.length]);
 
@@ -333,7 +333,7 @@ const Home = () => {
         <div
           className="position-relative"
           style={{
-            marginTop:"-68px",
+            marginTop:isMobile? '-3' : "-68px",
             height: isMobile ? "auto" : "100vh",
             minHeight: isMobile ? "600px" : "100vh",
           }}
