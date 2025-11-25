@@ -14,13 +14,18 @@ const Home = () => {
   const [stats, setStats] = useState({ students: 0, courses: 0, placements: 0, professionals: 0 });
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
+  const [isLandscape, setIsLandscape] = useState(false);
+  const [isShort, setIsShort] = useState(false);
 
   // Detect device size
   useEffect(() => {
     const checkDevice = () => {
       const width = window.innerWidth;
+      const height = window.innerHeight;
       setIsMobile(width <= 768);
       setIsTablet(width > 768 && width <= 1024);
+      setIsLandscape(width > height);
+      setIsShort(height <= 600);
     };
 
     checkDevice();
@@ -139,13 +144,14 @@ const Home = () => {
   className="position-relative d-flex align-items-center justify-content-center text-center"
   style={{
     marginTop: isMobile ? "60px" : "100px",
-    height: isMobile ? "auto" : "107vh",
-    padding: isMobile ? "80px 20px" : "0",
+    // When in landscape or very short viewports, avoid forcing a tall viewport height
+    height: isMobile || isLandscape || isShort ? "auto" : "107vh",
+    padding: isMobile || isLandscape || isShort ? "80px 20px" : "0",
     backgroundImage:
       "url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1920&q=80')",
     backgroundSize: "cover",
     backgroundPosition: "center",
-    backgroundAttachment: isMobile ? "scroll" : "fixed",
+    backgroundAttachment: isMobile || isLandscape ? "scroll" : "fixed",
     position: "relative",
   }}
 >
@@ -333,9 +339,10 @@ const Home = () => {
         <div
           className="position-relative"
           style={{
-            marginTop:isMobile? '-3' : "-68px",
-            height: isMobile ? "auto" : "100vh",
-            minHeight: isMobile ? "600px" : "100vh",
+            marginTop: isMobile ? '-3' : "-68px",
+            // for landscape / short viewports use auto height so content doesn't get clipped
+            height: isMobile || isLandscape || isShort ? "auto" : "100vh",
+            minHeight: isMobile || isLandscape || isShort ? "600px" : "100vh",
           }}
         >
           <AnimatePresence mode="wait">
@@ -405,8 +412,9 @@ const Home = () => {
                       className="position-relative h-100 d-flex align-items-center justify-content-center text-center"
                       style={{
                         zIndex: 2,
-                        padding: isMobile
-                          ? "100px 15px 60px"
+                        // reduce large vertical padding on landscape / short viewports
+                        padding: isMobile || isLandscape || isShort
+                          ? "80px 15px 40px"
                           : isTablet
                           ? "120px 30px 80px"
                           : "0 20px",
