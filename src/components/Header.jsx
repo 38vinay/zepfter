@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
-import logo from "../assets/logo_extracted-removebg-preview.png"; // ✅ Correct logo import
+import logo from "../assets/logo_extracted-removebg-preview.png";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -17,7 +17,6 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu on route change
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [location]);
@@ -37,66 +36,29 @@ const Header = () => {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className={`navbar navbar-expand-lg fixed-top ${
-          scrolled ? "scrolled" : ""
-        }`}
-        style={{
-          background: scrolled
-            ? "rgba(255, 255, 255, 0.98)"
-            : "rgba(255, 255, 255, 0.95)",
-          backdropFilter: "blur(20px)",
-          transition: "all 0.4s ease",
-          borderBottom: scrolled ? "1px solid rgba(30, 54, 121, 0.1)" : "none",
-          boxShadow: scrolled ? "0 4px 20px rgba(0, 0, 0, 0.08)" : "none",
-          padding: scrolled ? "8px 0" : "12px 0",
-          zIndex: 1000,
-        }}
+        className={`navbar navbar-expand-lg fixed-top nav-custom ${scrolled ? "scrolled" : ""}`}
       >
         <div className="container">
           {/* LOGO */}
-          <Link
-            className="navbar-brand fw-bold d-flex align-items-center"
-            to="/"
-          >
+          <Link className="navbar-brand" to="/">
             <motion.img
-              transition={{ duration: 0.6 }}
-              src={logo} // ✅ Now using your actual company PNG logo
-              alt="Company Logo"
-              height={scrolled ? "65" : "75"}
-
-              className="me-2"
-              style={{
-                borderRadius: "8px",
-                transition: "all 0.3s ease",
-              }}
+              transition={{ duration: 0.3 }}
+              src={logo}
+              alt="ZEPFTER Logo"
+              className="d-block"
             />
-
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              style={{
-                background: "linear-gradient(135deg, #1E3679, #00AA8A)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                letterSpacing: "2px",
-                fontSize: scrolled ? "1.4rem" : "1.5rem",
-                fontWeight: "700",
-                transition: "all 0.3s ease",
-              }}
-            ></motion.div>
           </Link>
 
           {/* Mobile Toggle */}
           <motion.button
             whileTap={{ scale: 0.9 }}
-            className="navbar-toggler border-0"
+            className="navbar-toggler border-0 d-lg-none"
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle navigation"
             style={{
               padding: "8px",
-              background: mobileMenuOpen
-                ? "rgba(30, 54, 121, 0.1)"
-                : "transparent",
+              background: mobileMenuOpen ? "rgba(30, 54, 121, 0.1)" : "transparent",
               borderRadius: "8px",
             }}
           >
@@ -151,7 +113,7 @@ const Header = () => {
 
           {/* Desktop Menu */}
           <div className="collapse navbar-collapse" id="mainNavbar">
-            <ul className="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+            <ul className="navbar-nav ms-auto align-items-center">
               {navLinks.map((link, idx) => (
                 <motion.li
                   key={link.path}
@@ -162,52 +124,9 @@ const Header = () => {
                 >
                   <Link
                     to={link.path}
-                    className="nav-link"
-                    style={{
-                      position: "relative",
-                      padding: "10px 18px",
-                      color: isActive(link.path) ? "#00AA8A" : "#1E3679",
-                      fontWeight: isActive(link.path) ? "700" : "600",
-                      fontSize: "1rem",
-                      transition: "all 0.3s ease",
-                      borderRadius: "8px",
-                    }}
+                    className={`nav-link ${isActive(link.path) ? "active" : ""}`}
                   >
                     {link.label}
-
-                    {isActive(link.path) && (
-                      <motion.span
-                        layoutId="activeTab"
-                        className="position-absolute"
-                        style={{
-                          width: "100%",
-                          height: "3px",
-                          background:
-                            "linear-gradient(90deg, #00AA8A, #1E3679)",
-                          borderRadius: "10px",
-                          bottom: "2px",
-                          left: 0,
-                        }}
-                      />
-                    )}
-
-                    {!isActive(link.path) && (
-                      <motion.span
-                        className="position-absolute"
-                        style={{
-                          width: 0,
-                          height: "3px",
-                          background:
-                            "linear-gradient(90deg, #FBD21A, #00AA8A)",
-                          borderRadius: "10px",
-                          bottom: "2px",
-                          left: "50%",
-                          transform: "translateX(-50%)",
-                        }}
-                        whileHover={{ width: "80%" }}
-                        transition={{ duration: 0.3 }}
-                      />
-                    )}
                   </Link>
                 </motion.li>
               ))}
