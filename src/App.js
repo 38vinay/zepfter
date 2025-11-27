@@ -8,6 +8,7 @@ import { initAOS } from "./aos-init";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
+import ZepfterChatbot from "./components/Zepfterchatbot"; // <-- ADD THIS
 
 // Pages
 import Home from "./pages/Homes";
@@ -34,21 +35,30 @@ const App = () => {
     <Router>
       <ScrollToTop />
       <Header />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
+
+        {/* Service Categories */}
         <Route path="/services/medical-courses" element={<MedicalCourses />} />
         <Route path="/services/clinical-courses" element={<ClinicalCourses />} />
         <Route path="/services/it-services" element={<ITServices />} />
         <Route path="/services/pharmaceutical-skills" element={<PharmaceuticalSkills />} />
         <Route path="/services/training-placement" element={<TrainingPlacement />} />
         <Route path="/services/internship-programs" element={<InternshipPrograms />} />
+
+        {/* Other Pages */}
         <Route path="/contact" element={<Contact />} />
         <Route path="/terms" element={<Terms />} />
         <Route path="/privacy" element={<Privacy />} />
       </Routes>
+
       <Footer />
+
+      {/* Static Chatbot – Visible on all pages */}
+      <ZepfterChatbot />
     </Router>
   );
 };
