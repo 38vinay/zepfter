@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  FaChevronDown, 
+import {
+  FaChevronDown,
   FaChevronUp,
-  FaCapsules, 
-  FaHeartbeat, 
-  FaClipboardCheck, 
+  FaCapsules,
+  FaHeartbeat,
+  FaClipboardCheck,
   FaMicroscope,
   FaCheckCircle,
   FaAward,
@@ -13,7 +13,6 @@ import {
   FaGraduationCap,
   FaUsers,
   FaChartLine,
-  
 } from "react-icons/fa";
 
 const MedicalCoursesPage = () => {
@@ -21,215 +20,179 @@ const MedicalCoursesPage = () => {
   const [expandedFAQ, setExpandedFAQ] = useState(null);
 
   /** ------------------------
-   *   ENHANCED COURSE CONTENT
+   *   ENHANCED SERVICE CONTENT
    * ------------------------ */
   const services = [
     {
       id: 'medical-coding',
-      title: 'Medical Coding',
+      title: 'Medical Coding & Auditing',
       icon: <FaCapsules size={30} />,
-      duration: '6 months',
-      level: 'Beginner to Advanced',
-      salary: '₹3.5 - ₹8 LPA',
+      tagline: 'Precision & Compliance',
       description:
-        'Become a skilled healthcare coding professional by mastering ICD-10, CPT, and HCPCS systems. Gain real experience with medical charts, EHR platforms, compliance workflows, and global coding standards essential for hospital and insurance-based careers.',
+        'Optimize your revenue cycle with our expert medical coding and auditing services. We ensure 99% accuracy in ICD-10, CPT, and HCPCS coding, reducing denials and ensuring compliance with global healthcare standards.',
       image1: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&q=80',
       image2: 'https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=600&q=80',
       details: [
-        'ICD-10-CM/PCS Coding',
-        'CPT Coding',
-        'HCPCS Level II',
-        'Medical Terminology',
-        'Anatomy & Physiology',
-        'Healthcare Reimbursement',
-        'Compliance & Regulations',
-        'Medical Documentation',
-        'EHR Systems Training',
-        'CPC Exam Preparation',
-        'Medical Billing Integration',
-        'Coding Quality Audits'
+        'Risk Adjustment Coding',
+        'Clinical Documentation Improvement (CDI)',
+        'DRG Validation',
+        'Coding Quality Audits',
+        'Denial Management',
+        'Backlog Resolution',
+        'Outpatient & Inpatient Coding',
+        'Payer Specific Compliance'
       ],
-      certifications: ['CPC (Certified Professional Coder)', 'CCS (Certified Coding Specialist)', 'CCA (Certified Coding Associate)'],
-      careerPaths: ['Medical Coder', 'Coding Specialist', 'Billing Specialist', 'Health Information Technician', 'Revenue Cycle Analyst', 'Coding Auditor']
+      expertise: ['AAPC Certified Coders', 'AHIMA Certified Auditors', 'HIPAA Compliant Processes'],
+      outcomes: ['Reduced Denial Rates', 'Accelerated Reimbursements', '100% Regulatory Compliance']
     },
 
     {
       id: 'medical-affairs',
-      title: 'Medical Affairs',
+      title: 'Strategic Medical Affairs',
       icon: <FaHeartbeat size={30} />,
-      duration: '8 months',
-      level: 'Intermediate to Advanced',
-      salary: '₹6 - ₹15 LPA',
+      tagline: 'Scientific Leadership',
       description:
-        'Unlock prestigious careers in pharmaceutical science and healthcare communication. Learn to interpret clinical data, support medical teams, interact with healthcare professionals, and drive evidence-based decision-making within pharma organizations.',
+        'Bridge the gap between science and strategy. Our Medical Affairs team supports your product lifecycle with evidence-based scientific communication, KOL engagement, and strategic insights for successful market adoption.',
       image1: 'https://images.unsplash.com/photo-1579154204601-01588f351e67?w=600&q=80',
       image2: 'https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=600&q=80',
       details: [
-        'Medical Information Management',
-        'Scientific Communication',
+        'KOL Identification & Engagement',
+        'Medical Strategy Development',
+        'Advisory Board Management',
+        'Scientific Platform Development',
         'Publication Planning',
-        'Medical Education',
-        'KOL Engagement',
-        'Clinical Development Support',
-        'Post-Marketing Surveillance',
-        'Medical Strategy',
-        'Evidence-Based Medicine',
-        'Healthcare Professional Engagement',
-        'Medical Writing for Publications',
-        'Advisory Board Management'
+        'Medical Information Services',
+        'Field Medical Resourcing (MSLs)',
+        'Competitor Intelligence'
       ],
-      certifications: ['Certified Medical Affairs Specialist', 'Board Certification in Medical Affairs'],
-      careerPaths: ['Medical Affairs Associate', 'Medical Science Liaison', 'Medical Information Specialist', 'Medical Advisor', 'Field Medical Manager']
+      expertise: ['Therapeutic Area Experts', 'PhDs & MDs Team', 'Global Market Experience'],
+      outcomes: ['Enhanced Scientific Share of Voice', 'Stronger KOL Relationships', 'Evidence-Based Launch Success']
     },
 
     {
       id: 'medical-billing',
-      title: 'Medical Billing',
+      title: 'Revenue Cycle Management',
       icon: <FaClipboardCheck size={30} />,
-      duration: '5 months',
-      level: 'Beginner to Intermediate',
-      salary: '₹3 - ₹7 LPA',
+      tagline: 'Financial Health',
       description:
-        'Gain complete expertise in the healthcare revenue cycle, including claims processing, reimbursement workflows, insurance verification, and denial management. Work with real billing software and live patient record simulations.',
+        'End-to-end RCM solutions designed to maximize your financial performance. From patient access to payment posting, we streamline your operations, minimize revenue leakage, and improve cash flow.',
       image1: 'https://images.unsplash.com/photo-1551076805-e1869033e561?w=600&q=80',
       image2: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80',
       details: [
-        'Insurance Verification',
-        'Claims Processing & Submission',
-        'Payment Posting',
-        'Denial Management',
-        'Medical Billing Software',
-        'HIPAA Compliance',
-        'Revenue Cycle Management',
-        'Accounts Receivable',
-        'Patient Billing',
-        'EOB Processing',
-        'Clearinghouse Operations',
-        'Billing Compliance & Audits'
+        'Eligibility Verification',
+        'Claims Submission & Management',
+        'Payment Posting & Reconciliation',
+        'A/R Follow-up & Collections',
+        'Denial Management & Appeals',
+        'Patient Billing & Support',
+        'Credentialing Services',
+        'RCM Analytics & Reporting'
       ],
-      certifications: ['CMRS (Certified Medical Reimbursement Specialist)', 'CPMA (Certified Professional Medical Auditor)', 'CPB (Certified Professional Biller)'],
-      careerPaths: ['Medical Biller', 'Billing Coordinator', 'Revenue Cycle Analyst', 'Claims Specialist', 'Patient Account Representative']
+      expertise: ['Certified Billers', 'Multi-Specialty Experience', 'Advanced RCM Software Proficiency'],
+      outcomes: ['Decreased Days in A/R', 'Increased Net Collection Rate', 'Operational Cost Reduction']
     },
 
     {
       id: 'medical-writing',
-      title: 'Medical Writing',
+      title: 'Medical & Regulatory Writing',
       icon: <FaMicroscope size={30} />,
-      duration: '6 months',
-      level: 'Intermediate to Advanced',
-      salary: '₹4 - ₹12 LPA',
+      tagline: 'Clear Scientific Communication',
       description:
-        'Master clinical, scientific, and regulatory writing for healthcare and pharmaceutical industries. Learn to create accurate research papers, regulatory documents, clinical study reports, and scientific publications following global standards.',
+        'High-quality clinical and regulatory documents that expedite your drug development process. Our writers deliver accurate, compliant, and clear documentation for regulatory authorities and scientific communities.',
       image1: 'https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=600&q=80',
       image2: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&q=80',
       details: [
-        'Clinical Documentation',
-        'Regulatory Writing',
-        'Research Papers & Publications',
-        'Medical Publications',
-        'Protocol Writing',
-        'Scientific Communication',
-        'Grant Writing',
-        'Medical Editing',
-        'Clinical Study Reports',
-        'Investigator Brochures',
-        'Informed Consent Forms',
-        'AMWA & EMWA Standards'
+        'Clinical Study Reports (CSRs)',
+        'Clinical Protocols',
+        'Investigator Brochures (IBs)',
+        'Regulatory Submissions (NDA/BLA)',
+        'Manuscripts & Abstracts',
+        'Patient Safety Narratives',
+        'Literature Reviews',
+        'Plain Language Summaries'
       ],
-      certifications: ['AMWA Certification', 'EMWA Certification', 'RAC (Regulatory Affairs Certification)'],
-      careerPaths: ['Medical Writer', 'Regulatory Writer', 'Scientific Writer', 'Clinical Research Writer', 'Medical Communications Specialist']
+      expertise: ['AMWA/EMWA Guidelines', 'ICH-GCP Compliance', 'Therapeutic Area Specialists'],
+      outcomes: ['Faster Regulatory Approvals', 'High-Impact Publications', 'Audit-Ready Documentation']
     }
   ];
 
   const stats = [
-    { number: '1200+', label: 'Students Trained', icon: <FaUsers size={30} /> },
-    { number: '95%', label: 'Placement Rate', icon: <FaChartLine size={30} /> },
-    { number: '500+', label: 'Hiring Partners', icon: <FaBriefcase size={30} /> },
-    { number: '8 LPA', label: 'Highest Package', icon: <FaAward size={30} /> }
+    { number: '500+', label: 'Global Partners', icon: <FaUsers size={30} /> },
+    { number: '98%', label: 'Client Retention', icon: <FaChartLine size={30} /> },
+    { number: '1200+', label: 'Projects Delivered', icon: <FaBriefcase size={30} /> },
+    { number: '50+', label: 'Therapeutic Areas', icon: <FaAward size={30} /> }
   ];
 
   const whyChoose = [
     {
       icon: <FaGraduationCap size={50} />,
-      title: 'Industry Expert Trainers',
+      title: 'Subject Matter Experts',
       description:
-        'Learn from certified medical professionals with 10–15 years of experience in hospitals, pharma companies, and international healthcare organizations.',
+        'Our teams are led by MDs, PhDs, and certified professionals with deep industry experience across various therapeutic areas.',
       image: 'https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=600&q=80'
     },
     {
       icon: <FaAward size={50} />,
-      title: 'Certification Preparation',
+      title: 'Regulatory Compliance',
       description:
-        'Get complete preparation for CPC, CCS, CPB, AMWA, and other certifications with mock exams, study guides, and instructor-led mentoring.',
+        'We strictly adhere to global standards including ICH-GCP, HIPAA, GDPR, and ISO certifications to ensure your data and processes are secure.',
       image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&q=80'
     },
     {
       icon: <FaClipboardCheck size={50} />,
-      title: 'Hands-on Training',
+      title: 'Quality Assurance',
       description:
-        'Train with real patient charts, EHR coding software, billing platforms, clinical reports, and real-life documentation tasks.',
+        'Rigorous multi-level quality control processes ensure 99.9% accuracy in all our deliverables, from coding to clinical writing.',
       image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&q=80'
     },
     {
       icon: <FaBriefcase size={50} />,
-      title: '100% Placement Support',
+      title: 'Scalable Solutions',
       description:
-        'Receive resume building, mock interviews, aptitude training, and interview opportunities with over 500 partnered healthcare employers.',
+        'Flexible engagement models that scale with your needs. Whether you need a dedicated team or project-based support, we adapt to you.',
       image: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=600&q=80'
     }
   ];
 
   /** ------------------------
-   *        ENHANCED FAQ
+   *        CLIENT FAQ
    * ------------------------ */
   const faqs = [
     {
       id: 1,
-      question: 'What are the eligibility criteria for medical coding courses?',
+      question: 'What industries do you serve?',
       answer:
-        'Anyone who has completed graduation in any stream can enroll. A science background helps but is not required since we teach medical terminology and anatomy from scratch.'
+        'We primarily serve Pharmaceutical companies, Biotechnology firms, Medical Device manufacturers, CROs, and large Healthcare Provider networks.'
     },
     {
       id: 2,
-      question: 'How long does it take to become a certified medical coder?',
+      question: 'How do you ensure data security and compliance?',
       answer:
-        'Our 6-month program includes complete CPC exam preparation. Once trained, you can appear for the CPC exam. Most students get placed within 2–3 months after certification.'
+        'We are ISO 27001 certified and fully HIPAA/GDPR compliant. We utilize secure, encrypted platforms for data transfer and storage, with strict access controls.'
     },
     {
       id: 3,
-      question: 'What is the difference between medical coding and billing?',
+      question: 'What is your typical turnaround time for projects?',
       answer:
-        'Medical coding involves assigning standardized codes to diagnoses and procedures. Medical billing focuses on claim submission, reimbursement, and payment cycles. Both are vital parts of healthcare administration.'
+        'Turnaround times vary by project scope. However, we are known for our agility and can offer expedited services for urgent regulatory submissions or audit deadlines.'
     },
     {
       id: 4,
-      question: 'Do these courses offer work-from-home opportunities?',
+      question: 'Can you integrate with our existing EHR/EMR systems?',
       answer:
-        'Yes! Medical coding and medical writing especially offer great remote work opportunities. Many companies hire experienced coders and writers for work-from-home roles.'
+        'Yes, our team is proficient in major EHR/EMR platforms (Epic, Cerner, Allscripts, etc.) and can seamlessly integrate into your existing workflows via VPN or remote desktop.'
     },
     {
       id: 5,
-      question: 'What certifications do you help students prepare for?',
+      question: 'Do you offer pilot programs?',
       answer:
-        'We prepare for CPC, CCS, CCA, CPB, CMRS, AMWA, EMWA, and other top international healthcare certifications.'
+        'Absolutely. We encourage starting with a pilot project to demonstrate our quality, efficiency, and compatibility with your team before scaling up.'
     },
     {
       id: 6,
-      question: 'Do you provide placement assistance?',
+      question: 'What are your engagement models?',
       answer:
-        'Yes, we offer 100% placement support, interview training, resume building, communication training, and exclusive hiring drives.'
-    },
-    {
-      id: 7,
-      question: 'What salaries can I expect after completing the course?',
-      answer:
-        'Freshers typically earn ₹3.5–5 LPA in coding and billing, while medical writing and medical affairs may start from ₹6–8 LPA depending on role and company.'
-    },
-    {
-      id: 8,
-      question: 'Is online training available?',
-      answer:
-        'Yes, we offer both online and offline training with live classes, practice sessions, and access to recorded lectures.'
+        'We offer flexible models including FTE (Full-Time Equivalent), Unit-based pricing, and Project-based fixed costs to suit your budget and operational needs.'
     }
   ];
 
@@ -243,20 +206,19 @@ const MedicalCoursesPage = () => {
 
   return (
     <div style={{ background: '#0a0a1f', minHeight: '100vh', paddingTop: '70px' }}>
-      
+
       {/* HERO SECTION */}
-      {/* HERO SECTION */}
-      <section 
-  style={{
-    background: 'linear-gradient(135deg, rgba(10,10,31,0.4) 0%, rgba(30,54,121,0.5) 50%, rgba(10,10,31,0.4) 100%), url("https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80")',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat:'no-repeat',
-    backgroundAttachment: 'fixed',
-    padding: '100px 20px 80px',
-    position: 'relative',
-  }}
->
+      <section
+        style={{
+          background: 'linear-gradient(135deg, rgba(10,10,31,0.4) 0%, rgba(30,54,121,0.5) 50%, rgba(10,10,31,0.4) 100%), url("https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'fixed',
+          padding: '100px 20px 80px',
+          position: 'relative',
+        }}
+      >
         <div className="container text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -267,10 +229,10 @@ const MedicalCoursesPage = () => {
               <FaCapsules size={60} style={{ color: '#00AA8A' }} />
             </div>
             <h1 className="fw-bold text-white" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)' }}>
-              MEDICAL COURSES
+              MEDICAL AFFAIRS & SERVICES
             </h1>
-            <p className="text-white mx-auto" style={{ maxWidth: '800px', opacity: 0.9, lineHeight: '1.8', marginTop: '10px'}}>
-              ZEPFTER’s Medical Courses prepare you for high-demand healthcare careers such as Medical Coding, Billing, Medical Writing, and Medical Affairs. Our programs blend essential theory with hands-on training using real patient charts, EHR tools, and certification guidance. With expert trainers and 100% placement support, we equip you with the skills and confidence to succeed in top hospitals, pharma companies, and healthcare BPOs.
+            <p className="text-white mx-auto" style={{ maxWidth: '800px', opacity: 0.9, lineHeight: '1.8', marginTop: '10px' }}>
+              ZEPFTER delivers premier Medical Affairs, Regulatory Writing, and Revenue Cycle Management solutions to the life sciences industry. We combine scientific expertise with operational excellence to accelerate your product's journey and optimize healthcare outcomes. Partner with us for strategic support, compliance, and clinical success.
             </p>
           </motion.div>
         </div>
@@ -310,13 +272,13 @@ const MedicalCoursesPage = () => {
         </div>
       </section>
 
-      {/* COURSE ACCORDION */}
+      {/* SERVICES ACCORDION */}
       <section style={{ padding: '80px 20px' }}>
         <div className="container" style={{ maxWidth: '1400px' }}>
 
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="text-center mb-5">
-            <h2 className="fw-bold text-white mb-3" style={{ fontSize: 'clamp(2rem,4vw,3rem)' }}>Our Course Offerings</h2>
-            <p className="text-white mx-auto" style={{ maxWidth: '700px', opacity: 0.8 }}>Choose from our advanced healthcare programs</p>
+            <h2 className="fw-bold text-white mb-3" style={{ fontSize: 'clamp(2rem,4vw,3rem)' }}>Our Service Portfolio</h2>
+            <p className="text-white mx-auto" style={{ maxWidth: '700px', opacity: 0.8 }}>Specialized solutions for the healthcare and pharmaceutical ecosystem</p>
           </motion.div>
 
           {services.map((service, idx) => (
@@ -325,7 +287,7 @@ const MedicalCoursesPage = () => {
               <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.1)' }}>
 
                 {/* Service Header */}
-                <div 
+                <div
                   onClick={() => toggleService(service.id)}
                   style={{
                     display: 'grid',
@@ -337,7 +299,7 @@ const MedicalCoursesPage = () => {
                   }}
                 >
                   {/* Images */}
-                  <div style={{ 
+                  <div style={{
                     order: idx % 2 === 0 ? 2 : 1,
                     display: 'grid',
                     gridTemplateColumns: '1fr 1fr',
@@ -358,17 +320,17 @@ const MedicalCoursesPage = () => {
                     <h2 className="fw-bold mb-3">{service.title}</h2>
 
                     <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginBottom: '15px' }}>
-                      
+
                       <span style={{ padding: '8px 16px', background: 'rgba(251,210,26,0.2)', borderRadius: '20px', border: '1px solid rgba(251,210,26,0.3)' }}>
-                        <FaAward size={14} /> {service.level}
+                        <FaAward size={14} /> {service.tagline}
                       </span>
-                     
+
                     </div>
 
                     <p style={{ opacity: 0.85, lineHeight: 1.7 }}>{service.description}</p>
 
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#00AA8A', fontWeight: 600 }}>
-                      View Curriculum {expandedService === service.id ? <FaChevronUp /> : <FaChevronDown />}
+                      View Deliverables {expandedService === service.id ? <FaChevronUp /> : <FaChevronDown />}
                     </div>
                   </div>
                 </div>
@@ -385,11 +347,11 @@ const MedicalCoursesPage = () => {
                     >
                       <div style={{ padding: '40px', color: 'white' }}>
 
-                        <h3 className="fw-bold mb-4" style={{ color: '#00AA8A' }}>What You Will Learn</h3>
-                        
+                        <h3 className="fw-bold mb-4" style={{ color: '#00AA8A' }}>Key Deliverables</h3>
+
                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(250px,1fr))', gap: '15px', marginBottom: '30px' }}>
                           {service.details.map((detail, idx) => (
-                            <motion.div 
+                            <motion.div
                               key={idx}
                               whileHover={{ x: 5 }}
                               style={{ background: 'rgba(255,255,255,0.05)', padding: '15px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)' }}
@@ -400,27 +362,25 @@ const MedicalCoursesPage = () => {
                           ))}
                         </div>
 
-                        {/* Certifications */}
-                        <h4 className="fw-bold mb-3" style={{ color: '#FBD21A' }}>Certifications Prepared</h4>
+                        {/* Expertise */}
+                        <h4 className="fw-bold mb-3" style={{ color: '#FBD21A' }}>Our Expertise</h4>
                         <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginBottom: '30px' }}>
-                          {service.certifications.map((cert, idx) => (
+                          {service.expertise.map((item, idx) => (
                             <span key={idx} style={{ padding: '10px 20px', background: 'rgba(251,210,26,0.2)', borderRadius: '25px', border: '1px solid rgba(251,210,26,0.5)' }}>
-                              <FaAward style={{ marginRight: '8px' }} /> {cert}
+                              <FaAward style={{ marginRight: '8px' }} /> {item}
                             </span>
                           ))}
                         </div>
 
-                        {/* Career Paths */}
-                        <h4 className="fw-bold mb-3" style={{ color: '#00AA8A' }}>Career Opportunities</h4>
+                        {/* Outcomes */}
+                        <h4 className="fw-bold mb-3" style={{ color: '#00AA8A' }}>Key Outcomes</h4>
                         <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginBottom: '30px' }}>
-                          {service.careerPaths.map((career, idx) => (
+                          {service.outcomes.map((outcome, idx) => (
                             <span key={idx} style={{ padding: '10px 20px', background: 'rgba(0,170,138,0.2)', borderRadius: '20px', border: '1px solid rgba(0,170,138,0.3)' }}>
-                              {career}
+                              {outcome}
                             </span>
                           ))}
                         </div>
-
-                        
 
                       </div>
                     </motion.div>
@@ -439,9 +399,9 @@ const MedicalCoursesPage = () => {
         <div className="container">
 
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="text-center mb-5">
-            <h2 className="fw-bold text-white">Why Choose ZEPFTER Medical Courses?</h2>
+            <h2 className="fw-bold text-white">Why Partner With ZEPFTER?</h2>
             <p className="text-white" style={{ maxWidth: '700px', margin: 'auto', opacity: 0.8 }}>
-              Transform your healthcare career with industry-leading training and global opportunities.
+              Excellence, Compliance, and Innovation in every project.
             </p>
           </motion.div>
 
@@ -485,7 +445,7 @@ const MedicalCoursesPage = () => {
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="text-center mb-5">
             <h2 className="fw-bold text-white">Frequently Asked Questions</h2>
             <p className="text-white" style={{ maxWidth: '700px', margin: 'auto', opacity: 0.8 }}>
-              Everything you need to know before starting your journey.
+              Common questions about our services and engagement models.
             </p>
           </motion.div>
 
@@ -537,9 +497,6 @@ const MedicalCoursesPage = () => {
         </div>
       </section>
 
-
-      
-      
     </div>
   );
 };

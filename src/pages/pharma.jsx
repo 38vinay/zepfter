@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  FaTimes, 
-  FaCheckCircle, 
-  FaCapsules, 
-  FaDatabase, 
+import {
+  FaTimes,
+  FaCheckCircle,
+  FaCapsules,
+  FaDatabase,
   FaNetworkWired,
   FaClipboardList,
   FaShieldAlt,
@@ -421,7 +421,7 @@ const Pharma = () => {
 
   return (
     <div style={{ background: '#0a0a1f', minHeight: '100vh', paddingTop: '70px' }}>
-      
+
       {/* HERO SECTION */}
       <section
         style={{
@@ -446,7 +446,7 @@ const Pharma = () => {
             <h1 className="fw-bold text-white" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)' }}>
               PHARMACEUTICAL SOLUTIONS
             </h1>
-            <p className="text-white mx-auto" style={{ maxWidth: '800px', opacity: 0.9, lineHeight: '1.8', marginTop: '10px'}}>
+            <p className="text-white mx-auto" style={{ maxWidth: '800px', opacity: 0.9, lineHeight: '1.8', marginTop: '10px' }}>
               The most recent technologies and scientific breakthroughs that will revolutionize pharmaceutical manufacturing. Our exceptional pharmaceutical IT solutions ensure management and protection of your applications, network, data, and more.
             </p>
           </motion.div>
@@ -815,7 +815,7 @@ const Pharma = () => {
                   onMouseLeave={() => setHoveredCard(null)}
                 >
                   <div>
-                    <div style={{ 
+                    <div style={{
                       color: hoveredCard === `product-${idx}` ? 'white' : product.color,
                       marginBottom: '20px',
                       transition: 'color 0.3s ease'
@@ -823,9 +823,9 @@ const Pharma = () => {
                       {product.icon}
                     </div>
 
-                    <h3 
-                      className="fw-bold mb-3" 
-                      style={{ 
+                    <h3
+                      className="fw-bold mb-3"
+                      style={{
                         color: hoveredCard === `product-${idx}` ? 'white' : product.color,
                         fontSize: '1.3rem',
                         transition: 'color 0.3s ease'
@@ -834,7 +834,7 @@ const Pharma = () => {
                       {product.title}
                     </h3>
 
-                    <p style={{ 
+                    <p style={{
                       color: hoveredCard === `product-${idx}` ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.7)',
                       lineHeight: '1.6',
                       transition: 'color 0.3s ease'
@@ -843,9 +843,9 @@ const Pharma = () => {
                     </p>
                   </div>
 
-                  <div 
-                    className="fw-semibold" 
-                    style={{ 
+                  <div
+                    className="fw-semibold"
+                    style={{
                       color: hoveredCard === `product-${idx}` ? 'white' : product.color,
                       marginTop: '20px',
                       transition: 'color 0.3s ease'
@@ -892,7 +892,7 @@ const Pharma = () => {
                 background: 'white',
                 padding: '40px',
                 borderRadius: '25px',
-                maxWidth: '700px',
+                maxWidth: '80%',
                 width: '100%',
                 maxHeight: '90vh',
                 overflowY: 'auto',
@@ -925,17 +925,17 @@ const Pharma = () => {
               </button>
 
               {selectedProduct.image && (
-                <div style={{ 
+                <div style={{
                   marginBottom: '30px',
                   borderRadius: '15px',
                   overflow: 'hidden',
                   border: `3px solid ${selectedProduct.color}`
                 }}>
-                  <img 
-                    src={selectedProduct.image} 
+                  <img
+                    src={selectedProduct.image}
                     alt={selectedProduct.title}
-                    style={{ 
-                      width: '100%', 
+                    style={{
+                      width: '100%',
                       height: '250px',
                       objectFit: 'cover'
                     }}
@@ -965,7 +965,7 @@ const Pharma = () => {
                   </h4>
                   <div style={{ marginBottom: '30px' }}>
                     {selectedProduct.keyPoints.map((point, idx) => (
-                      <div 
+                      <div
                         key={idx}
                         style={{
                           display: 'flex',

@@ -17,12 +17,12 @@ import Services from "./pages/Solutions";
 import Contact from "./pages/Contact";
 
 // Service Category Pages
-import MedicalCourses from "./pages/MedicalCourses";
-import ClinicalCourses from "./pages/ClinicalCourses";
-import ITServices from "./pages/ITServices";
-import PharmaceuticalSkills from "./pages/PharmaceuticalSkills";
-import TrainingPlacement from "./pages/TrainingPlacement";
-import InternshipPrograms from "./pages/InternshipPrograms";
+import MedicalCourses from "./pages/MedicalAffairs";
+import ClinicalCourses from "./pages/ClinicalResearch";
+import ITServices from "./pages/DigitalTransformation";
+import PharmaceuticalSkills from "./pages/PharmaCunsulting";
+import TrainingPlacement from "./pages/TalentSolutions";
+import InternshipPrograms from "./pages/TranningSolution";
 import Terms from "./pages/Terms";
 import Privacy from "./pages/Privacy";
 

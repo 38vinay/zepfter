@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  FaTimes, 
-  FaCloud, 
-  FaLaptopCode, 
+import {
+  FaTimes,
+  FaCloud,
+  FaLaptopCode,
   FaShieldAlt,
   FaRobot,
   FaNetworkWired,
@@ -242,7 +242,7 @@ const EnhancedIT = () => {
 
   return (
     <div style={{ background: '#0a0a1f', minHeight: '100vh', paddingTop: '70px' }}>
-      
+
       {/* HERO SECTION */}
       <section
         style={{
@@ -267,7 +267,7 @@ const EnhancedIT = () => {
             <h1 className="fw-bold text-white" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)' }}>
               IT SOLUTIONS
             </h1>
-            <p className="text-white mx-auto" style={{ maxWidth: '800px', opacity: 0.9, lineHeight: '1.8', marginTop: '10px'}}>
+            <p className="text-white mx-auto" style={{ maxWidth: '800px', opacity: 0.9, lineHeight: '1.8', marginTop: '10px' }}>
               Empowering businesses with modern digital solutions, enterprise-grade technology, and secure IT infrastructure tailored to your growth. We transform ideas into powerful digital experiences.
             </p>
           </motion.div>
@@ -637,7 +637,7 @@ const EnhancedIT = () => {
                 >
                   <div>
                     <motion.div
-                      style={{ 
+                      style={{
                         color: hoveredCard === idx ? 'white' : item.color,
                         marginBottom: '20px',
                         transition: 'color 0.3s ease'
@@ -648,9 +648,9 @@ const EnhancedIT = () => {
                       {item.icon}
                     </motion.div>
 
-                    <h3 
-                      className="fw-bold mb-3" 
-                      style={{ 
+                    <h3
+                      className="fw-bold mb-3"
+                      style={{
                         color: hoveredCard === idx ? 'white' : item.color,
                         fontSize: '1.3rem',
                         transition: 'color 0.3s ease'
@@ -659,7 +659,7 @@ const EnhancedIT = () => {
                       {item.title}
                     </h3>
 
-                    <p style={{ 
+                    <p style={{
                       color: hoveredCard === idx ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.7)',
                       lineHeight: '1.6',
                       transition: 'color 0.3s ease'
@@ -668,9 +668,9 @@ const EnhancedIT = () => {
                     </p>
                   </div>
 
-                  <div 
-                    className="fw-semibold" 
-                    style={{ 
+                  <div
+                    className="fw-semibold"
+                    style={{
                       color: hoveredCard === idx ? 'white' : item.color,
                       marginTop: '20px',
                       transition: 'color 0.3s ease'
@@ -717,7 +717,7 @@ const EnhancedIT = () => {
                 background: 'white',
                 padding: '40px',
                 borderRadius: '25px',
-                maxWidth: '900px',
+                maxWidth: '80%',
                 width: '100%',
                 maxHeight: '90vh',
                 overflowY: 'auto',
@@ -750,17 +750,17 @@ const EnhancedIT = () => {
               </button>
 
               {selectedProduct.image && (
-                <div style={{ 
+                <div style={{
                   marginBottom: '30px',
                   borderRadius: '15px',
                   overflow: 'hidden',
                   border: `3px solid ${selectedProduct.color}`
                 }}>
-                  <img 
-                    src={selectedProduct.image} 
+                  <img
+                    src={selectedProduct.image}
                     alt={selectedProduct.title}
-                    style={{ 
-                      width: '100%', 
+                    style={{
+                      width: '100%',
                       height: '250px',
                       objectFit: 'cover'
                     }}
@@ -790,7 +790,7 @@ const EnhancedIT = () => {
                   </h4>
                   <div style={{ marginBottom: '30px' }}>
                     {selectedProduct.keyPoints.map((point, idx) => (
-                      <div 
+                      <div
                         key={idx}
                         style={{
                           display: 'flex',
