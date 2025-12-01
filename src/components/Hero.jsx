@@ -120,7 +120,7 @@ const Home = () => {
       title: "Medical Affairs",
       desc: "Medical Writing, Pharmacovigilance, Regulatory Strategy, Medical Information",
       color: "#1E3679",
-      link: "/services/medical-courses",
+      link: "/page/MedicalAffairs",
     },
     {
       id: "clinical",
@@ -128,7 +128,7 @@ const Home = () => {
       title: "Clinical Research",
       desc: "Clinical Data Management, Biostatistics, Clinical Trial Management, Safety Monitoring",
       color: "#00AA8A",
-      link: "/services/clinical-courses",
+      link: "/page/ClinicalResearch",
     },
     {
       id: "it",
@@ -136,7 +136,7 @@ const Home = () => {
       title: "Digital Transformation",
       desc: "Cloud Computing, AI/ML Solutions, Cybersecurity, Enterprise Software Development",
       color: "#1E3679",
-      link: "/services/it-services",
+      link: "/page/DigitalTransformation",
     },
     {
       id: "pharma",
@@ -144,7 +144,7 @@ const Home = () => {
       title: "Pharma Consulting",
       desc: "Quality Assurance, Regulatory Compliance, GMP Standards, Process Optimization",
       color: "#00AA8A",
-      link: "/services/pharmaceutical-skills",
+      link: "/page/PharmaConsulting",
     },
     {
       id: "training",
@@ -152,7 +152,7 @@ const Home = () => {
       title: "Talent Solutions",
       desc: "Strategic Recruitment, Workforce Planning, Career Development, Talent Acquisition",
       color: "#1E3679",
-      link: "/services/training-placement",
+      link: "/page/TalentSolutions",
     },
     {
       id: "internship",
@@ -160,7 +160,31 @@ const Home = () => {
       title: "Corporate Training",
       desc: "Professional Development, Skills Enhancement, Industry Certifications, Custom Training Programs",
       color: "#00AA8A",
-      link: "/services/internship-programs",
+      link: "/page/CorporateTraining",
+    },
+    {
+      id: "bpo",
+      icon: <FaBriefcase size={getIconSize()} />,
+      title: "BPO Services",
+      desc: "Business Process Outsourcing, Customer Support, Back Office Operations, Data Entry Services",
+      color: "#1E3679",
+      link: "/solutions/bpo",
+    },
+    {
+      id: "bpm",
+      icon: <FaUserTie size={getIconSize()} />,
+      title: "BPM Solutions",
+      desc: "Business Process Management, Workflow Optimization, Process Automation, Performance Analytics",
+      color: "#00AA8A",
+      link: "/solutions/bpm",
+    },
+    {
+      id: "bps",
+      icon: <FaLaptopCode size={getIconSize()} />,
+      title: "BPS Services",
+      desc: "Business Process Services, Finance & Accounting, HR Services, Procurement Solutions",
+      color: "#1E3679",
+      link: "/solutions/bps",
     },
   ];
 
@@ -295,7 +319,7 @@ const Home = () => {
                 Pharmaceutical & Medical Coding Services:
               </b>
               &nbsp;Specialized pharma domain operations to support healthcare providers:
-               End-to-end medical coding services,
+              End-to-end medical coding services,
               Pharma data management & compliance support,
               Documentation accuracy & audit assistance,
               Streamlined workflows for hospitals & healthcare companies.
@@ -309,7 +333,7 @@ const Home = () => {
               transformation that drive business growth.
             </p>
 
-            
+
           </motion.div>
 
           {/* CTA BUTTONS */}

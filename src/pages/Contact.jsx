@@ -106,7 +106,7 @@ const Contact = () => {
     "Pharmaceutical Operations"
   ];
 
- 
+
 
   const workingHours = [
     { day: "Monday - Friday", hours: "9:00 AM - 7:00 PM" },
@@ -164,7 +164,7 @@ const Contact = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="mb-4"
             >
-              <div 
+              <div
                 className="d-inline-flex align-items-center justify-content-center rounded-circle mx-auto"
                 style={{
                   width: '100px',
@@ -183,7 +183,7 @@ const Contact = () => {
               Have questions? We're here to help you start your learning journey. Reach out to us through any channel that works best for you.
             </p>
 
-            <motion.div 
+            <motion.div
               className="d-flex gap-3 justify-content-center flex-wrap"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -212,7 +212,7 @@ const Contact = () => {
         </div>
 
         {/* Wave Divider */}
-        
+
       </section>
 
       {/* Contact Info Cards */}
@@ -228,14 +228,14 @@ const Contact = () => {
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
-                whileHover={{ 
+                whileHover={{
                   y: -10,
                   boxShadow: `0 20px 40px ${info.color}30`
                 }}
               >
                 <div
-                  className="glass-card text-center p-4 h-100" 
-                  style={{ 
+                  className="glass-card text-center p-4 h-100"
+                  style={{
                     borderTop: `4px solid ${info.color}`,
                     cursor: 'pointer',
                     position: 'relative',
@@ -261,7 +261,7 @@ const Contact = () => {
                     }}
                   />
 
-                  <motion.div 
+                  <motion.div
                     className="d-inline-flex align-items-center justify-content-center rounded-circle mb-3"
                     style={{
                       width: '70px',
@@ -276,7 +276,7 @@ const Contact = () => {
                   >
                     {info.icon}
                   </motion.div>
-                  
+
                   <h5 className="fw-bold mb-3" style={{ position: 'relative', zIndex: 1 }}>
                     {info.title}
                   </h5>
@@ -292,15 +292,15 @@ const Contact = () => {
         </div>
       </section>
 
-      
-      
+
+
 
       {/* Contact Form & Sidebar */}
       <section className="section container">
         <div className="row g-5">
           {/* Enhanced Form */}
           <div className="col-lg-7">
-            <motion.div 
+            <motion.div
               className="glass-card p-4 p-md-5"
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -309,7 +309,7 @@ const Contact = () => {
               style={{ boxShadow: '0 10px 40px rgba(0,0,0,0.1)' }}
             >
               <div className="d-flex align-items-center gap-3 mb-4">
-                <div 
+                <div
                   className="d-flex align-items-center justify-content-center rounded-circle"
                   style={{
                     width: '50px',
@@ -324,15 +324,15 @@ const Contact = () => {
                   <p className="text-muted mb-0">We'll respond within 24 hours</p>
                 </div>
               </div>
-              
+
               <AnimatePresence>
                 {formStatus === 'success' && (
-                  <motion.div 
+                  <motion.div
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
-                    className="alert d-flex align-items-center mb-4" 
-                    style={{ 
+                    className="alert d-flex align-items-center mb-4"
+                    style={{
                       background: 'linear-gradient(135deg, #00AA8A, #00d4aa)',
                       color: 'white',
                       border: 'none',
@@ -351,10 +351,10 @@ const Contact = () => {
                 <div className="row g-3">
                   <div className="col-md-6">
                     <label className="form-label fw-semibold">Full Name *</label>
-                    <motion.input 
-                      type="text" 
+                    <motion.input
+                      type="text"
                       name="name"
-                      className="form-control form-control-lg" 
+                      className="form-control form-control-lg"
                       placeholder="John Doe"
                       value={formData.name}
                       onChange={handleChange}
@@ -372,10 +372,10 @@ const Contact = () => {
 
                   <div className="col-md-6">
                     <label className="form-label fw-semibold">Email Address *</label>
-                    <motion.input 
-                      type="email" 
+                    <motion.input
+                      type="email"
                       name="email"
-                      className="form-control form-control-lg" 
+                      className="form-control form-control-lg"
                       placeholder="john@example.com"
                       value={formData.email}
                       onChange={handleChange}
@@ -393,10 +393,10 @@ const Contact = () => {
 
                   <div className="col-md-6">
                     <label className="form-label fw-semibold">Phone Number *</label>
-                    <motion.input 
-                      type="tel" 
+                    <motion.input
+                      type="tel"
                       name="phone"
-                      className="form-control form-control-lg" 
+                      className="form-control form-control-lg"
                       placeholder="+91 98765 43210"
                       value={formData.phone}
                       onChange={handleChange}
@@ -414,7 +414,7 @@ const Contact = () => {
 
                   <div className="col-md-6">
                     <label className="form-label fw-semibold">Course Interested In *</label>
-                    <motion.select 
+                    <motion.select
                       name="course"
                       className="form-select form-select-lg"
                       value={formData.course}
@@ -438,7 +438,7 @@ const Contact = () => {
 
                   <div className="col-md-6">
                     <label className="form-label fw-semibold">Preferred Time to Contact</label>
-                    <motion.select 
+                    <motion.select
                       name="preferredTime"
                       className="form-select form-select-lg"
                       value={formData.preferredTime}
@@ -457,7 +457,7 @@ const Contact = () => {
 
                   <div className="col-md-6">
                     <label className="form-label fw-semibold">Preferred Contact Method</label>
-                    <motion.select 
+                    <motion.select
                       name="contactMethod"
                       className="form-select form-select-lg"
                       value={formData.contactMethod}
@@ -475,10 +475,10 @@ const Contact = () => {
 
                   <div className="col-12">
                     <label className="form-label fw-semibold">Message</label>
-                    <motion.textarea 
+                    <motion.textarea
                       name="message"
-                      className="form-control form-control-lg" 
-                      rows="5" 
+                      className="form-control form-control-lg"
+                      rows="5"
                       placeholder="Tell us about your requirements and questions..."
                       value={formData.message}
                       onChange={handleChange}
@@ -494,8 +494,8 @@ const Contact = () => {
                   </div>
 
                   <div className="col-12">
-                    <motion.button 
-                      type="submit" 
+                    <motion.button
+                      type="submit"
                       className="btn btn-lg w-100 fw-semibold d-flex align-items-center justify-content-center gap-2"
                       disabled={loading}
                       whileHover={{ scale: 1.02, boxShadow: '0 10px 30px rgba(30, 54, 121, 0.3)' }}
@@ -538,7 +538,7 @@ const Contact = () => {
               transition={{ duration: 0.8 }}
             >
               {/* Working Hours */}
-              <motion.div 
+              <motion.div
                 className="glass-card p-4 mb-4"
                 whileHover={{ y: -5, boxShadow: '0 15px 40px rgba(0,0,0,0.1)' }}
               >
@@ -557,9 +557,9 @@ const Contact = () => {
                   </motion.div>
                   <h4 className="fw-bold mb-0">Working Hours</h4>
                 </div>
-                
+
                 {workingHours.map((schedule, idx) => (
-                  <motion.div 
+                  <motion.div
                     key={idx}
                     className="d-flex justify-content-between align-items-center py-3"
                     style={{
@@ -577,7 +577,7 @@ const Contact = () => {
               </motion.div>
 
               {/* Social Media */}
-              <motion.div 
+              <motion.div
                 className="glass-card p-4 mb-4"
                 whileHover={{ y: -5, boxShadow: '0 15px 40px rgba(0,0,0,0.1)' }}
               >
@@ -589,13 +589,13 @@ const Contact = () => {
                     { icon: <FaLinkedinIn size={20} />, gradient: 'linear-gradient(135deg, #FBD21A, #ffd700)', link: '#' },
                     { icon: <FaTwitter size={20} />, gradient: 'linear-gradient(135deg, #1E3679, #00AA8A)', link: '#' }
                   ].map((social, idx) => (
-                    <motion.a 
+                    <motion.a
                       key={idx}
                       href={social.link}
                       className="d-flex align-items-center justify-content-center rounded-circle text-white"
-                      style={{ 
-                        width: '55px', 
-                        height: '55px', 
+                      style={{
+                        width: '55px',
+                        height: '55px',
                         background: social.gradient
                       }}
                       whileHover={{ scale: 1.15, rotate: 360 }}
@@ -609,7 +609,7 @@ const Contact = () => {
               </motion.div>
 
               {/* Help & Support */}
-              <motion.div 
+              <motion.div
                 className="glass-card p-4"
                 whileHover={{ y: -5, boxShadow: '0 15px 40px rgba(0,0,0,0.1)' }}
                 style={{
@@ -650,7 +650,7 @@ const Contact = () => {
       {/* Enhanced Location Section */}
       <section className="section" style={{ background: 'linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%)' }}>
         <div className="container">
-          <motion.div 
+          <motion.div
             className="text-center mb-5"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -663,7 +663,7 @@ const Contact = () => {
 
           <div className="row g-4 align-items-stretch">
             <div className="col-lg-6">
-              <motion.div 
+              <motion.div
                 className="glass-card p-4 p-md-5 h-100"
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -673,7 +673,7 @@ const Contact = () => {
                 style={{ boxShadow: '0 10px 40px rgba(0,0,0,0.1)' }}
               >
                 <div className="mb-4">
-                  <motion.div 
+                  <motion.div
                     className="d-inline-flex align-items-center justify-content-center rounded-circle mb-4"
                     style={{
                       width: '80px',
@@ -690,7 +690,7 @@ const Contact = () => {
 
                 <div className="mb-4">
                   <h5 className="fw-semibold mb-3 d-flex align-items-center gap-2">
-                    <div 
+                    <div
                       className="d-flex align-items-center justify-content-center rounded-circle"
                       style={{
                         width: '30px',
@@ -711,7 +711,7 @@ const Contact = () => {
 
                 <div className="mb-4">
                   <h5 className="fw-semibold mb-3 d-flex align-items-center gap-2">
-                    <div 
+                    <div
                       className="d-flex align-items-center justify-content-center rounded-circle"
                       style={{
                         width: '30px',
@@ -747,7 +747,7 @@ const Contact = () => {
 
                 <div className="mb-4">
                   <h5 className="fw-semibold mb-3 d-flex align-items-center gap-2">
-                    <div 
+                    <div
                       className="d-flex align-items-center justify-content-center rounded-circle"
                       style={{
                         width: '30px',
@@ -765,12 +765,12 @@ const Contact = () => {
                   </div>
                 </div>
 
-                <motion.button 
+                <motion.button
                   className="btn btn-lg w-100 fw-semibold d-flex align-items-center justify-content-center gap-2"
                   whileHover={{ scale: 1.02, boxShadow: '0 10px 30px rgba(30, 54, 121, 0.3)' }}
                   whileTap={{ scale: 0.98 }}
-                  style={{ 
-                    background: 'linear-gradient(135deg, #1E3679, #00AA8A)', 
+                  style={{
+                    background: 'linear-gradient(135deg, #1E3679, #00AA8A)',
                     border: 'none',
                     color: 'white',
                     borderRadius: '12px',
@@ -783,9 +783,9 @@ const Contact = () => {
             </div>
 
             <div className="col-lg-6">
-              <motion.div 
-                className="glass-card p-0 overflow-hidden h-100" 
-                style={{ 
+              <motion.div
+                className="glass-card p-0 overflow-hidden h-100"
+                style={{
                   borderRadius: '20px',
                   minHeight: '500px',
                   boxShadow: '0 10px 40px rgba(0,0,0,0.1)'
@@ -858,7 +858,7 @@ const Contact = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
-                  whileHover={{ 
+                  whileHover={{
                     y: -10,
                     boxShadow: '0 20px 40px rgba(0,0,0,0.1)'
                   }}
@@ -930,7 +930,7 @@ const Contact = () => {
                   whileHover={{ boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }}
                 >
                   <div className="d-flex gap-3">
-                    <div 
+                    <div
                       className="d-flex align-items-center justify-content-center rounded-circle flex-shrink-0"
                       style={{
                         width: '40px',
@@ -955,7 +955,7 @@ const Contact = () => {
       </section>
 
       {/* CTA Section - Enhanced */}
-      <motion.section 
+      <motion.section
         className="section text-center position-relative overflow-hidden"
         style={{
           background: 'linear-gradient(135deg, #1E3679 0%, #00AA8A 100%)',
@@ -1021,7 +1021,7 @@ const Contact = () => {
             <p className="fs-5 mb-5" style={{ maxWidth: '800px', margin: '0 auto 40px' }}>
               Take the first step towards your dream career. Our team is ready to guide you through the enrollment process and answer all your questions.
             </p>
-            
+
             <div className="d-flex gap-3 justify-content-center flex-wrap">
               <motion.a
                 href="tel:+919876543210"
@@ -1032,7 +1032,7 @@ const Contact = () => {
               >
                 <FaPhoneAlt /> Call Now
               </motion.a>
-              
+
               <motion.a
                 href="https://wa.me/919876543210"
                 whileHover={{ scale: 1.05, background: 'white', color: '#00AA8A' }}
@@ -1042,8 +1042,8 @@ const Contact = () => {
               >
                 <FaWhatsapp /> WhatsApp Us
               </motion.a>
-              
-              
+
+
             </div>
           </motion.div>
         </div>

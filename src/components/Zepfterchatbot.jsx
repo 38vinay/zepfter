@@ -169,7 +169,7 @@ const generateIntelligentResponse = (userInput) => {
 
   // Services
   if (/services|what (do you|does zepfter) (offer|provide)|solutions/.test(input)) {
-    const servicesList = Object.keys(KNOWLEDGE_BASE.services).map((service, i) => 
+    const servicesList = Object.keys(KNOWLEDGE_BASE.services).map((service, i) =>
       `${i + 1}. **${service}** - ${KNOWLEDGE_BASE.services[service].description}`
     ).join('\n\n');
     return `🚀 **ZEPFTER Services:**\n\n${servicesList}\n\nWould you like detailed information about any specific service?`;
@@ -177,8 +177,8 @@ const generateIntelligentResponse = (userInput) => {
 
   // Individual Service Details
   for (const [serviceName, serviceData] of Object.entries(KNOWLEDGE_BASE.services)) {
-    if (input.includes(serviceName.toLowerCase()) || 
-        serviceData.offerings.some(o => input.includes(o.toLowerCase()))) {
+    if (input.includes(serviceName.toLowerCase()) ||
+      serviceData.offerings.some(o => input.includes(o.toLowerCase()))) {
       return `📘 **${serviceName}**\n\n${serviceData.description}\n\n**Key Offerings:**\n${serviceData.offerings.map(o => `• ${o}`).join('\n')}${serviceData.stats ? `\n\n**Track Record:** ${serviceData.stats}` : ''}\n\nInterested in learning more? Feel free to ask!`;
     }
   }
@@ -190,10 +190,10 @@ const generateIntelligentResponse = (userInput) => {
 
   // Individual Course Details
   for (const [courseKey, courseData] of Object.entries(KNOWLEDGE_BASE.courses)) {
-    if (input.includes(courseKey) || 
-        input.includes(courseData.name.toLowerCase()) ||
-        courseData.programs.some(p => input.includes(p.toLowerCase()))) {
-      
+    if (input.includes(courseKey) ||
+      input.includes(courseData.name.toLowerCase()) ||
+      courseData.programs.some(p => input.includes(p.toLowerCase()))) {
+
       return `📘 **${courseData.name}**\n\n**Programs:**\n${courseData.programs.map(p => `• ${p}`).join('\n')}\n\n**Duration:** ${courseData.duration}\n**Eligibility:** ${courseData.eligibility}\n\n**Career Opportunities:**\n${courseData.careers.map(c => `• ${c}`).join('\n')}\n\n**Expected Salary:** ${courseData.salary}\n\n✅ ${courseData.placement}\n\nWant to know about modules or have other questions?`;
     }
   }
@@ -210,7 +210,7 @@ const generateIntelligentResponse = (userInput) => {
 
   // Salary Information
   if (/salary|pay|compensation|earning|package/.test(input)) {
-    const salaryInfo = Object.entries(KNOWLEDGE_BASE.courses).map(([key, data]) => 
+    const salaryInfo = Object.entries(KNOWLEDGE_BASE.courses).map(([key, data]) =>
       `• **${data.name}:** ${data.salary}`
     ).join('\n');
     return `💰 **Expected Salary Ranges:**\n\n${salaryInfo}\n\nNote: Actual salaries may vary based on skills, experience, and company. Our placement team helps you negotiate the best offers!`;
@@ -218,7 +218,7 @@ const generateIntelligentResponse = (userInput) => {
 
   // Duration
   if (/duration|how long|time|period/.test(input)) {
-    const durationInfo = Object.entries(KNOWLEDGE_BASE.courses).map(([key, data]) => 
+    const durationInfo = Object.entries(KNOWLEDGE_BASE.courses).map(([key, data]) =>
       `• **${data.name}:** ${data.duration}`
     ).join('\n');
     return `⏱️ **Course Durations:**\n\n${durationInfo}\n\nDurations are flexible based on your learning pace and prior knowledge!`;
@@ -226,7 +226,7 @@ const generateIntelligentResponse = (userInput) => {
 
   // Eligibility
   if (/eligibility|qualification|who can (join|enroll)|requirements/.test(input)) {
-    const eligibilityInfo = Object.entries(KNOWLEDGE_BASE.courses).map(([key, data]) => 
+    const eligibilityInfo = Object.entries(KNOWLEDGE_BASE.courses).map(([key, data]) =>
       `• **${data.name}:** ${data.eligibility}`
     ).join('\n');
     return `🎓 **Eligibility Criteria:**\n\n${eligibilityInfo}\n\nDon't worry if you're from a different background - we assess each candidate individually!`;
@@ -279,19 +279,15 @@ export default function ZepfterChatbot() {
   const [open, setOpen] = useState(false);
   const [typing, setTyping] = useState(false);
   const [input, setInput] = useState("");
+  const [showSuggestions, setShowSuggestions] = useState(true);
   const messagesEndRef = useRef(null);
 
-  const [messages, setMessages] = useState(() => {
-    const saved = sessionStorage.getItem("zepfter_chat_session");
-    return saved
-      ? JSON.parse(saved)
-      : [
-          {
-            sender: "bot",
-            text: "Hello! 👋 Welcome to ZEPFTER! I'm your virtual assistant.\n\nI can help you with:\n• Company Information\n• Services & Solutions\n• Courses & Training Programs\n• Placement Assistance\n• Internships\n• Contact Details\n\nHow can I assist you today?",
-          },
-        ];
-  });
+  const [messages, setMessages] = useState([
+    {
+      sender: "bot",
+      text: "Hello! 👋 Welcome to ZEPFTER! I'm your virtual assistant.\n\nI can help you with:\n• Company Information\n• Services & Solutions\n• Courses & Training Programs\n• Placement Assistance\n• Internships\n• Contact Details\n\nHow can I assist you today?",
+    },
+  ]);
 
   // Auto-scroll to bottom
   const scrollToBottom = () => {
@@ -302,10 +298,7 @@ export default function ZepfterChatbot() {
     scrollToBottom();
   }, [messages, typing]);
 
-  // Save session
-  useEffect(() => {
-    sessionStorage.setItem("zepfter_chat_session", JSON.stringify(messages));
-  }, [messages]);
+
 
   /* ======================================================
      SEND HANDLER
@@ -318,11 +311,16 @@ export default function ZepfterChatbot() {
     setMessages((prev) => [...prev, { sender: "user", text }]);
     setInput("");
     setTyping(true);
+    setShowSuggestions(false);
 
     setTimeout(() => {
       const reply = generateIntelligentResponse(text);
       setMessages((prev) => [...prev, { sender: "bot", text: reply }]);
       setTyping(false);
+
+      setTimeout(() => {
+        setShowSuggestions(true);
+      }, 1000);
     }, 800);
   };
 
@@ -385,8 +383,9 @@ export default function ZepfterChatbot() {
             <div ref={messagesEndRef} />
 
             {/* SUGGESTIONS */}
-            {messages.length <= 2 && (
-              <div className="suggestion-container">
+            {/* SUGGESTIONS */}
+            {showSuggestions && (
+              <div className="suggestion-container fade-in">
                 <p style={{ fontSize: '0.85rem', color: '#666', marginBottom: '8px' }}>Quick questions:</p>
                 {suggestions.map((s, i) => (
                   <button key={i} onClick={() => handleSend(s)}>
@@ -471,9 +470,16 @@ export default function ZepfterChatbot() {
         .fade-slide {
           animation: fadeSlide 0.35s ease forwards;
         }
+        .fade-in {
+          animation: fadeIn 0.5s ease forwards;
+        }
         @keyframes fadeSlide {
           from { opacity: 0; transform: translateY(20px); }
           to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
         }
 
         .cb-header {
