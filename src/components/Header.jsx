@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
-import logo from "../assets/logo_extracted-removebg-preview.png";
+import logo from "../assets/logo2.png";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
