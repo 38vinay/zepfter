@@ -332,7 +332,7 @@ const Header = () => {
                           cursor: "pointer",
                         }}
                       >
-                        Solutions
+                        Services 
                         <span>{solutionsMobileOpen ? "▲" : "▼"}</span>
                       </div>
 
