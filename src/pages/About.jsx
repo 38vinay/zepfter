@@ -50,51 +50,51 @@ const About = () => {
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
-          backgroundAttachment: 'fixed',
-          padding: 'clamp(60px, 15vw, 100px) 20px clamp(40px, 10vw, 80px)',
+          backgroundAttachment: window.innerWidth > 768 ? 'fixed' : 'scroll',
+          padding: 'clamp(60px, 12vw, 100px) 15px clamp(40px, 8vw, 80px)',
           position: 'relative',
-          marginTop: '80px',
+          marginTop: window.innerWidth <= 768 ? '70px' : '80px',
         }}
       >
-        {/* Digital Matrix Background */}
-        <div className="position-absolute w-100 h-100 top-0 start-0" style={{ opacity: 0.15 }}>
-          {[...Array(50)].map((_, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, x: Math.random() * window.innerWidth, y: -100 }}
-              animate={{
-                opacity: [0.2, 0.6, 0.2],
-                y: window.innerHeight + 100
-              }}
-              transition={{
-                duration: Math.random() * 3 + 2,
-                repeat: Infinity,
-                delay: Math.random() * 2
-              }}
-              style={{
-                position: 'absolute',
-                color: '#00AA8A',
-                fontSize: '14px',
-                fontFamily: 'monospace',
-                pointerEvents: 'none'
-              }}
-            >
-              {Math.random() > 0.5 ? '1' : '0'}
-            </motion.div>
-          ))}
-        </div>
+        {/* Digital Matrix Background - Desktop Only */}
+        {window.innerWidth > 768 && (
+          <div className="position-absolute w-100 h-100 top-0 start-0" style={{ opacity: 0.15 }}>
+            {[...Array(50)].map((_, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: Math.random() * window.innerWidth, y: -100 }}
+                animate={{
+                  opacity: [0.2, 0.6, 0.2],
+                  y: window.innerHeight + 100
+                }}
+                transition={{
+                  duration: Math.random() * 3 + 2,
+                  repeat: Infinity,
+                  delay: Math.random() * 2
+                }}
+                style={{
+                  position: 'absolute',
+                  color: '#00AA8A',
+                  fontSize: '14px',
+                  fontFamily: 'monospace',
+                  pointerEvents: 'none'
+                }}
+              >
+                {Math.random() > 0.5 ? '1' : '0'}
+              </motion.div>
+            ))}
+          </div>
+        )}
 
-        <div className="container position-relative text-center" style={{ zIndex: 2 }}>
+        <div className="container position-relative text-center px-3" style={{ zIndex: 2 }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-
-
             <motion.h1
-              className="fw-bold mb-4"
-              style={{ fontSize: 'clamp(2rem, 5vw, 4rem)' }}
+              className="fw-bold mb-3 mb-md-4"
+              style={{ fontSize: 'clamp(1.75rem, 6vw, 4rem)' }}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -105,12 +105,12 @@ const About = () => {
             </motion.h1>
 
             <motion.p
-              className="mx-auto"
+              className="mx-auto px-2"
               style={{
                 maxWidth: '900px',
-                fontSize: '1.2rem',
+                fontSize: 'clamp(0.95rem, 2.5vw, 1.2rem)',
                 color: 'rgba(255,255,255,0.9)',
-                lineHeight: '1.8'
+                lineHeight: '1.7'
               }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -149,15 +149,15 @@ const About = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="fw-bold mb-4" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: '#1E3679' }}>
+              <h2 className="fw-bold mb-3 mb-md-4" style={{ fontSize: 'clamp(1.75rem, 5vw, 3rem)', color: '#1E3679' }}>
                 Our Story
               </h2>
 
-              <p className="mb-4" style={{ fontSize: '1.1rem', color: '#666', lineHeight: '1.8' }}>
+              <p className="mb-3 mb-md-4" style={{ fontSize: 'clamp(0.95rem, 2vw, 1.1rem)', color: '#666', lineHeight: '1.7' }}>
                 ZEPFTER is a global professional services company specializing in pharmaceutical and IT solutions. We provide comprehensive services across quality assurance, regulatory compliance, validation, digital transformation, cloud infrastructure, and cybersecurity to pharmaceutical, biotech, and technology industries worldwide.
               </p>
 
-              <p className="mb-0" style={{ fontSize: '1.1rem', color: '#666', lineHeight: '1.8' }}>
+              <p className="mb-0" style={{ fontSize: 'clamp(0.95rem, 2vw, 1.1rem)', color: '#666', lineHeight: '1.7' }}>
                 We combine deep domain expertise with cutting-edge technology to deliver innovative solutions that help our clients achieve operational excellence, maintain regulatory compliance, and drive digital innovation. Our commitment is to provide scalable, secure, and sustainable solutions that create lasting value.
               </p>
             </motion.div>
@@ -175,10 +175,10 @@ const About = () => {
         }}
       >
         <div className="container">
-          <div className="row g-4 g-lg-5 align-items-stretch">
+          <div className="row g-3 g-md-4 g-lg-5 align-items-stretch">
             {/* Vision Card - Yellow */}
             <motion.div
-              className="col-lg-4 col-md-6"
+              className="col-lg-4 col-md-6 col-12"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -190,14 +190,14 @@ const About = () => {
                 style={{
                   background: '#FBD21A',
                   color: '#000',
-                  minHeight: '250px'
+                  minHeight: window.innerWidth <= 768 ? '200px' : '250px'
                 }}
               >
-                <div className="mb-4">
-                  <FaEye size={50} />
+                <div className="mb-3 mb-md-4">
+                  <FaEye size={window.innerWidth <= 768 ? 40 : 50} />
                 </div>
-                <h3 className="fw-bold mb-3">Our Vision</h3>
-                <p className="mb-0" style={{ fontSize: '1rem', lineHeight: '1.7' }}>
+                <h3 className="fw-bold mb-2 mb-md-3" style={{ fontSize: 'clamp(1.25rem, 3vw, 1.5rem)' }}>Our Vision</h3>
+                <p className="mb-0" style={{ fontSize: 'clamp(0.9rem, 2vw, 1rem)', lineHeight: '1.6' }}>
                   To be the global leader in pharmaceutical and IT services, recognized for innovation, quality excellence, and transformative solutions that shape the future of healthcare and technology.
                 </p>
               </motion.div>
@@ -205,21 +205,21 @@ const About = () => {
 
             {/* Who We Are */}
             <motion.div
-              className="col-lg-4 col-md-12 order-md-first order-lg-0"
+              className="col-lg-4 col-md-12 col-12 order-md-first order-lg-0"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <div className="text-center h-100 d-flex flex-column justify-content-center" style={{ minHeight: '250px' }}>
-                <h2 className="fw-bold mb-4" style={{ fontSize: 'clamp(2rem, 5vw, 4rem)' }}>
+              <div className="text-center h-100 d-flex flex-column justify-content-center" style={{ minHeight: window.innerWidth <= 768 ? '150px' : '250px', padding: window.innerWidth <= 768 ? '20px 0' : '0' }}>
+                <h2 className="fw-bold mb-3 mb-md-4" style={{ fontSize: 'clamp(2rem, 6vw, 4rem)' }}>
                   Who<br />We are
                 </h2>
                 <motion.div
                   animate={{ rotate: [0, 360] }}
                   transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                   style={{
-                    width: '80px',
+                    width: window.innerWidth <= 768 ? '60px' : '80px',
                     height: '4px',
                     background: 'linear-gradient(90deg, #1E3679, #00AA8A)',
                     margin: '0 auto'
@@ -230,7 +230,7 @@ const About = () => {
 
             {/* Mission Card - Blue */}
             <motion.div
-              className="col-lg-4 col-md-6"
+              className="col-lg-4 col-md-6 col-12"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -242,14 +242,14 @@ const About = () => {
                 style={{
                   background: '#1E3679',
                   color: 'white',
-                  minHeight: '250px'
+                  minHeight: window.innerWidth <= 768 ? '200px' : '250px'
                 }}
               >
-                <div className="mb-4">
-                  <FaBullseye size={50} />
+                <div className="mb-3 mb-md-4">
+                  <FaBullseye size={window.innerWidth <= 768 ? 40 : 50} />
                 </div>
-                <h3 className="fw-bold mb-3">Our Mission</h3>
-                <p className="mb-0" style={{ fontSize: '1rem', lineHeight: '1.7' }}>
+                <h3 className="fw-bold mb-2 mb-md-3" style={{ fontSize: 'clamp(1.25rem, 3vw, 1.5rem)' }}>Our Mission</h3>
+                <p className="mb-0" style={{ fontSize: 'clamp(0.9rem, 2vw, 1rem)', lineHeight: '1.6' }}>
                   To deliver exceptional pharmaceutical and IT solutions that ensure regulatory compliance, drive operational efficiency, and enable digital transformation for our clients worldwide.
                 </p>
               </motion.div>
@@ -266,15 +266,15 @@ const About = () => {
           >
             <div className="col-12">
               <div className="p-3 p-md-4 p-lg-5 rounded-4" style={{ background: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(10px)' }}>
-                <p className="mb-4" style={{ fontSize: '1.1rem', lineHeight: '1.8' }}>
+                <p className="mb-3 mb-md-4" style={{ fontSize: 'clamp(0.95rem, 2vw, 1.1rem)', lineHeight: '1.7' }}>
                   We, at ZEPFTER, are a team of 200+ industry experts, certified professionals, and technology specialists driven to deliver exceptional pharmaceutical and IT solutions that help our clients achieve their business objectives with confidence and precision.
                 </p>
 
-                <p className="mb-4" style={{ fontSize: '1.1rem', lineHeight: '1.8' }}>
+                <p className="mb-3 mb-md-4" style={{ fontSize: 'clamp(0.95rem, 2vw, 1.1rem)', lineHeight: '1.7' }}>
                   We empower organizations to transform their operations through industry-leading practices, cutting-edge technology, and deep domain expertise. Our solutions ensure regulatory compliance, operational excellence, and sustainable growth in an ever-evolving business landscape.
                 </p>
 
-                <p className="mb-0" style={{ fontSize: '1.1rem', lineHeight: '1.8' }}>
+                <p className="mb-0" style={{ fontSize: 'clamp(0.95rem, 2vw, 1.1rem)', lineHeight: '1.7' }}>
                   We optimize processes and drive innovation to offer client-centric solutions with unmatched domain expertise. Our services deliver systems that are stable, secure, scalable, and compliant with global standards.
                 </p>
               </div>
@@ -292,10 +292,10 @@ const About = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="fw-bold mb-4" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: '#000' }}>
+            <h2 className="fw-bold mb-3 mb-md-4" style={{ fontSize: 'clamp(1.75rem, 5vw, 3rem)', color: '#000' }}>
               HOW WE WORK
             </h2>
-            <p className="mb-5" style={{ fontSize: '1.1rem', color: '#666', maxWidth: '900px' }}>
+            <p className="mb-4 mb-md-5" style={{ fontSize: 'clamp(0.95rem, 2vw, 1.1rem)', color: '#666', maxWidth: '900px' }}>
               We, at ZEPFTER, are a team of 200+ industry experts, driven to deliver exceptional pharmaceutical and IT solutions that help our clients navigate complex regulatory landscapes and digital transformation challenges with confidence.
             </p>
           </motion.div>
@@ -329,7 +329,7 @@ const About = () => {
             ].map((item, idx) => (
               <motion.div
                 key={idx}
-                className="col-lg-6 col-md-6"
+                className="col-lg-6 col-md-6 col-12"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -337,17 +337,18 @@ const About = () => {
               >
                 <motion.div
                   whileHover={{ y: -5 }}
-                  className="d-flex flex-column flex-sm-row gap-3 gap-md-4"
+                  className="d-flex flex-column flex-sm-row gap-3 gap-md-4 align-items-start"
                 >
                   <motion.div
                     whileHover={{ rotate: 360, scale: 1.1 }}
                     transition={{ duration: 0.6 }}
+                    style={{ flexShrink: 0 }}
                   >
-                    {item.icon}
+                    {React.cloneElement(item.icon, { size: window.innerWidth <= 768 ? 40 : 50 })}
                   </motion.div>
                   <div>
-                    <h4 className="fw-bold mb-3" style={{ color: '#1E3679' }}>{item.title}</h4>
-                    <p style={{ color: '#666', lineHeight: '1.7' }}>{item.desc}</p>
+                    <h4 className="fw-bold mb-2 mb-md-3" style={{ color: '#1E3679', fontSize: 'clamp(1.1rem, 3vw, 1.25rem)' }}>{item.title}</h4>
+                    <p style={{ color: '#666', lineHeight: '1.6', fontSize: 'clamp(0.9rem, 2vw, 1rem)' }}>{item.desc}</p>
                   </div>
                 </motion.div>
               </motion.div>
@@ -356,84 +357,129 @@ const About = () => {
         </div>
       </section>
 
+
       {/* Our Values - Dark with Images */}
       <section
         className="section"
         style={{
           background: 'linear-gradient(135deg, #0a0a0a 0%, #1E3679 50%, #000000 100%)',
           color: 'white',
-          padding: 'clamp(40px, 8vw, 80px) 20px'
+          padding: 'clamp(50px, 10vw, 100px) 20px'
         }}
       >
         <div className="container">
           <motion.div
-            className="text-center mb-5"
+            className="text-center mb-4 mb-md-5"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="fw-bold" style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', letterSpacing: '4px' }}>
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              style={{
+                display: 'inline-block',
+                padding: '8px 20px',
+                background: 'rgba(0, 170, 138, 0.15)',
+                borderRadius: '30px',
+                border: '1px solid rgba(0, 170, 138, 0.3)',
+                marginBottom: '20px'
+              }}
+            >
+              <span style={{ color: '#00AA8A', fontSize: 'clamp(0.85rem, 2vw, 0.95rem)', fontWeight: '600', letterSpacing: '1px' }}>
+                WHAT DRIVES US
+              </span>
+            </motion.div>
+            <h2 className="fw-bold mb-3" style={{ fontSize: 'clamp(2rem, 6vw, 3.5rem)', letterSpacing: window.innerWidth <= 768 ? '2px' : '4px' }}>
               OUR VALUES
             </h2>
+            <p style={{ fontSize: 'clamp(0.95rem, 2vw, 1.1rem)', color: 'rgba(255,255,255,0.8)', maxWidth: '700px', margin: '0 auto' }}>
+              The core principles that guide our work and define our commitment to excellence
+            </p>
           </motion.div>
 
-          <div className="row g-4">
+          <div className="row g-3 g-md-4">
             {[
               {
                 image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=80',
                 title: 'Quality with Excellence',
                 description: 'We are committed to delivering world-class pharmaceutical and IT solutions with the highest standards of quality. Excellence is not just a goal, it\'s our promise to every client and project we undertake.',
-                color: '#1E3679'
+                color: '#1E3679',
+                icon: '⭐'
               },
               {
                 image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&q=80',
                 title: 'Client Centricity',
                 description: 'Clients are at the heart of everything we do. We design our solutions, support systems, and delivery methods keeping your business success and growth as our top priority.',
-                color: '#00AA8A'
+                color: '#00AA8A',
+                icon: '🤝'
               },
               {
                 image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80',
                 title: 'Innovation and Execution',
                 description: 'We embrace cutting-edge technologies and methodologies to deliver innovative pharmaceutical and IT solutions. We don\'t just plan - we execute with precision, agility, and measurable results.',
-                color: '#FBD21A'
+                color: '#FBD21A',
+                icon: '💡'
               },
               {
                 image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&q=80',
                 title: 'Regulatory Compliance',
                 description: 'We ensure strict adherence to FDA, EMA, ICH, and international standards. Our compliance-first approach guarantees that all solutions meet regulatory requirements and industry best practices.',
-                color: '#1E3679'
+                color: '#1E3679',
+                icon: '✓'
               }
             ].map((value, idx) => (
               <motion.div
                 key={idx}
-                className="col-xl-3 col-lg-6 col-md-6 col-sm-6"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12"
+                initial={{ opacity: 0, y: 60, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ 
+                  duration: 0.7, 
+                  delay: idx * 0.15,
+                  type: "spring",
+                  stiffness: 100
+                }}
               >
                 <motion.div
-                  whileHover={{ y: -10, scale: 1.02 }}
+                  whileHover={{ 
+                    y: -15, 
+                    scale: 1.03,
+                    boxShadow: `0 25px 50px -12px ${value.color}80`
+                  }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
                   className="position-relative overflow-hidden rounded-4"
-                  style={{ height: '350px', cursor: 'pointer' }}
+                  style={{ 
+                    height: window.innerWidth <= 768 ? '300px' : window.innerWidth <= 1024 ? '340px' : '380px', 
+                    cursor: 'pointer',
+                    boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
+                    border: `2px solid ${value.color}40`
+                  }}
                   onMouseEnter={(e) => {
                     const overlay = e.currentTarget.querySelector('.value-overlay');
                     const description = e.currentTarget.querySelector('.value-description');
-                    if (overlay) overlay.style.opacity = '0.95';
+                    const titleBottom = e.currentTarget.querySelector('.title-bottom');
+                    if (overlay) overlay.style.opacity = '0.97';
                     if (description) description.style.opacity = '1';
+                    if (titleBottom) titleBottom.style.opacity = '0';
                   }}
                   onMouseLeave={(e) => {
                     const overlay = e.currentTarget.querySelector('.value-overlay');
                     const description = e.currentTarget.querySelector('.value-description');
+                    const titleBottom = e.currentTarget.querySelector('.title-bottom');
                     if (overlay) overlay.style.opacity = '0';
                     if (description) description.style.opacity = '0';
+                    if (titleBottom) titleBottom.style.opacity = '1';
                   }}
                 >
                   {/* Image */}
                   <motion.img
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.6 }}
+                    whileHover={{ scale: 1.15 }}
+                    transition={{ duration: 0.5 }}
                     src={value.image}
                     alt={value.title}
                     style={{
@@ -451,9 +497,34 @@ const About = () => {
                       left: 0,
                       right: 0,
                       height: '100%',
-                      background: `linear-gradient(180deg, transparent 0%, ${value.color}E0 100%)`
+                      background: `linear-gradient(180deg, transparent 0%, ${value.color}D0 70%, ${value.color}F0 100%)`
                     }}
                   />
+
+                  {/* Icon Badge */}
+                  <motion.div
+                    initial={{ scale: 0, rotate: -180 }}
+                    whileInView={{ scale: 1, rotate: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: idx * 0.15 + 0.3 }}
+                    style={{
+                      position: 'absolute',
+                      top: '20px',
+                      right: '20px',
+                      width: window.innerWidth <= 768 ? '45px' : '50px',
+                      height: window.innerWidth <= 768 ? '45px' : '50px',
+                      background: 'rgba(255,255,255,0.95)',
+                      borderRadius: '50%',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: window.innerWidth <= 768 ? '20px' : '24px',
+                      boxShadow: '0 4px 15px rgba(0,0,0,0.2)',
+                      zIndex: 6
+                    }}
+                  >
+                    {value.icon}
+                  </motion.div>
 
                   {/* Hover Overlay with Description */}
                   <div
@@ -464,33 +535,44 @@ const About = () => {
                       left: 0,
                       right: 0,
                       bottom: 0,
-                      background: `linear-gradient(135deg, ${value.color}F5 0%, ${value.color}E5 100%)`,
+                      background: `linear-gradient(135deg, ${value.color}F8 0%, ${value.color}E8 100%)`,
                       opacity: 0,
                       transition: 'opacity 0.4s ease',
-                      zIndex: 3
+                      zIndex: 3,
+                      backdropFilter: 'blur(2px)'
                     }}
                   />
 
-                  {/* Title */}
+                  {/* Title at Bottom */}
                   <div
-                    className="position-absolute bottom-0 start-0 p-4 w-100"
-                    style={{ zIndex: 4 }}
+                    className="title-bottom position-absolute bottom-0 start-0 p-3 p-md-4 w-100"
+                    style={{ zIndex: 4, transition: 'opacity 0.3s ease' }}
                   >
-                    <h4 className="fw-bold text-white mb-0">{value.title}</h4>
+                    <h4 className="fw-bold text-white mb-0" style={{ fontSize: 'clamp(1.1rem, 3vw, 1.3rem)', textShadow: '0 2px 10px rgba(0,0,0,0.3)' }}>
+                      {value.title}
+                    </h4>
                   </div>
 
                   {/* Description (shown on hover) */}
                   <div
-                    className="value-description position-absolute top-50 start-50 translate-middle p-4 text-center"
+                    className="value-description position-absolute top-50 start-50 translate-middle p-3 p-md-4 text-center"
                     style={{
                       opacity: 0,
                       transition: 'opacity 0.4s ease',
                       zIndex: 5,
-                      width: '90%'
+                      width: '92%'
                     }}
                   >
-                    <h4 className="fw-bold text-white mb-3">{value.title}</h4>
-                    <p className="text-white mb-0" style={{ fontSize: '0.95rem', lineHeight: '1.6' }}>
+                    <div style={{
+                      fontSize: window.innerWidth <= 768 ? '28px' : '36px',
+                      marginBottom: '15px'
+                    }}>
+                      {value.icon}
+                    </div>
+                    <h4 className="fw-bold text-white mb-2 mb-md-3" style={{ fontSize: 'clamp(1.15rem, 3vw, 1.35rem)' }}>
+                      {value.title}
+                    </h4>
+                    <p className="text-white mb-0" style={{ fontSize: 'clamp(0.88rem, 2vw, 0.98rem)', lineHeight: '1.6' }}>
                       {value.description}
                     </p>
                   </div>

@@ -129,49 +129,53 @@ const Services = () => {
           background: 'linear-gradient(135deg, rgba(10,10,10,0.75) 0%, rgba(30,54,121,0.7) 50%, rgba(0,0,0,0.75) 100%), url("https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1600&q=80")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          backgroundAttachment: 'fixed',
-          minHeight: '70vh',
-          paddingTop: '140px',
-          paddingBottom: '80px',
-          marginTop: '70px',
+          backgroundAttachment: window.innerWidth > 768 ? 'fixed' : 'scroll',
+          minHeight: window.innerWidth <= 768 ? '60vh' : '70vh',
+          paddingTop: window.innerWidth <= 768 ? '100px' : '140px',
+          paddingBottom: window.innerWidth <= 768 ? '50px' : '80px',
+          marginTop: window.innerWidth <= 768 ? '70px' : '70px',
           opacity: heroOpacity,
           y: heroY
         }}
       >
-        {/* Subtle Grid Pattern */}
-        <div 
-          className="position-absolute w-100 h-100"
-          style={{
-            backgroundImage: 'linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)',
-            backgroundSize: '50px 50px',
-            opacity: 0.3
-          }}
-        />
+        {/* Subtle Grid Pattern - Desktop Only */}
+        {window.innerWidth > 768 && (
+          <div 
+            className="position-absolute w-100 h-100"
+            style={{
+              backgroundImage: 'linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)',
+              backgroundSize: '50px 50px',
+              opacity: 0.3
+            }}
+          />
+        )}
 
-        {/* Subtle Gradient Orbs */}
-        <motion.div
-          className="position-absolute"
-          style={{
-            width: '500px',
-            height: '500px',
-            borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(0,170,138,0.15) 0%, transparent 70%)',
-            top: '-250px',
-            right: '-100px',
-            filter: 'blur(60px)'
-          }}
-          animate={{
-            scale: [1, 1.1, 1],
-            opacity: [0.3, 0.5, 0.3]
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
+        {/* Subtle Gradient Orbs - Desktop Only */}
+        {window.innerWidth > 768 && (
+          <motion.div
+            className="position-absolute"
+            style={{
+              width: '500px',
+              height: '500px',
+              borderRadius: '50%',
+              background: 'radial-gradient(circle, rgba(0,170,138,0.15) 0%, transparent 70%)',
+              top: '-250px',
+              right: '-100px',
+              filter: 'blur(60px)'
+            }}
+            animate={{
+              scale: [1, 1.1, 1],
+              opacity: [0.3, 0.5, 0.3]
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+        )}
 
-        <div className="container position-relative" style={{ zIndex: 2 }}>
+        <div className="container position-relative px-3" style={{ zIndex: 2 }}>
           <motion.div 
             className="text-center"
             initial={{ opacity: 0, y: 20 }}
@@ -179,10 +183,10 @@ const Services = () => {
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
             <motion.h2 
-              className="fw-bold mb-4" 
+              className="fw-bold mb-3 mb-md-4" 
               style={{ 
-                fontSize: 'clamp(2rem, 4vw, 3.5rem)', 
-                letterSpacing: '2px',
+                fontSize: 'clamp(1.75rem, 5vw, 3.5rem)', 
+                letterSpacing: window.innerWidth <= 768 ? '1px' : '2px',
                 color: 'white'
               }}
               initial={{ opacity: 0, y: 20 }}
@@ -193,11 +197,11 @@ const Services = () => {
             </motion.h2>
 
             <motion.p 
-              className="mx-auto mb-4" 
+              className="mx-auto mb-3 mb-md-4 px-2" 
               style={{ 
                 maxWidth: '900px', 
-                fontSize: '1.1rem', 
-                lineHeight: '1.8', 
+                fontSize: 'clamp(0.95rem, 2.5vw, 1.1rem)', 
+                lineHeight: '1.7', 
                 color: 'rgba(255,255,255,0.85)' 
               }}
               initial={{ opacity: 0 }}
@@ -208,9 +212,9 @@ const Services = () => {
             </motion.p>
             
             <motion.p 
-              className="mb-4" 
+              className="mb-3 mb-md-4" 
               style={{ 
-                fontSize: '1.15rem', 
+                fontSize: 'clamp(1rem, 2.5vw, 1.15rem)', 
                 color: '#00AA8A', 
                 fontWeight: '600' 
               }}
@@ -222,11 +226,11 @@ const Services = () => {
             </motion.p>
             
             <motion.p 
-              className="mx-auto" 
+              className="mx-auto px-2" 
               style={{ 
                 maxWidth: '900px', 
-                fontSize: '1.1rem', 
-                lineHeight: '1.8', 
+                fontSize: 'clamp(0.95rem, 2.5vw, 1.1rem)', 
+                lineHeight: '1.7', 
                 color: 'rgba(255,255,255,0.85)' 
               }}
               initial={{ opacity: 0 }}
@@ -240,13 +244,13 @@ const Services = () => {
       </motion.section>
 
       {/* Service Cards - Professional with Subtle Animations */}
-      <section className="container" style={{ marginTop: '-80px', position: 'relative', zIndex: 10 }}>
-        <div className="row g-4">
+      <section className="container px-3" style={{ marginTop: window.innerWidth <= 768 ? '-50px' : '-80px', position: 'relative', zIndex: 10 }}>
+        <div className="row g-3 g-md-4">
           {services.map((service, idx) => {
             const IconComponent = service.icon;
             return (
               <motion.div 
-                className="col-lg-4 col-md-6" 
+                className="col-lg-4 col-md-6 col-12" 
                 key={idx}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -261,7 +265,7 @@ const Services = () => {
                   className="position-relative h-100 overflow-hidden rounded-4"
                   style={{
                     cursor: 'pointer',
-                    minHeight: '500px',
+                    minHeight: window.innerWidth <= 768 ? '420px' : window.innerWidth <= 1024 ? '460px' : '500px',
                     boxShadow: '0 10px 40px rgba(0,0,0,0.15)'
                   }}
                   whileHover={{ 
@@ -305,7 +309,7 @@ const Services = () => {
                   />
 
                   {/* Content */}
-                  <div className="position-absolute w-100 h-100 p-4 d-flex flex-column justify-content-between" style={{ zIndex: 2 }}>
+                  <div className="position-absolute w-100 h-100 p-3 p-md-4 d-flex flex-column justify-content-between" style={{ zIndex: 2 }}>
                     {/* Icon */}
                     <motion.div 
                       className="d-flex justify-content-center"
@@ -315,15 +319,15 @@ const Services = () => {
                       <div
                         className="d-flex align-items-center justify-content-center rounded-circle"
                         style={{
-                          width: '80px',
-                          height: '80px',
+                          width: window.innerWidth <= 768 ? '70px' : '80px',
+                          height: window.innerWidth <= 768 ? '70px' : '80px',
                           background: 'rgba(255,255,255,0.15)',
                           backdropFilter: 'blur(10px)',
                           border: '2px solid rgba(255,255,255,0.2)'
                         }}
                       >
                         <IconComponent 
-                          size={36} 
+                          size={window.innerWidth <= 768 ? 32 : 36} 
                           style={{ color: 'white' }} 
                         />
                       </div>
@@ -331,32 +335,32 @@ const Services = () => {
 
                     {/* Info */}
                     <div className="text-center text-white">
-                      <h3 className="fw-bold mb-3">{service.title}</h3>
-                      <p className="mb-4 small" style={{ opacity: 0.9 }}>
+                      <h3 className="fw-bold mb-2 mb-md-3" style={{ fontSize: 'clamp(1.25rem, 3vw, 1.5rem)' }}>{service.title}</h3>
+                      <p className="mb-3 mb-md-4" style={{ opacity: 0.9, fontSize: 'clamp(0.85rem, 2vw, 0.95rem)', lineHeight: '1.5' }}>
                         {service.description}
                       </p>
 
                       {/* Stats */}
-                      <div className="d-flex justify-content-center gap-3 mb-3">
+                      <div className="d-flex justify-content-center gap-2 gap-md-3 mb-3">
                         <div 
-                          className="px-3 py-2 rounded-3"
+                          className="px-2 px-md-3 py-2 rounded-3"
                           style={{
                             background: 'rgba(255, 255, 255, 0.15)',
                             backdropFilter: 'blur(10px)'
                           }}
                         >
-                          <div className="fw-bold">{Object.values(service.stats)[0]}</div>
-                          <div className="small" style={{ fontSize: '0.75rem' }}>{Object.keys(service.stats)[0] === 'placements' ? 'Placements' : Object.keys(service.stats)[0] === 'programs' ? 'Programs' : 'Projects'}</div>
+                          <div className="fw-bold" style={{ fontSize: 'clamp(0.9rem, 2vw, 1rem)' }}>{Object.values(service.stats)[0]}</div>
+                          <div className="small" style={{ fontSize: 'clamp(0.7rem, 1.5vw, 0.75rem)' }}>{Object.keys(service.stats)[0] === 'placements' ? 'Placements' : Object.keys(service.stats)[0] === 'programs' ? 'Programs' : 'Projects'}</div>
                         </div>
                         <div 
-                          className="px-3 py-2 rounded-3"
+                          className="px-2 px-md-3 py-2 rounded-3"
                           style={{
                             background: 'rgba(255, 255, 255, 0.15)',
                             backdropFilter: 'blur(10px)'
                           }}
                         >
-                          <div className="fw-bold">{Object.values(service.stats)[1]}</div>
-                          <div className="small" style={{ fontSize: '0.75rem' }}>Clients</div>
+                          <div className="fw-bold" style={{ fontSize: 'clamp(0.9rem, 2vw, 1rem)' }}>{Object.values(service.stats)[1]}</div>
+                          <div className="small" style={{ fontSize: 'clamp(0.7rem, 1.5vw, 0.75rem)' }}>Clients</div>
                         </div>
                       </div>
                     </div>
@@ -364,6 +368,7 @@ const Services = () => {
                     {/* CTA */}
                     <motion.div 
                       className="btn btn-light fw-semibold w-100 d-flex align-items-center justify-content-center gap-2"
+                      style={{ fontSize: 'clamp(0.85rem, 2vw, 0.95rem)', padding: window.innerWidth <= 768 ? '10px' : '12px' }}
                       animate={hoveredCard === idx ? { y: -3 } : { y: 0 }}
                       transition={{ duration: 0.3 }}
                     >
@@ -384,30 +389,30 @@ const Services = () => {
       </section>
 
       {/* Stats Section - Professional Numbers */}
-      <section ref={statsRef} className="section" style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #1E3679 50%, #000000 100%)',marginTop:'10px', color: 'white', padding: '100px 0' }}>
+      <section ref={statsRef} className="section" style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #1E3679 50%, #000000 100%)', marginTop: window.innerWidth <= 768 ? '40px' : '60px', color: 'white', padding: window.innerWidth <= 768 ? '60px 20px' : '100px 20px' }}>
         <div className="container">
           <motion.div
-            className="text-center mb-5"
+            className="text-center mb-4 mb-md-5"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="fw-bold" style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', letterSpacing: '2px' }}>
+            <h2 className="fw-bold" style={{ fontSize: 'clamp(1.75rem, 5vw, 3.5rem)', letterSpacing: window.innerWidth <= 768 ? '1px' : '2px' }}>
               WHY CHOOSE ZEPFTER?
             </h2>
           </motion.div>
 
-          <div className="row g-4">
+          <div className="row g-3 g-md-4">
             {[
-              { icon: <FaGraduationCap size={40} />, number: counters.projects, suffix: '+', label: 'Projects Delivered', color: '#1E3679' },
-              { icon: <FaTrophy size={40} />, number: counters.retention, suffix: '%', label: 'Client Retention', color: '#00AA8A' },
-              { icon: <FaUsers size={40} />, number: counters.experts, suffix: '+', label: 'Industry Experts', color: '#FBD21A' },
-              { icon: <FaRocket size={40} />, number: counters.clients, suffix: '+', label: 'Global Clients', color: '#1E3679' }
+              { icon: <FaGraduationCap size={window.innerWidth <= 768 ? 32 : 40} />, number: counters.projects, suffix: '+', label: 'Projects Delivered', color: '#1E3679' },
+              { icon: <FaTrophy size={window.innerWidth <= 768 ? 32 : 40} />, number: counters.retention, suffix: '%', label: 'Client Retention', color: '#00AA8A' },
+              { icon: <FaUsers size={window.innerWidth <= 768 ? 32 : 40} />, number: counters.experts, suffix: '+', label: 'Industry Experts', color: '#FBD21A' },
+              { icon: <FaRocket size={window.innerWidth <= 768 ? 32 : 40} />, number: counters.clients, suffix: '+', label: 'Global Clients', color: '#1E3679' }
             ].map((stat, idx) => (
-              <div className="col-lg-3 col-md-6" key={idx}>
+              <div className="col-lg-3 col-md-6 col-sm-6 col-6" key={idx}>
                 <motion.div
-                  className="text-center p-4"
+                  className="text-center p-3 p-md-4"
                   initial={{ opacity: 0, y: 30 }}
                   animate={isStatsInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ 
@@ -417,7 +422,7 @@ const Services = () => {
                   }}
                 >
                   <motion.div
-                    className="mb-3"
+                    className="mb-2 mb-md-3"
                     style={{ color: stat.color }}
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.3 }}
@@ -425,11 +430,11 @@ const Services = () => {
                     {stat.icon}
                   </motion.div>
                   
-                  <div className="display-4 fw-bold mb-2" style={{ color: stat.color }}>
+                  <div className="fw-bold mb-2" style={{ color: stat.color, fontSize: 'clamp(2rem, 6vw, 3.5rem)' }}>
                     {stat.number}{stat.suffix}
                   </div>
                   
-                  <div className="text-uppercase" style={{ letterSpacing: '1px', fontSize: '0.9rem', opacity: 0.8 }}>
+                  <div className="text-uppercase" style={{ letterSpacing: '1px', fontSize: 'clamp(0.7rem, 2vw, 0.9rem)', opacity: 0.8 }}>
                     {stat.label}
                   </div>
                 </motion.div>
@@ -440,11 +445,11 @@ const Services = () => {
       </section>
 
       {/* Features - Clean Two-Column Layout */}
-      <section className="section" style={{ background: '#f5f5f5', padding: '100px 0' }}>
+      <section className="section" style={{ background: '#f5f5f5', padding: window.innerWidth <= 768 ? '60px 20px' : '100px 20px' }}>
         <div className="container">
-          <div className="row g-5 align-items-center mb-5">
+          <div className="row g-4 g-md-5 align-items-center mb-4 mb-md-5">
             <motion.div
-              className="col-lg-6"
+              className="col-lg-6 col-12"
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -462,25 +467,25 @@ const Services = () => {
             </motion.div>
             
             <motion.div
-              className="col-lg-6"
+              className="col-lg-6 col-12"
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
             >
-              <FaCheckCircle size={36} style={{ color: '#1E3679', marginBottom: '20px' }} />
-              <h2 className="fw-bold mb-4" style={{ fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', color: '#1E3679' }}>
+              <FaCheckCircle size={window.innerWidth <= 768 ? 32 : 36} style={{ color: '#1E3679', marginBottom: '15px' }} />
+              <h2 className="fw-bold mb-3 mb-md-4" style={{ fontSize: 'clamp(1.5rem, 4vw, 2.5rem)', color: '#1E3679' }}>
                 Expert Team
               </h2>
-              <p className="mb-4" style={{ fontSize: '1.1rem', color: '#666', lineHeight: '1.8' }}>
+              <p className="mb-3 mb-md-4" style={{ fontSize: 'clamp(0.95rem, 2vw, 1.1rem)', color: '#666', lineHeight: '1.7' }}>
                 Partner with industry veterans having 15+ years of experience in Pharmaceutical and Technology sectors. Our experts bring deep domain knowledge and technical precision to every project, ensuring world-class delivery.
               </p>
             </motion.div>
           </div>
 
-          <div className="row g-5 align-items-center">
+          <div className="row g-4 g-md-5 align-items-center">
             <motion.div
-              className="col-lg-6 order-lg-2"
+              className="col-lg-6 col-12 order-lg-2"
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -498,17 +503,17 @@ const Services = () => {
             </motion.div>
             
             <motion.div
-              className="col-lg-6 order-lg-1"
+              className="col-lg-6 col-12 order-lg-1"
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
             >
-              <FaBriefcase size={36} style={{ color: '#00AA8A', marginBottom: '20px' }} />
-              <h2 className="fw-bold mb-4" style={{ fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', color: '#00AA8A' }}>
+              <FaBriefcase size={window.innerWidth <= 768 ? 32 : 36} style={{ color: '#00AA8A', marginBottom: '15px' }} />
+              <h2 className="fw-bold mb-3 mb-md-4" style={{ fontSize: 'clamp(1.5rem, 4vw, 2.5rem)', color: '#00AA8A' }}>
                 Global Delivery Model
               </h2>
-              <p className="mb-4" style={{ fontSize: '1.1rem', color: '#666', lineHeight: '1.8' }}>
+              <p className="mb-3 mb-md-4" style={{ fontSize: 'clamp(0.95rem, 2vw, 1.1rem)', color: '#666', lineHeight: '1.7' }}>
                 Our seamless delivery model ensures 24/7 support and rapid turnaround times. We leverage global talent pools to provide scalable, cost-effective, and high-quality solutions tailored to your business needs.
               </p>
             </motion.div>
