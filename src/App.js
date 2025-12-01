@@ -29,6 +29,9 @@ import Privacy from "./pages/Privacy";
 // ✅ IMPORT NEW SOLUTION PAGES
 import Pharma from "./pages/pharma";
 import IT from "./pages/IT";
+import BPO from "./pages/bpo";
+import BPM from "./pages/bpm";
+import BPS from "./pages/bps";
 
 
 const App = () => {
@@ -54,9 +57,12 @@ const App = () => {
         <Route path="/services/talent-solutions" element={<TrainingPlacement />} />
         <Route path="/services/corporate-training" element={<InternshipPrograms />} />
 
-          {/* SOLUTIONS PAGES (NEW) */}
+        {/* SOLUTIONS PAGES (NEW) */}
         <Route path="/solutions/pharma" element={<Pharma />} />
         <Route path="/solutions/it" element={<IT />} />
+        <Route path="/solutions/bpo" element={<BPO />} />
+        <Route path="/solutions/bpm" element={<BPM />} />
+        <Route path="/solutions/bps" element={<BPS />} />
 
 
         {/* Other Pages */}

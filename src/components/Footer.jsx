@@ -13,9 +13,7 @@ const Footer = () => {
           <div className="col-md-3">
             <h4 className="fw-bold">ZEPFTER</h4>
             <p className="mt-3 text-light opacity-75">
-              A leading training institute offering world-class programs in
-              Medical, Clinical, and IT domains. We build careers through
-              knowledge, innovation, and practical learning.
+              A leading provider of comprehensive solutions in Pharma, IT, BPO, BPM, and BPS, alongside world-class training programs. We empower businesses and build careers through innovation and excellence.
             </p>
 
             {/* Social Icons */}
@@ -43,13 +41,18 @@ const Footer = () => {
 
           {/* COURSES */}
           <div className="col-md-2">
-            <h5 className="fw-bold mb-3">Top Courses</h5>
+            <h5 className="fw-bold mb-3">Top Services</h5>
             <ul className="list-unstyled footer-links">
               <li><a href="/services">Medical Coding</a></li>
               <li><a href="/services">Clinical Research</a></li>
               <li><a href="/services">Data Science</a></li>
               <li><a href="/services">AI & Machine Learning</a></li>
               <li><a href="/services">Web Development</a></li>
+              <li><a href="/solutions/pharma">Pharma</a></li>
+              <li><a href="/solutions/it">IT</a></li>
+              <li><a href="/solutions/bpo">BPO</a></li>
+              <li><a href="/solutions/bpm">BPM</a></li>
+              <li><a href="/solutions/bps">BPS</a></li>
             </ul>
           </div>
 

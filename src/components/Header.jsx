@@ -51,6 +51,9 @@ const Header = () => {
   const solutionsDropdown = [
     { path: "/solutions/pharma", label: "Pharma" },
     { path: "/solutions/it", label: "IT" },
+    { path: "/solutions/bpo", label: "BPO" },
+    { path: "/solutions/bpm", label: "BPM" },
+    { path: "/solutions/bps", label: "BPS" },
   ];
 
   const isActive = (path) => location.pathname === path;
