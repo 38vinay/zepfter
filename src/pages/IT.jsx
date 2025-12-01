@@ -700,7 +700,7 @@ const EnhancedIT = () => {
               right: 0,
               bottom: 0,
               background: 'rgba(0,0,0,0.85)',
-              backdropFilter: 'blur(10px)',
+              backdropFilter: 'blur(15px)',
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
@@ -709,30 +709,34 @@ const EnhancedIT = () => {
             }}
           >
             <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
+              initial={{ scale: 0.9, opacity: 0, y: 50 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 50 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
               onClick={(e) => e.stopPropagation()}
               style={{
-                background: 'white',
-                padding: '40px',
-                borderRadius: '25px',
-                maxWidth: '80%',
+                background: 'linear-gradient(145deg, #1a1a2e 0%, #0f0f1c 100%)',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                padding: '0',
+                borderRadius: '24px',
+                maxWidth: '900px',
                 width: '100%',
                 maxHeight: '90vh',
                 overflowY: 'auto',
                 position: 'relative',
-                boxShadow: '0 20px 60px rgba(0,0,0,0.3)'
+                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
+                color: 'white'
               }}
             >
+              {/* Close Button */}
               <button
                 onClick={() => setSelectedProduct(null)}
                 style={{
                   position: 'absolute',
                   top: '20px',
                   right: '20px',
-                  background: 'rgba(0,0,0,0.1)',
-                  border: 'none',
+                  background: 'rgba(255,255,255,0.1)',
+                  border: '1px solid rgba(255,255,255,0.1)',
                   borderRadius: '50%',
                   width: '40px',
                   height: '40px',
@@ -741,94 +745,145 @@ const EnhancedIT = () => {
                   justifyContent: 'center',
                   cursor: 'pointer',
                   transition: 'all 0.3s ease',
-                  zIndex: 10
+                  zIndex: 10,
+                  color: 'white'
                 }}
-                onMouseEnter={(e) => e.target.style.background = selectedProduct.color}
-                onMouseLeave={(e) => e.target.style.background = 'rgba(0,0,0,0.1)'}
+                onMouseEnter={(e) => {
+                  e.target.style.background = '#ff4757';
+                  e.target.style.transform = 'rotate(90deg)';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.background = 'rgba(255,255,255,0.1)';
+                  e.target.style.transform = 'rotate(0deg)';
+                }}
               >
-                <FaTimes size={20} />
+                <FaTimes size={18} />
               </button>
 
-              {selectedProduct.image && (
-                <div style={{
-                  marginBottom: '30px',
-                  borderRadius: '15px',
-                  overflow: 'hidden',
-                  border: `3px solid ${selectedProduct.color}`
-                }}>
-                  <img
-                    src={selectedProduct.image}
-                    alt={selectedProduct.title}
-                    style={{
-                      width: '100%',
-                      height: '250px',
-                      objectFit: 'cover'
-                    }}
-                  />
-                </div>
-              )}
-
-              <div style={{ color: selectedProduct.color, marginBottom: '20px' }}>
-                {selectedProduct.icon}
-              </div>
-
-              <h2
-                className="fw-bold mb-4"
-                style={{ color: selectedProduct.color }}
-              >
-                {selectedProduct.title}
-              </h2>
-
-              <p style={{ color: '#555', lineHeight: '1.8', fontSize: '1.1rem', marginBottom: '30px' }}>
-                {selectedProduct.details}
-              </p>
-
-              {selectedProduct.keyPoints && (
-                <>
-                  <h4 className="fw-bold mb-3" style={{ color: selectedProduct.color }}>
-                    Key Features & Capabilities
-                  </h4>
-                  <div style={{ marginBottom: '30px' }}>
-                    {selectedProduct.keyPoints.map((point, idx) => (
-                      <div
-                        key={idx}
+              {/* Modal Content */}
+              <div className="row g-0">
+                {/* Left Side - Image (Desktop) / Top (Mobile) */}
+                <div className="col-lg-5" style={{ position: 'relative', minHeight: '300px' }}>
+                  {selectedProduct.image && (
+                    <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+                      <div style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        background: `linear-gradient(to bottom, transparent 0%, #1a1a2e 100%)`,
+                        zIndex: 2
+                      }} />
+                      <img
+                        src={selectedProduct.image}
+                        alt={selectedProduct.title}
                         style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '12px',
-                          marginBottom: '12px',
-                          padding: '12px',
-                          background: `${selectedProduct.color}10`,
-                          borderRadius: '8px',
-                          border: `1px solid ${selectedProduct.color}30`
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'cover',
+                          borderTopLeftRadius: '24px',
+                          borderBottomLeftRadius: '0px'
+                        }}
+                      />
+                    </div>
+                  )}
+                  <div style={{
+                    position: 'absolute',
+                    bottom: '20px',
+                    left: '20px',
+                    zIndex: 3,
+                    background: 'rgba(0,0,0,0.6)',
+                    backdropFilter: 'blur(5px)',
+                    padding: '10px 20px',
+                    borderRadius: '12px',
+                    border: `1px solid ${selectedProduct.color}`
+                  }}>
+                    <div style={{ color: selectedProduct.color, marginBottom: '5px' }}>
+                      {selectedProduct.icon}
+                    </div>
+                    <div style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.9)' }}>
+                      Featured Service
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right Side - Content */}
+                <div className="col-lg-7">
+                  <div style={{ padding: '40px' }}>
+                    <h2
+                      className="fw-bold mb-3"
+                      style={{
+                        background: selectedProduct.gradient,
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        fontSize: '2rem'
+                      }}
+                    >
+                      {selectedProduct.title}
+                    </h2>
+
+                    <p style={{
+                      color: 'rgba(255,255,255,0.7)',
+                      lineHeight: '1.8',
+                      fontSize: '1.05rem',
+                      marginBottom: '30px',
+                      borderLeft: `3px solid ${selectedProduct.color}`,
+                      paddingLeft: '15px'
+                    }}>
+                      {selectedProduct.details}
+                    </p>
+
+                    {selectedProduct.keyPoints && (
+                      <>
+                        <h5 className="fw-bold mb-4" style={{ color: 'white', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                          <span style={{ width: '20px', height: '2px', background: selectedProduct.color }}></span>
+                          Key Capabilities
+                        </h5>
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '15px' }}>
+                          {selectedProduct.keyPoints.map((point, idx) => (
+                            <motion.div
+                              key={idx}
+                              initial={{ opacity: 0, x: 20 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: idx * 0.1 }}
+                              style={{
+                                background: 'rgba(255,255,255,0.03)',
+                                padding: '12px 15px',
+                                borderRadius: '10px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '12px',
+                                border: '1px solid rgba(255,255,255,0.05)'
+                              }}
+                              whileHover={{ x: 5, background: 'rgba(255,255,255,0.06)' }}
+                            >
+                              <FaCheckCircle style={{ color: selectedProduct.color, flexShrink: 0 }} />
+                              <span style={{ color: 'rgba(255,255,255,0.9)', fontSize: '0.95rem' }}>{point}</span>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </>
+                    )}
+
+                    <div style={{ marginTop: '40px', paddingTop: '20px', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
+                      <button
+                        className="btn fw-bold"
+                        style={{
+                          background: selectedProduct.gradient,
+                          color: 'white',
+                          padding: '12px 30px',
+                          borderRadius: '50px',
+                          border: 'none',
+                          boxShadow: `0 10px 20px -5px ${selectedProduct.color}60`
                         }}
                       >
-                        <FaCheckCircle style={{ color: selectedProduct.color, minWidth: '20px' }} />
-                        <span style={{ color: '#333', fontSize: '0.95rem' }}>{point}</span>
-                      </div>
-                    ))}
+                        Get Started
+                      </button>
+                    </div>
                   </div>
-                </>
-              )}
-
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setSelectedProduct(null)}
-                style={{
-                  width: '100%',
-                  padding: '15px 40px',
-                  background: selectedProduct.gradient,
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '12px',
-                  cursor: 'pointer',
-                  fontWeight: '600',
-                  fontSize: '1rem'
-                }}
-              >
-                Close
-              </motion.button>
+                </div>
+              </div>
             </motion.div>
           </motion.div>
         )}
