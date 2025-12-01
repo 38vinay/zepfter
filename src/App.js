@@ -26,6 +26,11 @@ import InternshipPrograms from "./pages/InternshipPrograms";
 import Terms from "./pages/Terms";
 import Privacy from "./pages/Privacy";
 
+// ✅ IMPORT NEW SOLUTION PAGES
+import Pharma from "./pages/pharma";
+import IT from "./pages/IT";
+
+
 const App = () => {
   useEffect(() => {
     initAOS();
@@ -48,6 +53,11 @@ const App = () => {
         <Route path="/services/pharma-consulting" element={<PharmaceuticalSkills />} />
         <Route path="/services/talent-solutions" element={<TrainingPlacement />} />
         <Route path="/services/corporate-training" element={<InternshipPrograms />} />
+
+          {/* SOLUTIONS PAGES (NEW) */}
+        <Route path="/solutions/pharma" element={<Pharma />} />
+        <Route path="/solutions/it" element={<IT />} />
+
 
         {/* Other Pages */}
         <Route path="/contact" element={<Contact />} />
