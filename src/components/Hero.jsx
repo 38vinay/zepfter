@@ -55,24 +55,24 @@ const Home = () => {
   const slides = [
     {
       image: hero1,
-      title: "Medical Courses",
-      subtitle: "Excellence Through Quality Training",
+      title: "Pharmaceutical Solutions",
+      subtitle: "Excellence Through Innovation",
       description:
-        "Transform your career with industry-recognized medical coding, billing, and medical writing programs",
+        "Comprehensive medical coding services, regulatory compliance, and industry-leading training programs.",
     },
     {
       image: hero2,
-      title: "Clinical Courses",
-      subtitle: "Excellence Through Research Innovation",
+      title: "Clinical Research",
+      subtitle: "Advancing Medical Science",
       description:
-        "Master clinical research with hands-on training in data management and clinical trials",
+        "Expert clinical data management, trial support services, and specialized research education.",
     },
     {
       image: hero3,
-      title: "IT & Technology",
-      subtitle: "Excellence Through Digital Transformation",
+      title: "IT & Digital Transformation",
+      subtitle: "Empowering Business Growth",
       description:
-        "Build cutting-edge tech skills in Data Science, AI/ML, and Web Development",
+        "Cutting-edge IT services, custom software solutions, and advanced technology skill development.",
     },
   ];
 
