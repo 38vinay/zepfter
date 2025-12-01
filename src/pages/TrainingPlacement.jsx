@@ -7,14 +7,11 @@ import {
   FaUserTie, 
   FaBriefcase, 
   FaHandshake,
-  FaComments,
-  FaFileAlt,
   FaCheckCircle,
   FaAward,
   FaUsers,
   FaChartLine,
   FaRocket,
-  FaLightbulb,
   FaSearch
 } from "react-icons/fa";
 

@@ -10,7 +10,6 @@ import {
   FaMicroscope,
   FaCheckCircle,
   FaAward,
-  FaBriefcase,
   FaGlobe,
   FaUsers,
   FaChartLine,
