@@ -713,20 +713,6 @@ const EnhancedIT = () => {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 50 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              onClick={(e) => e.stopPropagation()}
-              style={{
-                background: 'linear-gradient(145deg, #1a1a2e 0%, #0f0f1c 100%)',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
-                padding: '0',
-                borderRadius: '24px',
-                maxWidth: '900px',
-                width: '100%',
-                maxHeight: '90vh',
-                overflowY: 'auto',
-                position: 'relative',
-                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
-                color: 'white'
-              }}
             >
               {/* Close Button */}
               <button

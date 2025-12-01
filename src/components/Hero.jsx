@@ -242,14 +242,13 @@ const Home = () => {
               fontSize: isMobile
                 ? "2rem"
                 : isTablet
-                ? "2.6rem"
-                : "clamp(2.8rem, 5vw, 4rem)",
+                  ? "2.6rem"
+                  : "clamp(2.8rem, 5vw, 4rem)",
               letterSpacing: "1px",
               lineHeight: "1.2",
             }}
           >
-            Zepfter — Bridging <br />
-            Innovation, Healthcare & Careers
+            Zepfter — Your Trusted Partner in IT, Pharma & Workforce Solutions
           </motion.h1>
 
           <motion.p
@@ -264,8 +263,7 @@ const Home = () => {
               margin: "0 auto",
             }}
           >
-            Empowering Businesses & Professionals with Technology, Pharma
-            Expertise & Job Placement.
+            Delivering technology excellence, pharmaceutical support, and smart workforce solutions for modern businesses.
           </motion.p>
 
           <motion.p
@@ -281,10 +279,7 @@ const Home = () => {
               margin: "0 auto",
             }}
           >
-            Zepfter is a multi-service company combining deep IT knowledge,
-            pharmaceutical domain skills, and career placement support — so your
-            organization runs smarter, healthcare operations are optimized, and
-            your talent finds the right opportunities.
+            Zepfter provides end-to-end services across IT development, pharmaceutical operations, and workforce management. We help businesses streamline processes, enhance healthcare accuracy, and hire the right talent — all through reliable, industry-ready service delivery.
           </motion.p>
 
           {/* KEY PILLARS */}
@@ -297,25 +292,24 @@ const Home = () => {
           >
             <p>
               <b style={{ color: "#00AA8A" }}>
-                Technology & Information Services:
+                Pharmaceutical & Medical Coding Services:
+              </b>
+              &nbsp;Specialized pharma domain operations to support healthcare providers:
+               End-to-end medical coding services,
+              Pharma data management & compliance support,
+              Documentation accuracy & audit assistance,
+              Streamlined workflows for hospitals & healthcare companies.
+            </p>
+
+            <p>
+              <b style={{ color: "#00AA8A" }}>
+                Technology & IT Services:
               </b>
               &nbsp;Custom IT solutions, software development & digital
               transformation that drive business growth.
             </p>
 
-            <p>
-              <b style={{ color: "#00AA8A" }}>
-                Pharmaceutical & Medical Coding:
-              </b>
-              &nbsp;Accurate medical coding, compliance support & pharma
-              expertise for seamless healthcare operations.
-            </p>
-
-            <p>
-              <b style={{ color: "#00AA8A" }}>Placement & Career Support:</b>
-              &nbsp;Placement assistance & recruitment support connecting
-              skilled professionals to the right careers.
-            </p>
+            
           </motion.div>
 
           {/* CTA BUTTONS */}
@@ -333,7 +327,7 @@ const Home = () => {
               animate="rest"
               style={{
                 background: "linear-gradient(135deg, #00AA8A, #1E3679)",
-                
+
                 borderRadius: "50px",
                 border: "none",
                 padding: isMobile ? "12px 24px" : "14px 40px",
@@ -354,8 +348,8 @@ const Home = () => {
                   left: 0,
                   width: "100%",
                   height: "100%",
-                   background:
-                  "linear-gradient(135deg, #0a0a0a 0%, #1E3679 50%, #000000 100%)",
+                  background:
+                    "linear-gradient(135deg, #0a0a0a 0%, #1E3679 50%, #000000 100%)",
                   zIndex: -1,
                 }}
               />
@@ -420,8 +414,8 @@ const Home = () => {
                   width: "100%",
                   height: "100%",
                   background:
-                  "linear-gradient(135deg, #0a0a0a 0%, #1E3679 50%, #000000 100%)",
-                  
+                    "linear-gradient(135deg, #0a0a0a 0%, #1E3679 50%, #000000 100%)",
+
                   zIndex: -1,
                 }}
               />
@@ -545,8 +539,8 @@ const Home = () => {
                           isMobile || isLandscape || isShort
                             ? "80px 15px 40px"
                             : isTablet
-                            ? "120px 30px 80px"
-                            : "0 20px",
+                              ? "120px 30px 80px"
+                              : "0 20px",
                       }}
                     >
                       <div className="container" style={{ maxWidth: "900px" }}>
@@ -585,7 +579,7 @@ const Home = () => {
                         </p>
 
                         {/* CTA Buttons */}
-                        
+
                       </div>
                     </div>
                   </motion.div>
@@ -648,8 +642,8 @@ const Home = () => {
                 fontSize: isMobile
                   ? "2rem"
                   : isTablet
-                  ? "2.8rem"
-                  : "clamp(2.5rem, 4.5vw, 3.8rem)",
+                    ? "2.8rem"
+                    : "clamp(2.5rem, 4.5vw, 3.8rem)",
                 letterSpacing: isMobile ? "2px" : "3px",
                 color: "#1E3679",
                 textTransform: "uppercase",
@@ -699,8 +693,8 @@ const Home = () => {
                 initial={{ opacity: 0, y: 60 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ 
-                  duration: 0.7, 
+                transition={{
+                  duration: 0.7,
                   delay: idx * 0.12,
                   ease: [0.25, 0.46, 0.45, 0.94]
                 }}
@@ -718,7 +712,7 @@ const Home = () => {
                     className="p-4 p-md-5 h-100 position-relative overflow-hidden"
                     style={{
                       background: hoveredCard === idx ? service.color : "#fff",
-                      border: hoveredCard === idx 
+                      border: hoveredCard === idx
                         ? `2px solid ${service.color}`
                         : "2px solid rgba(0,0,0,0.06)",
                       borderRadius: "16px",
@@ -726,8 +720,8 @@ const Home = () => {
                       minHeight: isMobile
                         ? "300px"
                         : isTablet
-                        ? "340px"
-                        : "370px",
+                          ? "340px"
+                          : "370px",
                       display: "flex",
                       flexDirection: "column",
                       justifyContent: "space-between",
@@ -743,10 +737,10 @@ const Home = () => {
                         animate={
                           hoveredCard === idx
                             ? {
-                                scale: 2.2,
-                                opacity: 0.12,
-                                rotate: 180,
-                              }
+                              scale: 2.2,
+                              opacity: 0.12,
+                              rotate: 180,
+                            }
                             : { scale: 0, opacity: 0 }
                         }
                         transition={{ duration: 0.7, ease: "easeOut" }}
@@ -787,19 +781,19 @@ const Home = () => {
                         animate={
                           hoveredCard === idx && !isMobile
                             ? {
-                                scale: [1, 1.15, 1.08],
-                                rotate: [0, -8, 8, 0],
-                              }
+                              scale: [1, 1.15, 1.08],
+                              rotate: [0, -8, 8, 0],
+                            }
                             : { scale: 1, rotate: 0 }
                         }
-                        transition={{ 
+                        transition={{
                           duration: 0.8,
                           ease: "easeInOut"
                         }}
                         className="mb-4"
                         style={{
                           color: hoveredCard === idx ? "white" : service.color,
-                          filter: hoveredCard === idx 
+                          filter: hoveredCard === idx
                             ? "drop-shadow(0 4px 12px rgba(255,255,255,0.3))"
                             : `drop-shadow(0 2px 8px ${service.color}30)`,
                           transition: "all 0.35s ease",
@@ -815,8 +809,8 @@ const Home = () => {
                           fontSize: isMobile
                             ? "1.2rem"
                             : isTablet
-                            ? "1.3rem"
-                            : "1.4rem",
+                              ? "1.3rem"
+                              : "1.4rem",
                           letterSpacing: "1.2px",
                           lineHeight: "1.3",
                           transition: "color 0.35s ease",
@@ -858,12 +852,12 @@ const Home = () => {
                       <span>EXPLORE</span>
                       <motion.div
                         animate={
-                          hoveredCard === idx && !isMobile 
-                            ? { x: [0, 6, 0] } 
+                          hoveredCard === idx && !isMobile
+                            ? { x: [0, 6, 0] }
                             : { x: 0 }
                         }
-                        transition={{ 
-                          duration: 0.8, 
+                        transition={{
+                          duration: 0.8,
                           repeat: hoveredCard === idx ? Infinity : 0,
                           ease: "easeInOut"
                         }}
@@ -1017,12 +1011,12 @@ const Home = () => {
       </section>
 
       {/* Stats Section */}
-      <section 
-        ref={statsRef} 
-        className="section" 
-        style={{ 
-          background: '#f5f5f5', 
-          padding: isMobile ? '40px 20px' : isTablet ? '60px 20px' : 'clamp(40px, 8vw, 80px) 20px' 
+      <section
+        ref={statsRef}
+        className="section"
+        style={{
+          background: '#f5f5f5',
+          padding: isMobile ? '40px 20px' : isTablet ? '60px 20px' : 'clamp(40px, 8vw, 80px) 20px'
         }}
       >
         <div className="container">
@@ -1185,8 +1179,8 @@ const Home = () => {
               fontSize: isMobile
                 ? "1.5rem"
                 : isTablet
-                ? "2rem"
-                : "clamp(2rem, 4vw, 3rem)",
+                  ? "2rem"
+                  : "clamp(2rem, 4vw, 3rem)",
               letterSpacing: isMobile ? "1px" : "2px",
             }}
           >
@@ -1207,69 +1201,69 @@ const Home = () => {
           </motion.p>
 
           <motion.a
-              href="/services"
-              className="btn fw-semibold position-relative overflow-hidden"
-              initial="rest"
-              whileHover="hover"
-              animate="rest"
+            href="/services"
+            className="btn fw-semibold position-relative overflow-hidden"
+            initial="rest"
+            whileHover="hover"
+            animate="rest"
+            style={{
+              background:
+                "linear-gradient(135deg, #0a0a0a 0%, #1E3679 50%, #000000 100%)",
+              borderRadius: "50px",
+              border: "none",
+              padding: isMobile ? "12px 24px" : "14px 40px",
+              color: "#fff",
+              zIndex: 1,
+            }}
+          >
+            {/* Sliding Gradient Fill Layer */}
+            <motion.div
+              variants={{
+                rest: { x: "-100%" },
+                hover: { x: 0 },
+              }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
               style={{
-                 background:
-                  "linear-gradient(135deg, #0a0a0a 0%, #1E3679 50%, #000000 100%)",
-                borderRadius: "50px",
-                border: "none",
-                padding: isMobile ? "12px 24px" : "14px 40px",
-                color: "#fff",
-                zIndex: 1,
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                background: "linear-gradient(135deg, #00AA8A, #1E3679)",
+                zIndex: -1,
+              }}
+            />
+
+            {/* Button Text */}
+            <motion.span
+              variants={{
+                rest: { color: "#fff" },
+                hover: { color: "#fff" },
+              }}
+              transition={{ duration: 0.3 }}
+              className="fw-semibold"
+              style={{ position: "relative", zIndex: 2 }}
+            >
+              Contact Us
+            </motion.span>
+
+            {/* Arrow Reveal */}
+            <motion.span
+              variants={{
+                rest: { x: 0, opacity: 0.7 },
+                hover: { x: 8, opacity: 1 },
+              }}
+              transition={{ duration: 0.3 }}
+              style={{
+                position: "relative",
+                marginLeft: "8px",
+                zIndex: 2,
+                display: "inline-block",
               }}
             >
-              {/* Sliding Gradient Fill Layer */}
-              <motion.div
-                variants={{
-                  rest: { x: "-100%" },
-                  hover: { x: 0 },
-                }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  width: "100%",
-                  height: "100%",
-                   background: "linear-gradient(135deg, #00AA8A, #1E3679)",
-                  zIndex: -1,
-                }}
-              />
-
-              {/* Button Text */}
-              <motion.span
-                variants={{
-                  rest: { color: "#fff" },
-                  hover: { color: "#fff" },
-                }}
-                transition={{ duration: 0.3 }}
-                className="fw-semibold"
-                style={{ position: "relative", zIndex: 2 }}
-              >
-                Contact Us
-              </motion.span>
-
-              {/* Arrow Reveal */}
-              <motion.span
-                variants={{
-                  rest: { x: 0, opacity: 0.7 },
-                  hover: { x: 8, opacity: 1 },
-                }}
-                transition={{ duration: 0.3 }}
-                style={{
-                  position: "relative",
-                  marginLeft: "8px",
-                  zIndex: 2,
-                  display: "inline-block",
-                }}
-              >
-                →
-              </motion.span>
-            </motion.a>
+              →
+            </motion.span>
+          </motion.a>
 
         </div>
       </motion.section>
