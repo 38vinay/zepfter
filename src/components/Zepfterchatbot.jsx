@@ -1,102 +1,274 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { FaTimes, FaPaperPlane } from "react-icons/fa";
 
 /* ======================================================
-     HYBRID KNOWLEDGE SYSTEM
+     COMPREHENSIVE ZEPFTER KNOWLEDGE BASE
    ====================================================== */
 
-const DATA = {
-  short: {
-    medical:
-      "ZEPFTER offers Medical Coding, Billing, Medical Writing & Medical Affairs with 100% placement assistance.",
-    clinical:
-      "Clinical Programs include Clinical Research, CDM, Clinical Trials & BA/BE Studies with CRO-level training.",
-    it: "IT Courses include Full Stack Development, Python, Java, Data Science, AI/ML, Cybersecurity & Cloud.",
-    pharma:
-      "Pharma Programs include QA, QC, Regulatory Affairs, Manufacturing, Documentation & R&D.",
-    placement:
-      "We provide 100% placement assistance with resumes, mock interviews, aptitude, HR training & hiring partners.",
-    internships:
-      "Internships available in Medical Coding, Clinical Research, IT, Pharma QA/QC, Data Science & Medical Writing.",
+const KNOWLEDGE_BASE = {
+  company: {
+    name: "ZEPFTER",
+    description: "ZEPFTER is a multi-service company combining deep IT knowledge, pharmaceutical domain skills, and career placement support. We deliver world-class pharmaceutical and IT solutions that drive innovation, ensure compliance, and accelerate digital transformation for businesses globally.",
+    vision: "To be the global leader in pharmaceutical and IT services, recognized for innovation, quality excellence, and transformative solutions that shape the future of healthcare and technology.",
+    mission: "To deliver exceptional pharmaceutical and IT solutions that ensure regulatory compliance, drive operational efficiency, and enable digital transformation for our clients worldwide.",
+    established: "Professional services company with 200+ industry experts",
+    stats: {
+      projects: "1500+ Projects Delivered",
+      clients: "450+ Global Clients",
+      experts: "200+ Industry Experts",
+      satisfaction: "99% Client Satisfaction"
+    }
   },
 
-  full: {
+  services: {
+    "Medical Affairs": {
+      description: "Comprehensive medical affairs services including medical writing, pharmacovigilance, regulatory strategy, and medical information management.",
+      offerings: ["Medical Writing", "Pharmacovigilance", "Regulatory Strategy", "Medical Information"],
+      stats: "150+ Projects | 40+ Clients"
+    },
+    "Clinical Research": {
+      description: "End-to-end clinical research services covering data management, biostatistics, clinical trial management, and safety monitoring.",
+      offerings: ["Clinical Data Management", "Biostatistics", "Clinical Trial Management", "Safety Monitoring"],
+      stats: "200+ Projects | 50+ Clients"
+    },
+    "Digital Transformation": {
+      description: "Cutting-edge IT services including cloud computing, AI/ML solutions, cybersecurity, and enterprise software development.",
+      offerings: ["Cloud Computing", "AI/ML Solutions", "Cybersecurity", "Enterprise Software Development"],
+      stats: "500+ Projects | 100+ Clients"
+    },
+    "Pharma Consulting": {
+      description: "Expert pharmaceutical consulting services focusing on quality assurance, regulatory compliance, GMP standards, and process optimization.",
+      offerings: ["Quality Assurance", "Regulatory Compliance", "GMP Standards", "Process Optimization"]
+    },
+    "Talent Solutions": {
+      description: "Strategic recruitment and workforce planning services to help organizations build high-performing teams.",
+      offerings: ["Strategic Recruitment", "Workforce Planning", "Career Development", "Talent Acquisition"]
+    },
+    "Corporate Training": {
+      description: "Professional development programs including skills enhancement, industry certifications, and custom training solutions.",
+      offerings: ["Professional Development", "Skills Enhancement", "Industry Certifications", "Custom Training Programs"]
+    }
+  },
+
+  courses: {
     medical: {
-      modules: [
-        "ICD-10 & CPT Coding",
-        "HCPCS & Procedure Coding",
-        "Revenue Cycle Management",
-        "Denial Management",
-        "EHR Software Training",
-      ],
+      name: "Medical Courses",
+      programs: ["Medical Coding (ICD-10, CPT, HCPCS)", "Medical Billing", "Medical Writing", "Medical Affairs"],
+      modules: ["ICD-10 & CPT Coding", "HCPCS & Procedure Coding", "Revenue Cycle Management", "Denial Management", "EHR Software Training"],
       duration: "2–4 Months",
       eligibility: "Life Science graduates preferred",
-      careers: [
-        "Medical Coder",
-        "Coding Quality Analyst",
-        "Billing Specialist",
-        "Denial Analyst",
-      ],
+      careers: ["Medical Coder", "Coding Quality Analyst", "Billing Specialist", "Denial Analyst", "Medical Writer"],
       salary: "₹3.5 – ₹8 LPA for freshers",
+      placement: "100% placement assistance"
     },
-
     clinical: {
-      modules: [
-        "GCP, ICH, Ethics",
-        "Clinical Trial Phases",
-        "Drug Development Lifecycle",
-        "Protocol Creation",
-        "CDM: CRF, EDC, Query Management",
-      ],
+      name: "Clinical Courses",
+      programs: ["Clinical Research", "Clinical Data Management", "Clinical Trials", "BA/BE Studies"],
+      modules: ["GCP, ICH, Ethics", "Clinical Trial Phases", "Drug Development Lifecycle", "Protocol Creation", "CDM: CRF, EDC, Query Management"],
       duration: "3–6 Months",
       eligibility: "Life Sciences / Pharma graduates",
-      careers: [
-        "Clinical Research Coordinator",
-        "CRA",
-        "CDM Specialist",
-        "PV Associate",
-      ],
+      careers: ["Clinical Research Coordinator", "CRA", "CDM Specialist", "PV Associate", "Clinical Trial Manager"],
       salary: "₹4 – ₹12 LPA for freshers",
+      placement: "100% placement assistance"
     },
-
     it: {
-      modules: [
-        "Python, Java",
-        "Frontend: HTML/CSS/JS/React",
-        "Backend: Node.js",
-        "Databases: SQL, MongoDB",
-        "Cloud Basics: AWS/Azure",
-      ],
+      name: "IT & Technology Courses",
+      programs: ["Full Stack Development", "Python", "Java", "Data Science", "AI/ML", "Cybersecurity", "Cloud Computing"],
+      modules: ["Python, Java", "Frontend: HTML/CSS/JS/React", "Backend: Node.js", "Databases: SQL, MongoDB", "Cloud Basics: AWS/Azure"],
       duration: "4–8 Months",
       eligibility: "Any graduate",
-      careers: [
-        "Full Stack Developer",
-        "Software Developer",
-        "Data Analyst",
-        "AI Engineer",
-      ],
+      careers: ["Full Stack Developer", "Software Developer", "Data Analyst", "AI Engineer", "Cloud Architect"],
       salary: "₹4 – ₹20 LPA",
+      placement: "100% placement assistance"
     },
-
     pharma: {
-      modules: [
-        "GMP/GLP",
-        "QA & QC Systems",
-        "Regulatory Affairs (FDA/ICH/EMA)",
-        "Stability Studies",
-        "SOP Documentation",
-      ],
+      name: "Pharmaceutical Skills",
+      programs: ["Quality Assurance", "Quality Control", "Regulatory Affairs", "Manufacturing", "Documentation"],
+      modules: ["GMP/GLP", "QA & QC Systems", "Regulatory Affairs (FDA/ICH/EMA)", "Stability Studies", "SOP Documentation"],
       duration: "4–7 Months",
       eligibility: "B.Pharm / M.Pharm / B.Sc / M.Sc",
-      careers: [
-        "QA Executive",
-        "QC Analyst",
-        "Regulatory Associate",
-        "Documentation Specialist",
-      ],
+      careers: ["QA Executive", "QC Analyst", "Regulatory Associate", "Documentation Specialist"],
       salary: "₹3.5 – ₹15 LPA",
-    },
+      placement: "100% placement assistance"
+    }
   },
+
+  placement: {
+    assistance: "100% placement assistance with comprehensive support",
+    services: ["Resume Building", "Mock Interviews", "Aptitude Training", "HR Training", "Soft Skills Development"],
+    partners: "Tie-ups with leading pharmaceutical, biotech, and IT companies",
+    support: "Dedicated placement team with industry connections"
+  },
+
+  internships: {
+    available: true,
+    domains: ["Medical Coding", "Clinical Research", "IT & Software Development", "Pharma QA/QC", "Data Science", "Medical Writing"],
+    duration: "2-6 months",
+    benefits: "Real-world experience, industry exposure, certificate of completion"
+  },
+
+  contact: {
+    email: "info@zepfter.com",
+    phone: "+91-XXXXXXXXXX",
+    address: "Corporate Office Location",
+    website: "www.zepfter.com",
+    hours: "Monday - Saturday: 9:00 AM - 6:00 PM"
+  },
+
+  values: [
+    "Quality with Excellence",
+    "Client Centricity",
+    "Innovation and Execution",
+    "Regulatory Compliance"
+  ],
+
+  workApproach: [
+    "Client Centricity - Tailored solutions for unique business challenges",
+    "Innovation and Execution - Cutting-edge solutions with agile methodology",
+    "Collaboration - Highly capable teams with ethical partnerships",
+    "Proven Methodology - Comprehensive analysis to ongoing support"
+  ]
+};
+
+/* ======================================================
+     INTELLIGENT RESPONSE ENGINE
+   ====================================================== */
+
+const generateIntelligentResponse = (userInput) => {
+  const input = userInput.toLowerCase().trim();
+
+  // Greeting responses
+  if (/^(hi|hello|hey|good morning|good afternoon|good evening)/.test(input)) {
+    return "Hello! 👋 Welcome to ZEPFTER! I'm your virtual assistant. I can help you with information about our services, courses, placements, internships, and more. How can I assist you today?";
+  }
+
+  if (/^(thanks|thank you|thx)/.test(input)) {
+    return "You're very welcome! 😊 Feel free to ask if you have any more questions about ZEPFTER!";
+  }
+
+  if (/^(bye|goodbye|see you)/.test(input)) {
+    return "Goodbye! 👋 Thank you for connecting with ZEPFTER. Have a great day! Feel free to return anytime you need assistance.";
+  }
+
+  // Company Information
+  if (/(what is|tell me about|about) zepfter|company (info|information|details)|who are you/.test(input)) {
+    return `🏢 **About ZEPFTER**\n\n${KNOWLEDGE_BASE.company.description}\n\n📊 **Our Impact:**\n• ${KNOWLEDGE_BASE.company.stats.projects}\n• ${KNOWLEDGE_BASE.company.stats.clients}\n• ${KNOWLEDGE_BASE.company.stats.experts}\n• ${KNOWLEDGE_BASE.company.stats.satisfaction}\n\nWould you like to know about our services, courses, or anything specific?`;
+  }
+
+  if (/vision|future|goal/.test(input)) {
+    return `🎯 **Our Vision:**\n${KNOWLEDGE_BASE.company.vision}\n\n💼 **Our Mission:**\n${KNOWLEDGE_BASE.company.mission}`;
+  }
+
+  if (/values|principles|culture/.test(input)) {
+    return `💎 **Our Core Values:**\n\n${KNOWLEDGE_BASE.values.map((v, i) => `${i + 1}. ${v}`).join('\n')}\n\nThese values guide everything we do at ZEPFTER!`;
+  }
+
+  if (/how (do you|does zepfter) work|approach|methodology/.test(input)) {
+    return `🔧 **How We Work:**\n\n${KNOWLEDGE_BASE.workApproach.map((a, i) => `${i + 1}. ${a}`).join('\n\n')}\n\nOur structured approach ensures successful project delivery and sustained value for our clients.`;
+  }
+
+  // Services
+  if (/services|what (do you|does zepfter) (offer|provide)|solutions/.test(input)) {
+    const servicesList = Object.keys(KNOWLEDGE_BASE.services).map((service, i) => 
+      `${i + 1}. **${service}** - ${KNOWLEDGE_BASE.services[service].description}`
+    ).join('\n\n');
+    return `🚀 **ZEPFTER Services:**\n\n${servicesList}\n\nWould you like detailed information about any specific service?`;
+  }
+
+  // Individual Service Details
+  for (const [serviceName, serviceData] of Object.entries(KNOWLEDGE_BASE.services)) {
+    if (input.includes(serviceName.toLowerCase()) || 
+        serviceData.offerings.some(o => input.includes(o.toLowerCase()))) {
+      return `📘 **${serviceName}**\n\n${serviceData.description}\n\n**Key Offerings:**\n${serviceData.offerings.map(o => `• ${o}`).join('\n')}${serviceData.stats ? `\n\n**Track Record:** ${serviceData.stats}` : ''}\n\nInterested in learning more? Feel free to ask!`;
+    }
+  }
+
+  // Courses
+  if (/(courses|training|programs|learn|study)|what can i (learn|study)/.test(input)) {
+    return `📚 **ZEPFTER Courses:**\n\n1. **Medical Courses** - Medical Coding, Billing, Writing & Affairs\n2. **Clinical Courses** - Clinical Research, Data Management, Trials\n3. **IT & Technology** - Full Stack, Data Science, AI/ML, Cloud\n4. **Pharmaceutical Skills** - QA, QC, Regulatory Affairs\n\nAll courses include 100% placement assistance! 🎯\n\nWhich course would you like to know more about?`;
+  }
+
+  // Individual Course Details
+  for (const [courseKey, courseData] of Object.entries(KNOWLEDGE_BASE.courses)) {
+    if (input.includes(courseKey) || 
+        input.includes(courseData.name.toLowerCase()) ||
+        courseData.programs.some(p => input.includes(p.toLowerCase()))) {
+      
+      return `📘 **${courseData.name}**\n\n**Programs:**\n${courseData.programs.map(p => `• ${p}`).join('\n')}\n\n**Duration:** ${courseData.duration}\n**Eligibility:** ${courseData.eligibility}\n\n**Career Opportunities:**\n${courseData.careers.map(c => `• ${c}`).join('\n')}\n\n**Expected Salary:** ${courseData.salary}\n\n✅ ${courseData.placement}\n\nWant to know about modules or have other questions?`;
+    }
+  }
+
+  // Course Modules
+  if (/modules|syllabus|curriculum|what will i learn/.test(input)) {
+    for (const [courseKey, courseData] of Object.entries(KNOWLEDGE_BASE.courses)) {
+      if (input.includes(courseKey) || input.includes(courseData.name.toLowerCase())) {
+        return `📖 **${courseData.name} - Course Modules:**\n\n${courseData.modules.map((m, i) => `${i + 1}. ${m}`).join('\n')}\n\n**Duration:** ${courseData.duration}\n\nThese modules are designed to provide comprehensive, industry-relevant training!`;
+      }
+    }
+    return "Please specify which course modules you'd like to know about: Medical, Clinical, IT, or Pharma courses?";
+  }
+
+  // Salary Information
+  if (/salary|pay|compensation|earning|package/.test(input)) {
+    const salaryInfo = Object.entries(KNOWLEDGE_BASE.courses).map(([key, data]) => 
+      `• **${data.name}:** ${data.salary}`
+    ).join('\n');
+    return `💰 **Expected Salary Ranges:**\n\n${salaryInfo}\n\nNote: Actual salaries may vary based on skills, experience, and company. Our placement team helps you negotiate the best offers!`;
+  }
+
+  // Duration
+  if (/duration|how long|time|period/.test(input)) {
+    const durationInfo = Object.entries(KNOWLEDGE_BASE.courses).map(([key, data]) => 
+      `• **${data.name}:** ${data.duration}`
+    ).join('\n');
+    return `⏱️ **Course Durations:**\n\n${durationInfo}\n\nDurations are flexible based on your learning pace and prior knowledge!`;
+  }
+
+  // Eligibility
+  if (/eligibility|qualification|who can (join|enroll)|requirements/.test(input)) {
+    const eligibilityInfo = Object.entries(KNOWLEDGE_BASE.courses).map(([key, data]) => 
+      `• **${data.name}:** ${data.eligibility}`
+    ).join('\n');
+    return `🎓 **Eligibility Criteria:**\n\n${eligibilityInfo}\n\nDon't worry if you're from a different background - we assess each candidate individually!`;
+  }
+
+  // Placement
+  if (/placement|job|career|hiring|recruit/.test(input)) {
+    return `💼 **Placement Assistance:**\n\n✅ ${KNOWLEDGE_BASE.placement.assistance}\n\n**Our Services Include:**\n${KNOWLEDGE_BASE.placement.services.map(s => `• ${s}`).join('\n')}\n\n**Industry Connections:**\n${KNOWLEDGE_BASE.placement.partners}\n\n**Support:**\n${KNOWLEDGE_BASE.placement.support}\n\nWe're committed to your career success!`;
+  }
+
+  // Internships
+  if (/internship|intern|practical|hands.?on|experience/.test(input)) {
+    return `🎯 **Internship Programs:**\n\n**Available Domains:**\n${KNOWLEDGE_BASE.internships.domains.map(d => `• ${d}`).join('\n')}\n\n**Duration:** ${KNOWLEDGE_BASE.internships.duration}\n\n**Benefits:**\n${KNOWLEDGE_BASE.internships.benefits}\n\nInternships provide valuable real-world experience and enhance your employability!`;
+  }
+
+  // Contact Information
+  if (/contact|reach|call|email|phone|address|location|office/.test(input)) {
+    return `📞 **Contact ZEPFTER:**\n\n**Email:** ${KNOWLEDGE_BASE.contact.email}\n**Phone:** ${KNOWLEDGE_BASE.contact.phone}\n**Website:** ${KNOWLEDGE_BASE.contact.website}\n\n**Office Hours:**\n${KNOWLEDGE_BASE.contact.hours}\n\nFeel free to reach out to us anytime!`;
+  }
+
+  // Fees/Cost
+  if (/fee|cost|price|charge|afford|expensive/.test(input)) {
+    return `💵 **Course Fees:**\n\nOur course fees are competitive and vary by program. We offer:\n\n• Flexible payment options\n• Installment plans\n• Scholarship opportunities for deserving candidates\n\nPlease contact us at ${KNOWLEDGE_BASE.contact.email} or ${KNOWLEDGE_BASE.contact.phone} for detailed fee structure and current offers!`;
+  }
+
+  // Batch/Schedule
+  if (/batch|schedule|timing|when (does|do)|start|begin/.test(input)) {
+    return `📅 **Batch Information:**\n\nWe offer flexible batch timings:\n\n• **Weekday Batches** - Morning & Evening\n• **Weekend Batches** - Saturday & Sunday\n• **Fast-Track Batches** - Intensive training\n\nNew batches start every month! Contact us for the next available batch in your preferred course.`;
+  }
+
+  // Online/Offline
+  if (/online|offline|classroom|virtual|remote|mode/.test(input)) {
+    return `💻 **Training Modes:**\n\nWe offer flexible learning options:\n\n• **Classroom Training** - Face-to-face interactive sessions\n• **Online Training** - Live virtual classes\n• **Hybrid Mode** - Combination of both\n\nAll modes include the same quality content, placement support, and certification!`;
+  }
+
+  // Certification
+  if (/certificate|certification|credential/.test(input)) {
+    return `🏆 **Certification:**\n\nUpon successful completion, you'll receive:\n\n• Industry-recognized ZEPFTER certificate\n• Course completion credentials\n• Project completion certificates\n• Internship certificates (if applicable)\n\nOur certifications are valued by employers across pharmaceutical, biotech, and IT industries!`;
+  }
+
+  // Default response for unmatched queries
+  return `I'd be happy to help you! I can provide information about:\n\n• 🏢 Company Information & Values\n• 🚀 Our Services (Medical Affairs, Clinical Research, IT, Pharma Consulting, etc.)\n• 📚 Courses (Medical, Clinical, IT, Pharmaceutical)\n• 💼 Placement Assistance\n• 🎯 Internship Programs\n• 📞 Contact Information\n• 💰 Fees & Payment Options\n• 📅 Batch Schedules\n\nWhat would you like to know more about?`;
 };
 
 /* ======================================================
@@ -107,6 +279,7 @@ export default function ZepfterChatbot() {
   const [open, setOpen] = useState(false);
   const [typing, setTyping] = useState(false);
   const [input, setInput] = useState("");
+  const messagesEndRef = useRef(null);
 
   const [messages, setMessages] = useState(() => {
     const saved = sessionStorage.getItem("zepfter_chat_session");
@@ -115,75 +288,24 @@ export default function ZepfterChatbot() {
       : [
           {
             sender: "bot",
-            text: "Hello! 🤖 I'm your ZEPFTER Assistant. How can I help you today?",
+            text: "Hello! 👋 Welcome to ZEPFTER! I'm your virtual assistant.\n\nI can help you with:\n• Company Information\n• Services & Solutions\n• Courses & Training Programs\n• Placement Assistance\n• Internships\n• Contact Details\n\nHow can I assist you today?",
           },
         ];
   });
 
-  // Save only for current session
+  // Auto-scroll to bottom
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages, typing]);
+
+  // Save session
   useEffect(() => {
     sessionStorage.setItem("zepfter_chat_session", JSON.stringify(messages));
   }, [messages]);
-
-  /* ======================================================
-     SMART RESPONSE ENGINE
-   ====================================================== */
-
-  const generateResponse = (text) => {
-    const t = text.toLowerCase();
-
-    // Small Talk
-    const smallTalk = {
-      hi: "Hello! 👋 How can I assist you today?",
-      hello: "Hi there! 😊 Ask me anything about ZEPFTER.",
-      thanks: "You're welcome! 😊",
-      bye: "Goodbye! 👋 Have a great day!",
-      "how are you": "I'm doing great! 🤖 Ready to assist!",
-    };
-    for (let key in smallTalk) if (t.includes(key)) return smallTalk[key];
-
-    // Identify category
-    if (t.includes("medical")) return DATA.short.medical;
-    if (t.includes("clinical")) return DATA.short.clinical;
-    if (t.includes("pharma")) return DATA.short.pharma;
-    if (t.includes("it") || t.includes("software")) return DATA.short.it;
-    if (t.includes("intern")) return DATA.short.internships;
-    if (t.includes("placement")) return DATA.short.placement;
-
-    // Expand keywords
-    const expandFor = (section) => {
-      const d = DATA.full[section];
-      if (!d) return "Please specify a topic (Medical / IT / Clinical / Pharma).";
-
-      return (
-        `📘 **Full Details for ${section.toUpperCase()} Courses**\n\n` +
-        `📚 **Modules:**\n- ${d.modules.join("\n- ")}\n\n` +
-        `⏳ **Duration:** ${d.duration}\n\n` +
-        `🎓 **Eligibility:** ${d.eligibility}\n\n` +
-        `💼 **Career Options:**\n- ${d.careers.join("\n- ")}\n\n` +
-        `💰 **Salary:** ${d.salary}`
-      );
-    };
-
-    if (t.includes("more") || t.includes("full") || t.includes("details"))
-      return expandFor(findCategory(text));
-
-    if (t.includes("modules")) return expandFor(findCategory(text));
-    if (t.includes("duration")) return expandFor(findCategory(text));
-    if (t.includes("salary")) return expandFor(findCategory(text));
-    if (t.includes("career")) return expandFor(findCategory(text));
-
-    return "I'm not sure about that 😅 — but I can help with ZEPFTER courses, internships, placements, or services!";
-  };
-
-  const findCategory = (text) => {
-    const t = text.toLowerCase();
-    if (t.includes("medical")) return "medical";
-    if (t.includes("clinical")) return "clinical";
-    if (t.includes("pharma")) return "pharma";
-    if (t.includes("it")) return "it";
-    return null;
-  };
 
   /* ======================================================
      SEND HANDLER
@@ -198,24 +320,25 @@ export default function ZepfterChatbot() {
     setTyping(true);
 
     setTimeout(() => {
-      const reply = generateResponse(text);
+      const reply = generateIntelligentResponse(text);
       setMessages((prev) => [...prev, { sender: "bot", text: reply }]);
       setTyping(false);
-    }, 600);
+    }, 800);
   };
 
   /* ======================================================
-     UI WITH SUGGESTIONS
+     QUICK SUGGESTIONS
    ====================================================== */
 
   const suggestions = [
+    "About ZEPFTER",
     "What services do you offer?",
-    "Tell me about Medical Courses",
-    "Clinical Courses",
-    "IT Courses",
-    "Pharma Skills",
-    "Internship Details",
+    "Tell me about courses",
+    "Medical Courses",
+    "Clinical Research",
+    "IT Training",
     "Placement Assistance",
+    "Internship Programs",
     "Contact Information",
   ];
 
@@ -237,7 +360,10 @@ export default function ZepfterChatbot() {
       {open && (
         <div className="cb-box fade-slide">
           <div className="cb-header">
-            <h4>ZEPFTER Assistant 🤖</h4>
+            <div>
+              <h4>ZEPFTER Assistant 🤖</h4>
+              <small style={{ fontSize: '0.75rem', opacity: 0.9 }}>Always here to help!</small>
+            </div>
             <button onClick={() => setOpen(false)}>
               <FaTimes />
             </button>
@@ -246,7 +372,7 @@ export default function ZepfterChatbot() {
           <div className="cb-body">
             {messages.map((m, i) => (
               <div key={i} className={`msg ${m.sender}`}>
-                <pre style={{ whiteSpace: "pre-wrap", margin: 0 }}>{m.text}</pre>
+                <pre style={{ whiteSpace: "pre-wrap", margin: 0, fontFamily: 'inherit' }}>{m.text}</pre>
               </div>
             ))}
 
@@ -256,27 +382,30 @@ export default function ZepfterChatbot() {
               </div>
             )}
 
+            <div ref={messagesEndRef} />
+
             {/* SUGGESTIONS */}
-            <div className="suggestion-container">
-              {suggestions.map((s, i) => (
-                <button key={i} onClick={() => handleSend(s)}>
-                  {s}
-                </button>
-              ))}
-            </div>
+            {messages.length <= 2 && (
+              <div className="suggestion-container">
+                <p style={{ fontSize: '0.85rem', color: '#666', marginBottom: '8px' }}>Quick questions:</p>
+                {suggestions.map((s, i) => (
+                  <button key={i} onClick={() => handleSend(s)}>
+                    {s}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
           <div className="cb-footer">
             <input
               type="text"
-              placeholder="Ask about ZEPFTER..."
+              placeholder="Ask me anything about ZEPFTER..."
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              onKeyDown={(e) =>
-                e.key === "Enter" && handleSend()
-              }
+              onKeyDown={(e) => e.key === "Enter" && handleSend()}
             />
-            <button onClick={handleSend}>
+            <button onClick={() => handleSend()} disabled={!input.trim()}>
               <FaPaperPlane />
             </button>
           </div>
@@ -302,6 +431,10 @@ export default function ZepfterChatbot() {
           border-radius: 50%;
           display: flex; align-items: center; justify-content: center;
           box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+          transition: transform 0.3s ease;
+        }
+        .robot-head:hover {
+          transform: scale(1.1);
         }
         .eyes { display: flex; gap: 12px; }
         .eyes span {
@@ -322,8 +455,10 @@ export default function ZepfterChatbot() {
           position: fixed;
           bottom: 30px;
           right: 30px;
-          width: 350px;
-          height: 500px;
+          width: 380px;
+          max-width: 90vw;
+          height: 550px;
+          max-height: 80vh;
           background: white;
           border-radius: 18px;
           box-shadow: 0 8px 30px rgba(0,0,0,0.25);
@@ -342,7 +477,7 @@ export default function ZepfterChatbot() {
         }
 
         .cb-header {
-          padding: 15px;
+          padding: 15px 18px;
           background: linear-gradient(135deg,#1E3679,#00AA8A);
           color: white;
           display: flex;
@@ -350,27 +485,63 @@ export default function ZepfterChatbot() {
           align-items: center;
         }
 
+        .cb-header h4 {
+          margin: 0;
+          font-size: 1.1rem;
+        }
+
+        .cb-header button {
+          background: rgba(255,255,255,0.2);
+          border: none;
+          color: white;
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: background 0.3s;
+        }
+
+        .cb-header button:hover {
+          background: rgba(255,255,255,0.3);
+        }
+
         .cb-body {
           flex-grow: 1;
-          padding: 12px;
+          padding: 15px;
           overflow-y: auto;
-          background: #f4f5f7;
+          background: #f8f9fa;
+        }
+
+        .cb-body::-webkit-scrollbar {
+          width: 6px;
+        }
+
+        .cb-body::-webkit-scrollbar-thumb {
+          background: #ccc;
+          border-radius: 3px;
         }
 
         .msg {
-          padding: 10px 14px;
-          margin: 8px 0;
+          padding: 12px 16px;
+          margin: 10px 0;
           border-radius: 12px;
-          max-width: 80%;
+          max-width: 85%;
+          line-height: 1.5;
+          font-size: 0.95rem;
         }
         .msg.bot {
           background: #1E3679;
           color: white;
+          border-bottom-left-radius: 4px;
         }
         .msg.user {
           background: #00AA8A;
           color: white;
           margin-left: auto;
+          border-bottom-right-radius: 4px;
         }
 
         /* SUGGESTION BUTTONS */
@@ -378,52 +549,122 @@ export default function ZepfterChatbot() {
           display: flex;
           flex-wrap: wrap;
           gap: 8px;
-          margin-top: 10px;
+          margin-top: 15px;
+          padding: 10px;
+          background: white;
+          border-radius: 12px;
         }
 
         .suggestion-container button {
-          background: #E3E7F1;
-          border: none;
+          background: #E8EAF6;
+          border: 1px solid #C5CAE9;
           border-radius: 20px;
           padding: 8px 14px;
-          font-size: 13px;
+          font-size: 0.85rem;
           cursor: pointer;
-          transition: 0.3s;
+          transition: all 0.3s;
           color: #1E3679;
+          font-weight: 500;
         }
         .suggestion-container button:hover {
           background: #1E3679;
           color: white;
+          border-color: #1E3679;
+          transform: translateY(-2px);
         }
 
         /* Typing Animation */
+        .typing {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+        }
         .typing span {
           width: 8px;
           height: 8px;
           background: white;
           border-radius: 50%;
           display: inline-block;
-          margin-right: 4px;
-          animation: pulse 1s infinite;
+          animation: pulse 1.2s infinite;
+        }
+        .typing span:nth-child(2) {
+          animation-delay: 0.2s;
+        }
+        .typing span:nth-child(3) {
+          animation-delay: 0.4s;
         }
         @keyframes pulse {
-          50% { transform: scale(1.3); opacity: 1; }
+          0%, 60%, 100% { transform: scale(1); opacity: 0.7; }
+          30% { transform: scale(1.3); opacity: 1; }
         }
 
         /* Footer */
         .cb-footer {
-          padding: 10px;
+          padding: 12px;
           background: white;
-          border-top: 1px solid #ddd;
+          border-top: 1px solid #e0e0e0;
           display: flex;
-          gap: 8px;
+          gap: 10px;
         }
 
         .cb-footer input {
           flex-grow: 1;
-          padding: 10px;
-          border-radius: 8px;
-          border: 1px solid #ccc;
+          padding: 12px 16px;
+          border-radius: 24px;
+          border: 1px solid #ddd;
+          font-size: 0.95rem;
+          outline: none;
+          transition: border-color 0.3s;
+        }
+
+        .cb-footer input:focus {
+          border-color: #1E3679;
+        }
+
+        .cb-footer button {
+          background: linear-gradient(135deg, #1E3679, #00AA8A);
+          border: none;
+          color: white;
+          width: 45px;
+          height: 45px;
+          border-radius: 50%;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cb-footer button:hover:not(:disabled) {
+          transform: scale(1.1);
+          box-shadow: 0 4px 12px rgba(30, 54, 121, 0.4);
+        }
+
+        .cb-footer button:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+          .cb-box {
+            width: 100vw;
+            height: 100vh;
+            max-height: 100vh;
+            bottom: 0;
+            right: 0;
+            border-radius: 0;
+          }
+
+          .chat-avatar {
+            bottom: 20px;
+            right: 20px;
+          }
+
+          .robot-head {
+            width: 60px;
+            height: 60px;
+          }
         }
       `}</style>
     </>

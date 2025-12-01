@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import {
   FaHeartbeat,
   FaFlask,
@@ -23,11 +23,13 @@ const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [hoveredCard, setHoveredCard] = useState(null);
   const [stats, setStats] = useState({
-    students: 0,
-    courses: 0,
-    placements: 0,
-    professionals: 0,
+    projects: 0,
+    clients: 0,
+    experts: 0,
+    satisfaction: 0,
   });
+  const statsRef = useRef(null);
+  const isStatsInView = useInView(statsRef, { once: true, margin: "-100px" });
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
   const [isLandscape, setIsLandscape] = useState(false);
@@ -82,28 +84,32 @@ const Home = () => {
     return () => clearInterval(timer);
   }, [slides.length]);
 
-  // Counters
+  // Counters - triggered when stats section is in view
   useEffect(() => {
-    const targets = {
-      students: 5000,
-      courses: 50,
-      placements: 350,
-      professionals: 600,
-    };
-    let step = 0;
+    if (!isStatsInView) return;
+
+    const targets = { projects: 1500, clients: 450, experts: 200, satisfaction: 99 };
+    const duration = 2000;
     const steps = 60;
+    const stepTime = duration / steps;
+
+    let step = 0;
     const timer = setInterval(() => {
       step++;
       const progress = step / steps;
+
       setStats({
-        students: Math.floor(targets.students * progress),
-        courses: Math.floor(targets.courses * progress),
-        placements: Math.floor(targets.placements * progress),
-        professionals: Math.floor(targets.professionals * progress),
+        projects: Math.floor(targets.projects * progress),
+        clients: Math.floor(targets.clients * progress),
+        experts: Math.floor(targets.experts * progress),
+        satisfaction: Math.floor(targets.satisfaction * progress),
       });
+
       if (step >= steps) clearInterval(timer);
-    }, 33);
-  }, []);
+    }, stepTime);
+
+    return () => clearInterval(timer);
+  }, [isStatsInView]);
 
   const getIconSize = () => (isMobile ? 40 : isTablet ? 50 : 60);
 
@@ -111,48 +117,48 @@ const Home = () => {
     {
       id: "medical",
       icon: <FaHeartbeat size={getIconSize()} />,
-      title: "Medical Courses",
-      desc: "Master medical coding, billing, medical affairs, and medical writing with comprehensive training programs.",
+      title: "Medical Affairs",
+      desc: "Medical Writing, Pharmacovigilance, Regulatory Strategy, Medical Information",
       color: "#1E3679",
       link: "/services/medical-courses",
     },
     {
       id: "clinical",
       icon: <FaFlask size={getIconSize()} />,
-      title: "Clinical Courses",
-      desc: "Advanced training in clinical research, data management, clinical trials, and BA/BE studies.",
+      title: "Clinical Research",
+      desc: "Clinical Data Management, Biostatistics, Clinical Trial Management, Safety Monitoring",
       color: "#00AA8A",
       link: "/services/clinical-courses",
     },
     {
       id: "it",
       icon: <FaLaptopCode size={getIconSize()} />,
-      title: "IT Services",
-      desc: "Comprehensive IT training in programming, data science, cybersecurity, and cloud computing.",
+      title: "Digital Transformation",
+      desc: "Cloud Computing, AI/ML Solutions, Cybersecurity, Enterprise Software Development",
       color: "#1E3679",
       link: "/services/it-services",
     },
     {
       id: "pharma",
       icon: <FaPills size={getIconSize()} />,
-      title: "Pharmaceutical Skills",
-      desc: "Quality assurance, regulatory affairs, and pharmaceutical operations training.",
+      title: "Pharma Consulting",
+      desc: "Quality Assurance, Regulatory Compliance, GMP Standards, Process Optimization",
       color: "#00AA8A",
       link: "/services/pharmaceutical-skills",
     },
     {
       id: "training",
       icon: <FaUserTie size={getIconSize()} />,
-      title: "Training & Placement",
-      desc: "100% placement assistance with interview preparation and career counseling.",
+      title: "Talent Solutions",
+      desc: "Strategic Recruitment, Workforce Planning, Career Development, Talent Acquisition",
       color: "#1E3679",
       link: "/services/training-placement",
     },
     {
       id: "internship",
       icon: <FaBriefcase size={getIconSize()} />,
-      title: "Internship Programs",
-      desc: "Real-world experience through internships in medical, clinical, IT, and pharmaceutical domains.",
+      title: "Corporate Training",
+      desc: "Professional Development, Skills Enhancement, Industry Certifications, Custom Training Programs",
       color: "#00AA8A",
       link: "/services/internship-programs",
     },
@@ -616,12 +622,12 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Delivering Solutions Section - Responsive */}
+      {/* Delivering Solutions Section - Enhanced UI */}
       <section
         className="section"
         style={{
           background: "#f8f9fa",
-          padding: isMobile ? "50px 0" : isTablet ? "70px 0" : "100px 0",
+          padding: isMobile ? "60px 0" : isTablet ? "80px 0" : "110px 0",
         }}
       >
         <div className="container px-3 px-md-4">
@@ -630,132 +636,190 @@ const Home = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-4 mb-md-5"
+            className="text-center mb-5"
           >
-            <h2
+            <motion.h2
               className="fw-bold mb-3 mb-md-4"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
               style={{
                 fontSize: isMobile
-                  ? "1.75rem"
+                  ? "2rem"
                   : isTablet
-                  ? "2.5rem"
-                  : "clamp(2rem, 4vw, 3.5rem)",
-                letterSpacing: isMobile ? "1px" : "2px",
+                  ? "2.8rem"
+                  : "clamp(2.5rem, 4.5vw, 3.8rem)",
+                letterSpacing: isMobile ? "2px" : "3px",
                 color: "#1E3679",
+                textTransform: "uppercase",
+                position: "relative",
+                paddingBottom: "15px",
               }}
             >
               DELIVERING SOLUTIONS
-            </h2>
-            <p
+              {/* Decorative underline */}
+              <motion.div
+                initial={{ width: 0 }}
+                whileInView={{ width: isMobile ? "80px" : "120px" }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                style={{
+                  height: "4px",
+                  background: "linear-gradient(90deg, #00AA8A, #1E3679)",
+                  margin: "15px auto 0",
+                  borderRadius: "2px",
+                }}
+              />
+            </motion.h2>
+            <motion.p
               className="mx-auto px-3"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4, duration: 0.8 }}
               style={{
                 maxWidth: "900px",
-                fontSize: isMobile ? "0.95rem" : isTablet ? "1rem" : "1.1rem",
+                fontSize: isMobile ? "1rem" : isTablet ? "1.1rem" : "1.15rem",
                 color: "#666",
-                lineHeight: "1.8",
+                lineHeight: "1.9",
+                fontWeight: "400",
               }}
             >
               We at ZEPFTER use business-driven, creative frameworks and
               solutions to enable clients to reach new levels of performance and
               career growth at cost-effective levels.
-            </p>
+            </motion.p>
           </motion.div>
 
-          <div className="row g-0">
+          <div className="row g-3 g-md-4">
             {services.map((service, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 50 }}
+                initial={{ opacity: 0, y: 60 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ 
+                  duration: 0.7, 
+                  delay: idx * 0.12,
+                  ease: [0.25, 0.46, 0.45, 0.94]
+                }}
                 className="col-12 col-md-6 col-lg-4"
               >
                 <motion.a
                   href={service.link}
-                  className="text-decoration-none d-block"
+                  className="text-decoration-none d-block h-100"
                   onMouseEnter={() => !isMobile && setHoveredCard(idx)}
                   onMouseLeave={() => setHoveredCard(null)}
-                  whileHover={!isMobile ? { scale: 1.02, zIndex: 10 } : {}}
+                  whileHover={!isMobile ? { y: -12 } : {}}
+                  transition={{ duration: 0.35, ease: "easeOut" }}
                 >
                   <motion.div
                     className="p-4 p-md-5 h-100 position-relative overflow-hidden"
                     style={{
                       background: hoveredCard === idx ? service.color : "#fff",
-                      borderRight: !isMobile
-                        ? "1px solid rgba(0,0,0,0.1)"
-                        : "none",
-                      borderBottom: "1px solid rgba(0,0,0,0.1)",
-                      transition: "all 0.4s ease",
+                      border: hoveredCard === idx 
+                        ? `2px solid ${service.color}`
+                        : "2px solid rgba(0,0,0,0.06)",
+                      borderRadius: "16px",
+                      transition: "all 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
                       minHeight: isMobile
-                        ? "280px"
+                        ? "300px"
                         : isTablet
-                        ? "320px"
-                        : "350px",
+                        ? "340px"
+                        : "370px",
                       display: "flex",
                       flexDirection: "column",
                       justifyContent: "space-between",
+                      boxShadow: hoveredCard === idx
+                        ? `0 20px 50px -12px ${service.color}50, 0 8px 16px -8px ${service.color}30`
+                        : "0 4px 20px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.05)",
                     }}
                   >
-                    {/* Animated Background - Desktop Only */}
+                    {/* Animated Background Gradient - Desktop Only */}
                     {!isMobile && (
                       <motion.div
                         initial={{ scale: 0, opacity: 0 }}
                         animate={
                           hoveredCard === idx
                             ? {
-                                scale: 2,
-                                opacity: 0.1,
+                                scale: 2.2,
+                                opacity: 0.12,
                                 rotate: 180,
                               }
                             : { scale: 0, opacity: 0 }
                         }
-                        transition={{ duration: 0.6 }}
+                        transition={{ duration: 0.7, ease: "easeOut" }}
                         style={{
                           position: "absolute",
                           top: "50%",
                           left: "50%",
                           transform: "translate(-50%, -50%)",
-                          width: "300px",
-                          height: "300px",
-                          background: service.color,
+                          width: "320px",
+                          height: "320px",
+                          background: `radial-gradient(circle, ${service.color} 0%, transparent 70%)`,
                           borderRadius: "50%",
-                          filter: "blur(60px)",
+                          filter: "blur(50px)",
                           pointerEvents: "none",
                         }}
                       />
                     )}
+
+                    {/* Subtle Corner Accent */}
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: hoveredCard === idx ? 0.15 : 0 }}
+                      transition={{ duration: 0.3 }}
+                      style={{
+                        position: "absolute",
+                        top: 0,
+                        right: 0,
+                        width: "100px",
+                        height: "100px",
+                        background: `linear-gradient(135deg, transparent 0%, ${service.color} 100%)`,
+                        borderTopRightRadius: "14px",
+                        pointerEvents: "none",
+                      }}
+                    />
 
                     <div style={{ position: "relative", zIndex: 1 }}>
                       <motion.div
                         animate={
                           hoveredCard === idx && !isMobile
                             ? {
-                                scale: [1, 1.2, 1],
-                                rotate: [0, 5, -5, 0],
+                                scale: [1, 1.15, 1.08],
+                                rotate: [0, -8, 8, 0],
                               }
-                            : {}
+                            : { scale: 1, rotate: 0 }
                         }
-                        transition={{ duration: 0.6 }}
-                        className="mb-3 mb-md-4"
+                        transition={{ 
+                          duration: 0.8,
+                          ease: "easeInOut"
+                        }}
+                        className="mb-4"
                         style={{
                           color: hoveredCard === idx ? "white" : service.color,
-                          transition: "all 0.4s ease",
+                          filter: hoveredCard === idx 
+                            ? "drop-shadow(0 4px 12px rgba(255,255,255,0.3))"
+                            : `drop-shadow(0 2px 8px ${service.color}30)`,
+                          transition: "all 0.35s ease",
                         }}
                       >
                         {service.icon}
                       </motion.div>
 
                       <h4
-                        className="fw-bold mb-2 mb-md-3"
+                        className="fw-bold mb-3"
                         style={{
-                          color: hoveredCard === idx ? "white" : "#000",
+                          color: hoveredCard === idx ? "white" : "#1a1a1a",
                           fontSize: isMobile
-                            ? "1.1rem"
-                            : isTablet
                             ? "1.2rem"
-                            : "1.3rem",
-                          letterSpacing: "1px",
+                            : isTablet
+                            ? "1.3rem"
+                            : "1.4rem",
+                          letterSpacing: "1.2px",
+                          lineHeight: "1.3",
+                          transition: "color 0.35s ease",
                         }}
                       >
                         {service.title.toUpperCase()}
@@ -765,33 +829,47 @@ const Home = () => {
                         style={{
                           color:
                             hoveredCard === idx
-                              ? "rgba(255,255,255,0.9)"
-                              : "#666",
-                          fontSize: isMobile ? "0.85rem" : "0.95rem",
-                          lineHeight: "1.7",
-                          marginBottom: isMobile ? "1rem" : "0",
+                              ? "rgba(255,255,255,0.95)"
+                              : "#555",
+                          fontSize: isMobile ? "0.9rem" : "0.98rem",
+                          lineHeight: "1.75",
+                          marginBottom: isMobile ? "1.2rem" : "0",
+                          transition: "color 0.35s ease",
+                          fontWeight: "400",
                         }}
                       >
                         {service.desc}
                       </p>
                     </div>
 
+                    {/* Enhanced Learn More with Better Animation */}
                     <motion.div
-                      animate={
-                        hoveredCard === idx && !isMobile ? { x: [0, 5, 0] } : {}
-                      }
-                      transition={{ duration: 0.6, repeat: Infinity }}
-                      className="d-flex align-items-center gap-2 mt-3"
+                      className="d-flex align-items-center gap-2 mt-4"
                       style={{
                         color: hoveredCard === idx ? "white" : service.color,
-                        fontSize: isMobile ? "0.85rem" : "0.9rem",
-                        fontWeight: "600",
+                        fontSize: isMobile ? "0.9rem" : "0.95rem",
+                        fontWeight: "700",
                         position: "relative",
                         zIndex: 1,
+                        letterSpacing: "1px",
+                        transition: "color 0.35s ease",
                       }}
                     >
-                      <span>LEARN MORE</span>
-                      <FaArrowRight />
+                      <span>EXPLORE</span>
+                      <motion.div
+                        animate={
+                          hoveredCard === idx && !isMobile 
+                            ? { x: [0, 6, 0] } 
+                            : { x: 0 }
+                        }
+                        transition={{ 
+                          duration: 0.8, 
+                          repeat: hoveredCard === idx ? Infinity : 0,
+                          ease: "easeInOut"
+                        }}
+                      >
+                        <FaArrowRight />
+                      </motion.div>
                     </motion.div>
                   </motion.div>
                 </motion.a>
@@ -938,72 +1016,44 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Stats Section - Responsive */}
-      <section
-        className="section"
-        style={{
-          background:
-            "linear-gradient(135deg, #0a0a0a 0%, #1E3679 50%, #000000 100%)",
-          color: "white",
-          paddingTop: 0,
-          paddingBottom: isMobile ? "50px" : isTablet ? "70px" : "100px",
+      {/* Stats Section */}
+      <section 
+        ref={statsRef} 
+        className="section" 
+        style={{ 
+          background: '#f5f5f5', 
+          padding: isMobile ? '40px 20px' : isTablet ? '60px 20px' : 'clamp(40px, 8vw, 80px) 20px' 
         }}
       >
-        <div className="container px-3 px-md-4">
-          <div className="row text-center g-3 g-md-4">
+        <div className="container">
+          <div className="row g-3 g-md-4">
             {[
-              { label: "Students", value: stats.students, suffix: "+" },
-              { label: "Courses", value: stats.courses, suffix: "+" },
-              { label: "Placements", value: stats.placements, suffix: "+" },
-              {
-                label: "Professionals",
-                value: stats.professionals,
-                suffix: "+",
-              },
+              { number: stats.projects, suffix: '+', label: 'Projects Delivered', color: '#1E3679' },
+              { number: stats.clients, suffix: '+', label: 'Global Clients', color: '#00AA8A' },
+              { number: stats.experts, suffix: '+', label: 'Industry Experts', color: '#FBD21A' },
+              { number: stats.satisfaction, suffix: '%', label: 'Client Satisfaction', color: '#1E3679' }
             ].map((stat, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, scale: 0.5 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 0.6,
-                  delay: idx * 0.1,
-                  type: "spring",
-                  bounce: 0.5,
-                }}
-                whileHover={!isMobile ? { scale: 1.1 } : {}}
-                className="col-6 col-md-3"
-              >
-                <p
-                  className="text-uppercase mb-2 fw-semibold"
+              <div className="col-lg-3 col-md-6 col-sm-6" key={idx}>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={isStatsInView ? { opacity: 1, scale: 1 } : {}}
+                  transition={{ duration: 0.6, delay: idx * 0.1, type: "spring" }}
+                  whileHover={{ scale: 1.05, y: -10 }}
+                  className="text-center p-3 p-md-4 rounded-4"
                   style={{
-                    color: "#00AA8A",
-                    fontSize: isMobile
-                      ? "0.7rem"
-                      : isTablet
-                      ? "0.75rem"
-                      : "0.85rem",
-                    letterSpacing: isMobile ? "1px" : "2px",
+                    background: 'white',
+                    boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
+                    cursor: 'pointer'
                   }}
                 >
-                  {stat.label}
-                </p>
-                <motion.h2
-                  className="fw-bold mb-0"
-                  style={{
-                    fontSize: isMobile
-                      ? "2rem"
-                      : isTablet
-                      ? "2.5rem"
-                      : "clamp(2.5rem, 5vw, 4rem)",
-                    letterSpacing: isMobile ? "1px" : "2px",
-                  }}
-                >
-                  {stat.value}
-                  {stat.suffix}
-                </motion.h2>
-              </motion.div>
+                  <div className="fw-bold mb-2" style={{ color: stat.color, fontSize: 'clamp(2rem, 8vw, 3.5rem)' }}>
+                    {stat.number}{stat.suffix}
+                  </div>
+                  <div className="fw-semibold text-uppercase" style={{ color: '#666', letterSpacing: '1px', fontSize: 'clamp(0.75rem, 2vw, 0.9rem)' }}>
+                    {stat.label}
+                  </div>
+                </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -1014,62 +1064,62 @@ const Home = () => {
         slides={[
           {
             type: "testimonial",
-            title: "What Our Students Say",
-            subtitle: "Success stories from our alumni",
-            name: "Amit Sharma",
-            role: "Medical Coding Graduate",
+            title: "What Our Clients Say",
+            subtitle: "Success stories from our partners",
+            name: "Dr. Rajesh Kumar",
+            role: "VP Quality Assurance, PharmaCorp India",
             image: "https://i.pravatar.cc/150?img=12",
-            text: "ZEPFTER has changed my career! The trainers are extremely skilled, the course content is industry-focused, and the placement support is amazing.",
+            text: "ZEPFTER transformed our quality management system. Their expertise in GMP compliance and validation helped us achieve FDA approval ahead of schedule. Outstanding professional service!",
             color: "#1E3679",
           },
           {
             type: "testimonial",
-            title: "What Our Students Say",
-            subtitle: "Success stories from our alumni",
-            name: "Priya Nair",
-            role: "Clinical Research Student",
+            title: "What Our Clients Say",
+            subtitle: "Success stories from our partners",
+            name: "Sarah Mitchell",
+            role: "CTO, BioTech Solutions USA",
             image: "https://i.pravatar.cc/150?img=45",
-            text: "The Clinical Research program helped me understand real-world applications. Amazing training and extremely helpful faculty!",
+            text: "The cloud migration and IT infrastructure services provided by ZEPFTER were exceptional. They delivered on time, within budget, and exceeded our expectations for security and scalability.",
             color: "#1E3679",
           },
           {
             type: "testimonial",
-            title: "What Our Students Say",
-            subtitle: "Success stories from our alumni",
-            name: "Rahul Verma",
-            role: "IT & Technology Student",
+            title: "What Our Clients Say",
+            subtitle: "Success stories from our partners",
+            name: "Michael Chen",
+            role: "Director of Operations, MedLife Pharma",
             image: "https://i.pravatar.cc/150?img=33",
-            text: "I joined the Data Science program and got placed quickly. Highly practical training and hands-on experience!",
+            text: "ZEPFTER's regulatory affairs team guided us through complex EMA submissions. Their deep knowledge and attention to detail were instrumental in our successful product launch in Europe.",
             color: "#1E3679",
           },
           {
             type: "testimonial",
-            title: "What Our Students Say",
-            subtitle: "Success stories from our alumni",
-            name: "Sneha Gupta",
-            role: "Pharmaceutical QA Graduate",
+            title: "What Our Clients Say",
+            subtitle: "Success stories from our partners",
+            name: "Priya Deshmukh",
+            role: "Head of IT, Global Biotech Ltd",
             image: "https://i.pravatar.cc/150?img=22",
-            text: "The pharmaceutical quality assurance course gave me the skills to land a job at a top pharmaceutical company. Excellent mentorship!",
+            text: "The custom software development and AI automation solutions from ZEPFTER revolutionized our laboratory operations. Efficiency increased by 40% within the first quarter!",
             color: "#1E3679",
           },
           {
             type: "testimonial",
-            title: "What Our Students Say",
-            subtitle: "Success stories from our alumni",
-            name: "Arjun Singh",
-            role: "IT Professional",
+            title: "What Our Clients Say",
+            subtitle: "Success stories from our partners",
+            name: "James Anderson",
+            role: "Quality Director, European Pharma Group",
             image: "https://i.pravatar.cc/150?img=28",
-            text: "The comprehensive IT services training helped me transition into cloud computing. The instructors were incredibly supportive throughout.",
+            text: "ZEPFTER's validation services and LIMS implementation were flawless. Their team's professionalism and technical expertise made the entire process smooth and compliant with all regulations.",
             color: "#1E3679",
           },
           {
             type: "testimonial",
-            title: "What Our Students Say",
-            subtitle: "Success stories from our alumni",
-            name: "Divya Patel",
-            role: "Medical Affairs Associate",
+            title: "What Our Clients Say",
+            subtitle: "Success stories from our partners",
+            name: "Anita Sharma",
+            role: "CEO, HealthTech Innovations",
             image: "https://i.pravatar.cc/150?img=50",
-            text: "Outstanding medical affairs training! The real-world case studies and industry connections made all the difference in my job search.",
+            text: "Outstanding cybersecurity and compliance consulting! ZEPFTER helped us achieve ISO 27001 certification and implement robust data protection measures. Highly recommended!",
             color: "#1E3679",
           },
         ]}
@@ -1157,68 +1207,69 @@ const Home = () => {
           </motion.p>
 
           <motion.a
-        href="/services"
-        className="btn fw-semibold position-relative overflow-hidden"
-        initial="rest"
-        whileHover="hover"
-        animate="rest"
-        style={{
-          background:"linear-gradient(135deg, #0a0a0a 0%, #1E3679 50%, #000000 100%)",
-          borderRadius: 0,
-          border: "2px solid #fff",
-          padding: isMobile ? "12px 24px" : "14px 40px",
-          color: "#fff",
-          zIndex: 1,
-        }}
-      >
-        {/* Sliding Gradient Fill Layer */}
-        <motion.div
-          variants={{
-            rest: { x: "-100%" },
-            hover: { x: 0 },
-          }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            background: "linear-gradient(135deg, #00AA8A, #1E3679)",
-            zIndex: -1,
-          }}
-        />
+              href="/services"
+              className="btn fw-semibold position-relative overflow-hidden"
+              initial="rest"
+              whileHover="hover"
+              animate="rest"
+              style={{
+                 background:
+                  "linear-gradient(135deg, #0a0a0a 0%, #1E3679 50%, #000000 100%)",
+                borderRadius: "50px",
+                border: "none",
+                padding: isMobile ? "12px 24px" : "14px 40px",
+                color: "#fff",
+                zIndex: 1,
+              }}
+            >
+              {/* Sliding Gradient Fill Layer */}
+              <motion.div
+                variants={{
+                  rest: { x: "-100%" },
+                  hover: { x: 0 },
+                }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100%",
+                   background: "linear-gradient(135deg, #00AA8A, #1E3679)",
+                  zIndex: -1,
+                }}
+              />
 
-        {/* Button Text */}
-        <motion.span
-          variants={{
-            rest: { color: "#fff" },
-            hover: { color: "#fff" },
-          }}
-          transition={{ duration: 0.3 }}
-          className="fw-semibold"
-          style={{ position: "relative", zIndex: 2 }}
-        >
-          Contac us
-        </motion.span>
+              {/* Button Text */}
+              <motion.span
+                variants={{
+                  rest: { color: "#fff" },
+                  hover: { color: "#fff" },
+                }}
+                transition={{ duration: 0.3 }}
+                className="fw-semibold"
+                style={{ position: "relative", zIndex: 2 }}
+              >
+                Contact Us
+              </motion.span>
 
-        {/* Arrow Reveal */}
-        <motion.span
-          variants={{
-            rest: { x: 0, opacity: 0.7 },
-            hover: { x: 8, opacity: 1 },
-          }}
-          transition={{ duration: 0.3 }}
-          style={{
-            position: "relative",
-            marginLeft: "8px",
-            zIndex: 2,
-            display: "inline-block",
-          }}
-        >
-          →
-        </motion.span>
-      </motion.a>
+              {/* Arrow Reveal */}
+              <motion.span
+                variants={{
+                  rest: { x: 0, opacity: 0.7 },
+                  hover: { x: 8, opacity: 1 },
+                }}
+                transition={{ duration: 0.3 }}
+                style={{
+                  position: "relative",
+                  marginLeft: "8px",
+                  zIndex: 2,
+                  display: "inline-block",
+                }}
+              >
+                →
+              </motion.span>
+            </motion.a>
 
         </div>
       </motion.section>
