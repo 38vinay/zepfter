@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   FaChevronDown, 
@@ -10,411 +11,235 @@ import {
   FaFileAlt,
   FaCheckCircle,
   FaAward,
-  FaGraduationCap,
   FaUsers,
   FaChartLine,
   FaRocket,
-  FaLightbulb
+  FaLightbulb,
+  FaSearch
 } from "react-icons/fa";
 
-const TrainingPlacementPage = () => {
+const TalentSolutions = () => {
   const [expandedService, setExpandedService] = useState(null);
   const [expandedFAQ, setExpandedFAQ] = useState(null);
 
   /** ------------------------
-   *   TRAINING & PLACEMENT CONTENT
+   *   TALENT SOLUTIONS CONTENT
    * ------------------------ */
   const services = [
     {
-      id: 'placement-assistance',
-      title: '100% Placement Assistance Program',
+      id: 'contract-staffing',
+      title: 'Contract Staffing',
       icon: <FaBriefcase size={30} />,
-      duration: 'Continuous Support',
-      level: 'All Students',
-      salary: 'â‚¹3.5 - â‚¹25 LPA',
+      duration: 'Flexible',
+      level: 'Skilled',
+      salary: 'On-Demand',
       description:
-        'Comprehensive placement support from resume building to job offers. Our dedicated placement team connects you with 500+ hiring partners across Medical, Clinical, IT, and Pharmaceutical industries. Get personalized career guidance, company referrals, and direct placement opportunities.',
+        'Scale your workforce rapidly with our contract staffing solutions. We provide pre-vetted professionals for short-term projects, seasonal peaks, or specialized roles, allowing you to maintain agility and reduce overhead costs.',
       image1: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600&q=80',
       image2: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=600&q=80',
       details: [
-        'Resume Building & Optimization',
-        'LinkedIn Profile Enhancement',
-        'Job Search Strategy & Planning',
-        'Company Research & Analysis',
-        'Application Tracking Support',
-        'Direct Company Referrals',
-        'Placement Drives & Job Fairs',
-        'Salary Negotiation Guidance',
-        'Offer Letter Review Support',
-        'Background Verification Assistance',
-        'Onboarding Support',
-        'Career Path Planning'
+        'IT & Technical Staffing',
+        'Clinical Research Staffing',
+        'Pharmaceutical Manufacturing Staffing',
+        'Project-Based Hiring',
+        'Seasonal Workforce Management',
+        'Remote & Hybrid Teams',
+        'Payroll & Compliance Management',
+        'Onboarding & Offboarding',
+        'Performance Monitoring',
+        'Skill-Specific Recruitment',
+        'Rapid Deployment (24-48 hours)',
+        'Contract-to-Hire Options'
       ],
       benefits: [
-        '500+ Partner Companies (TCS, Infosys, Max Healthcare, Quintiles)',
-        '95% Placement Success Rate',
-        'Average Package: â‚¹4.5 - â‚¹8 LPA',
-        'Highest Package: â‚¹25 LPA (Data Science)',
-        'Dedicated Placement Coordinator',
-        'Lifetime Career Support',
-        'Job Alerts & Notifications',
-        'Alumni Network Access'
+        'Reduce Hiring Costs',
+        'Increase Operational Agility',
+        'Access Niche Skills',
+        'Mitigate Employment Risks'
       ],
-      outcomes: [
-        'Professional resume that stands out',
-        'Strong LinkedIn presence',
-        'Interview-ready confidence',
-        'Multiple job offers',
-        'Competitive salary packages',
-        'Career growth opportunities',
-        'Industry network connections'
-      ],
-      partners: ['TCS', 'Infosys', 'Wipro', 'Max Healthcare', 'Apollo Hospitals', 'Quintiles IMS', 'Covance', 'Dr. Reddy\'s', 'Sun Pharma'],
-      careerPaths: ['Medical Coder', 'Clinical Research Associate', 'Software Developer', 'Data Scientist', 'QA Manager', 'Regulatory Affairs Specialist']
+      careerPaths: ['Project Support', 'Interim Roles', 'Specialized Consulting', 'Flexible Work']
     },
 
     {
-      id: 'interview-preparation',
-      title: 'Interview Preparation & Training',
+      id: 'executive-search',
+      title: 'Executive Search',
       icon: <FaUserTie size={30} />,
-      duration: '4-6 weeks',
-      level: 'All Levels',
-      salary: 'Skill Enhancement',
+      duration: 'Leadership',
+      level: 'C-Suite',
+      salary: 'Premium',
       description:
-        'Master the art of interviewing with comprehensive training in technical skills, HR rounds, group discussions, and behavioral interviews. Practice with mock interviews, video feedback, and real-time coaching from industry experts who know exactly what companies are looking for.',
+        'Find visionary leaders who can drive your organization forward. Our executive search team specializes in identifying and attracting top-tier C-level executives, VPs, and Directors across Pharma, IT, and Healthcare sectors.',
       image1: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80',
       image2: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&q=80',
       details: [
-        'Technical Interview Preparation',
-        'HR Round Best Practices',
-        'Group Discussion Training',
-        'Case Study Analysis',
-        'Aptitude Test Preparation',
-        'Behavioral Interview Techniques',
-        'Mock Interview Sessions (5-10 rounds)',
-        'Video Recorded Practice',
-        'Performance Feedback & Analysis',
-        'Body Language & Communication',
-        'Confidence Building Exercises',
-        'Stress Management Techniques'
+        'C-Suite Recruitment (CEO, CTO, CMO)',
+        'Board Member Selection',
+        'Senior Management Hiring',
+        'Leadership Assessment',
+        'Succession Planning',
+        'Market Mapping & Intelligence',
+        'Confidential Search',
+        'Diversity & Inclusion Hiring',
+        'Compensation Benchmarking',
+        'Candidate Vetting & Due Diligence',
+        'Negotiation Support',
+        'Onboarding Integration'
       ],
       benefits: [
-        'Expert Interview Coaches',
-        '10+ Mock Interview Sessions',
-        'Video Recording & Analysis',
-        'Personalized Feedback Reports',
-        'Domain-Specific Interview Prep',
-        'Real Company Interview Questions',
-        'Aptitude Test Practice (500+ questions)',
-        'Interview Tips & Tricks Library'
+        'Access Passive Candidates',
+        'Confidentiality Guaranteed',
+        'Strategic Leadership Fit',
+        'Long-term Retention'
       ],
-      outcomes: [
-        'Confident interview performance',
-        'Handle technical questions expertly',
-        'Ace HR and behavioral rounds',
-        'Master group discussions',
-        'Professional communication skills',
-        'Overcome interview anxiety',
-        'Create lasting impressions'
-      ],
-      partners: ['Industry Hiring Managers', 'HR Professionals', 'Technical Leads', 'Career Counselors'],
-      careerPaths: ['All Job Roles - Interview Skills are Universal']
+      careerPaths: ['Executive Leadership', 'Board Roles', 'Strategic Management', 'Organizational Growth']
     },
 
     {
-      id: 'soft-skills',
-      title: 'Professional Soft Skills Development',
-      icon: <FaComments size={30} />,
-      duration: '3-4 weeks',
-      level: 'All Students',
-      salary: 'Career Enhancement',
+      id: 'rpo',
+      title: 'Recruitment Process Outsourcing (RPO)',
+      icon: <FaHandshake size={30} />,
+      duration: 'End-to-End',
+      level: 'Strategic',
+      salary: 'Optimized',
       description:
-        'Develop essential workplace skills including communication, teamwork, leadership, time management, and professional etiquette. Learn email writing, presentation skills, conflict resolution, and workplace professionalism that employers value as much as technical skills.',
+        'Transform your talent acquisition function with our RPO services. We act as an extension of your HR team, managing the entire recruitment lifecycle to improve quality of hire, reduce time-to-fill, and lower costs.',
       image1: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80',
       image2: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&q=80',
       details: [
-        'Professional Communication Skills',
-        'Business Email Writing',
-        'Presentation Skills & Public Speaking',
-        'Team Collaboration & Teamwork',
-        'Leadership & Management Basics',
-        'Time Management & Productivity',
-        'Problem-Solving Techniques',
-        'Critical Thinking Development',
-        'Conflict Resolution Skills',
-        'Professional Etiquette & Grooming',
-        'Workplace Ethics & Values',
-        'Emotional Intelligence Training'
+        'End-to-End Recruitment Management',
+        'Employer Branding',
+        'Sourcing & Screening',
+        'Interview Scheduling & Coordination',
+        'Assessment & Testing',
+        'Offer Management',
+        'Vendor Management System (VMS)',
+        'Talent Analytics & Reporting',
+        'Diversity Hiring Initiatives',
+        'Campus Recruitment Drives',
+        'High-Volume Hiring',
+        'Process Optimization'
       ],
       benefits: [
-        'Interactive Workshops & Activities',
-        'Real-world Scenario Practice',
-        'Group Projects & Teamwork',
-        'Personal Development Plan',
-        'Communication Skill Assessment',
-        'Professional Certification',
-        'Ongoing Mentorship',
-        'Peer Learning Community'
+        'Scalable Recruitment Capacity',
+        'Standardized Processes',
+        'Enhanced Candidate Experience',
+        'Data-Driven Insights'
       ],
-      outcomes: [
-        'Confident communication',
-        'Professional email etiquette',
-        'Impressive presentations',
-        'Strong teamwork abilities',
-        'Effective time management',
-        'Leadership qualities',
-        'Workplace readiness'
-      ],
-      partners: ['Corporate Trainers', 'Leadership Coaches', 'Communication Experts'],
-      careerPaths: ['Essential for All Careers - Professional Development']
+      careerPaths: ['Talent Acquisition', 'HR Operations', 'Recruitment Strategy', 'Process Improvement']
     },
 
     {
-      id: 'resume-portfolio',
-      title: 'Resume & Portfolio Building',
-      icon: <FaFileAlt size={30} />,
-      duration: '1-2 weeks',
-      level: 'All Students',
-      salary: 'Professional Branding',
+      id: 'permanent-placement',
+      title: 'Permanent Placement',
+      icon: <FaSearch size={30} />,
+      duration: 'Long-term',
+      level: 'Core Team',
+      salary: 'Career',
       description:
-        'Create a powerful professional brand with an ATS-optimized resume, compelling cover letter, professional portfolio, and strong LinkedIn profile. Learn to showcase your skills, projects, and achievements in ways that attract recruiters and hiring managers.',
+        'Build your core team with dedicated permanent placement services. We understand your company culture and technical requirements to find candidates who are not just skilled, but the right cultural fit for long-term success.',
       image1: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=600&q=80',
       image2: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&q=80',
       details: [
-        'ATS-Optimized Resume Writing',
-        'Cover Letter Creation',
-        'LinkedIn Profile Optimization',
-        'Professional Portfolio Development',
-        'GitHub Profile Setup (IT Students)',
-        'Achievement Highlighting Techniques',
-        'Keywords & Action Verbs',
-        'Formatting & Design Best Practices',
-        'Multiple Resume Versions (Job-specific)',
-        'Personal Branding Strategy',
-        'Online Presence Management',
-        'Professional Email Signature'
+        'Full-Time Employee Recruitment',
+        'Culture Fit Assessment',
+        'Technical Screening',
+        'Reference Checks',
+        'Background Verification',
+        'Salary Negotiation',
+        'Counter-Offer Management',
+        'Relocation Assistance',
+        'Retention Strategy',
+        'Niche Skill Hiring',
+        'Mid-Level Management Hiring',
+        'Graduate Hiring Programs'
       ],
       benefits: [
-        'Professional Resume Template Library',
-        'ATS Compatibility Check',
-        'Unlimited Resume Reviews',
-        'LinkedIn Headline Optimization',
-        'Portfolio Website Guidance',
-        'Personal Brand Consultation',
-        'Cover Letter Templates',
-        'Job-Specific Resume Customization'
+        'Dedicated Talent Pool',
+        'Lower Turnover Rates',
+        'Cultural Alignment',
+        'Long-term Business Growth'
       ],
-      outcomes: [
-        'ATS-friendly resume',
-        'Compelling cover letters',
-        'Optimized LinkedIn profile',
-        'Professional portfolio',
-        'Strong personal brand',
-        'Increased recruiter visibility',
-        'Higher interview calls'
-      ],
-      partners: ['Resume Writers', 'Career Advisors', 'LinkedIn Experts', 'Portfolio Designers'],
-      careerPaths: ['All Job Seekers - Professional Branding']
-    },
-
-    {
-      id: 'aptitude-training',
-      title: 'Aptitude & Reasoning Training',
-      icon: <FaLightbulb size={30} />,
-      duration: '4 weeks',
-      level: 'All Students',
-      salary: 'Competitive Exam Prep',
-      description:
-        'Master quantitative aptitude, logical reasoning, verbal ability, and analytical skills required for company placement tests. Practice with 1000+ questions, timed mock tests, and adaptive learning techniques to score high in competitive assessments.',
-      image1: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&q=80',
-      image2: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80',
-      details: [
-        'Quantitative Aptitude (Numbers, Percentages, Profit/Loss)',
-        'Logical Reasoning (Patterns, Sequences, Puzzles)',
-        'Verbal Ability (Grammar, Comprehension, Vocabulary)',
-        'Data Interpretation (Graphs, Tables, Charts)',
-        'Analytical Reasoning',
-        'Problem-Solving Techniques',
-        'Speed & Accuracy Training',
-        'Shortcut Methods & Tricks',
-        'Time Management Strategies',
-        'Mock Tests (50+ Full-length)',
-        'Company-Specific Test Prep',
-        'Performance Analysis & Improvement'
-      ],
-      benefits: [
-        '1000+ Practice Questions',
-        '50+ Full-length Mock Tests',
-        'Company-wise Previous Papers',
-        'Video Solution Explanations',
-        'Personalized Learning Path',
-        'Doubt Clearing Sessions',
-        'Performance Analytics Dashboard',
-        'Mobile App Access'
-      ],
-      outcomes: [
-        'High aptitude test scores',
-        'Quick problem-solving',
-        'Improved accuracy',
-        'Time management mastery',
-        'Competitive exam readiness',
-        'Confidence in assessments',
-        'Better job opportunities'
-      ],
-      partners: ['Aptitude Trainers', 'Test Prep Experts', 'Assessment Specialists'],
-      careerPaths: ['All Technical & Non-Technical Roles - Placement Test Prep']
-    },
-
-    {
-      id: 'career-counseling',
-      title: 'Career Counseling & Guidance',
-      icon: <FaHandshake size={30} />,
-      duration: 'Ongoing Support',
-      level: 'All Students',
-      salary: 'Career Planning',
-      description:
-        'Receive personalized career guidance from experienced counselors who understand industry trends, job market demands, and career paths. Get help choosing the right career direction, skill development planning, and making informed career decisions at every stage.',
-      image1: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&q=80',
-      image2: 'https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=600&q=80',
-      details: [
-        'One-on-One Counseling Sessions',
-        'Career Assessment & Analysis',
-        'Skills Gap Identification',
-        'Career Path Planning',
-        'Industry Trend Insights',
-        'Job Market Research',
-        'Salary Expectations & Negotiation',
-        'Career Transition Guidance',
-        'Higher Education Advice',
-        'Specialization Recommendations',
-        'Long-term Career Strategy',
-        'Work-Life Balance Guidance'
-      ],
-      benefits: [
-        'Expert Career Counselors',
-        'Personalized Career Roadmap',
-        'Industry Insights & Trends',
-        'Skill Development Planning',
-        'Regular Follow-up Sessions',
-        'Career Change Support',
-        'Mentorship Program',
-        'Alumni Network Connect'
-      ],
-      outcomes: [
-        'Clear career direction',
-        'Informed career decisions',
-        'Realistic career goals',
-        'Strategic skill development',
-        'Industry understanding',
-        'Confidence in career path',
-        'Long-term success planning'
-      ],
-      partners: ['Career Counselors', 'Industry Mentors', 'HR Professionals', 'Senior Alumni'],
-      careerPaths: ['Personalized for Individual Career Goals']
+      careerPaths: ['Full-time Employment', 'Career Progression', 'Team Building', 'Organizational Stability']
     }
   ];
 
   const stats = [
-    { number: '5000+', label: 'Students Placed', icon: <FaUsers size={30} /> },
-    { number: '95%', label: 'Placement Success', icon: <FaChartLine size={30} /> },
-    { number: '500+', label: 'Partner Companies', icon: <FaBriefcase size={30} /> },
-    { number: '25 LPA', label: 'Highest Package', icon: <FaAward size={30} /> }
+    { number: '10k+', label: 'Candidates Placed', icon: <FaUsers size={30} /> },
+    { number: '95%', label: 'Retention Rate', icon: <FaChartLine size={30} /> },
+    { number: '500+', label: 'Corporate Partners', icon: <FaBriefcase size={30} /> },
+    { number: '48h', label: 'Avg. Turnaround', icon: <FaRocket size={30} /> }
   ];
 
   const whyChoose = [
     {
-      icon: <FaGraduationCap size={50} />,
-      title: 'Industry-Connected Placement Team',
+      icon: <FaUsers size={50} />,
+      title: 'Vast Talent Network',
       description:
-        'Our placement team has direct connections with HR managers, recruiters, and hiring decision-makers at 500+ companies across Medical, Clinical, IT, and Pharmaceutical industries.',
+        'Access our proprietary database of over 1 million pre-screened candidates across IT, Pharma, and Clinical domains.',
       image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600&q=80'
     },
     {
-      icon: <FaRocket size={50} />,
-      title: 'Proven Placement Track Record',
+      icon: <FaCheckCircle size={50} />,
+      title: 'Rigorous Vetting',
       description:
-        '95% placement success rate with students placed in top companies like TCS, Infosys, Max Healthcare, Apollo Hospitals, Quintiles IMS, Dr. Reddy\'s, Sun Pharma, and more.',
+        'Our multi-stage screening process ensures you only interview the top 5% of candidates who meet your technical and cultural requirements.',
       image: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=600&q=80'
     },
     {
-      icon: <FaHandshake size={50} />,
-      title: 'Personalized Career Support',
+      icon: <FaRocket size={50} />,
+      title: 'Speed to Hire',
       description:
-        'Every student gets a dedicated placement coordinator who provides one-on-one guidance, monitors progress, and ensures you receive the best job opportunities matching your skills.',
+        'We leverage AI-driven matching and dedicated recruitment teams to reduce your time-to-hire by up to 40%.',
       image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&q=80'
     },
     {
-      icon: <FaAward size={50} />,
-      title: 'Competitive Salary Packages',
+      icon: <FaHandshake size={50} />,
+      title: 'Industry Expertise',
       description:
-        'Our students receive competitive packages ranging from â‚¹3.5 LPA to â‚¹25 LPA based on domain and experience. We prepare you to negotiate better offers and showcase your true value.',
+        'Our recruiters are industry specialists who understand the specific nuances and skill requirements of your sector.',
       image: 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=600&q=80'
     }
   ];
 
   /** ------------------------
-   *   TRAINING & PLACEMENT FAQ
+   *   FAQ
    * ------------------------ */
   const faqs = [
     {
       id: 1,
-      question: 'What is included in your placement assistance program?',
+      question: 'What industries do you specialize in?',
       answer:
-        'Our 100% placement assistance includes resume building, LinkedIn optimization, mock interviews, aptitude training, soft skills development, direct company referrals, placement drives, salary negotiation support, and lifetime career guidance.'
+        'We specialize in Pharmaceutical, Life Sciences, Clinical Research, Information Technology, and Healthcare sectors. Our recruiters have deep domain knowledge in these areas.'
     },
     {
       id: 2,
-      question: 'How many companies does ZEPFTER partner with for placements?',
+      question: 'How quickly can you fill a position?',
       answer:
-        'We have partnerships with 500+ companies including TCS, Infosys, Wipro, Tech Mahindra, Max Healthcare, Apollo Hospitals, Fortis, Quintiles IMS, Covance, Parexel, Dr. Reddy\'s, Sun Pharma, Cipla, and many more across IT, Healthcare, Clinical Research, and Pharmaceutical sectors.'
+        'For contract roles, we can often provide candidates within 24-48 hours. For permanent roles, we typically present shortlisted candidates within 3-5 business days, depending on the role\'s complexity.'
     },
     {
       id: 3,
-      question: 'What is your placement success rate?',
+      question: 'Do you offer a replacement guarantee?',
       answer:
-        'ZEPFTER maintains a 95% placement success rate. Our dedicated placement team works continuously to ensure every student gets job opportunities. We track placements for up to 1 year after course completion.'
+        'Yes, we offer a replacement guarantee period for all permanent placements. If a candidate leaves within this period, we will find a replacement at no additional cost.'
     },
     {
       id: 4,
-      question: 'What salary packages can I expect?',
+      question: 'Can you help with remote hiring?',
       answer:
-        'Salary packages vary by domain and experience: Medical Coding (â‚¹3.5-8 LPA), Clinical Research (â‚¹4-12 LPA), IT & Software (â‚¹4-20 LPA), Data Science (â‚¹6-25 LPA), Pharmaceutical QA/QC (â‚¹4-15 LPA). Our highest package is â‚¹25 LPA.'
+        'Absolutely. We have extensive experience in sourcing and vetting remote talent globally, including setting up remote teams and managing distributed workforce compliance.'
     },
     {
       id: 5,
-      question: 'How many mock interviews do you provide?',
+      question: 'What is your RPO model?',
       answer:
-        'Each student receives 5-10 comprehensive mock interview sessions covering technical rounds, HR rounds, group discussions, and panel interviews. All sessions are video recorded with detailed feedback and improvement plans.'
+        'Our RPO model is flexible and scalable. We can manage your entire recruitment function or specific projects/divisions. We bring our own technology, processes, and recruiters to deliver results.'
     },
     {
       id: 6,
-      question: 'Do you provide placement support after course completion?',
+      question: 'How do you ensure candidate quality?',
       answer:
-        'Yes! We provide lifetime placement support. Even after securing your first job, you can return to us for career guidance, job changes, or upskilling recommendations. Our alumni network and placement team are always available.'
-    },
-    {
-      id: 7,
-      question: 'How long does it take to get placed after completing the course?',
-      answer:
-        'Most students get placed within 2-4 months after course completion. Timing depends on job availability, interview performance, and market conditions. We actively work to reduce this timeline through dedicated placement drives.'
-    },
-    {
-      id: 8,
-      question: 'Do you charge any placement fees?',
-      answer:
-        'No! All placement services are 100% FREE for ZEPFTER students. There are no hidden charges for resume building, mock interviews, company referrals, or placement assistance. It\'s included in your course fee.'
-    },
-    {
-      id: 9,
-      question: 'Can I get placement support if I\'m looking for a job change?',
-      answer:
-        'Absolutely! Our placement support is available to all ZEPFTER alumni, whether you\'re a fresher or looking for better opportunities. We help with career transitions, upskilling recommendations, and connecting you with better roles.'
-    },
-    {
-      id: 10,
-      question: 'What if I don\'t get placed within the expected timeline?',
-      answer:
-        'We continue providing placement support until you secure a job. Our team will analyze your interview performance, identify areas of improvement, provide additional training if needed, and connect you with more opportunities continuously.'
+        'We use a combination of AI screening, technical assessments, behavioral interviews, and background checks. We also conduct culture-fit assessments to ensure long-term retention.'
     }
   ];
 
@@ -451,10 +276,10 @@ const TrainingPlacementPage = () => {
               <FaUserTie size={60} style={{ color: '#FBD21A' }} />
             </div>
             <h1 className="fw-bold text-white" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)' }}>
-              TRAINING & PLACEMENT
+              TALENT SOLUTIONS
             </h1>
             <p className="text-white mx-auto" style={{ maxWidth: '800px', opacity: 0.9, lineHeight: '1.8', marginTop: '10px'}}>
-              ZEPFTER's Training & Placement program offers comprehensive career support with 95% placement success. From resume building and interview preparation to soft skills development and career counseling, our dedicated placement team connects you with 500+ hiring partners. With personalized guidance, mock interviews, and direct company referrals, we transform students into industry-ready professionals ready to excel in Medical, Clinical, IT, and Pharmaceutical careers.
+              ZEPFTER connects world-class organizations with exceptional talent. Whether you need flexible contract staffing, strategic executive search, or comprehensive RPO services, we deliver workforce solutions that drive business success.
             </p>
           </motion.div>
         </div>
@@ -494,13 +319,13 @@ const TrainingPlacementPage = () => {
         </div>
       </section>
 
-      {/* COURSE ACCORDION */}
+      {/* SERVICES ACCORDION */}
       <section style={{ padding: '80px 20px' }}>
         <div className="container" style={{ maxWidth: '1400px' }}>
 
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="text-center mb-5">
-            <h2 className="fw-bold text-white mb-3" style={{ fontSize: 'clamp(2rem,4vw,3rem)' }}>Our Course Offerings</h2>
-            <p className="text-white mx-auto" style={{ maxWidth: '700px', opacity: 0.8 }}>Choose from our advanced healthcare programs</p>
+            <h2 className="fw-bold text-white mb-3" style={{ fontSize: 'clamp(2rem,4vw,3rem)' }}>Our Talent Services</h2>
+            <p className="text-white mx-auto" style={{ maxWidth: '700px', opacity: 0.8 }}>Comprehensive workforce solutions tailored to your needs</p>
           </motion.div>
 
           {services.map((service, idx) => (
@@ -552,7 +377,7 @@ const TrainingPlacementPage = () => {
                     <p style={{ opacity: 0.85, lineHeight: 1.7 }}>{service.description}</p>
 
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#00AA8A', fontWeight: 600 }}>
-                      View Curriculum {expandedService === service.id ? <FaChevronUp /> : <FaChevronDown />}
+                      View Details {expandedService === service.id ? <FaChevronUp /> : <FaChevronDown />}
                     </div>
                   </div>
                 </div>
@@ -569,7 +394,7 @@ const TrainingPlacementPage = () => {
                     >
                       <div style={{ padding: '40px', color: 'white' }}>
 
-                        <h3 className="fw-bold mb-4" style={{ color: '#00AA8A' }}>What You Will Learn</h3>
+                        <h3 className="fw-bold mb-4" style={{ color: '#00AA8A' }}>Service Features</h3>
                         
                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(250px,1fr))', gap: '15px', marginBottom: '30px' }}>
                           {service.details?.map((detail, idx) => (
@@ -584,24 +409,43 @@ const TrainingPlacementPage = () => {
                           ))}
                         </div>
 
-                        {/* Certifications */}
-                        <h4 className="fw-bold mb-3" style={{ color: '#FBD21A' }}>Certifications Prepared</h4>
+                        {/* Benefits */}
+                        <h4 className="fw-bold mb-3" style={{ color: '#FBD21A' }}>Key Benefits</h4>
                         <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginBottom: '30px' }}>
-                          {service.certifications?.map((cert, idx) => (
+                          {service.benefits?.map((benefit, idx) => (
                             <span key={idx} style={{ padding: '10px 20px', background: 'rgba(251,210,26,0.2)', borderRadius: '25px', border: '1px solid rgba(251,210,26,0.5)' }}>
-                              <FaAward style={{ marginRight: '8px' }} /> {cert}
+                              <FaAward style={{ marginRight: '8px' }} /> {benefit}
                             </span>
                           ))}
                         </div>
 
-                        {/* Career Paths */}
-                        <h4 className="fw-bold mb-3" style={{ color: '#00AA8A' }}>Career Opportunities</h4>
+                        {/* Roles */}
+                        <h4 className="fw-bold mb-3" style={{ color: '#00AA8A' }}>Roles We Fill</h4>
                         <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginBottom: '30px' }}>
                           {service.careerPaths?.map((career, idx) => (
                             <span key={idx} style={{ padding: '10px 20px', background: 'rgba(0,170,138,0.2)', borderRadius: '20px', border: '1px solid rgba(0,170,138,0.3)' }}>
                               {career}
                             </span>
                           ))}
+                        </div>
+
+                        <div style={{ marginTop: '40px', display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }}>
+                          <Link
+                            to="/contact"
+                            style={{
+                              padding: '15px 40px',
+                              background: 'linear-gradient(135deg, #00AA8A, #1E3679)',
+                              color: 'white',
+                              textDecoration: 'none',
+                              borderRadius: '50px',
+                              fontWeight: '600',
+                              fontSize: '1rem',
+                              transition: 'all 0.3s ease',
+                              display: 'inline-block'
+                            }}
+                          >
+                            Hire Talent Now
+                          </Link>
                         </div>
 
                       </div>
@@ -621,9 +465,9 @@ const TrainingPlacementPage = () => {
         <div className="container">
 
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="text-center mb-5">
-            <h2 className="fw-bold text-white">Why Choose ZEPFTER Medical Courses?</h2>
+            <h2 className="fw-bold text-white">Why Choose ZEPFTER Talent Solutions?</h2>
             <p className="text-white" style={{ maxWidth: '700px', margin: 'auto', opacity: 0.8 }}>
-              Transform your healthcare career with industry-leading training and global opportunities.
+              We are more than just a staffing agency; we are your strategic talent partner.
             </p>
           </motion.div>
 
@@ -667,7 +511,7 @@ const TrainingPlacementPage = () => {
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="text-center mb-5">
             <h2 className="fw-bold text-white">Frequently Asked Questions</h2>
             <p className="text-white" style={{ maxWidth: '700px', margin: 'auto', opacity: 0.8 }}>
-              Everything you need to know before starting your journey.
+              Common questions about our Talent Solutions.
             </p>
           </motion.div>
 
@@ -718,11 +562,9 @@ const TrainingPlacementPage = () => {
 
         </div>
       </section>
-
-      
       
     </div>
   );
 };
 
-export default TrainingPlacementPage;
+export default TalentSolutions;

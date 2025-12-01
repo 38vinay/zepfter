@@ -5,7 +5,7 @@ import PageCarousel from "../components/PageCarousel";
 
 const Services = () => {
   const [hoveredCard, setHoveredCard] = useState(null);
-  const [counters, setCounters] = useState({ students: 0, placement: 0, trainers: 0, companies: 0 });
+  const [counters, setCounters] = useState({ projects: 0, retention: 0, experts: 0, clients: 0 });
   
   const statsRef = useRef(null);
   const heroRef = useRef(null);
@@ -23,7 +23,7 @@ const Services = () => {
   useEffect(() => {
     if (!isStatsInView) return;
 
-    const targets = { students: 5000, placement: 95, trainers: 150, companies: 500 };
+    const targets = { projects: 1500, retention: 98, experts: 200, clients: 450 };
     const duration = 2000;
     const steps = 60;
     const stepTime = duration / steps;
@@ -34,10 +34,10 @@ const Services = () => {
       const progress = step / steps;
       
       setCounters({
-        students: Math.floor(targets.students * progress),
-        placement: Math.floor(targets.placement * progress),
-        trainers: Math.floor(targets.trainers * progress),
-        companies: Math.floor(targets.companies * progress)
+        projects: Math.floor(targets.projects * progress),
+        retention: Math.floor(targets.retention * progress),
+        experts: Math.floor(targets.experts * progress),
+        clients: Math.floor(targets.clients * progress)
       });
 
       if (step >= steps) clearInterval(timer);
@@ -50,68 +50,68 @@ const Services = () => {
     {
       id: 'medical',
       icon: FaCapsules,
-      title: 'Medical Courses',
-      description: 'Medical Coding, Medical Affairs, Medical Billing, Medical Writing',
+      title: 'Medical Affairs',
+      description: 'Medical Writing, Pharmacovigilance, Regulatory Strategy, Medical Information',
       image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80',
       gradient: 'linear-gradient(135deg, #0a0a0a 0%, #1E3679 50%, #000000 100%)',
       color: '#1E3679',
-      stats: { courses: 4, students: '1200+' },
-      slug: 'medical-courses'
+      stats: { projects: '150+', clients: '40+' },
+      slug: 'medical-affairs'
     },
     {
       id: 'clinical',
       icon: FaFlask,
-      title: 'Clinical Courses',
-      description: 'Clinical Research, Clinical Data Management, Clinical Trials, BA/BE Studies',
+      title: 'Clinical Research',
+      description: 'Clinical Data Management, Biostatistics, Clinical Trial Management, Safety Monitoring',
       image: 'https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=800&q=80',
       gradient: 'linear-gradient(135deg, #1E3679 0%, #00AA8A 100%)',
       color: '#00AA8A',
-      stats: { courses: 4, students: '900+' },
-      slug: 'clinical-courses'
+      stats: { projects: '200+', clients: '50+' },
+      slug: 'clinical-research'
     },
     {
       id: 'it',
       icon: FaLaptopCode,
-      title: 'IT Services',
-      description: 'Programming, Data Science, Cybersecurity, Cloud Computing, Networking, Database',
+      title: 'Digital Transformation',
+      description: 'Cloud Computing, AI/ML Solutions, Cybersecurity, Enterprise Software Development',
       image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80',
       gradient: 'linear-gradient(135deg, #0a0a0a 0%, #1E3679 50%, #000000 100%)',
       color: '#1E3679',
-      stats: { courses: '30+', students: '2000+' },
-      slug: 'it-services'
+      stats: { projects: '500+', clients: '100+' },
+      slug: 'digital-transformation'
     },
     {
       id: 'pharmaceutical',
       icon: FaPills,
-      title: 'Pharmaceutical Skills',
-      description: 'Quality Assurance, Quality Control, Regulatory Affairs, Manufacturing Operations',
+      title: 'Pharma Consulting',
+      description: 'GxP Compliance, Quality Assurance, Validation Services, Regulatory Audits',
       image: 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=800&q=80',
       gradient: 'linear-gradient(135deg, #1E3679 0%, #00AA8A 100%)',
       color: '#00AA8A',
-      stats: { courses: '15+', students: '800+' },
-      slug: 'pharmaceutical-skills'
+      stats: { projects: '300+', clients: '80+' },
+      slug: 'pharma-consulting'
     },
     {
       id: 'training',
       icon: FaUserTie,
-      title: 'Training & Placement',
-      description: 'Placement Assistance, Interview Preparation, Career Counseling',
+      title: 'Talent Solutions',
+      description: 'Specialized Staffing, RPO, Executive Search, Contract Resourcing',
       image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&q=80',
       gradient: 'linear-gradient(135deg, #0a0a0a 0%, #1E3679 50%, #000000 100%)',
       color: '#1E3679',
-      stats: { courses: 3, students: '5000+' },
-      slug: 'training-placement'
+      stats: { placements: '1000+', clients: '200+' },
+      slug: 'talent-solutions'
     },
     {
       id: 'internship',
       icon: FaBriefcase,
-      title: 'Internship Programs',
-      description: 'Medical Coding, Clinical Research, IT & Software, Pharmaceutical QA/QC',
+      title: 'Corporate Training',
+      description: 'Workforce Upskilling, GMP Training, Leadership Development, Technical Workshops',
       image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80',
       gradient: 'linear-gradient(135deg, #1E3679 0%, #00AA8A 100%)',
       color: '#00AA8A',
-      stats: { courses: 4, students: '1500+' },
-      slug: 'internship-programs'
+      stats: { programs: '100+', clients: '50+' },
+      slug: 'corporate-training'
     }
   ];
 
@@ -204,7 +204,7 @@ const Services = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              A competent Development and Consulting team is required for digital success. Since more than four years, our Expert Teams have assisted in offering world-class solutions to a wide range of business difficulties.
+              We deliver scalable, robust, and compliant solutions that drive digital transformation and operational excellence. Our expert teams provide world-class services to address complex business challenges in Pharma and IT.
             </motion.p>
             
             <motion.p 
@@ -345,8 +345,8 @@ const Services = () => {
                             backdropFilter: 'blur(10px)'
                           }}
                         >
-                          <div className="fw-bold">{service.stats.courses}</div>
-                          <div className="small" style={{ fontSize: '0.75rem' }}>Courses</div>
+                          <div className="fw-bold">{Object.values(service.stats)[0]}</div>
+                          <div className="small" style={{ fontSize: '0.75rem' }}>{Object.keys(service.stats)[0] === 'placements' ? 'Placements' : Object.keys(service.stats)[0] === 'programs' ? 'Programs' : 'Projects'}</div>
                         </div>
                         <div 
                           className="px-3 py-2 rounded-3"
@@ -355,8 +355,8 @@ const Services = () => {
                             backdropFilter: 'blur(10px)'
                           }}
                         >
-                          <div className="fw-bold">{service.stats.students}</div>
-                          <div className="small" style={{ fontSize: '0.75rem' }}>Students</div>
+                          <div className="fw-bold">{Object.values(service.stats)[1]}</div>
+                          <div className="small" style={{ fontSize: '0.75rem' }}>Clients</div>
                         </div>
                       </div>
                     </div>
@@ -367,7 +367,7 @@ const Services = () => {
                       animate={hoveredCard === idx ? { y: -3 } : { y: 0 }}
                       transition={{ duration: 0.3 }}
                     >
-                      Explore Courses 
+                      Explore Solutions 
                       <motion.div
                         animate={hoveredCard === idx ? { x: 3 } : { x: 0 }}
                         transition={{ duration: 0.3 }}
@@ -400,10 +400,10 @@ const Services = () => {
 
           <div className="row g-4">
             {[
-              { icon: <FaGraduationCap size={40} />, number: counters.students, suffix: '+', label: 'Students Trained', color: '#1E3679' },
-              { icon: <FaTrophy size={40} />, number: counters.placement, suffix: '%', label: 'Placement Rate', color: '#00AA8A' },
-              { icon: <FaUsers size={40} />, number: counters.trainers, suffix: '+', label: 'Expert Trainers', color: '#FBD21A' },
-              { icon: <FaRocket size={40} />, number: counters.companies, suffix: '+', label: 'Hiring Partners', color: '#1E3679' }
+              { icon: <FaGraduationCap size={40} />, number: counters.projects, suffix: '+', label: 'Projects Delivered', color: '#1E3679' },
+              { icon: <FaTrophy size={40} />, number: counters.retention, suffix: '%', label: 'Client Retention', color: '#00AA8A' },
+              { icon: <FaUsers size={40} />, number: counters.experts, suffix: '+', label: 'Industry Experts', color: '#FBD21A' },
+              { icon: <FaRocket size={40} />, number: counters.clients, suffix: '+', label: 'Global Clients', color: '#1E3679' }
             ].map((stat, idx) => (
               <div className="col-lg-3 col-md-6" key={idx}>
                 <motion.div
@@ -470,10 +470,10 @@ const Services = () => {
             >
               <FaCheckCircle size={36} style={{ color: '#1E3679', marginBottom: '20px' }} />
               <h2 className="fw-bold mb-4" style={{ fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', color: '#1E3679' }}>
-                Industry Expert Trainers
+                Expert Team
               </h2>
               <p className="mb-4" style={{ fontSize: '1.1rem', color: '#666', lineHeight: '1.8' }}>
-                Learn from professionals with 10+ years of real-world experience in Medical, Clinical, IT, and Pharmaceutical industries. Our trainers bring practical insights and industry best practices directly to your learning experience.
+                Partner with industry veterans having 15+ years of experience in Pharmaceutical and Technology sectors. Our experts bring deep domain knowledge and technical precision to every project, ensuring world-class delivery.
               </p>
             </motion.div>
           </div>
@@ -506,10 +506,10 @@ const Services = () => {
             >
               <FaBriefcase size={36} style={{ color: '#00AA8A', marginBottom: '20px' }} />
               <h2 className="fw-bold mb-4" style={{ fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', color: '#00AA8A' }}>
-                100% Placement Assistance
+                Global Delivery Model
               </h2>
               <p className="mb-4" style={{ fontSize: '1.1rem', color: '#666', lineHeight: '1.8' }}>
-                Our dedicated placement team works tirelessly to connect you with top companies. From resume building to interview preparation, we guide you through every step of your job search journey with 500+ hiring partners.
+                Our seamless delivery model ensures 24/7 support and rapid turnaround times. We leverage global talent pools to provide scalable, cost-effective, and high-quality solutions tailored to your business needs.
               </p>
             </motion.div>
           </div>
@@ -521,62 +521,62 @@ const Services = () => {
         slides={[
           {
             type: 'testimonial',
-            title: 'What Our Students Say',
-            subtitle: 'Success stories from our alumni',
-            name: 'Amit Sharma',
-            role: 'Medical Coding Graduate',
+            title: 'What Our Clients Say',
+            subtitle: 'Success stories from our partners',
+            name: 'Dr. Rajesh Kumar',
+            role: 'VP Quality Assurance, PharmaCorp India',
             image: 'https://i.pravatar.cc/150?img=12',
-            text: 'ZEPFTER has changed my career! The trainers are extremely skilled, the course content is industry-focused, and the placement support is amazing.',
+            text: 'ZEPFTER transformed our quality management system. Their expertise in GMP compliance and validation helped us achieve FDA approval ahead of schedule. Outstanding professional service!',
             color: '#1E3679'
           },
           {
             type: 'testimonial',
-            title: 'What Our Students Say',
-            subtitle: 'Success stories from our alumni',
-            name: 'Priya Nair',
-            role: 'Clinical Research Student',
+            title: 'What Our Clients Say',
+            subtitle: 'Success stories from our partners',
+            name: 'Sarah Mitchell',
+            role: 'CTO, BioTech Solutions USA',
             image: 'https://i.pravatar.cc/150?img=45',
-            text: 'The Clinical Research program helped me understand real-world applications. Amazing training and extremely helpful faculty!',
+            text: 'The cloud migration and IT infrastructure services provided by ZEPFTER were exceptional. They delivered on time, within budget, and exceeded our expectations for security and scalability.',
             color: '#1E3679'
           },
           {
             type: 'testimonial',
-            title: 'What Our Students Say',
-            subtitle: 'Success stories from our alumni',
-            name: 'Rahul Verma',
-            role: 'IT & Technology Student',
+            title: 'What Our Clients Say',
+            subtitle: 'Success stories from our partners',
+            name: 'Michael Chen',
+            role: 'Director of Operations, MedLife Pharma',
             image: 'https://i.pravatar.cc/150?img=33',
-            text: 'I joined the Data Science program and got placed quickly. Highly practical training and hands-on experience!',
+            text: 'ZEPFTER\'s regulatory affairs team guided us through complex EMA submissions. Their deep knowledge and attention to detail were instrumental in our successful product launch in Europe.',
             color: '#1E3679'
           },
           {
             type: 'testimonial',
-            title: 'What Our Students Say',
-            subtitle: 'Success stories from our alumni',
-            name: 'Sneha Gupta',
-            role: 'Pharmaceutical QA Graduate',
+            title: 'What Our Clients Say',
+            subtitle: 'Success stories from our partners',
+            name: 'Priya Deshmukh',
+            role: 'Head of IT, Global Biotech Ltd',
             image: 'https://i.pravatar.cc/150?img=22',
-            text: 'The pharmaceutical quality assurance course gave me the skills to land a job at a top pharmaceutical company. Excellent mentorship!',
+            text: 'The custom software development and AI automation solutions from ZEPFTER revolutionized our laboratory operations. Efficiency increased by 40% within the first quarter!',
             color: '#1E3679'
           },
           {
             type: 'testimonial',
-            title: 'What Our Students Say',
-            subtitle: 'Success stories from our alumni',
-            name: 'Arjun Singh',
-            role: 'IT Professional',
+            title: 'What Our Clients Say',
+            subtitle: 'Success stories from our partners',
+            name: 'James Anderson',
+            role: 'Quality Director, European Pharma Group',
             image: 'https://i.pravatar.cc/150?img=28',
-            text: 'The comprehensive IT services training helped me transition into cloud computing. The instructors were incredibly supportive throughout.',
+            text: 'ZEPFTER\'s validation services and LIMS implementation were flawless. Their team\'s professionalism and technical expertise made the entire process smooth and compliant with all regulations.',
             color: '#1E3679'
           },
           {
             type: 'testimonial',
-            title: 'What Our Students Say',
-            subtitle: 'Success stories from our alumni',
-            name: 'Divya Patel',
-            role: 'Medical Affairs Associate',
+            title: 'What Our Clients Say',
+            subtitle: 'Success stories from our partners',
+            name: 'Anita Sharma',
+            role: 'CEO, HealthTech Innovations',
             image: 'https://i.pravatar.cc/150?img=50',
-            text: 'Outstanding medical affairs training! The real-world case studies and industry connections made all the difference in my job search.',
+            text: 'Outstanding cybersecurity and compliance consulting! ZEPFTER helped us achieve ISO 27001 certification and implement robust data protection measures. Highly recommended!',
             color: '#1E3679'
           }
         ]}

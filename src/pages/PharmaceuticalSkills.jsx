@@ -5,292 +5,219 @@ import {
   FaChevronDown, 
   FaChevronUp,
   FaPills, 
-  FaVial, 
+  FaHandshake,
   FaClipboardCheck, 
-  FaMicroscope,
   FaIndustry,
   FaFileAlt,
   FaCheckCircle,
   FaAward,
-  
-  FaBriefcase,
-  FaGraduationCap,
   FaUsers,
-  FaChartLine
+  FaChartLine,
+  FaGlobe
 } from "react-icons/fa";
 
-const PharmaceuticalSkillsPage = () => {
+const PharmaConsultingServices = () => {
   const [expandedService, setExpandedService] = useState(null);
   const [expandedFAQ, setExpandedFAQ] = useState(null);
 
   /** ------------------------
-   *   PHARMACEUTICAL CONTENT
+   *   PHARMA CONSULTING SERVICES
    * ------------------------ */
   const services = [
     {
       id: 'quality-assurance',
-      title: 'Quality Assurance',
+      title: 'Quality Assurance & GxP Compliance',
       icon: <FaClipboardCheck size={30} />,
-      duration: '6 months',
-      level: 'Intermediate to Advanced',
-      salary: '₹4 - ₹12 LPA',
+      duration: 'Compliant',
+      level: 'Global',
+      salary: 'Standard',
       description:
-        'Master Quality Assurance principles with comprehensive training in Quality Management Systems, GMP compliance, pharmaceutical validations, and audit procedures. Learn to ensure product quality, regulatory compliance, and implement quality systems in pharmaceutical manufacturing environments.',
+        'Ensure your pharmaceutical operations meet the highest global standards. We provide comprehensive QA consulting, GxP audits, and quality management system (QMS) implementation to ensure compliance with FDA, EMA, and other regulatory bodies.',
       image1: 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=600&q=80',
       image2: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&q=80',
       details: [
-        'Quality Management Systems (QMS)',
-        'Good Manufacturing Practices (GMP)',
-        'Pharmaceutical Validations',
-        'Pharmaceutical Qualifications (IQ, OQ, PQ)',
-        'Audit & Compliance Management',
-        'Document Control Management',
-        'Change Control Procedures',
-        'Deviation Management',
-        'CAPA (Corrective & Preventive Actions)',
-        'Quality Risk Management (ICH Q9)',
+        'QMS Implementation & Optimization',
+        'GxP Audits (GMP, GLP, GCP, GDP)',
+        'Mock Inspections & Readiness',
+        'Data Integrity Assessments',
+        'CAPA Management & Remediation',
+        'Vendor Qualification & Audits',
+        'Risk Management (ICH Q9)',
+        'Standard Operating Procedures (SOPs)',
+        'Training & Competency Assessment',
         'Validation Master Plan (VMP)',
-        'Standard Operating Procedures (SOPs)'
+        'Change Control Management',
+        'Quality Culture Transformation'
       ],
-      certifications: ['ASQ Certified Quality Auditor (CQA)', 'Pharmaceutical Quality Professional', 'ISO 9001 Lead Auditor'],
-      careerPaths: ['QA Manager', 'QA Executive', 'Quality Auditor', 'Validation Specialist', 'Compliance Manager', 'QA Documentation Specialist']
-    },
-
-    {
-      id: 'quality-control',
-      title: 'Quality Control & Pharmaceutical Analysis',
-      icon: <FaVial size={30} />,
-      duration: '6 months',
-      level: 'Intermediate to Advanced',
-      salary: '₹4 - ₹13 LPA',
-      description:
-        'Become an expert in pharmaceutical analysis and quality control with hands-on training in analytical techniques, laboratory management, and Good Laboratory Practices. Master HPLC, GC, spectroscopy, and other analytical methods essential for pharmaceutical testing and release.',
-      image1: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&q=80',
-      image2: 'https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=600&q=80',
-      details: [
-        'Pharmaceutical Analysis Techniques',
-        'HPLC (High-Performance Liquid Chromatography)',
-        'Gas Chromatography (GC)',
-        'UV-Visible Spectroscopy',
-        'Laboratory Information Management System (LIMS)',
-        'Good Laboratory Practices (GLP)',
-        'Analytical Method Validation',
-        'Stability Testing & Studies',
-        'Raw Material Testing',
-        'In-Process Quality Control',
-        'Finished Product Testing',
-        'Out of Specification (OOS) Investigation'
-      ],
-      certifications: ['Pharmaceutical Analyst Certification', 'LIMS Specialist', 'Analytical Method Validation Expert'],
-      careerPaths: ['QC Analyst', 'QC Manager', 'Analytical Chemist', 'Laboratory Manager', 'Stability Testing Specialist', 'Method Development Scientist']
+      certifications: ['ISO 9001', '21 CFR Part 11', 'EU GMP'],
+      careerPaths: ['Compliance Assurance', 'Audit Readiness', 'Quality Excellence', 'Risk Mitigation']
     },
 
     {
       id: 'regulatory-affairs',
-      title: 'Regulatory Affairs',
+      title: 'Regulatory Affairs Strategy',
       icon: <FaFileAlt size={30} />,
-      duration: '7 months',
-      level: 'Advanced',
-      salary: '₹5 - ₹15 LPA',
+      duration: 'Strategic',
+      level: 'Expert',
+      salary: 'Approved',
       description:
-        'Master regulatory affairs with comprehensive training in drug registration, regulatory submissions, and compliance. Learn FDA, EMA, and ICH guidelines for pharmaceutical product approvals, including IND, NDA, ANDA, and international regulatory requirements.',
+        'Navigate the complex regulatory landscape with our expert guidance. We support your product lifecycle from development to post-market maintenance, ensuring successful submissions and approvals globally.',
       image1: 'https://images.unsplash.com/photo-1579154204601-01588f351e67?w=600&q=80',
       image2: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80',
       details: [
-        'Drug Registration & Approval Process',
-        'Regulatory Submissions (IND, NDA, ANDA)',
-        'FDA Regulations & Guidelines',
-        'EMA Regulations & Guidelines',
-        'ICH Guidelines (Q, E, S, M)',
-        'CMC (Chemistry, Manufacturing, Controls)',
-        'Regulatory Strategy Development',
-        'Post-Approval Changes (PAC)',
+        'Global Regulatory Strategy',
+        'IND/NDA/ANDA/BLA Submissions',
+        'MAA Submissions (Europe)',
         'Health Authority Interactions',
+        'CMC Writing & Review',
+        'Labeling & Advertising Review',
         'Regulatory Intelligence',
-        'Product Lifecycle Management',
-        'Global Regulatory Requirements'
+        'Lifecycle Management (Variations, Renewals)',
+        'Orphan Drug Designations',
+        'Pediatric Investigation Plans',
+        'Gap Analysis & Due Diligence',
+        'eCTD Publishing'
       ],
-      certifications: ['RAC (Regulatory Affairs Certification)', 'FDA Regulatory Specialist', 'Global Regulatory Professional'],
-      careerPaths: ['Regulatory Affairs Manager', 'Regulatory Affairs Specialist', 'Regulatory Submission Manager', 'CMC Specialist', 'Regulatory Compliance Officer']
+      certifications: ['FDA Guidelines', 'EMA Regulations', 'ICH Standards'],
+      careerPaths: ['Market Access', 'Submission Success', 'Regulatory Compliance', 'Strategic Planning']
     },
 
     {
-      id: 'manufacturing-operations',
-      title: 'Manufacturing Operations',
-      icon: <FaIndustry size={30} />,
-      duration: '5-8 months',
-      level: 'Beginner to Intermediate',
-      salary: '₹3.5 - ₹10 LPA',
+      id: 'validation-qualification',
+      title: 'Validation & Qualification',
+      icon: <FaCheckCircle size={30} />,
+      duration: 'Verified',
+      level: 'Robust',
+      salary: 'Proven',
       description:
-        'Gain expertise in pharmaceutical manufacturing operations with training in production processes, equipment operation, GMP compliance, and warehouse management. Learn batch manufacturing, packaging operations, and pharmaceutical supply chain management.',
+        'Validate your processes, equipment, and systems with confidence. Our validation experts ensure your manufacturing and laboratory operations are qualified and capable of consistently producing quality products.',
       image1: 'https://images.unsplash.com/photo-1631549916768-4119b2e5f926?w=600&q=80',
       image2: 'https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=600&q=80',
       details: [
-        'Pharmaceutical Manufacturing Processes',
-        'Good Manufacturing Practices (GMP)',
-        'Batch Manufacturing Operations',
-        'Equipment Operation & Maintenance',
-        'Pharmaceutical Warehouse Management',
-        'Inventory Management',
-        'Packaging Operations',
-        'Material Management',
-        'Production Planning & Scheduling',
-        'Batch Record Review',
-        'Equipment Qualification',
-        'Process Troubleshooting'
+        'Equipment Qualification (IQ/OQ/PQ)',
+        'Process Validation',
+        'Cleaning Validation',
+        'Computer System Validation (CSV)',
+        'Method Validation',
+        'Utility System Qualification',
+        'Transport & Cold Chain Validation',
+        'Validation Master Plans',
+        'Risk-Based Validation Approach',
+        'Periodic Reviews',
+        'Legacy System Remediation',
+        'Automation Validation'
       ],
-      certifications: ['GMP Certification', 'Manufacturing Excellence Professional', 'Lean Six Sigma Green Belt'],
-      careerPaths: ['Production Officer', 'Manufacturing Manager', 'Production Supervisor', 'Warehouse Manager', 'Supply Chain Manager', 'Operations Executive']
+      certifications: ['GAMP 5', 'ASTM E2500', 'Annex 11'],
+      careerPaths: ['Process Reliability', 'System Compliance', 'Operational Integrity', 'Quality Control']
     },
 
     {
-      id: 'research-development',
-      title: 'Research & Development',
-      icon: <FaMicroscope size={30} />,
-      duration: '8 months',
-      level: 'Advanced',
-      salary: '₹6 - ₹18 LPA',
+      id: 'manufacturing-excellence',
+      title: 'Manufacturing Excellence',
+      icon: <FaIndustry size={30} />,
+      duration: 'Efficient',
+      level: 'Lean',
+      salary: 'Productive',
       description:
-        'Master pharmaceutical R&D with training in formulation development, pharmaceutical investigations, stability studies, and pharmaceutical informatics. Learn drug development processes, formulation optimization, and scale-up from laboratory to commercial production.',
+        'Optimize your manufacturing operations for efficiency and quality. We apply Lean Six Sigma principles and industry best practices to improve yield, reduce waste, and enhance operational performance.',
       image1: 'https://images.unsplash.com/photo-1583912267550-bd9196830a0b?w=600&q=80',
       image2: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&q=80',
       details: [
-        'Pharmaceutical Formulation Development',
-        'Pharmaceutical Investigation',
-        'Pharmaceutical Stability Solutions',
-        'Preformulation Studies',
-        'Pharmaceutical Informatics',
-        'Laboratory Informatics',
-        'Drug Development Process',
-        'Scale-Up & Technology Transfer',
-        'Formulation Optimization',
-        'Excipient Selection',
-        'Analytical Method Development',
-        'Process Development'
+        'Operational Excellence (OpEx)',
+        'Lean Six Sigma Implementation',
+        'Process Optimization',
+        'Tech Transfer Support',
+        'Supply Chain Optimization',
+        'Capacity Planning',
+        'Root Cause Analysis',
+        'Shop Floor Management',
+        'Cost Reduction Initiatives',
+        'Digital Manufacturing Strategy',
+        'Facility Design & Layout',
+        'Contract Manufacturing (CMO) Oversight'
       ],
-      certifications: ['Pharmaceutical R&D Professional', 'Formulation Scientist Certification', 'Drug Development Specialist'],
-      careerPaths: ['R&D Scientist', 'Formulation Scientist', 'Research Associate', 'Product Development Manager', 'Process Development Engineer']
-    },
-
-    {
-      id: 'pharmaceutical-systems',
-      title: 'Pharmaceutical Systems & Documentation',
-      icon: <FaPills size={30} />,
-      duration: '5 months',
-      level: 'Intermediate',
-      salary: '₹4 - ₹11 LPA',
-      description:
-        'Specialize in pharmaceutical documentation systems, LIMS, calibrations, and Good Documentation Practices. Master document control, laboratory information systems, equipment calibration, and compliance documentation essential for pharmaceutical operations.',
-      image1: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&q=80',
-      image2: 'https://images.unsplash.com/photo-1551076805-e1869033e561?w=600&q=80',
-      details: [
-        'Document Control Management',
-        'Good Document Practices (GDP)',
-        'Laboratory Information Management System (LIMS)',
-        'Pharmaceutical Calibrations',
-        'Calibration Management',
-        'Equipment Qualification Documentation',
-        'SOP Writing & Management',
-        'Electronic Batch Records (EBR)',
-        'Data Integrity & ALCOA Principles',
-        'Pharmaceutical Informatics',
-        'Laboratory Informatics',
-        'Audit Trail Management'
-      ],
-      certifications: ['Document Control Specialist', 'LIMS Administrator', 'Calibration Management Professional'],
-      careerPaths: ['Document Controller', 'LIMS Administrator', 'Calibration Specialist', 'QA Documentation Officer', 'Systems Administrator']
+      certifications: ['Lean Six Sigma', 'Operational Excellence', 'Supply Chain Mgmt'],
+      careerPaths: ['Efficiency', 'Cost Savings', 'Productivity', 'Agility']
     }
   ];
 
   const stats = [
-    { number: '800+', label: 'Students Trained', icon: <FaUsers size={30} /> },
-    { number: '92%', label: 'Placement Rate', icon: <FaChartLine size={30} /> },
-    { number: '300+', label: 'Pharma Companies', icon: <FaBriefcase size={30} /> },
-    { number: '15 LPA', label: 'Highest Package', icon: <FaAward size={30} /> }
+    { number: '300+', label: 'Audits Conducted', icon: <FaClipboardCheck size={30} /> },
+    { number: '50+', label: 'Successful Approvals', icon: <FaFileAlt size={30} /> },
+    { number: '20+', label: 'Countries Served', icon: <FaGlobe size={30} /> },
+    { number: '100%', label: 'Compliance Rate', icon: <FaCheckCircle size={30} /> }
   ];
 
   const whyChoose = [
     {
-      icon: <FaGraduationCap size={50} />,
-      title: 'GMP/GLP Certified Trainers',
+      icon: <FaUsers size={50} />,
+      title: 'Industry Veterans',
       description:
-        'Learn from pharmaceutical professionals with 10-15 years of experience in leading pharma companies including Pfizer, Dr. Reddy\'s, Sun Pharma, Cipla, and other major pharmaceutical manufacturers.',
+        'Our consultants are former regulators and industry leaders with decades of experience in pharmaceutical quality and operations.',
       image: 'https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=600&q=80'
     },
     {
-      icon: <FaAward size={50} />,
-      title: 'Industry Certifications',
+      icon: <FaGlobe size={50} />,
+      title: 'Global Perspective',
       description:
-        'Complete preparation for ASQ CQA, RAC, GMP/GLP certifications, ISO Lead Auditor, and pharmaceutical quality professional certifications with comprehensive study materials and mock exams.',
+        'We understand the nuances of global regulations and help you navigate the requirements of FDA, EMA, PMDA, and other major agencies.',
       image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&q=80'
     },
     {
-      icon: <FaMicroscope size={50} />,
-      title: 'Hands-on Laboratory Training',
+      icon: <FaHandshake size={50} />,
+      title: 'Tailored Solutions',
       description:
-        'Gain practical experience with pharmaceutical analytical instruments including HPLC, GC, UV-Vis spectroscopy, and modern laboratory equipment. Work with real pharmaceutical samples and SOPs.',
-      image: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&q=80'
+        'We don\'t believe in one-size-fits-all. We customize our consulting services to meet your specific business needs and challenges.',
+      image: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=600&q=80'
     },
     {
-      icon: <FaBriefcase size={50} />,
-      title: 'Pharma Industry Placements',
+      icon: <FaChartLine size={50} />,
+      title: 'Results Driven',
       description:
-        'Direct placement opportunities with 300+ pharmaceutical companies including top Indian pharma companies, contract manufacturing organizations, and quality control laboratories.',
-      image: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=600&q=80'
+        'We focus on delivering tangible results—whether it\'s a successful inspection, a product approval, or improved operational metrics.',
+      image: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&q=80'
     }
   ];
 
   /** ------------------------
-   *   PHARMACEUTICAL FAQ
+   *   PHARMA FAQ
    * ------------------------ */
   const faqs = [
     {
       id: 1,
-      question: 'What are the eligibility criteria for pharmaceutical courses?',
+      question: 'Can you help us prepare for an upcoming FDA inspection?',
       answer:
-        'B.Pharm, M.Pharm, Pharm.D, B.Sc/M.Sc in Chemistry, Microbiology, Biotechnology, or related sciences are eligible. Freshers and experienced professionals looking to enhance pharmaceutical quality and regulatory skills can enroll.'
+        'Yes, we specialize in inspection readiness. We conduct mock inspections, identify gaps, provide remediation plans, and train your staff to handle the inspection confidently.'
     },
     {
       id: 2,
-      question: 'What is the difference between Quality Assurance and Quality Control?',
+      question: 'Do you support medical device companies as well?',
       answer:
-        'Quality Assurance focuses on preventing defects through process control, documentation, audits, and compliance systems. Quality Control focuses on detecting defects through testing, analysis, and laboratory investigations of raw materials and finished products.'
+        'Yes, we have expertise in medical device regulations (ISO 13485, MDR/IVDR, 21 CFR Part 820) and can support quality and regulatory needs for device manufacturers.'
     },
     {
       id: 3,
-      question: 'Are pharmaceutical jobs in high demand?',
+      question: 'What is your approach to Data Integrity?',
       answer:
-        'Yes! India is the 3rd largest pharmaceutical producer globally. There\'s huge demand for QA/QC professionals, regulatory affairs specialists, production officers, and R&D scientists in pharmaceutical manufacturing, quality, and regulatory domains.'
+        'We take a holistic approach to Data Integrity, assessing people, processes, and technology. We help you implement ALCOA+ principles and remediate any data integrity issues.'
     },
     {
       id: 4,
-      question: 'What certifications do you prepare for?',
+      question: 'Can you assist with responding to a Warning Letter or 483?',
       answer:
-        'We prepare for ASQ Certified Quality Auditor (CQA), RAC (Regulatory Affairs Certification), GMP/GLP certifications, ISO 9001 Lead Auditor, pharmaceutical quality professional certifications, and LIMS specialist certifications.'
+        'Absolutely. We have extensive experience in helping companies respond to regulatory observations and warning letters, developing comprehensive CAPA plans to address the issues.'
     },
     {
       id: 5,
-      question: 'Do you provide hands-on laboratory training?',
+      question: 'Do you offer remote consulting services?',
       answer:
-        'Yes! Students get extensive hands-on training with pharmaceutical analytical instruments like HPLC, GC, UV-Vis spectroscopy, and quality control equipment. We conduct practical sessions with real pharmaceutical samples and SOPs.'
+        'Yes, we offer remote audits, document reviews, and consulting sessions. Our secure digital platforms ensure seamless collaboration and data protection.'
     },
     {
       id: 6,
-      question: 'What salary can I expect after completing these courses?',
+      question: 'How do you handle confidential information?',
       answer:
-        'Freshers in QA/QC typically earn ₹3.5-5 LPA, Regulatory Affairs professionals start at ₹5-7 LPA, while R&D and senior QA positions offer ₹8-15 LPA. Experienced professionals with certifications can earn ₹15-20 LPA+.'
-    },
-    {
-      id: 7,
-      question: 'Which pharmaceutical companies hire from ZEPFTER?',
-      answer:
-        'We have partnerships with 300+ pharma companies including Dr. Reddy\'s, Sun Pharma, Cipla, Lupin, Aurobindo Pharma, Biocon, Glenmark, Cadila, contract manufacturing organizations, and quality control laboratories.'
-    },
-    {
-      id: 8,
-      question: 'Is online training available for pharmaceutical courses?',
-      answer:
-        'Yes! We offer hybrid training with live online sessions for theory, virtual lab demonstrations, and optional on-site practical training at pharmaceutical facilities for hands-on experience with instruments and equipment.'
+        'We treat client confidentiality with the utmost importance. All our consultants are bound by strict non-disclosure agreements, and we have robust data security measures in place.'
     }
   ];
 
@@ -327,17 +254,16 @@ const PharmaceuticalSkillsPage = () => {
               <FaPills size={60} style={{ color: '#FBD21A' }} />
             </div>
             <h1 className="fw-bold text-white" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)' }}>
-              PHARMACEUTICAL SKILLS
+              PHARMA CONSULTING
             </h1>
             <p className="text-white mx-auto" style={{ maxWidth: '800px', opacity: 0.9, lineHeight: '1.8', marginTop: '10px'}}>
-              ZEPFTER's Pharmaceutical Skills programs provide comprehensive training in Quality Assurance, Quality Control, Regulatory Affairs, Manufacturing Operations, and R&D. Master GMP/GLP practices, pharmaceutical validations, analytical techniques, and regulatory compliance. With industry-expert trainers and 92% placement success in leading pharmaceutical companies, we prepare you for quality, regulatory, and manufacturing excellence in the pharma industry.
+              ZEPFTER provides strategic consulting services to the pharmaceutical and life sciences industry. From regulatory strategy and quality assurance to manufacturing excellence and validation, we partner with you to ensure compliance, mitigate risk, and accelerate your product's journey to market.
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* STATS SECTION */}
-    {/* STATS SECTION */}
           <section style={{ padding: '80px 20px', background: 'rgba(0,0,0,0.3)' }}>
             <div className="container">
               <div className="row g-4">
@@ -371,13 +297,13 @@ const PharmaceuticalSkillsPage = () => {
             </div>
           </section>
     
-          {/* COURSE ACCORDION */}
+          {/* SERVICES ACCORDION */}
           <section style={{ padding: '80px 20px' }}>
             <div className="container" style={{ maxWidth: '1400px' }}>
     
               <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="text-center mb-5">
-                <h2 className="fw-bold text-white mb-3" style={{ fontSize: 'clamp(2rem,4vw,3rem)' }}>Our Clinical Course Offerings</h2>
-                <p className="text-white mx-auto" style={{ maxWidth: '700px', opacity: 0.8 }}>Choose from our advanced clinical research and data management programs</p>
+                <h2 className="fw-bold text-white mb-3" style={{ fontSize: 'clamp(2rem,4vw,3rem)' }}>Our Consulting Services</h2>
+                <p className="text-white mx-auto" style={{ maxWidth: '700px', opacity: 0.8 }}>Expert guidance for your quality and regulatory needs</p>
               </motion.div>
     
               {services.map((service, idx) => (
@@ -429,7 +355,7 @@ const PharmaceuticalSkillsPage = () => {
                         <p style={{ opacity: 0.85, lineHeight: 1.7 }}>{service.description}</p>
     
                         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#FBD21A', fontWeight: 600 }}>
-                          View Curriculum {expandedService === service.id ? <FaChevronUp /> : <FaChevronDown />}
+                          View Services {expandedService === service.id ? <FaChevronUp /> : <FaChevronDown />}
                         </div>
                       </div>
                     </div>
@@ -446,7 +372,7 @@ const PharmaceuticalSkillsPage = () => {
                         >
                           <div style={{ padding: '40px', color: 'white' }}>
     
-                            <h3 className="fw-bold mb-4" style={{ color: '#FBD21A' }}>What You Will Learn</h3>
+                            <h3 className="fw-bold mb-4" style={{ color: '#FBD21A' }}>What We Deliver</h3>
     
                             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(250px,1fr))', gap: '15px', marginBottom: '30px' }}>
                               {service.details.map((detail, idx) => (
@@ -461,8 +387,8 @@ const PharmaceuticalSkillsPage = () => {
                               ))}
                             </div>
     
-                            {/* Certifications */}
-                            <h4 className="fw-bold mb-3" style={{ color: '#00AA8A' }}>Certifications Prepared</h4>
+                            {/* Standards */}
+                            <h4 className="fw-bold mb-3" style={{ color: '#00AA8A' }}>Standards & Guidelines</h4>
                             <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginBottom: '30px' }}>
                               {service.certifications.map((cert, idx) => (
                                 <span key={idx} style={{ padding: '10px 20px', background: 'rgba(0,170,138,0.2)', borderRadius: '25px', border: '1px solid rgba(0,170,138,0.5)' }}>
@@ -471,8 +397,8 @@ const PharmaceuticalSkillsPage = () => {
                               ))}
                             </div>
     
-                            {/* Career Paths */}
-                            <h4 className="fw-bold mb-3" style={{ color: '#FBD21A' }}>Career Opportunities</h4>
+                            {/* Benefits */}
+                            <h4 className="fw-bold mb-3" style={{ color: '#FBD21A' }}>Business Value</h4>
                             <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginBottom: '30px' }}>
                               {service.careerPaths.map((career, idx) => (
                                 <span key={idx} style={{ padding: '10px 20px', background: 'rgba(251,210,26,0.2)', borderRadius: '20px', border: '1px solid rgba(251,210,26,0.3)' }}>
@@ -496,23 +422,8 @@ const PharmaceuticalSkillsPage = () => {
                                   display: 'inline-block'
                                 }}
                               >
-                                Enroll Now
+                                Get Expert Advice
                               </Link>
-                              <button
-                                style={{
-                                  padding: '15px 40px',
-                                  background: 'transparent',
-                                  color: 'white',
-                                  border: '2px solid white',
-                                  borderRadius: '50px',
-                                  fontWeight: '600',
-                                  fontSize: '1rem',
-                                  cursor: 'pointer',
-                                  transition: 'all 0.3s ease'
-                                }}
-                              >
-                                Download Syllabus
-                              </button>
                             </div>
     
                           </div>
@@ -531,9 +442,9 @@ const PharmaceuticalSkillsPage = () => {
             <div className="container">
     
               <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="text-center mb-5">
-                <h2 className="fw-bold text-white">Why Choose ZEPFTER Clinical Courses?</h2>
+                <h2 className="fw-bold text-white">Why Partner with ZEPFTER?</h2>
                 <p className="text-white" style={{ maxWidth: '700px', margin: 'auto', opacity: 0.8 }}>
-                  Transform your clinical research career with industry-leading training and CRO placements.
+                  We deliver compliance, quality, and operational excellence.
                 </p>
               </motion.div>
     
@@ -574,7 +485,7 @@ const PharmaceuticalSkillsPage = () => {
               <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="text-center mb-5">
                 <h2 className="fw-bold text-white">Frequently Asked Questions</h2>
                 <p className="text-white" style={{ maxWidth: '700px', margin: 'auto', opacity: 0.8 }}>
-                  Everything you need to know before starting your clinical research journey.
+                  Common questions about our Pharma Consulting Services.
                 </p>
               </motion.div>
     
@@ -632,4 +543,4 @@ const PharmaceuticalSkillsPage = () => {
            );
 };
 
-export default PharmaceuticalSkillsPage ;
+export default PharmaConsultingServices;

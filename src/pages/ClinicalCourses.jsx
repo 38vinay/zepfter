@@ -10,173 +10,172 @@ import {
   FaMicroscope,
   FaCheckCircle,
   FaAward,
-  
   FaBriefcase,
-  FaGraduationCap,
+  FaGlobe,
   FaUsers,
   FaChartLine,
-
+  FaHandshake
 } from "react-icons/fa";
 
-const ClinicalCoursesPage = () => {
+const ClinicalResearchServices = () => {
   const [expandedService, setExpandedService] = useState(null);
   const [expandedFAQ, setExpandedFAQ] = useState(null);
 
   /** ------------------------
-   *   CLINICAL COURSE CONTENT
+   *   CLINICAL RESEARCH SERVICES
    * ------------------------ */
   const services = [
     {
-      id: 'clinical-research',
-      title: 'Clinical Research',
-      icon: <FaFlask size={30} />,
-      duration: '8 months',
-      level: 'Beginner to Advanced',
-      salary: '₹4 - ₹10 LPA',
+      id: 'clinical-operations',
+      title: 'Clinical Operations',
+      icon: <FaClipboardCheck size={30} />,
+      duration: 'Phase I-IV',
+      level: 'Global Trials',
+      salary: 'Efficiency',
       description:
-        'Master the fundamentals of clinical research with comprehensive training in drug discovery, clinical trial phases, Good Clinical Practice (GCP), ethics, regulatory compliance, and study monitoring. Gain hands-on experience in managing clinical trials from protocol development to study closeout.',
+        'End-to-end clinical trial management services ensuring study timelines, budget adherence, and data quality. We provide experienced CRAs, project managers, and site support staff for seamless trial execution.',
       image1: 'https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=600&q=80',
       image2: 'https://images.unsplash.com/photo-1579154204601-01588f351e67?w=600&q=80',
       details: [
-        'Clinical Trial Phases (I-IV)',
-        'Good Clinical Practice (GCP)',
-        'ICH Guidelines & Compliance',
-        'Protocol Development & Review',
-        'Informed Consent Process',
-        'Study Site Management',
-        'Patient Recruitment Strategies',
-        'Safety Reporting & AE Management',
-        'Regulatory Submissions',
-        'Ethics Committee Procedures',
-        'Study Monitoring Techniques',
-        'Data Collection & Documentation'
+        'Study Feasibility & Site Selection',
+        'Project Management',
+        'Clinical Monitoring (On-site & Remote)',
+        'Patient Recruitment & Retention',
+        'Vendor Management',
+        'Risk-Based Monitoring',
+        'Trial Master File (TMF) Management',
+        'Investigator Meeting Organization',
+        'Site Initiation & Close-out',
+        'Budget & Contract Negotiation',
+        'Ethics Committee Submissions',
+        'Audit Readiness'
       ],
-      certifications: ['CCRC (Certified Clinical Research Coordinator)', 'CCRA (Certified Clinical Research Associate)', 'ACRP Certification'],
-      careerPaths: ['Clinical Research Coordinator', 'Clinical Research Associate', 'Study Coordinator', 'Clinical Trial Manager', 'Site Manager', 'Clinical Monitor']
+      certifications: ['ICH-GCP Compliant', '21 CFR Part 11', 'ISO 14155'],
+      careerPaths: ['Trial Management', 'Site Monitoring', 'Project Oversight', 'Vendor Coordination']
     },
 
     {
       id: 'clinical-data-management',
       title: 'Clinical Data Management',
       icon: <FaVial size={30} />,
-      duration: '7 months',
-      level: 'Intermediate to Advanced',
-      salary: '₹5 - ₹12 LPA',
+      duration: 'Data Integrity',
+      level: 'High Quality',
+      salary: 'Accuracy',
       description:
-        'Become an expert in clinical data management with specialized training in database design, data validation, query management, and CDISC standards. Learn to use industry-leading CDM tools like Oracle Clinical, Medidata Rave, and ensure data quality and integrity throughout clinical trials.',
+        'Comprehensive data management solutions from database build to lock. We ensure your clinical data is accurate, complete, and ready for statistical analysis using industry-leading EDC platforms.',
       image1: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80',
       image2: 'https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=600&q=80',
       details: [
-        'CRF Design & Development',
-        'Database Design & Build',
-        'Edit Check Specifications',
-        'Data Validation & Cleaning',
-        'Query Management & Resolution',
+        'eCRF Design & Development',
+        'Database Build & Validation',
+        'Data Management Plan (DMP)',
+        'Data Validation Specifications',
+        'Discrepancy Management',
         'Medical Coding (MedDRA, WHO-DD)',
-        'CDISC Standards (SDTM, ADaM)',
-        'CDM Tools (Oracle, Medidata Rave)',
         'SAE Reconciliation',
-        'Database Lock Procedures',
-        'Data Quality Assurance',
-        'EDC System Management'
+        'External Data Integration',
+        'Database Lock & Archival',
+        'Data Quality Assessments',
+        'EDC User Management',
+        'CDISC Implementation'
       ],
-      certifications: ['CCDM (Certified Clinical Data Manager)', 'SAS Clinical Certification', 'CDISC Specialist'],
-      careerPaths: ['Clinical Data Manager', 'Data Coordinator', 'CDM Specialist', 'Data Quality Lead', 'Database Programmer', 'Medical Coder']
+      certifications: ['CDISC Standards', 'GCDMP Guidelines', 'HIPAA Compliant'],
+      careerPaths: ['Database Design', 'Data Validation', 'Medical Coding', 'Quality Control']
     },
 
     {
-      id: 'clinical-trials',
-      title: 'Clinical Trials Management',
-      icon: <FaClipboardCheck size={30} />,
-      duration: '6 months',
-      level: 'Intermediate',
-      salary: '₹4.5 - ₹11 LPA',
+      id: 'biostatistics',
+      title: 'Biostatistics & Programming',
+      icon: <FaChartLine size={30} />,
+      duration: 'Statistical Power',
+      level: 'Advanced Analysis',
+      salary: 'Insight',
       description:
-        'Learn comprehensive clinical trial management from study initiation to closeout. Master site selection, patient recruitment strategies, monitoring visits, source data verification, and regulatory compliance. Understand trial budgets, contracts, and effective communication with investigators and sponsors.',
+        'Expert statistical consulting and SAS programming services. We provide robust study designs, statistical analysis plans, and CDISC-compliant datasets for regulatory submissions.',
       image1: 'https://images.unsplash.com/photo-1551076805-e1869033e561?w=600&q=80',
       image2: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=600&q=80',
       details: [
-        'Trial Design & Planning',
-        'Site Selection & Feasibility',
-        'Investigator Meetings',
-        'Patient Recruitment & Retention',
-        'Monitoring Visit Procedures',
-        'Source Data Verification (SDV)',
-        'Trial Master File Management',
-        'Budget & Contract Negotiation',
-        'Risk-Based Monitoring',
-        'CAPA Management',
-        'Study Closeout Procedures',
-        'Vendor Management'
+        'Sample Size Calculation',
+        'Statistical Analysis Plan (SAP)',
+        'Randomization Schedules',
+        'TLF Generation (Tables, Listings, Figures)',
+        'CDISC SDTM & ADaM Datasets',
+        'Interim Analysis',
+        'CSR Statistical Sections',
+        'ISS/ISE Integration',
+        'DSMB Support',
+        'PK/PD Analysis',
+        'Adaptive Trial Design',
+        'Regulatory Response Support'
       ],
-      certifications: ['PMP (Project Management Professional)', 'Clinical Trial Management Certification', 'SOCRA Certification'],
-      careerPaths: ['Clinical Trial Manager', 'Site Coordinator', 'Project Manager', 'Clinical Operations Manager', 'Trial Lead', 'CRA Team Lead']
+      certifications: ['SAS Certified', 'CDISC SDTM/ADaM', 'FDA Guidance'],
+      careerPaths: ['Study Design', 'Statistical Analysis', 'SAS Programming', 'Data Visualization']
     },
 
     {
-      id: 'ba-be-studies',
-      title: 'Bioavailability & Bioequivalence Studies',
+      id: 'medical-monitoring',
+      title: 'Medical Monitoring',
       icon: <FaMicroscope size={30} />,
-      duration: '5 months',
-      level: 'Advanced',
-      salary: '₹5 - ₹13 LPA',
+      duration: 'Safety First',
+      level: 'Physician Led',
+      salary: 'Patient Care',
       description:
-        'Specialize in BA/BE studies critical for generic drug development. Master pharmacokinetics principles, study design, analytical methods, statistical analysis, and regulatory requirements for FDA and EMA submissions. Understand bioanalytical testing and comparative bioavailability assessments.',
+        'Physician-led medical monitoring to ensure protocol adherence and subject safety. Our medical monitors provide 24/7 support to investigative sites and project teams.',
       image1: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&q=80',
       image2: 'https://images.unsplash.com/photo-1583911860205-72f8ac8ddcbe?w=600&q=80',
       details: [
-        'Pharmacokinetics Fundamentals',
-        'BA/BE Study Design',
-        'Crossover & Parallel Designs',
-        'Bioanalytical Method Validation',
-        'PK Parameter Calculations',
-        'Statistical Analysis (90% CI)',
-        'FDA & EMA Guidelines',
-        'ANDA Submission Requirements',
-        'Generic Drug Development',
-        'Biowaiver Strategies',
-        'Food Effect Studies',
-        'Data Interpretation & Reporting'
+        'Medical Monitoring Plan',
+        '24/7 Medical Coverage',
+        'Eligibility Review',
+        'Protocol Deviation Review',
+        'Safety Signal Review',
+        'Coding Review',
+        'Medical Training for Sites',
+        'Investigator Brochure Review',
+        'Safety Management Plan',
+        'Benefit-Risk Assessment',
+        'Regulatory Interaction Support',
+        'Patient Safety Oversight'
       ],
-      certifications: ['Clinical Pharmacology Certification', 'Bioanalytical Specialist', 'Regulatory Affairs (BA/BE)'],
-      careerPaths: ['BA/BE Specialist', 'Pharmacokinetics Analyst', 'Bioanalytical Scientist', 'Generic Drug Developer', 'PK/PD Analyst', 'Clinical Pharmacologist']
+      certifications: ['Board Certified MDs', 'GCP Training', 'Safety Guidelines'],
+      careerPaths: ['Medical Oversight', 'Safety Review', 'Protocol Compliance', 'Site Support']
     }
   ];
 
   const stats = [
-    { number: '900+', label: 'Students Trained', icon: <FaUsers size={30} /> },
-    { number: '93%', label: 'Placement Rate', icon: <FaChartLine size={30} /> },
-    { number: '350+', label: 'CRO Partners', icon: <FaBriefcase size={30} /> },
-    { number: '12 LPA', label: 'Highest Package', icon: <FaAward size={30} /> }
+    { number: '200+', label: 'Clinical Trials', icon: <FaFlask size={30} /> },
+    { number: '50+', label: 'Global Clients', icon: <FaGlobe size={30} /> },
+    { number: '99%', label: 'Data Accuracy', icon: <FaCheckCircle size={30} /> },
+    { number: '25+', label: 'Countries', icon: <FaUsers size={30} /> }
   ];
 
   const whyChoose = [
     {
-      icon: <FaGraduationCap size={50} />,
-      title: 'GCP Certified Trainers',
+      icon: <FaUsers size={50} />,
+      title: 'Experienced Team',
       description:
-        'Learn from GCP-certified professionals with 10-15 years of hands-on experience in clinical research, working with leading CROs, pharmaceutical companies, and regulatory authorities worldwide.',
+        'Our clinical operations team averages 10+ years of experience across various therapeutic areas and trial phases.',
       image: 'https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=600&q=80'
     },
     {
-      icon: <FaAward size={50} />,
-      title: 'Industry Certifications',
+      icon: <FaGlobe size={50} />,
+      title: 'Global Reach',
       description:
-        'Complete preparation for CCRC, CCRA, CCDM, SOCRA, and ACRP certifications with mock exams, study materials, and dedicated mentoring to ensure certification success.',
+        'We have the capability to manage multi-center, multi-national trials with local regulatory expertise in key regions.',
       image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&q=80'
     },
     {
       icon: <FaClipboardCheck size={50} />,
-      title: 'Live Project Training',
+      title: 'Technology Driven',
       description:
-        'Work on real clinical trial protocols, CRFs, databases, and study documents. Train with actual EDC systems, CTMS platforms, and industry-standard clinical data management tools.',
+        'We leverage cutting-edge eClinical technologies (EDC, CTMS, eTMF) to streamline trial management and data oversight.',
       image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&q=80'
     },
     {
-      icon: <FaBriefcase size={50} />,
-      title: 'CRO Placement Network',
+      icon: <FaHandshake size={50} />,
+      title: 'Flexible Partnership',
       description:
-        'Direct placement opportunities with 350+ partner CROs and pharmaceutical companies including Quintiles, Covance, Parexel, ICON, PPD, and leading Indian CROs.',
+        'We act as an extension of your team, offering flexible resourcing models from FSP to full-service outsourcing.',
       image: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=600&q=80'
     }
   ];
@@ -187,51 +186,39 @@ const ClinicalCoursesPage = () => {
   const faqs = [
     {
       id: 1,
-      question: 'What are the eligibility criteria for clinical research courses?',
+      question: 'What phases of clinical trials do you support?',
       answer:
-        'Life science graduates (B.Pharm, M.Pharm, B.Sc/M.Sc in Biotechnology, Microbiology, Biochemistry, etc.) and medical graduates (MBBS, BDS, BAMS, BHMS) are eligible. We also accept graduates from other streams with strong interest in healthcare research.'
+        'We support Phase I through Phase IV clinical trials, as well as observational studies and registries, across a wide range of therapeutic indications.'
     },
     {
       id: 2,
-      question: 'How long does it take to become a clinical research professional?',
+      question: 'Do you offer rescue study services?',
       answer:
-        'Our comprehensive 6-8 month programs include theoretical training, practical exposure, and certification preparation. After completing the course and obtaining certifications like CCRC/CCRA, most students get placed within 2-4 months.'
+        'Yes, we specialize in rescue studies. Our rapid response team can step in to recover failing timelines, address data quality issues, and get your trial back on track.'
     },
     {
       id: 3,
-      question: 'What is the difference between Clinical Research and Clinical Data Management?',
+      question: 'What EDC systems do you work with?',
       answer:
-        'Clinical Research focuses on conducting trials, site management, patient recruitment, and monitoring. Clinical Data Management focuses on database design, data validation, query management, and ensuring data quality using specialized CDM tools and CDISC standards.'
+        'Our data management team is proficient in all major EDC platforms including Medidata Rave, Oracle InForm, OpenClinica, and others. We can also build custom databases.'
     },
     {
       id: 4,
-      question: 'Are there good career opportunities in clinical research in India?',
+      question: 'Can you handle medical device trials?',
       answer:
-        'Yes! India is a major hub for clinical trials with 350+ CROs and pharmaceutical companies. The sector is growing at 12-15% annually with excellent opportunities for CRAs, CRCs, Data Managers, and Clinical Operations professionals.'
+        'Yes, we have specific expertise in medical device clinical investigations and are well-versed in ISO 14155 and MDR requirements.'
     },
     {
       id: 5,
-      question: 'What certifications do you prepare students for?',
+      question: 'How do you ensure site compliance?',
       answer:
-        'We prepare for CCRC (Clinical Research Coordinator), CCRA (Clinical Research Associate), CCDM (Clinical Data Manager), SOCRA, ACRP, and specialized certifications in Pharmacovigilance and Regulatory Affairs.'
+        'We employ a risk-based monitoring approach combined with robust site management. Our CRAs build strong relationships with sites to ensure protocol adherence and high-quality data.'
     },
     {
       id: 6,
-      question: 'Do you provide hands-on training with EDC systems?',
+      question: 'Do you provide CDISC compliant datasets?',
       answer:
-        'Yes! Students get extensive hands-on training with industry-standard EDC systems like Medidata Rave, Oracle Clinical, OpenClinica, and CTMS platforms used by major CROs globally.'
-    },
-    {
-      id: 7,
-      question: 'What salary packages can freshers expect?',
-      answer:
-        'Freshers in clinical research typically earn ₹4-6 LPA as CRCs/Junior CRAs, while CDM specialists start at ₹5-7 LPA. Experienced professionals with certifications can earn ₹10-15 LPA at senior positions.'
-    },
-    {
-      id: 8,
-      question: 'Is work-from-home possible in clinical research?',
-      answer:
-        'Yes! Clinical Data Management and remote monitoring roles offer significant work-from-home opportunities. Many CROs now offer hybrid and remote positions for data managers, medical writers, and regulatory affairs professionals.'
+        'Yes, our biostatistics team delivers fully CDISC-compliant SDTM and ADaM datasets ready for submission to the FDA and PMDA.'
     }
   ];
 
@@ -268,10 +255,10 @@ const ClinicalCoursesPage = () => {
               <FaFlask size={60} style={{ color: '#FBD21A' }} />
             </div>
             <h1 className="fw-bold text-white" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)' }}>
-              CLINICAL COURSES
+              CLINICAL RESEARCH SERVICES
             </h1>
             <p className="text-white mx-auto" style={{ maxWidth: '800px', opacity: 0.9, lineHeight: '1.8', marginTop: '10px' }}>
-              ZEPFTER's Clinical Courses prepare you for high-impact careers in clinical research, data management, clinical trials, and bioequivalence studies. Our comprehensive programs combine GCP-certified training with hands-on experience in real trial protocols, EDC systems, and regulatory compliance. With expert trainers from leading CROs and 93% placement success, we prepare you for exciting opportunities in pharmaceutical research and drug development.
+              ZEPFTER delivers excellence in clinical trial management and data solutions. We accelerate your drug development journey with efficient clinical operations, high-quality data management, and expert biostatistics. From startup to submission, our dedicated team ensures your trials are executed with precision, compliance, and patient safety at the forefront.
             </p>
           </motion.div>
         </div>
@@ -311,13 +298,13 @@ const ClinicalCoursesPage = () => {
         </div>
       </section>
 
-      {/* COURSE ACCORDION */}
+      {/* SERVICES ACCORDION */}
       <section style={{ padding: '80px 20px' }}>
         <div className="container" style={{ maxWidth: '1400px' }}>
 
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="text-center mb-5">
-            <h2 className="fw-bold text-white mb-3" style={{ fontSize: 'clamp(2rem,4vw,3rem)' }}>Our Clinical Course Offerings</h2>
-            <p className="text-white mx-auto" style={{ maxWidth: '700px', opacity: 0.8 }}>Choose from our advanced clinical research and data management programs</p>
+            <h2 className="fw-bold text-white mb-3" style={{ fontSize: 'clamp(2rem,4vw,3rem)' }}>Our Clinical Capabilities</h2>
+            <p className="text-white mx-auto" style={{ maxWidth: '700px', opacity: 0.8 }}>Comprehensive solutions for your clinical development needs</p>
           </motion.div>
 
           {services.map((service, idx) => (
@@ -369,7 +356,7 @@ const ClinicalCoursesPage = () => {
                     <p style={{ opacity: 0.85, lineHeight: 1.7 }}>{service.description}</p>
 
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#FBD21A', fontWeight: 600 }}>
-                      View Curriculum {expandedService === service.id ? <FaChevronUp /> : <FaChevronDown />}
+                      View Capabilities {expandedService === service.id ? <FaChevronUp /> : <FaChevronDown />}
                     </div>
                   </div>
                 </div>
@@ -386,7 +373,7 @@ const ClinicalCoursesPage = () => {
                     >
                       <div style={{ padding: '40px', color: 'white' }}>
 
-                        <h3 className="fw-bold mb-4" style={{ color: '#FBD21A' }}>What You Will Learn</h3>
+                        <h3 className="fw-bold mb-4" style={{ color: '#FBD21A' }}>Key Deliverables</h3>
 
                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(250px,1fr))', gap: '15px', marginBottom: '30px' }}>
                           {service.details.map((detail, idx) => (
@@ -401,8 +388,8 @@ const ClinicalCoursesPage = () => {
                           ))}
                         </div>
 
-                        {/* Certifications */}
-                        <h4 className="fw-bold mb-3" style={{ color: '#00AA8A' }}>Certifications Prepared</h4>
+                        {/* Standards */}
+                        <h4 className="fw-bold mb-3" style={{ color: '#00AA8A' }}>Compliance Standards</h4>
                         <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginBottom: '30px' }}>
                           {service.certifications.map((cert, idx) => (
                             <span key={idx} style={{ padding: '10px 20px', background: 'rgba(0,170,138,0.2)', borderRadius: '25px', border: '1px solid rgba(0,170,138,0.5)' }}>
@@ -411,8 +398,8 @@ const ClinicalCoursesPage = () => {
                           ))}
                         </div>
 
-                        {/* Career Paths */}
-                        <h4 className="fw-bold mb-3" style={{ color: '#FBD21A' }}>Career Opportunities</h4>
+                        {/* Focus Areas */}
+                        <h4 className="fw-bold mb-3" style={{ color: '#FBD21A' }}>Service Focus</h4>
                         <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginBottom: '30px' }}>
                           {service.careerPaths.map((career, idx) => (
                             <span key={idx} style={{ padding: '10px 20px', background: 'rgba(251,210,26,0.2)', borderRadius: '20px', border: '1px solid rgba(251,210,26,0.3)' }}>
@@ -436,23 +423,8 @@ const ClinicalCoursesPage = () => {
                               display: 'inline-block'
                             }}
                           >
-                            Enroll Now
+                            Request Proposal
                           </Link>
-                          <button
-                            style={{
-                              padding: '15px 40px',
-                              background: 'transparent',
-                              color: 'white',
-                              border: '2px solid white',
-                              borderRadius: '50px',
-                              fontWeight: '600',
-                              fontSize: '1rem',
-                              cursor: 'pointer',
-                              transition: 'all 0.3s ease'
-                            }}
-                          >
-                            Download Syllabus
-                          </button>
                         </div>
 
                       </div>
@@ -471,9 +443,9 @@ const ClinicalCoursesPage = () => {
         <div className="container">
 
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="text-center mb-5">
-            <h2 className="fw-bold text-white">Why Choose ZEPFTER Clinical Courses?</h2>
+            <h2 className="fw-bold text-white">Why Partner with ZEPFTER?</h2>
             <p className="text-white" style={{ maxWidth: '700px', margin: 'auto', opacity: 0.8 }}>
-              Transform your clinical research career with industry-leading training and CRO placements.
+              We deliver quality, compliance, and efficiency to accelerate your clinical development.
             </p>
           </motion.div>
 
@@ -514,7 +486,7 @@ const ClinicalCoursesPage = () => {
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="text-center mb-5">
             <h2 className="fw-bold text-white">Frequently Asked Questions</h2>
             <p className="text-white" style={{ maxWidth: '700px', margin: 'auto', opacity: 0.8 }}>
-              Everything you need to know before starting your clinical research journey.
+              Common questions about our Clinical Research Services.
             </p>
           </motion.div>
 
@@ -566,9 +538,8 @@ const ClinicalCoursesPage = () => {
         </div>
       </section>
 
-
     </div>
   );
 };
 
-export default ClinicalCoursesPage;
+export default ClinicalResearchServices;

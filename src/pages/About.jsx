@@ -5,9 +5,9 @@ import PageCarousel from "../components/PageCarousel";
 
 const About = () => {
   const [counters, setCounters] = useState({
-    students: 0,
-    courses: 0,
-    instructors: 0,
+    projects: 0,
+    clients: 0,
+    experts: 0,
     satisfaction: 0
   });
 
@@ -18,7 +18,7 @@ const About = () => {
   useEffect(() => {
     if (!isStatsInView) return;
 
-    const targets = { students: 5000, courses: 50, instructors: 150, satisfaction: 98 };
+    const targets = { projects: 1500, clients: 450, experts: 200, satisfaction: 99 };
     const duration = 2000;
     const steps = 60;
     const stepTime = duration / steps;
@@ -29,9 +29,9 @@ const About = () => {
       const progress = step / steps;
 
       setCounters({
-        students: Math.floor(targets.students * progress),
-        courses: Math.floor(targets.courses * progress),
-        instructors: Math.floor(targets.instructors * progress),
+        projects: Math.floor(targets.projects * progress),
+        clients: Math.floor(targets.clients * progress),
+        experts: Math.floor(targets.experts * progress),
         satisfaction: Math.floor(targets.satisfaction * progress)
       });
 
@@ -51,7 +51,7 @@ const About = () => {
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
           backgroundAttachment: 'fixed',
-          padding: '100px 20px 80px',
+          padding: 'clamp(60px, 15vw, 100px) 20px clamp(40px, 10vw, 80px)',
           position: 'relative',
           marginTop: '80px',
         }}
@@ -100,8 +100,8 @@ const About = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <span style={{ color: '#1E3679' }}>ZEPFTER</span>
-              <span style={{ color: 'white' }}> IS ALL ABOUT </span>
-              <span style={{ color: 'white' }}>EDUCATION</span>
+              <span style={{ color: 'white' }}> - TRANSFORMING </span>
+              <span style={{ color: '#00AA8A' }}>PHARMA & IT</span>
             </motion.h1>
 
             <motion.p
@@ -116,16 +116,16 @@ const About = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              We assist with reevaluating students' careers, share significant reasoning and team up across partners through the power of quality training solutions.
+              We deliver world-class pharmaceutical and IT solutions that drive innovation, ensure compliance, and accelerate digital transformation for businesses globally.
             </motion.p>
           </motion.div>
         </div>
       </section>
 
       {/* Our Story Section */}
-      <section className="section" style={{ background: '#f5f5f5' }}>
+      <section className="section" style={{ background: '#f5f5f5', padding: 'clamp(40px, 8vw, 80px) 20px' }}>
         <div className="container">
-          <div className="row align-items-center g-5">
+          <div className="row align-items-center g-4 g-lg-5">
             <motion.div
               className="col-lg-5"
               initial={{ opacity: 0, x: -50 }}
@@ -138,7 +138,7 @@ const About = () => {
                 src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80"
                 alt="Our Story"
                 className="img-fluid rounded-4 shadow-lg"
-                style={{ width: '100%', objectFit: 'cover' }}
+                style={{ width: '100%', maxHeight: '500px', objectFit: 'cover', margin: '0 auto' }}
               />
             </motion.div>
 
@@ -154,11 +154,11 @@ const About = () => {
               </h2>
 
               <p className="mb-4" style={{ fontSize: '1.1rem', color: '#666', lineHeight: '1.8' }}>
-                ZEPFTER is a global education-focused company specializing in Medical, Clinical, and IT training domains (pharmaceutical, biotech, and technology industries). Our commitment is to offer platforms & products for building careers and creating future-ready professionals in the training sector.
+                ZEPFTER is a global professional services company specializing in pharmaceutical and IT solutions. We provide comprehensive services across quality assurance, regulatory compliance, validation, digital transformation, cloud infrastructure, and cybersecurity to pharmaceutical, biotech, and technology industries worldwide.
               </p>
 
               <p className="mb-0" style={{ fontSize: '1.1rem', color: '#666', lineHeight: '1.8' }}>
-                We specialize in transforming career paths through innovation using industry-standard cutting-edge training, improving employability and efficiency. Our programs help students with stable, secure, and scalable skill development from the ground up which align with industry needs.
+                We combine deep domain expertise with cutting-edge technology to deliver innovative solutions that help our clients achieve operational excellence, maintain regulatory compliance, and drive digital innovation. Our commitment is to provide scalable, secure, and sustainable solutions that create lasting value.
               </p>
             </motion.div>
           </div>
@@ -170,14 +170,15 @@ const About = () => {
         className="section position-relative overflow-hidden"
         style={{
           background: 'linear-gradient(135deg, #000000 0%, #1E3679 100%)',
-          color: 'white'
+          color: 'white',
+          padding: 'clamp(40px, 8vw, 80px) 20px'
         }}
       >
         <div className="container">
-          <div className="row g-5 align-items-stretch">
+          <div className="row g-4 g-lg-5 align-items-stretch">
             {/* Vision Card - Yellow */}
             <motion.div
-              className="col-lg-4"
+              className="col-lg-4 col-md-6"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -185,10 +186,11 @@ const About = () => {
             >
               <motion.div
                 whileHover={{ y: -10, boxShadow: '0 30px 60px rgba(251, 210, 26, 0.3)' }}
-                className="p-5 h-100 rounded-4"
+                className="p-4 p-md-5 h-100 rounded-4"
                 style={{
                   background: '#FBD21A',
-                  color: '#000'
+                  color: '#000',
+                  minHeight: '250px'
                 }}
               >
                 <div className="mb-4">
@@ -196,21 +198,21 @@ const About = () => {
                 </div>
                 <h3 className="fw-bold mb-3">Our Vision</h3>
                 <p className="mb-0" style={{ fontSize: '1rem', lineHeight: '1.7' }}>
-                  We serve our stakeholders through market leadership in providing world-class training and education solutions.
+                  To be the global leader in pharmaceutical and IT services, recognized for innovation, quality excellence, and transformative solutions that shape the future of healthcare and technology.
                 </p>
               </motion.div>
             </motion.div>
 
             {/* Who We Are */}
             <motion.div
-              className="col-lg-4"
+              className="col-lg-4 col-md-12 order-md-first order-lg-0"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <div className="text-center h-100 d-flex flex-column justify-content-center">
-                <h2 className="fw-bold mb-4" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)' }}>
+              <div className="text-center h-100 d-flex flex-column justify-content-center" style={{ minHeight: '250px' }}>
+                <h2 className="fw-bold mb-4" style={{ fontSize: 'clamp(2rem, 5vw, 4rem)' }}>
                   Who<br />We are
                 </h2>
                 <motion.div
@@ -228,7 +230,7 @@ const About = () => {
 
             {/* Mission Card - Blue */}
             <motion.div
-              className="col-lg-4"
+              className="col-lg-4 col-md-6"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -236,10 +238,11 @@ const About = () => {
             >
               <motion.div
                 whileHover={{ y: -10, boxShadow: '0 30px 60px rgba(30, 54, 121, 0.5)' }}
-                className="p-5 h-100 rounded-4"
+                className="p-4 p-md-5 h-100 rounded-4"
                 style={{
                   background: '#1E3679',
-                  color: 'white'
+                  color: 'white',
+                  minHeight: '250px'
                 }}
               >
                 <div className="mb-4">
@@ -247,7 +250,7 @@ const About = () => {
                 </div>
                 <h3 className="fw-bold mb-3">Our Mission</h3>
                 <p className="mb-0" style={{ fontSize: '1rem', lineHeight: '1.7' }}>
-                  To attain student success and to provide value and innovation to our students globally through excellent training programs.
+                  To deliver exceptional pharmaceutical and IT solutions that ensure regulatory compliance, drive operational efficiency, and enable digital transformation for our clients worldwide.
                 </p>
               </motion.div>
             </motion.div>
@@ -255,24 +258,24 @@ const About = () => {
 
           {/* Description */}
           <motion.div
-            className="row mt-5"
+            className="row mt-4 mt-md-5"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
             <div className="col-12">
-              <div className="p-5 rounded-4" style={{ background: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(10px)' }}>
+              <div className="p-3 p-md-4 p-lg-5 rounded-4" style={{ background: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(10px)' }}>
                 <p className="mb-4" style={{ fontSize: '1.1rem', lineHeight: '1.8' }}>
-                  We, at ZEPFTER, are a team of Top Talented Professionals, driven to build incredible training programs that help our students navigate their way through the entire career journey – with confidence!
+                  We, at ZEPFTER, are a team of 200+ industry experts, certified professionals, and technology specialists driven to deliver exceptional pharmaceutical and IT solutions that help our clients achieve their business objectives with confidence and precision.
                 </p>
 
                 <p className="mb-4" style={{ fontSize: '1.1rem', lineHeight: '1.8' }}>
-                  We facilitate students to transform into future-proof professionals using industry-standard cutting-edge knowledge fuelled by ideal levels of employability and efficiency thereby ensuring career growth and success along with enhanced skill development.
+                  We empower organizations to transform their operations through industry-leading practices, cutting-edge technology, and deep domain expertise. Our solutions ensure regulatory compliance, operational excellence, and sustainable growth in an ever-evolving business landscape.
                 </p>
 
                 <p className="mb-0" style={{ fontSize: '1.1rem', lineHeight: '1.8' }}>
-                  We optimize learning and innovation to offer Student Centric programs with domain expertise. Our solutions translate to systems that are stable, secure and scalable to accomplish career goals.
+                  We optimize processes and drive innovation to offer client-centric solutions with unmatched domain expertise. Our services deliver systems that are stable, secure, scalable, and compliant with global standards.
                 </p>
               </div>
             </div>
@@ -281,7 +284,7 @@ const About = () => {
       </section>
 
       {/* How We Work */}
-      <section className="section" style={{ background: '#fff' }}>
+      <section className="section" style={{ background: '#fff', padding: 'clamp(40px, 8vw, 80px) 20px' }}>
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -293,40 +296,40 @@ const About = () => {
               HOW WE WORK
             </h2>
             <p className="mb-5" style={{ fontSize: '1.1rem', color: '#666', maxWidth: '900px' }}>
-              We, at ZEPFTER, are a team of 150+ experts, driven to build incredible training programs that help our students navigate their way through the entire career journey – paperless!
+              We, at ZEPFTER, are a team of 200+ industry experts, driven to deliver exceptional pharmaceutical and IT solutions that help our clients navigate complex regulatory landscapes and digital transformation challenges with confidence.
             </p>
           </motion.div>
 
-          <div className="row g-5">
+          <div className="row g-4 g-md-5">
             {[
               {
                 icon: <FaBullseye size={50} style={{ color: '#00AA8A' }} />,
-                title: 'Student Centricity',
-                desc: 'We believe that our students are the reason for our existence. By delighting our students and stakeholders, we will go to infinite ends and deliver the best learning experience.',
+                title: 'Client Centricity',
+                desc: 'Our clients are at the heart of everything we do. We deliver tailored solutions that address unique business challenges, ensuring exceptional value and long-term partnerships built on trust and results.',
                 delay: 0
               },
               {
                 icon: <FaLightbulb size={50} style={{ color: '#00AA8A' }} />,
                 title: 'Innovation and Execution',
-                desc: 'We constantly strive to challenge conventional views that drive innovation with new ideas. Be agile and maximize impact by delivering world-class solutions leveraging education and training platforms.',
+                desc: 'We constantly challenge conventional approaches to drive innovation with cutting-edge solutions. Our agile methodology ensures rapid delivery of world-class pharmaceutical and IT services that maximize business impact.',
                 delay: 0.2
               },
               {
                 icon: <FaHandshake size={50} style={{ color: '#00AA8A' }} />,
                 title: 'Collaboration',
-                desc: 'Build a highly capable and committed team to deliver the highest value to all stakeholders while practicing the highest standards of business ethics, humility, and governance.',
+                desc: 'We build highly capable teams and foster collaborative partnerships to deliver maximum value to all stakeholders while maintaining the highest standards of business ethics, integrity, and corporate governance.',
                 delay: 0.4
               },
               {
                 icon: <FaRocket size={50} style={{ color: '#00AA8A' }} />,
-                title: '3-4-5 Approach',
-                desc: '3 days workshop with training team on requirement gathering, 4 weeks curriculum setup and 5 months training & placement support with continuous mentoring.',
+                title: 'Proven Methodology',
+                desc: 'Our structured approach includes comprehensive requirement analysis, strategic planning, agile implementation, rigorous validation, and ongoing support to ensure successful project delivery and sustained value.',
                 delay: 0.6
               }
             ].map((item, idx) => (
               <motion.div
                 key={idx}
-                className="col-lg-6"
+                className="col-lg-6 col-md-6"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -334,7 +337,7 @@ const About = () => {
               >
                 <motion.div
                   whileHover={{ y: -5 }}
-                  className="d-flex gap-4"
+                  className="d-flex flex-column flex-sm-row gap-3 gap-md-4"
                 >
                   <motion.div
                     whileHover={{ rotate: 360, scale: 1.1 }}
@@ -354,12 +357,12 @@ const About = () => {
       </section>
 
       {/* Our Values - Dark with Images */}
-      {/* Our Values - Dark with Images */}
       <section
         className="section"
         style={{
           background: 'linear-gradient(135deg, #0a0a0a 0%, #1E3679 50%, #000000 100%)',
-          color: 'white'
+          color: 'white',
+          padding: 'clamp(40px, 8vw, 80px) 20px'
         }}
       >
         <div className="container">
@@ -380,31 +383,31 @@ const About = () => {
               {
                 image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=80',
                 title: 'Quality with Excellence',
-                description: 'We are committed to delivering world-class training with the highest standards of quality. Excellence is not just a goal, it\'s our promise to every student.',
+                description: 'We are committed to delivering world-class pharmaceutical and IT solutions with the highest standards of quality. Excellence is not just a goal, it\'s our promise to every client and project we undertake.',
                 color: '#1E3679'
               },
               {
                 image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&q=80',
-                title: 'Student Centricity',
-                description: 'Students are at the heart of everything we do. We design our programs, support systems, and teaching methods keeping your success and growth as our top priority.',
+                title: 'Client Centricity',
+                description: 'Clients are at the heart of everything we do. We design our solutions, support systems, and delivery methods keeping your business success and growth as our top priority.',
                 color: '#00AA8A'
               },
               {
                 image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80',
                 title: 'Innovation and Execution',
-                description: 'We embrace cutting-edge teaching methodologies and technology to deliver innovative learning experiences. We don\'t just plan - we execute with precision and agility.',
+                description: 'We embrace cutting-edge technologies and methodologies to deliver innovative pharmaceutical and IT solutions. We don\'t just plan - we execute with precision, agility, and measurable results.',
                 color: '#FBD21A'
               },
               {
                 image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&q=80',
-                title: 'Collaboration',
-                description: 'Together we achieve more. We foster a collaborative environment where students, trainers, and industry partners work together to create meaningful learning outcomes.',
+                title: 'Regulatory Compliance',
+                description: 'We ensure strict adherence to FDA, EMA, ICH, and international standards. Our compliance-first approach guarantees that all solutions meet regulatory requirements and industry best practices.',
                 color: '#1E3679'
               }
             ].map((value, idx) => (
               <motion.div
                 key={idx}
-                className="col-lg-3 col-md-6"
+                className="col-xl-3 col-lg-6 col-md-6 col-sm-6"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -413,7 +416,7 @@ const About = () => {
                 <motion.div
                   whileHover={{ y: -10, scale: 1.02 }}
                   className="position-relative overflow-hidden rounded-4"
-                  style={{ height: '400px', cursor: 'pointer' }}
+                  style={{ height: '350px', cursor: 'pointer' }}
                   onMouseEnter={(e) => {
                     const overlay = e.currentTarget.querySelector('.value-overlay');
                     const description = e.currentTarget.querySelector('.value-description');
@@ -498,32 +501,32 @@ const About = () => {
         </div>
       </section>
       {/* Stats Section */}
-      <section ref={statsRef} className="section" style={{ background: '#f5f5f5' }}>
+      <section ref={statsRef} className="section" style={{ background: '#f5f5f5', padding: 'clamp(40px, 8vw, 80px) 20px' }}>
         <div className="container">
-          <div className="row g-4">
+          <div className="row g-3 g-md-4">
             {[
-              { number: counters.students, suffix: '+', label: 'Students Trained', color: '#1E3679' },
-              { number: counters.courses, suffix: '+', label: 'Courses Offered', color: '#00AA8A' },
-              { number: counters.instructors, suffix: '+', label: 'Expert Instructors', color: '#FBD21A' },
-              { number: counters.satisfaction, suffix: '%', label: 'Satisfaction Rate', color: '#1E3679' }
+              { number: counters.projects, suffix: '+', label: 'Projects Delivered', color: '#1E3679' },
+              { number: counters.clients, suffix: '+', label: 'Global Clients', color: '#00AA8A' },
+              { number: counters.experts, suffix: '+', label: 'Industry Experts', color: '#FBD21A' },
+              { number: counters.satisfaction, suffix: '%', label: 'Client Satisfaction', color: '#1E3679' }
             ].map((stat, idx) => (
-              <div className="col-lg-3 col-md-6" key={idx}>
+              <div className="col-lg-3 col-md-6 col-sm-6" key={idx}>
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={isStatsInView ? { opacity: 1, scale: 1 } : {}}
                   transition={{ duration: 0.6, delay: idx * 0.1, type: "spring" }}
                   whileHover={{ scale: 1.05, y: -10 }}
-                  className="text-center p-4 rounded-4"
+                  className="text-center p-3 p-md-4 rounded-4"
                   style={{
                     background: 'white',
                     boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
                     cursor: 'pointer'
                   }}
                 >
-                  <div className="display-3 fw-bold mb-2" style={{ color: stat.color }}>
+                  <div className="fw-bold mb-2" style={{ color: stat.color, fontSize: 'clamp(2rem, 8vw, 3.5rem)' }}>
                     {stat.number}{stat.suffix}
                   </div>
-                  <div className="fw-semibold text-uppercase" style={{ color: '#666', letterSpacing: '1px' }}>
+                  <div className="fw-semibold text-uppercase" style={{ color: '#666', letterSpacing: '1px', fontSize: 'clamp(0.75rem, 2vw, 0.9rem)' }}>
                     {stat.label}
                   </div>
                 </motion.div>
@@ -538,62 +541,62 @@ const About = () => {
         slides={[
           {
             type: 'testimonial',
-            title: 'What Our Students Say',
-            subtitle: 'Success stories from our alumni',
-            name: 'Amit Sharma',
-            role: 'Medical Coding Graduate',
+            title: 'What Our Clients Say',
+            subtitle: 'Success stories from our partners',
+            name: 'Dr. Rajesh Kumar',
+            role: 'VP Quality Assurance, PharmaCorp India',
             image: 'https://i.pravatar.cc/150?img=12',
-            text: 'ZEPFTER has changed my career! The trainers are extremely skilled, the course content is industry-focused, and the placement support is amazing.',
+            text: 'ZEPFTER transformed our quality management system. Their expertise in GMP compliance and validation helped us achieve FDA approval ahead of schedule. Outstanding professional service!',
             color: '#1E3679'
           },
           {
             type: 'testimonial',
-            title: 'What Our Students Say',
-            subtitle: 'Success stories from our alumni',
-            name: 'Priya Nair',
-            role: 'Clinical Research Student',
+            title: 'What Our Clients Say',
+            subtitle: 'Success stories from our partners',
+            name: 'Sarah Mitchell',
+            role: 'CTO, BioTech Solutions USA',
             image: 'https://i.pravatar.cc/150?img=45',
-            text: 'The Clinical Research program helped me understand real-world applications. Amazing training and extremely helpful faculty!',
+            text: 'The cloud migration and IT infrastructure services provided by ZEPFTER were exceptional. They delivered on time, within budget, and exceeded our expectations for security and scalability.',
             color: '#1E3679'
           },
           {
             type: 'testimonial',
-            title: 'What Our Students Say',
-            subtitle: 'Success stories from our alumni',
-            name: 'Rahul Verma',
-            role: 'IT & Technology Student',
+            title: 'What Our Clients Say',
+            subtitle: 'Success stories from our partners',
+            name: 'Michael Chen',
+            role: 'Director of Operations, MedLife Pharma',
             image: 'https://i.pravatar.cc/150?img=33',
-            text: 'I joined the Data Science program and got placed quickly. Highly practical training and hands-on experience!',
+            text: 'ZEPFTER\'s regulatory affairs team guided us through complex EMA submissions. Their deep knowledge and attention to detail were instrumental in our successful product launch in Europe.',
             color: '#1E3679'
           },
           {
             type: 'testimonial',
-            title: 'What Our Students Say',
-            subtitle: 'Success stories from our alumni',
-            name: 'Sneha Gupta',
-            role: 'Pharmaceutical QA Graduate',
+            title: 'What Our Clients Say',
+            subtitle: 'Success stories from our partners',
+            name: 'Priya Deshmukh',
+            role: 'Head of IT, Global Biotech Ltd',
             image: 'https://i.pravatar.cc/150?img=22',
-            text: 'The pharmaceutical quality assurance course gave me the skills to land a job at a top pharmaceutical company. Excellent mentorship!',
+            text: 'The custom software development and AI automation solutions from ZEPFTER revolutionized our laboratory operations. Efficiency increased by 40% within the first quarter!',
             color: '#1E3679'
           },
           {
             type: 'testimonial',
-            title: 'What Our Students Say',
-            subtitle: 'Success stories from our alumni',
-            name: 'Arjun Singh',
-            role: 'IT Professional',
+            title: 'What Our Clients Say',
+            subtitle: 'Success stories from our partners',
+            name: 'James Anderson',
+            role: 'Quality Director, European Pharma Group',
             image: 'https://i.pravatar.cc/150?img=28',
-            text: 'The comprehensive IT services training helped me transition into cloud computing. The instructors were incredibly supportive throughout.',
+            text: 'ZEPFTER\'s validation services and LIMS implementation were flawless. Their team\'s professionalism and technical expertise made the entire process smooth and compliant with all regulations.',
             color: '#1E3679'
           },
           {
             type: 'testimonial',
-            title: 'What Our Students Say',
-            subtitle: 'Success stories from our alumni',
-            name: 'Divya Patel',
-            role: 'Medical Affairs Associate',
+            title: 'What Our Clients Say',
+            subtitle: 'Success stories from our partners',
+            name: 'Anita Sharma',
+            role: 'CEO, HealthTech Innovations',
             image: 'https://i.pravatar.cc/150?img=50',
-            text: 'Outstanding medical affairs training! The real-world case studies and industry connections made all the difference in my job search.',
+            text: 'Outstanding cybersecurity and compliance consulting! ZEPFTER helped us achieve ISO 27001 certification and implement robust data protection measures. Highly recommended!',
             color: '#1E3679'
           }
         ]}

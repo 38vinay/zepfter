@@ -13,7 +13,7 @@ import ZepfterChatbot from "./components/Zepfterchatbot"; // <-- ADD THIS
 // Pages
 import Home from "./pages/Homes";
 import About from "./pages/About";
-import Services from "./pages/Servicess";
+import Services from "./pages/Solutions";
 import Contact from "./pages/Contact";
 
 // Service Category Pages
@@ -42,12 +42,12 @@ const App = () => {
         <Route path="/services" element={<Services />} />
 
         {/* Service Categories */}
-        <Route path="/services/medical-courses" element={<MedicalCourses />} />
-        <Route path="/services/clinical-courses" element={<ClinicalCourses />} />
-        <Route path="/services/it-services" element={<ITServices />} />
-        <Route path="/services/pharmaceutical-skills" element={<PharmaceuticalSkills />} />
-        <Route path="/services/training-placement" element={<TrainingPlacement />} />
-        <Route path="/services/internship-programs" element={<InternshipPrograms />} />
+        <Route path="/services/medical-affairs" element={<MedicalCourses />} />
+        <Route path="/services/clinical-research" element={<ClinicalCourses />} />
+        <Route path="/services/digital-transformation" element={<ITServices />} />
+        <Route path="/services/pharma-consulting" element={<PharmaceuticalSkills />} />
+        <Route path="/services/talent-solutions" element={<TrainingPlacement />} />
+        <Route path="/services/corporate-training" element={<InternshipPrograms />} />
 
         {/* Other Pages */}
         <Route path="/contact" element={<Contact />} />
